@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="refresh" content="300">
+<head>
+    <meta charset="UTF-8">
+    <title>SOH-Propulsion</title>
+    <link href="./css/custom.css" rel="stylesheet">
+    <style>
+    </style>
+
+    <script type="text/javascript">
+        function WindowOpener(h_link) {
+            window.open(h_link,"current_plot","toolbar=no,directories=no,menubar=no,location=no,scrollbars=yes,status=no,width=500,height=500,resize=yes");
+        }
+
+        function FindCurrentUTC() {
+            var d     = new Date();
+            var nd    = d.getTime() + (d.getTimezoneOffset()*60000);
+            var utc   = new Date(nd);
+            var year  = utc.getFullYear();
+            var start = new Date(year, 0, 0);
+            var day   = Math.floor((d - start) / 86400000);
+            var cday  = AdjustDigit(day, 3);
+            var hh    = utc.getHours();
+            var chh   = AdjustDigit(hh, 2);
+            var mm    = utc.getMinutes();
+            var cmm   = AdjustDigit(mm, 2);
+            var ss    = utc.getSeconds();
+            var css   = AdjustDigit(ss, 2);
+            var cutc  = year.toString() + ':' + cday + ':' + chh + ':' + cmm + ':' + css 
+            return cutc;
+        }
+     
+        function AdjustDigit(val, digit){
+            var nvar = Math.round(val)
+            var cvar = nvar.toString();
+            var n    = cvar.length;
+            var i;
+            for (i = n; i< digit; i++){
+                cvar = '0' + cvar;
+            }
+            return cvar;
+        }
+
+        setInterval(function(){
+           window.location.reload();
+        },180000);
+
+        function onDeletAll(){
+            console.log("Delete all history");
+        }
+        function deleteAllHistory(){
+            var deletingAll = browser.history.deleteAll();
+            deletingAll.then(onDeleteAll);
+            chrome.history.deleteAll();
+        }
+        function Navigate(){
+            document.location.replace('./soh_prop1s.html');
+            return false;
+        }
+        function Refresh(){
+            deleteAllHistory();
+            Navigate();
+        }
+
+        function startTime() {
+            //var ctime =new Date().toISOString().split('.')[0]+"Z";
+            var ctime =new Date().toISOString().split('.')[0];
+            var dtime =ctime.split(':');
+            ctime = dtime[0] +':' + dtime[1] + 'z';
+            document.getElementById('ctxt').innerHTML = "Current Time: "+ctime;
+        }
+
+        function checkTime(i) {
+            var j = i;
+            if (i < 10) {
+                j = "0" + i;
+            }
+            return j;
+        }
+
+        setInterval(function() {
+            startTime();
+            loadFile('./ctest');
+        }, 500);
+
+        function loadFile(filePath) {
+            var result = null;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", filePath, false);
+            xmlhttp.send();
+            if (xmlhttp.status==200) {
+                result = xmlhttp.responseText;
+            }
+            document.getElementById("ncomm").innerHTML = result;
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+<script>
+deleteAllHistory();
+</script>
+
+<header>
+    <h1>Chandra State Of Heath - Propulsion</h1>
+        <p><em>
+        Please refresh the page if the page is open for a while. The page might be staled.<br />
+        <!--
+        You may want to refresh the page with:   
+        <button onclick="Navigate()">Refresh</button>
+        -->
+        </em></p>
+        <p>                             
+        <span style='color:#98FB98;background-color:#98FB98;'>xx</span>: Operation;
+        <span style='color:#F0E68C;background-color:#F0E68C;'>xx</span>: Caution; 
+        <span style='color:#FF4500;background-color:#FF4500;'>xx</span>: Warning;
+        <span style='color:#AED6F1;background-color:#AED6F1;'>xx</span>: Not Checked.
+        Hover the pointer on a MSID to see the operation range.
+        </p> 
+
+        <div style='float:right;'>
+            <a href="javascript:WindowOpener('./comm_list.html')">Comm Contact List</a>
+        </div>
+
+        <table border=0 style='line-height:90%;'>
+            <tr>
+                <td><b>The Last Data Update:</b> </td>
+                <td><span id="blobtime"></span> (UT) </td>
+            </tr>
+            <tr>
+                <td><b>The Last Page Reload:</b></td>
+                <td>
+                <script type="text/javascript">
+                    if (performance.navigation.type == 1) {
+                        var utc = FindCurrentUTC();
+                        document.write(utc);
+                    }else{
+                        var utc = FindCurrentUTC();
+                        document.write(utc);
+                    }
+                </script>
+                (UT)
+                </td>
+            </tr>
+            <tr>
+                <th id=ncomm></th>
+            </tr>
+        </table>
+        
+</header>
+
+<section id="dashapp">
+    
+    <div style='padding-bottom:40px'>
+        <table border=0 style="float:left;">
+            <tr>
+                <td class="msid" data-msid='AOPCADMD'></td>
+                <td class="msid" data-msid='CCSDSVCD'></td>
+                <td class="msid" data-msid='COBSRQID'></td>
+            </tr>
+        </table>
+
+        <table border=0 style="float:right;">
+            <tr>
+                <td class="msid" data-msid='CCSDSTMF'></td>
+                <td class="msid" data-msid='COTLRDSF'></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class='spacer'></div>
+    <nav style='padding-top: 10px;'>
+        <table border=1>
+            <tr>
+                <td class='bold'><a href='./soh.html'>SOH Main</a> </td> 
+                <td class='bold'><a href='./soh_pcad1.html'>PCAD</a> </td> 
+                <td class='bold'><a href='./soh_ccdm1.html'>CCDM</a> </td>
+                <td class='bold'><a href='./soh_sc_config1.html'>S/C Config</a> </td>
+                <td class='bold'><a href='./soh_mech1.html'>Mechanisms</a> </td>
+                <td class='bold'><a href='./soh_thermal1.html'>Thermal</a> </td>
+                <td class='bold'>Propulsion</td>
+                <td class='bold'><a href='./soh_eps1.html'>EPS</a> </td>
+                <td class='bold'><a href='./soh_smode1.html'>Safe Mode</a> </td>
+                <td class='bold'><a href='./soh_load1.html'>Load Rev</a> </td>
+                <td class='bold'><a href='./soh_snap_tab.html'>Snapshot</a> </td>
+            </tr>
+        </table>
+        
+    </nav>
+
+  <hr />
+
+    <div id='mups'>
+        <div class='caption'>MUPS</div>
+        <div class='spacer'></div>
+        <div class='mcolumn'>
+            <table>
+				<tr class="msid"   data-msid="PF1MV1C1">  </tr>
+				<tr class="msid"   data-msid="PF1MV1C2">  </tr>
+				<tr class="msid"   data-msid="PF1MV2C1">  </tr>
+				<tr class="msid"   data-msid="PF1MV2C2">  </tr>
+				<tr class="msid"   data-msid="PM1THV1T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PM1THV2T" data-printfmt="%.3f">  </tr>
+            </table>
+            <table  style='page-break-after:column;'>
+
+				<tr class="msid"   data-msid="PM2THV1T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PM2THV2T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PM3THV1T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PM3THV2T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PM4THV1T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PM4THV2T" data-printfmt="%.3f">  </tr>
+            </table>
+            <table  style='page-break-after:column;'>
+
+				<tr class="msid"   data-msid="PMCBHTP1">  </tr>
+				<tr class="msid"   data-msid="PMCBHTP2">  </tr>
+				<tr class="msid"   data-msid="PMCBHTR1">  </tr>
+				<tr class="msid"   data-msid="PMCBHTR2">  </tr>
+				<tr class="msid"   data-msid="PMFP01T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PMTANK1T" data-printfmt="%.3f">  </tr>
+            </table>
+            <table  style='page-break-after:column;'>
+
+				<tr class="msid"   data-msid="PMTANK2T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PMTANK3T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PMTANKP" data-printfmt="%.3f">  </tr>
+                <tr><td>&#160;</td></tr>
+                <tr><td>&#160;</td></tr>
+                <tr><td>&#160;</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class='spacer'></div>
+    
+    <div id='system_temps'>
+        <div class='caption'>SYSTEM_TEMPS</div>
+        <div class='spacer'></div>
+        <div class='mcolumn'>
+            <table>
+				<tr class="msid"   data-msid="PFDM101T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PFDM102T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PFDM201T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PFDM202T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PFFP01T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PFTANK1T" data-printfmt="%.3f">  </tr>
+            </table>
+            <table  style='page-break-after:column;'>
+
+				<tr class="msid"   data-msid="PFTANK2T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE01T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE02T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE03T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE04T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE05T" data-printfmt="%.3f">  </tr>
+            </table>
+            <table  style='page-break-after:column;'>
+
+				<tr class="msid"   data-msid="PLINE06T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE07T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE08T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE09T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE10T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE11T" data-printfmt="%.3f">  </tr>
+            </table>
+            <table  style='page-break-after:column;'>
+
+				<tr class="msid"   data-msid="PLINE12T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE13T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE14T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE15T" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="PLINE16T" data-printfmt="%.3f">  </tr>
+                <tr><td>&#160;</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class='spacer'></div>
+    
+    <table>
+        <td class="msid" data-msid="LASTDCHECK" style='font-size:20%;'></td>
+    </table>
+
+</section>
+
+
+<footer style='padding-top:20px'>
+<hr />
+<p>
+If you have questions about this page, please contact: 
+<a href="mailto:tisobe@cfa.harvard.edu">tisobe@cfa.harvard.edu</a>
+</p>
+
+<div style='float:right;text-align:right; font-size:80%; padding-right:30px;'>
+<span id="ctxt"></span>
+<table border=0>
+<tr>
+</tr>
+</table>
+</div>
+
+<p style="padding-bottom:10px;">
+Last Modified: Sep 21, 2020
+</p>
+
+</footer>
+
+<!-- templates -->
+
+    <script type="text/template" id="msid-template">
+    //--- handle data format display differently 
+    <% if(name == 'CCSDSTMF'){ %>
+        <th>Format: </th>
+
+    <%}	else if(['PLINE01T','PLINE02T','PLINE03T','PLINE04T','PLINE05T','PLINE06T','PLINE07T','PLINE08T'].includes(name)){ %>
+		<th class="col-name">
+			<a href="javascript:void(0);" style="text-decoration: none;"
+				onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+				onmouseout="return nd();">
+				<form method = "post" action=/mta/CSH/test_plots/load_test.php
+					target='Pline_1_8' onsubmit="window.open('about:blank','Pline_1_8', 'width=1000,height=800');">
+					<input type="hidden" name="msid_group" value="Pline_1_8">
+					<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+				</form>
+			</a>
+		</th>
+	<%}	else if(['PLINE09T','PLINE10T','PLINE11T','PLINE12T','PLINE13T','PLINE14T','PLINE15T','PLINE16T'].includes(name)){ %>
+		<th class="col-name">
+			<a href="javascript:void(0);" style="text-decoration: none;"
+				onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+				onmouseout="return nd();">
+				<form method = "post" action=/mta/CSH/test_plots/load_test.php
+					target='Pline_9_16' onsubmit="window.open('about:blank','Pline_9_16', 'width=1000,height=800');">
+					<input type="hidden" name="msid_group" value="Pline_9_16">
+					<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+				</form>
+			</a>
+		</th>
+	<%}	else if(['PMTANK1T', 'PMTANK2T', 'PMTANK3T'].includes(name)){ %>
+		<th class="col-name">
+			<a href="javascript:void(0);" style="text-decoration: none;"
+				onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+				onmouseout="return nd();">
+				<form method = "post" action=/mta/CSH/test_plots/load_test.php
+					target='Mups_tank' onsubmit="window.open('about:blank','Mups_tank', 'width=1000,height=800');">
+					<input type="hidden" name="msid_group" value="Mups_tank">
+					<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+				</form>
+			</a>
+		</th>
+	<%}	else if(['PFTANK1T', 'PFTANK2T'].includes(name)){ %>
+		<th class="col-name">
+			<a href="javascript:void(0);" style="text-decoration: none;"
+				onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+				onmouseout="return nd();">
+				<form method = "post" action=/mta/CSH/test_plots/load_test.php
+					target='Fuel_tank' onsubmit="window.open('about:blank','Fuel_tank', 'width=1000,height=800');">
+					<input type="hidden" name="msid_group" value="Fuel_tank">
+					<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+				</form>
+			</a>
+		</th>
+	<%} else {%>
+        <th class="col-name"> 
+            <a href="javascript:void(0);" style="text-decoration: none;" 
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );" 
+                onmouseout="return nd();">
+                <%= name %>
+            </a>
+        </td>
+    <% } %>
+
+    <td class="col-val"> <%= value %></td>
+    <!--
+    <td class="col-lim"> <%= limit %></td>
+    <td class="col-desc"><span><%= description %></span></td>
+    -->
+    </script>
+    
+<!-- library -->
+
+    <script src="js_prop/lib/math.js"></script>
+    <script src="js_prop/lib/jquery-2.2.0.js"></script>
+    <script src="js_prop/lib/underscore.js"></script>
+    <script src="js_prop/lib/backbone.js"></script>
+    <script src="js_prop/lib/sprintf.js"></script>
+    <script src="js_prop/lib/overlib.js"></script>
+
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+    -->
+
+
+<!-- local scripts -->
+    <script src="js_prop/calc.js"></script>
+
+    <script src="js_prop/models/blob.js"></script>
+    <script src="js_prop/collections/bloblist.js"></script>
+    <script src="js_prop/models/msidinfo.js"></script>
+    <script src="js_prop/collections/msidinfolist.js"></script>
+    <script src="js_prop/models/msid.js"></script>
+    <script src="js_prop/collections/msidlist.js"></script>
+    <script src="js_prop/views/msidview.js"></script>
+    <script src="js_prop/views/appview.js"></script>
+    <script src="js_prop/app.js"></script>
+
+
+</body>
+</html>
+
