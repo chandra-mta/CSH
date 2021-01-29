@@ -52,6 +52,11 @@ def copy_data_from_occ_part(part):
     output: blob_<part>.json
     """
 #
+#--- set user and password for maude
+#
+    global user, password
+    [user, password] = read_nfile()
+#
 #--- read msid list
 #
     ifile     = house_keeping + 'Inst_part/msid_list_' + part
@@ -92,7 +97,7 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
             hold                --- an indicator of whether the data is 
                                     hold poSition: 0: no/1:yes
     """
-    com_time = chk_time_to_comm()
+    com_time         = chk_time_to_comm()
     hold = 0
 #
 #--- check current time and set start and stop time
@@ -106,7 +111,7 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
 #--- the last valid data value
 #
     try:
-        out   = maude.get_msids('AOGBIAS1', start, stop)
+        out   = maude.get_msids('AOGBIAS1', start, stop, user=user, password=password)
         val   = str((list(out['data'][0]['values']))[-1])
         start = stop - 60
 
@@ -323,7 +328,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #--- if not just go back
 #
     try:
-        out   = maude.get_msids('AOPCADMD', start, stop)
+        out   = maude.get_msids('AOPCADMD', start, stop, user=user, password=password)
         val   = str((list(out['data'][0]['values']))[-1])
         if val == 'NaN':
             return 'stop'
@@ -362,7 +367,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #---- maude tool
 #
         try:
-            mdata = maude.get_msids(msid_short, start, stop)
+            mdata = maude.get_msids(msid_short, start, stop, user=user, password=password)
         except:
             continue
 #
@@ -515,7 +520,7 @@ def create_aoaline(msid_short,start, stop, msid, index, ctime, mlast=0):
     output: out         --- blob data line
     """
 
-    mdata = maude.get_msids(msid_short, start, stop)
+    mdata = maude.get_msids(msid_short, start, stop, user=user, password=password)
     line = ''
     for k in range(0, 8):
         val = str((list(mdata['data'][k]['values']))[-1])
@@ -635,6 +640,24 @@ def chk_time_to_comm():
     com_time = float(out[0])
 
     return com_time
+
+
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+
+def read_nfile():
+
+    ifile = house_keeping + '.netrc'
+    data  = read_data_file(ifile)
+    for ent in data:
+        atemp = re.split('\s+', ent)
+        if atemp[0] == 'login':
+            user = atemp[1]
+        elif atemp[0] == 'password':
+            password = atemp[1]
+
+    return [user, password]
 
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------

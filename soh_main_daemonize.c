@@ -6,7 +6,7 @@
 * Ref: https://stackoverflow.com/questions/17954432/creating-a-daemon-in-linux
 *
 *   author: t. isobe (tisobe@cfa.harvard.edu)
-*   last update: Jan 29, 2019
+*   last update: Sep 20, 2019
 */
 
 #include <stdio.h>

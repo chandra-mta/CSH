@@ -1,6 +1,6 @@
 
 #########################################################
-copy blob data from occ side to sot side
+copy blob data from occ side to sot side --- MIRROR SITE
 #########################################################
 
 Scripts:
@@ -36,7 +36,7 @@ output: <html_dir>/comm_list.hmtl
 mk_limit_table.py
 -----------------
 update msid limit table
-input: /data/mta4/MTA/data/op_limits/glimmondb.sqlite3
+input: /data/mta/Script/MSID_limit/glimmondb.sqlite3
 output: <house_keeping>/limit_table (also in SOH_ASVT)
 
 update_msididx_data.py
@@ -45,6 +45,20 @@ update msididx.blb
 input: <house_keeping>/msididx_base
        <house_keeping>/limit_table
 output:<html_dir>/msididx.json
+
+
+daemon_process_check.py
+-----------------------
+check whether soh daemon processes are running
+input: none
+output: email to admin if it found the process is not running
+
+next_comm_check.py
+------------------
+create a display time span till the next comm
+input: none
+output: <web_dir>/ctest
+
 
 soh_snap_script.sh
 ------------------
@@ -116,15 +130,15 @@ Direcotry:
 ==========
 bin_dir:        /data/mta/Script/SOH/
 house_keeping:  /data/mta/Script/SOH/house_keeping/
-outdir:         /data/mta4/www/CSH/
+outdir:         /data/mta/mta_www/MIRROR/CSH/
 
 Web Address:
 ============
-/data/mta4/www/CSH
+/data/mta/www/MIRROR/CSH
 
-https://cxc.cfa.harvard.edu/mta/CSH/soh.html
-https://cxc.cfa.harvard.edu/mta/CSH/soh_main.html
-https://cxc.cfa.harvard.edu/mta/CSH/soh_snap.html
+http://ops-web.cfa.harvard.edu/mta/CSH/soh.html
+http://ops-web.cfa.harvard.edu/mta/CSH/soh_main.html
+http://ops-web.cfa.harvard.edu/mta/CSH/soh_snap.html
 
 Environment Settings
 ====================
@@ -132,17 +146,32 @@ Environment Settings
 
 cron job
 ========
-luke-v as mta:
+r2d2-v as mta:
 34 1 * * * cd /data/mta/Script/SOH/; /data/mta/Script/SOH/read_comm_time.py > $HOME/Logs/soh_comm_log.cron 
 36 1 * * * cd /data/mta/Script/SOH/; /data/mta/Script/SOH/mk_limit_table.py > $HOME/Logs/soh_limit_log.cron
 40 1 * * * cd /data/mta/Script/SOH/; /data/mta/Script/SOH/update_msididx_data.py > $HOME/Logs/soh_msididx_log.cron 
 
+c3po-v as mta:
+17 2 * * *  cd /data/mta/Script/SOH; /data/mta/Script/SOH/daemon_process_check.py > $HOME/Logs/soh_daemon_check.cron
+*  * * * * /data/mta/Script/SOH/next_comm_check.py
+
+
 daemon process
 ==============
-luke-v as mta:
+c3po-v as mta:
 /data/mta/Script/SOH/soh_snap_daemonize
 /data/mta/Script/SOH/soh_main_daemonize
-/data/mta/Script/SOH/soh_all_daemonize
+/data/mta/Script/SOH/soh_ccdm_daemonize
+/data/mta/Script/SOH/soh_eps_daemonize
+/data/mta/Script/SOH/soh_load_daemonize
+/data/mta/Script/SOH/soh_mech_daemonize
+/data/mta/Script/SOH/soh_pcad_daemonize
+/data/mta/Script/SOH/soh_prop_daemonize
+/data/mta/Script/SOH/soh_sc_config_daemonize
+/data/mta/Script/SOH/soh_smode_daemonize
+/data/mta/Script/SOH/soh_thermal_daemonize
+
+#/data/mta/Script/SOH/soh_all_daemonize
 
 ***************
 Notes on htmls 

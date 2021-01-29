@@ -121,9 +121,9 @@ int main()
 
         pclose(fp);
 
-        /* sleep 10 seconds before starting the new round */
+        /* sleep 60 seconds before starting the new round */
 
-        sleep(10);
+        sleep(60);
     }
 
     /* if the daemon process died, send email to admin */

@@ -6,7 +6,7 @@
 #                                                                                   #
 #           author:t. isobe (tisobe@cfa.harvard.edu)                                #
 #                                                                                   #
-#           last update: May 02, 2019                                               #
+#           last update: Jan 08, 2021                                               #
 #                                                                                   #
 #####################################################################################
 
@@ -32,7 +32,8 @@ for ent in data:
 #
 sys.path.append(bin_dir)
 
-glimmon = '/data/mta4/MTA/data/op_limits/glimmondb.sqlite3'
+#glimmon = '/data/mta4/MTA/data/op_limits/glimmondb.sqlite3'
+glimmon = '/data/mta/Script/MSID_limit/glimmondb.sqlite3'
 #
 #--- these use the same limits as their counterparts in Side 1
 #
@@ -54,7 +55,7 @@ def get_current_limits():
     update limit table
     input:  none but read from:
             <house_keeping>/Inst_part/msid_list_all
-            /data/mta4/MTA/data/op_limits/glimmondb.sqlite3
+            <limit_dir>/glimmondb.sqlite3
     output: <house_keeping>/limit_table
     """
 #

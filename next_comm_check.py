@@ -29,12 +29,12 @@ def find_next_comm():
     """
     create a display time span till the next comm
     input:  nont, but read from /data/mta4/www/CSH/comm_list.html
-    output: /data/mta4/www/CSH/ctest
+    output: /data/mta/www/CSH/ctest
     """
     out = time.strftime('%Y:%j:%H:%M:%S', time.gmtime())
     ctime = Chandra.Time.DateTime(out).secs
     
-    with open('/data/mta4/www/CSH/comm_list.html', 'r') as f:
+    with open('/data/mta_www/MIRROR/CSH/comm_list.html', 'r') as f:
         data = [line.strip() for line in f.readlines()]
     
     pstop = 0.0
@@ -59,7 +59,7 @@ def find_next_comm():
         else:
             pstop = stop
 
-    with open('/data/mta4/www/CSH/ctest', 'w') as fo:
+    with open('/data/mta_www/MIRROR/CSH/ctest', 'w') as fo:
         fo.write(ltime + '\n')
     
 #-------------------------------------------------------------------

@@ -6,7 +6,7 @@
 * Ref: https://stackoverflow.com/questions/17954432/creating-a-daemon-in-linux
 *
 *   author: t. isobe (tisobe@cfa.harvard.edu)
-*   last update: Jan 29, 2019
+*   last update: Sep 20, 2019
 */
 
 #include <stdio.h>
@@ -120,9 +120,9 @@ int main()
 
         pclose(fp);
 
-        /* sleep 30 seconds before starting the new round */
+        /* sleep 120 seconds before starting the new round */
 
-        sleep(30);
+        sleep(120);
     }
 
     /* if the daemon process died, send email to admin */
