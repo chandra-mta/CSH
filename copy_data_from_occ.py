@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta/Script/Python3.6/envs/ska3/bin/python
+#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
 
 #####################################################################################
 #                                                                                   #
@@ -6,7 +6,7 @@
 #                                                                                   #
 #           author: t. isobe (tisobe@cfa.harvard.edu)                               #
 #                                                                                   #
-#           last update: Nov 03, 2020                                               #
+#           last update: Apr 23, 2021                                               #
 #                                                                                   #
 #####################################################################################
 
@@ -20,7 +20,7 @@ import Chandra.Time
 import maude
 import json
 import random
-path = '/data/mta/Script/SOH/house_keeping/dir_list'
+path = '/data/mta4/Script/SOH/house_keeping/dir_list'
 with open(path, 'r') as f:
     data = [line.strip() for line in f.readlines()]
 
@@ -95,9 +95,9 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
             part                --- the name of the instrument group
     output: blob_<part>.json    --- SOH data in json format
             hold                --- an indicator of whether the data is 
-                                    hold poSition: 0: no/1:yes
+                                    hold position: 0: no/1:yes
     """
-    com_time         = chk_time_to_comm()
+    com_time = chk_time_to_comm()
     hold = 0
 #
 #--- check current time and set start and stop time
@@ -111,7 +111,7 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
 #--- the last valid data value
 #
     try:
-        out   = maude.get_msids('AOGBIAS1', start, stop, user=user, password=password)
+        out   = maude.get_msids('AOGBIAS1', start, stop)
         val   = str((list(out['data'][0]['values']))[-1])
         start = stop - 60
 
@@ -328,7 +328,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #--- if not just go back
 #
     try:
-        out   = maude.get_msids('AOPCADMD', start, stop, user=user, password=password)
+        out   = maude.get_msids('AOPCADMD', start, stop)
         val   = str((list(out['data'][0]['values']))[-1])
         if val == 'NaN':
             return 'stop'
@@ -367,7 +367,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #---- maude tool
 #
         try:
-            mdata = maude.get_msids(msid_short, start, stop, user=user, password=password)
+            mdata = maude.get_msids(msid_short, start, stop)
         except:
             continue
 #
@@ -386,8 +386,11 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #
 #--- unit conversion for a few special cases
 #
-            if msid in ['2DETART', '2SHLDART', '2DETBRT', '2SHLDBRT']:
+            if msid in ['2DETART', '2SHLDART', '2SHLDBRT']:
                 val = "%3.1f " % round((float(val) / 256.0), 2)
+
+            elif msid == '2DETBRT':
+                val = "%3.1f" %  math.floor(math.log(val + 1.0) / math.log(2))              #--- added 04/23/21
 
             elif msid == 'AOACINTT':
                 val = "%1.4f" % (float(val) / 1000)
@@ -520,7 +523,7 @@ def create_aoaline(msid_short,start, stop, msid, index, ctime, mlast=0):
     output: out         --- blob data line
     """
 
-    mdata = maude.get_msids(msid_short, start, stop, user=user, password=password)
+    mdata = maude.get_msids(msid_short, start, stop)
     line = ''
     for k in range(0, 8):
         val = str((list(mdata['data'][k]['values']))[-1])
@@ -641,7 +644,6 @@ def chk_time_to_comm():
 
     return com_time
 
-
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
@@ -656,8 +658,9 @@ def read_nfile():
             user = atemp[1]
         elif atemp[0] == 'password':
             password = atemp[1]
-
+    
     return [user, password]
+
 
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
