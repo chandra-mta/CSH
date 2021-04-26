@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta/Script/Python3.6/envs/ska3/bin/python
+#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
 
 #############################################################################
 #                                                                           #
@@ -6,7 +6,7 @@
 #                                                                           #
 #               author: t. isobe@cfa.harvard.edu                            #
 #                                                                           #
-#               last update May 12, 2020                                    #
+#               last update Mar 15, 2021                                    #
 #                                                                           #
 #############################################################################
 
@@ -36,7 +36,7 @@ def  daemon_process_check():
     input: none
     output: email sent to admin, if the script found non-active daemon process
             Note: this must be run on the same cpu where the daemon processes
-                  are running. (currently c3po-v)
+                  are running. (currently boba-v)
     """
 #
 #--- check SOH daemon processes
@@ -104,7 +104,7 @@ def send_email(inst):
     """
 
     text = 'daemon process of ' + inst.capitalize()  + ' page is not running.\n'
-    text = text + 'Please check mta/c3po-v daemon process.\n'
+    text = text + 'Please check mta/boba-v daemon process.\n'
 
     with open(zspace, 'w') as fo:
         fo.write(text)

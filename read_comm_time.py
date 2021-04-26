@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta/Script/Python3.6/envs/ska3/bin/python
+#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
 
 #####################################################################################
 #                                                                                   #
@@ -6,7 +6,7 @@
 #                                                                                   #
 #           author: t. isobe (tisobe@cfa.harvard.edu)                               #
 #                                                                                   #
-#           last update: Apr 16, 2019                                               #
+#           last update: Mar 15, 2021                                               #
 #                                                                                   #
 #####################################################################################
 
@@ -18,7 +18,7 @@ import math
 import time
 import Chandra.Time
 #
-path = '/data/mta/Script/SOH/house_keeping/dir_list'
+path = '/data/mta4/Script/SOH/house_keeping/dir_list'
 with open(path, 'r') as f:
     data = [line.strip() for line in f.readlines()]
 

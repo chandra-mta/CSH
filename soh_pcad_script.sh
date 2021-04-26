@@ -1,9 +1,12 @@
 #!/bin/sh
 
-if ps -ef | grep -v grep | grep "/data/mta/Script/SOH/copy_data_from_occ.py pcad" ; then
+if ps -ef | grep -v grep | grep "/data/mta4/Script/SOH/copy_data_from_occ.py pcad" ; then
     exit 0
 else
-    /data/mta/Script/SOH/copy_data_from_occ.py pcad
+    export PYTHONPATH='/data/mta4/Script/Python3.8/envs/ska3-shiny/lib/python3.8/site-packages:/data/mta4/Script/Python3.8/lib/python3.8/site-packages/'
+    export SKA='/proj/sot/ska'
+
+    /data/mta4/Script/SOH/copy_data_from_occ.py pcad
     exit 0
 fi
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta/Script/Python3.6/envs/ska3/bin/python
+#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
 
 #####################################################################################
 #                                                                                   #
@@ -6,7 +6,7 @@
 #                                                                                   #
 #           author:t. isobe (tisobe@cfa.harvard.edu)                                #
 #                                                                                   #
-#           last update: Jan 08, 2021                                               #
+#           last update: Mar 15, 2021                                               #
 #                                                                                   #
 #####################################################################################
 
@@ -18,7 +18,7 @@ import math
 import sqlite3
 import json
 #
-path = '/data/mta/Script/SOH/house_keeping/dir_list'
+path = '/data/mta4/Script/SOH/house_keeping/dir_list'
 with open(path, 'r') as f:
     data = [line.strip() for line in f.readlines()]
 
@@ -32,8 +32,7 @@ for ent in data:
 #
 sys.path.append(bin_dir)
 
-#glimmon = '/data/mta4/MTA/data/op_limits/glimmondb.sqlite3'
-glimmon = '/data/mta/Script/MSID_limit/glimmondb.sqlite3'
+glimmon = '/data/mta4/MTA/data/op_limits/glimmondb.sqlite3'
 #
 #--- these use the same limits as their counterparts in Side 1
 #
@@ -55,7 +54,7 @@ def get_current_limits():
     update limit table
     input:  none but read from:
             <house_keeping>/Inst_part/msid_list_all
-            <limit_dir>/glimmondb.sqlite3
+            /data/mta4/MTA/data/op_limits/glimmondb.sqlite3
     output: <house_keeping>/limit_table
     """
 #
@@ -97,9 +96,9 @@ def get_current_limits():
     with open(outfile, 'w') as fo:
         fo.write(sline)
 
-    outfile2 = '/data/mta/Script/SOH_ASVT/house_keeping/limit_table'
-    cmd      = 'cp -f ' + outfile + ' ' + outfile2
-    os.system(cmd)
+    #outfile2 = '/data/mta4/Script/SOH_ASVT/house_keeping/limit_table'
+    #cmd      = 'cp -f ' + outfile + ' ' + outfile2
+    #os.system(cmd)
 
 #-----------------------------------------------------------------------------------
 #-- read_glimmon: read glimmondb.sqlite3 and return yellow and red lower and upper limits 

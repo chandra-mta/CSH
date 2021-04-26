@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta/Script/Python3.6/envs/ska3/bin/python
+#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
 
 #########################################################################################
 #                                                                                       #
@@ -6,7 +6,7 @@
 #                                                                                       #
 #       author: t. isobe (tisobe@cfa.harvard.edu)                                       #
 #                                                                                       #
-#       last update: Sep 16, 2020                                                       #
+#       last update: Mar 15, 2021                                                       #
 #                                                                                       #
 #########################################################################################
 
@@ -19,7 +19,7 @@ import time
 import Chandra.Time
 
 
-house_keeping = '/data/mta/Script/SOH/house_keeping/'
+house_keeping = '/data/mta4/Script/SOH/house_keeping/'
 
 #-------------------------------------------------------------------
 #-- find_next_comm: create a display time span till the next comm --
@@ -29,12 +29,12 @@ def find_next_comm():
     """
     create a display time span till the next comm
     input:  nont, but read from /data/mta4/www/CSH/comm_list.html
-    output: /data/mta/www/CSH/ctest
+    output: /data/mta4/www/CSH/ctest
     """
     out = time.strftime('%Y:%j:%H:%M:%S', time.gmtime())
     ctime = Chandra.Time.DateTime(out).secs
     
-    with open('/data/mta_www/MIRROR/CSH/comm_list.html', 'r') as f:
+    with open('/data/mta4/www/CSH/comm_list.html', 'r') as f:
         data = [line.strip() for line in f.readlines()]
     
     pstop = 0.0
@@ -59,7 +59,7 @@ def find_next_comm():
         else:
             pstop = stop
 
-    with open('/data/mta_www/MIRROR/CSH/ctest', 'w') as fo:
+    with open('/data/mta4/www/CSH/ctest', 'w') as fo:
         fo.write(ltime + '\n')
     
 #-------------------------------------------------------------------

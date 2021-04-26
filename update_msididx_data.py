@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta/Script/Python3.6/envs/ska3/bin/python
+#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
 
 #####################################################################################
 #                                                                                   #
@@ -6,7 +6,7 @@
 #                                                                                   #
 #           author: t. isobe (tisobe@cfa.harvard.edu)                               #
 #                                                                                   #
-#           last update: Sep 17, 2020                                               #
+#           last update: Mar 15, 2021                                               #
 #                                                                                   #
 #####################################################################################
 
@@ -20,7 +20,7 @@ import Chandra.Time
 import maude
 import ast
 import json
-path = '/data/mta/Script/SOH/house_keeping/dir_list'
+path = '/data/mta4/Script/SOH/house_keeping/dir_list'
 f    = open(path, 'r')
 data = [line.strip() for line in f.readlines()]
 f.close()
