@@ -6,7 +6,7 @@
 #                                                                                   #
 #           author: t. isobe (tisobe@cfa.harvard.edu)                               #
 #                                                                                   #
-#           last update: Apr 23, 2021                                               #
+#           last update: May 05, 2021                                               #
 #                                                                                   #
 #####################################################################################
 
@@ -390,7 +390,8 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
                 val = "%3.1f " % round((float(val) / 256.0), 2)
 
             elif msid == '2DETBRT':
-                val = "%3.1f" %  math.floor(math.log(val + 1.0) / math.log(2))              #--- added 04/23/21
+                val =  math.floor(math.log(float(val) + 1.0) / 0.6931471805599453)   #--- added 04/23/21 log(2) = 0.693...
+                val = "%3.1f" %  val
 
             elif msid == 'AOACINTT':
                 val = "%1.4f" % (float(val) / 1000)
