@@ -6,7 +6,7 @@
 #                                                                           #
 #               author: t. isobe@cfa.harvard.edu                            #
 #                                                                           #
-#               last update Mar 15, 2021                                    #
+#               last update Oct 28, 2021                                    #
 #                                                                           #
 #############################################################################
 
@@ -24,7 +24,7 @@ import random
 rtail  = int(time.time() * random.random())
 zspace = '/tmp/zspace' + str(rtail)
 
-admin  = 'tisobe@cfa.harvard.edu'
+admin  = 'msobolewska@cfa.harvard.edu'
 
 #----------------------------------------------------------------------------
 #--- daemon_process_check: check whether SOH related daemon is running     --
@@ -71,26 +71,37 @@ def  daemon_process_check():
 #
     if mc1 is None:
        send_email('main')
+       os.system("/data/mta4/Script/SOH/soh_main_daemonize")
     if mc2 is None:
        send_email('snap')
+       os.system("/data/mta4/Script/SOH/soh_snap_daemonize")
     if mc3 is None:
        send_email('ccdm')
+       os.system("/data/mta4/Script/SOH/soh_ccdm_daemonize")
     if mc4 is None:
        send_email('eps')
+       os.system("/data/mta4/Script/SOH/soh_eps_daemonize")
     if mc5 is None:
        send_email('load')
+       os.system("/data/mta4/Script/SOH/soh_load_daemonize")
     if mc6 is None:
        send_email('mech')
+       os.system("/data/mta4/Script/SOH/soh_mech_daemonize")
     if mc7 is None:
        send_email('pacd')
+       os.system("/data/mta4/Script/SOH/soh_pcad_daemonize")
     if mc8 is None:
        send_email('prop')
+       os.system("/data/mta4/Script/SOH/soh_prop_daemonize")
     if mc9 is None:
        send_email('sc config')
+       os.system("/data/mta4/Script/SOH/soh_sc_config_daemonize")
     if mc10 is None:
        send_email('smode')
+       os.system("/data/mta4/Script/SOH/soh_smode_daemonize")
     if mc11 is None:
        send_email('thermal')
+       os.system("/data/mta4/Script/SOH/soh_thermal_daemonize")
 
 #----------------------------------------------------------------------------
 #-- send_email: send out email to admin                                    --
@@ -103,8 +114,9 @@ def send_email(inst):
     output: email sent to admin
     """
 
-    text = 'daemon process of ' + inst.capitalize()  + ' page is not running.\n'
-    text = text + 'Please check mta/boba-v daemon process.\n'
+    text = 'daemon process of ' + inst.capitalize()  + ' page was not running, '
+    text = text + 'and restarted. Please make sure that it is actually restarted on: ' 
+    text = text + ' mta/boba-v.\n'
 
     with open(zspace, 'w') as fo:
         fo.write(text)
