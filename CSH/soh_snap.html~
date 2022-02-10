@@ -23,8 +23,7 @@
             var utc   = new Date(nd);
             var year  = utc.getFullYear();
             var start = new Date(year, 0, 0);
-            //var day   = Math.floor((d - start) / 86400000);
-            var day   = Math.floor((d - start + 3600) / 86400000);
+            var day   = Math.floor((d - start) / 86400000);
             var cday  = AdjustDigit(day, 3);
             var hh    = utc.getHours();
             var chh   = AdjustDigit(hh, 2);
@@ -46,92 +45,22 @@
             }
             return cvar;
         }
-
-        setInterval(function(){
-           window.location.reload();
-        },180000); 
-                   
             
-        function onDeletAll(){
-            console.log("Delete all history");
-        }
-        function deleteAllHistory(){
-            var deletingAll = browser.history.deleteAll();
-            deletingAll.then(onDeleteAll);
-            chrome.history.deleteAll();
-        }
-        function Navigate(){
-            //document.location.replace('./soh_snaps.html');
-            document.location.replace('./soh_snaps.html');
-            return false;
-        }
-        function Refresh(){
-            deleteAllHistory();
-            Navigate();
-        }
-
-        function startTime() {
-            //var ctime =new Date().toISOString().split('.')[0]+"Z";
-            var ctime =new Date().toISOString().split('.')[0];
-            var dtime =ctime.split(':');
-            ctime = dtime[0] +':' + dtime[1] + 'z';
-            document.getElementById('ctxt').innerHTML = "Current Time: "+ctime;
-        }
-
-        function checkTime(i) {
-            var j = i;
-            if (i < 10) {
-                j = "0" + i;
-            }
-            return j;
-        }
-
-        setInterval(function() {
-            startTime();
-            loadFile('./ctest');
-        }, 500);
-
-        function loadFile(filePath) {
-            var result = null;
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", filePath, false);
-            xmlhttp.send();
-            if (xmlhttp.status==200) {
-                result = xmlhttp.responseText;
-            }
-            document.getElementById("ncomm").innerHTML = result;
-        }
-
     </script>
 </head>
 <body>
 
-<script>
-deleteAllHistory();
-</script>
-
-
 <header>
     <h1>Chandra State Of Heath - Snapshot Page</h1>
         <p><em>
-        Please refresh the page if the page is open for a while. The page might be staled.<br />
-        <!--
-        You may want to refresh the page with:   
-        <button onclick="Navigate()">Refresh</button>
-        -->
+         Please refresh the page if the page is open for a while. The page might be staled.<br />
+         You may need to use a hard refresh with Ctrl+Shift+Delete Key Command ( &#8984;+Shift+Delete on Mac).
          </em></p>
-        <p>                             
-        <span style='color:#98FB98;background-color:#98FB98;'>xx</span>: Operation;
-        <span style='color:#F0E68C;background-color:#F0E68C;'>xx</span>: Caution; 
-        <span style='color:#FF4500;background-color:#FF4500;'>xx</span>: Warning;
-        <span style='color:#AED6F1;background-color:#AED6F1;'>xx</span>: Not Checked.
-        Hover the pointer on a MSID to see the operation range.
-        </p> 
         <p style='text-align:right;'>
-          <i> <a href='./soh.html'>Go to: Main Chandra State Of Health</a></i>
+          <i> <a href='https://cxc.cfa.harvard.edu/mta/CSH/soh.html'>Go to: Main Chandra State Of Health</a></i>
         </p>
         <div style='float:right;'>
-            <a href="javascript:WindowOpener('./comm_list.html')">Comm Contact List</a>
+            <a href="javascript:WindowOpener('https://cxc.cfa.harvard.edu/mta/CSH/comm_list.html')">Comm Contact List</a>
         </div>
 
         <table border=0 style='line-height:90%;'>
@@ -153,9 +82,6 @@ deleteAllHistory();
                 </script>
                 (UT)
                 </td>
-            </tr>
-            <tr>
-                <th id=ncomm></th>
             </tr>
         </table>
 </header>
@@ -236,18 +162,16 @@ deleteAllHistory();
 <th class=bold>SIM FA Pos</th>      <td class="msid"   data-msid="3FAPOS"    data-printfmt="%7d"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Gratgen' onsubmit="window.open('about:blank','Gratgen', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Gratgen">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="HETG Angle"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="HETG Angle"></span>
     </form>
 </th>      <td class="msid"   data-msid="4HPOSARO"  data-printfmt="%72.f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Gratgen' onsubmit="window.open('about:blank','Gratgen', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Gratgen">
-    <span style="text-align:right;"><input type=submit class="soh"  name="submit" value="LETG Angle"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="LETG Angle"></span>
     </form>
 </th>      <td class="msid"   data-msid="4LPOSBRO"  data-printfmt="%6.2f"></td>
 </tr>
@@ -258,17 +182,15 @@ deleteAllHistory();
 <th class=bold>PCONTROL</th>        <td class="msid"   data-msid="AOCONLAW"  data-printfmt="%s"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelec' onsubmit="window.open('about:blank','Spcelec', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Spcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Bus Voltage"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Bus Voltage"></span>
     </form></th>     <td class="msid"   data-msid="ELBV"      data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelec' onsubmit="window.open('about:blank','Spcelec', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Spcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Bus Current"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Bus Current"></span>
     </form></th>     <td class="msid"   data-msid="ELBI_LOW"  data-printfmt="%6.4f"></td>
 </tr>
 
@@ -276,34 +198,18 @@ deleteAllHistory();
 <th class=bold>Dither</th>          <td class="msid"   data-msid="AODITHEN"  data-printfmt="%s"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aodithr' onsubmit="window.open('about:blank','Aodithr', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Aodithr">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Dither Y Angle"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Dither Y Angle"></span>
     </form><span style='font-size:85%;'>(* 3600)</span></th>  
                                     <td class="msid"   data-msid="AODITHR3"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aodithr' onsubmit="window.open('about:blank','Aodithr', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Aodithr">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Dither Z Angle"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Dither Z Angle"></span>
     </form><span style='font-size:85%;'>(* 3600)</span></th>  
                                     <td class="msid"   data-msid="AODITHR2"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>&#160;</th><td class='empty'>&#160;</td>
-</tr>
-
-<tr>
-<th colspan=11 style='line-height:40%;'>&#160;</th>
-</tr>
-
-<tr>
-<th class=bold>Cold Radiator</th>   <td class="msid"   data-msid="1CRAT"     data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>Warm Radiator</th>   <td class="msid"   data-msid="1WRAT"     data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>ACIS Stat7-0</th>    <td class="msid"   data-msid="ACISSTAT"  data-printfmt="%8s"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
@@ -319,77 +225,36 @@ deleteAllHistory();
 <th calss=bold>&#160;</th>
 <th class=bold>Shield HV</th>       <td class="msid"   data-msid="2S2HVST"   data-printfmt="%3s"></td>
 <th calss=bold>&#160;</th>
-<th class=bold>Primary Bus Current</th> <td class="msid"   data-msid="2PRBSCR"   data-printfmt="%3s"></td>
+<th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
-
-<!--
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Hrcelec' onsubmit="window.open('about:blank','Hrcelec', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Hrcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="EVT RT"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="EVT RT"></span>
     </form><span style='font-size:85%;'> (* 256)</span></th>          
-                                    <td class="msid"   data-msid="2DETART"   data-printfmt="%2.1f"></td>
+                                    <td class="msid"   data-msid="2DETART"   data-printfmt="%4d"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Hrcelec' onsubmit="window.open('about:blank','Hrcelec', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Hrcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="SHLD RT"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="SHLD RT"></span>
     </form><span style='font-size:85%;'> (* 256)</span></th>         
-                                    <td class="msid"   data-msid="2SHLDART"  data-printfmt="%2.1f"></td>
+                                    <td class="msid"   data-msid="2SHLDART"  data-printfmt="%4d"></td>
+<th calss=bold>&#160;</th>
+<th class=bold>Warm Rad</th>        <td class="msid"   data-msid="1WRAT"     data-printfmt="%6.1f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>RadMon</th>          <td class="msid"   data-msid="CORADMEN"  data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
--->
-
-<!-- ADDED Sep 14, 2020 -->
-<tr>
-<th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Hrcelec' onsubmit="window.open('about:blank','Hrcelec', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Hrcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="EVT RT"></span>
-    </form><span style='font-size:85%;'></span></th>          
-                                    <td class="msid"   data-msid="2DETBRT"   data-printfmt="%2.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Hrcelec' onsubmit="window.open('about:blank','Hrcelec', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Hrcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="SHLD RT"></span>
-    </form><span style='font-size:85%;'> (* 256)</span></th>         
-                                    <td class="msid"   data-msid="2SHLDBRT"  data-printfmt="%2.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>RadMon</th>          <td class="msid"   data-msid="CORADMEN"  data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>&#160;</th><td class='empty'>&#160;</td>
-
-</tr>
-
-<tr>
-<th class=bold>-15 Voltage B</th>   <td class="msid"   data-msid="2N15VBVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>+5 Voltage B </th>   <td class="msid"   data-msid="2P05VBVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>+15 Voltage B</th>   <td class="msid"   data-msid="2P15VBVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>+24 Voltage B</th>   <td class="msid"   data-msid="2P24VBVL"  data-printfmt="%6.1f"></td>
-</tr>
-<!-- END:   ADDED Sep 14, 2020 -->
 
 <tr>
 <th colspan=11 style='line-height:40%;'>&#160;</th>
 </tr>
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Sys_temps">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="ACA CCD Temp"> (C)</span>
+    <span style="text-align:right;"><input type=submit name="submit" value="ACA CCD Temp"> (C)</span>
     </form>
 </th>    <td class="msid"   data-msid="AACCCDPT"  data-printfmt="%6.1f"></td>
 <th calss=bold>&#160;</th>
@@ -457,18 +322,16 @@ deleteAllHistory();
 <th class=bold>FSS Sun Beta</th>    <td class="msid"   data-msid="AOBETSUN"  data-printfmt="%4s"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgrate' onsubmit="window.open('about:blank','Pcadgrate', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Pcadgrate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="FSS Alpha"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="FSS Alpha"></span>
     </form>
 </th>       <td class="msid"   data-msid="AOALPANG"  data-printfmt="%4s"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgrate' onsubmit="window.open('about:blank','Pcadgrate', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Pcadgrate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="FSS Beta"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="FSS Beta"></span>
     </form>
 </th>        <td class="msid"   data-msid="AOBETANG"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
@@ -476,29 +339,27 @@ deleteAllHistory();
 </tr>
 
 <tr>
-<th class=bold  style='white-space:nowrap;'>Batt 1 SOC (%)</th>   <td class="msid"   data-msid="EOCHRGB1"  data-printfmt="%6.2f"></td>
+<th class=bold>Batt 1 SOC</th>   <td class="msid"   data-msid="EOCHRGB1"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
-<th class=bold  style='white-space:nowrap;'>Batt 2 SOC (%)</th>   <td class="msid"   data-msid="EOCHRGB2"  data-printfmt="%6.2f"></td>
+<th class=bold>Batt 2 SOC</th>   <td class="msid"   data-msid="EOCHRGB2"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
-<th class=bold  style='white-space:nowrap;'>Batt 3 SOC (%)</th>   <td class="msid"   data-msid="EOCHRGB3"  data-printfmt="%6.2f"></td>
+<th class=bold  style='white-space:nowrap;'>Batt 3 SOC</th>   <td class="msid"   data-msid="EOCHRGB3"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
-<th class=bold>SA Resolv</th>   <td class="msid"   data-msid="AOSARES1"  data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Sys_temps">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Avg HRMA Temp"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Avg HRMA Temp"></span>
     </form>
 </th>   <td class="msid"   data-msid="4OAVHRMT"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Sys_temps">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="OBA Tavg Fault"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="OBA Tavg Fault"></span>
     </form>
 </th>  <td class="msid"   data-msid="4OAVOBAT"  data-printfmt="%s"></td>
 <th calss=bold>&#160;</th>
@@ -509,18 +370,16 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelec_pwr' onsubmit="window.open('about:blank','Spcelec_pwr', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Spcelec_pwr">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="HRMA Power"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="HRMA Power"></span>
     </form>
 </th>      <td class="msid"   data-msid="OHRMAPWR"  data-printfmt="%7.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelec_pwr' onsubmit="window.open('about:blank','Spcelec_pwr', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Spcelec_pwr">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="OBA Power"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="OBA Power"></span>
     </form>
 </th>       <td class="msid"   data-msid="OOBAPWR"   data-printfmt="%7.2f"></td>
 <th calss=bold>&#160;</th>
@@ -535,34 +394,30 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Ycurrent' onsubmit="window.open('about:blank','Ycurrent', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Ycurrent">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="+Y SA Amps"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="+Y SA Amps"></span>
     </form>
 </th>      <td class="msid"   data-msid="ESAPYI"    data-printfmt="%7.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Ycurrent' onsubmit="window.open('about:blank','Ycurrent', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Ycurrent">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="-Y SA Amps"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="-Y SA Amps"></span>
     </form>
 </th>      <td class="msid"   data-msid="ESAMYI"    data-printfmt="%7.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sc_temp' onsubmit="window.open('about:blank','Sc_temp', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Sc_temp">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="+Y SA Temp"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="+Y SA Temp"></span>
     </form>
 </th>      <td class="msid"   data-msid="TSAPYT"    data-printfmt="%7.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sc_temp' onsubmit="window.open('about:blank','Sc_temp', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Sc_temp">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="+Y SA Temp"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="+Y SA Temp"></span>
     </form>
 </th>      <td class="msid"   data-msid="TSAMYT"    data-printfmt="%7.2f"></td>
 </tr>
@@ -597,26 +452,23 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aorate' onsubmit="window.open('about:blank','Aorate', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Aorate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Roll Rate"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Roll Rate"></span>
     </form><span style='font-size:85%'>( * 206265)</span></th>       
                                     <td class="msid"   data-msid="AORATE1"   data-printfmt="%7.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aorate' onsubmit="window.open('about:blank','Aorate', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Aorate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Pitch Rate"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Pitch Rate"></span>
     </form><span style='font-size:85%'>( * 206265)</span></th>      
                                     <td class="msid"   data-msid="AORATE2"   data-printfmt="%7.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aorate' onsubmit="window.open('about:blank','Aorate', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Aorate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Yaw Rate"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Yaw Rate"></span>
     </form><span style='font-size:85%'>( * 206265)</span></th>        
                                     <td class="msid"   data-msid="AORATE3"   data-printfmt="%7.2f"></td>
 <th calss=bold>&#160;</th>
@@ -626,26 +478,23 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aosymom' onsubmit="window.open('about:blank','Aosymom', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
 	<input type="hidden" name="msid_group" value="Aosymom">
-	<span style="text-align:right;"><input type=submit class="soh" name="submit" value="Roll Mom"></span>
+	<span style="text-align:right;"><input type=submit name="submit" value="Roll Mom"></span>
 	</form>
 </th>       <td class="msid"   data-msid="AOSYMOM1"  data-printfmt="%9.3f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aosymom' onsubmit="window.open('about:blank','Aosymom', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
 	<input type="hidden" name="msid_group" value="Aosymom">
-	<span style="text-align:right;"><input type=submit class="soh" name="submit" value="Pitch Mom"></span>
+	<span style="text-align:right;"><input type=submit name="submit" value="Pitch Mom"></span>
 	</form>
 </th>       <td class="msid"   data-msid="AOSYMOM2"  data-printfmt="%8.3f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aosymom' onsubmit="window.open('about:blank','Aosymom', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
 	<input type="hidden" name="msid_group" value="Aosymom">
-	<span style="text-align:right;"><input type=submit class="soh" name="submit" value="Yaw Mom"></span>
+	<span style="text-align:right;"><input type=submit name="submit" value="Yaw Mom"></span>
 	</form>
 </th>         <td class="msid"   data-msid="AOSYMOM3"  data-printfmt="%8.3f"></td>
 <th calss=bold>&#160;</th>
@@ -654,26 +503,23 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgdrift' onsubmit="window.open('about:blank','Pcadgdrift', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Pcadgdrift">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Roll Bias"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Roll Bias"></span>
     </form><span style='font-size:85%'>( * 206265)</span></th>       
                                     <td class="msid"   data-msid="AOGBIAS1"  data-printfmt="%7.4f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgdrift' onsubmit="window.open('about:blank','Pcadgdrift', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Pcadgdrift">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Pitch Bias"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Pitch Bias"></span>
     </form><span style='font-size:85%'>( * 206265)</span></th>      
                                     <td class="msid"   data-msid="AOGBIAS2"  data-printfmt="%7.4f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgdrift' onsubmit="window.open('about:blank','Pcadgdrift', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Pcadgdrift">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Yaw Bias"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Yaw Bias"></span>
     </form><span style='font-size:85%'>( * 206265)</span></th>        
                                     <td class="msid"   data-msid="AOGBIAS3"  data-printfmt="%7.4f"></td>
 <th calss=bold>&#160;</th>
@@ -723,76 +569,65 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcaditv' onsubmit="window.open('about:blank','Pcaditv', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Pcaditv">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="IRU2 Gyro 1 Curr"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="IRU2 Gyro 1 Curr"></span>
     </form>
 </th><td class="msid"   data-msid="AIRU2G1I"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcaditv' onsubmit="window.open('about:blank','Pcaditv', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Pcaditv">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="IRU2 Gyro 2 Curr"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="IRU1 Gyro 2 Curr"></span>
     </form>
-</th><td class="msid"   data-msid="AIRU2G2I"  data-printfmt="%6.2f"></td>
+</th><td class="msid"   data-msid="AIRU1G2I"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Mups' onsubmit="window.open('about:blank','Mups', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Mups">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Prop. Line 03"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Prop. Line 03"></span>
     </form>
 </th>   <td class="msid"   data-msid="PLINE03T"  data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Mups' onsubmit="window.open('about:blank','Mups', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Mups">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Prop. Line 04"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="Prop. Line 04"></span>
     </form>
 </th>   <td class="msid"   data-msid="PLINE04T"  data-printfmt="%6.2f"></td>
 </tr>
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spceleca' onsubmit="window.open('about:blank','Spceleca', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Spceleca">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CTX A Voltages"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="CTX A Voltages"></span>
     </form>
 </th>  <td class="msid"   data-msid="CTXAV"     data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spceleca' onsubmit="window.open('about:blank','Spceleca', 'width=1000,height=800');">
+	<form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Spceleca">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CTX A PWR"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="CTX A PWR"></span>
     </form>
 </th>       <td class="msid"   data-msid="CTXAPWR"   data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelecb' onsubmit="window.open('about:blank','Spcelecb', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Spcelecb">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CTX B Voltages"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="CTX B Voltages"></span>
     </form>
 </th>  <td class="msid"   data-msid="CTXBV"     data-printfmt="%6.2f"></td>
 <th calss=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelecb' onsubmit="window.open('about:blank','Spcelecb', 'width=1000,height=800');">
+    <form method = "post" action=https://cxc.cfa.harvard.edu/mta/CSH/test_plots/load_test.php>
     <input type="hidden" name="msid_group" value="Spcelecb">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CTX B PWR"></span>
+    <span style="text-align:right;"><input type=submit name="submit" value="CTX B PWR"></span>
     </form>
-</th>       <td class="msid"   data-msid="CTXBPWR"   data-printfmt="%6.2f"></span></td>
+</th>       <td class="msid"   data-msid="CTXBPWR"   data-printfmt="%6.2f"></td>
 </tr>
-        </table>
 
-    <table>
-        <td class="msid" data-msid="LASTDCHECK" style='font-size:20%;'></td>
-    </table>
+        </table>
 
     </div>
 <!--
@@ -802,28 +637,17 @@ deleteAllHistory();
     </div>
 -->
   </div>
-
 </section>
 
-<!--<iframe src="//cxc.cfa.harvard.edu/mta/RADIATION_new/CRM/CRMsummary.dat" style="border:none;height:400px;width:90%;"></iframe>-->
-<iframe src="../RADIATION_new/CRM/CRMsummary.dat" style="border:none;height:400px;width:90%;"></iframe>
 
 <footer style='padding-top:20px'>
 <hr />
 <p>
 If you have questions about this page, please contact: 
-<a href="mailto:swolk@cfa.harvard.edu">swolk@cfa.harvard.edu</a>
+<a href="mailto:tisobe@cfa.harvard.edu">tisobe@cfa.harvard.edu</a>
 </p>
-
-<div style='float:right;text-align:right; font-size:80%; padding-right:30px;'>
-<span id="ctxt"></span>
-<table border=0>
-<tr> 
-</tr>
-</table>
-</div>
 <p style="padding-bottom:10px;">
-Last Modified: Oct 19, 2020
+Last Modified: Oct 25, 2018
 </p>
 
 </footer>
@@ -834,8 +658,6 @@ Last Modified: Oct 19, 2020
     //--- handle data format display differently 
     <% if(name == 'CCSDSTMF'){ %>
         <th>Format: </th>
-        <td class="col-val"> <%= value %></td>
-
 
     <%} else {%>
         <th class="col-name"> 
@@ -845,11 +667,10 @@ Last Modified: Oct 19, 2020
                 <%= name %>
             </a>
         </td>
-        <td class="col-val"> <%= value %></td>
     <% } %>
 
-    <!--
     <td class="col-val"> <%= value %></td>
+    <!--
     <td class="col-lim"> <%= limit %></td>
     <td class="col-desc"><span><%= description %></span></td>
     -->
