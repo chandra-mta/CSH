@@ -342,8 +342,12 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
         ###ctime = time.strftime("%Y%j%H%M%S", time.gmtime())
         return 'stop'
 
+#--- number of msids extracted at a time
+
+    n_msids = 10
+
     mlen  = len(msid_list)
-    mlst  = int(mlen/100) + 1
+    mlst  = int(mlen / n_msids) + 1
     mstp  = mlen -1
 #
 #--- mlist: a list of valid msids / vdict: a dict of msid <--> current value
@@ -351,13 +355,13 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
     mlist = []
     vdict = {}
 #
-#--- extract data using maude tool; 100 msids at a time
+#--- extract data using maude tool; n_msids msids at a time
 #
     for  k in range(0, mlst):
-        mstart     = k * 100
-        mstop      = mstart + 100
+        mstart     = k * n_msids
+        mstop      = mstart + n_msids
 #
-#--- the last round has fewer than 100 msids
+#--- the last round has fewer than n_msids msids
 #
         if mstop > mlen:
             mstop  = mlen
