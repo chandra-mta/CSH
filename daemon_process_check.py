@@ -6,7 +6,7 @@
 #                                                                           #
 #               author: t. isobe@cfa.harvard.edu                            #
 #                                                                           #
-#               last update Oct 28, 2021                                    #
+#               last update Oct 12, 2022                                    #
 #                                                                           #
 #############################################################################
 
@@ -24,7 +24,13 @@ import random
 rtail  = int(time.time() * random.random())
 zspace = '/tmp/zspace' + str(rtail)
 
-admin  = 'msobolewska@cfa.harvard.edu'
+#
+#--Create admin list through emails passed as sys args
+#
+ADMIN = ['mtadude@cfa.harvard.edu']
+for i in range(1,len(sys.argv)):
+    if sys.argv[i][:6] == 'email=':
+        ADMIN.append(sys.argv[i][6:])
 
 #----------------------------------------------------------------------------
 #--- daemon_process_check: check whether SOH related daemon is running     --
@@ -121,7 +127,7 @@ def send_email(inst):
     with open(zspace, 'w') as fo:
         fo.write(text)
 
-    cmd = 'cat ' + zspace + " | mailx -s'SOH Daemon Process Problem' " + admin
+    cmd = 'cat ' + zspace + " | mailx -s'SOH Daemon Process Problem' " + ' '.join(ADMIN)
     os.system(cmd)
 
     cmd = 'rm -rf ' + zspace

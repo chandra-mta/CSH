@@ -1,3 +1,3 @@
-'/data/mta/Script/SOH/'                    :bin_dir
-'/data/mta/Script/SOH/house_keeping/'      :house_keeping
+'/data/mta4/Script/SOH/'                   :bin_dir
+'/data/mta4/Script/SOH/house_keeping/'     :house_keeping
 '/data/mta4/www/CSH/'                      :html_dir

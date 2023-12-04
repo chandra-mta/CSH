@@ -6,7 +6,7 @@
 * Ref: https://stackoverflow.com/questions/17954432/creating-a-daemon-in-linux
 *
 *   author: t. isobe (tisobe@cfa.harvard.edu)
-*   last update: Sep 20, 2019
+*   last update: Nov 02, 2020
 */
 
 #include <stdio.h>
@@ -59,7 +59,7 @@ static void skeleton_daemon()
 
     /* Change the working directory to the root directory */
     /* or another appropriated directory */
-    if((chdir("/data/mta/Script/SOH"))< 0) {
+    if((chdir("/data/mta4/Script/SOH"))< 0) {
         exit(EXIT_FAILURE);
     }
 
@@ -98,13 +98,13 @@ int main()
         /* run the shell script for mechshot. this checks whther previous */
         /* prcoess is still running before starting a new process.        */
 
-        fp = popen("/data/mta/Script/SOH/soh_mech_script.sh", "r"); 
-        /* fp = popen("/data/mta/Script/SOH/copy_data_from_occ_part.py mech", "r");  */
+        fp = popen("/data/mta4/Script/SOH/soh_mech_script.sh", "r"); 
+        /* fp = popen("/data/mta4/Script/SOH/copy_data_from_occ_part.py mech", "r");  */
 
         /* check the script runs correctly */
 
         if (fp == NULL){
-            fo  = fopen("/data/mta/Script/SOH/Logs/soh_mech_log", "2");
+            fo  = fopen("/data/mta4/Script/SOH/Logs/soh_mech_log", "2");
             fprintf(fo, "Failed to run mech SOH process\n");
             fclose(fo);
             break;
@@ -112,7 +112,7 @@ int main()
 
         /* update the log file --- this is used to see whether the process is still running */
 
-            fo  = fopen("/data/mta/Script/SOH/Logs/soh_mech_log", "a");
+            fo  = fopen("/data/mta4/Script/SOH/Logs/soh_mech_log", "a");
             while (fgets(path, sizeof(path)-1, fp) != NULL) {
                 fprintf(fo, path);
             }
@@ -130,7 +130,7 @@ int main()
 
     fo = fopen("./zspace", "w");
     fprintf(fo, "SOH mechshot daemon stopped. Restart the process:\n\n");
-    fprintf(fo, "\t\tnohup /data/mta/Script/SOH/soh_mech_daemonize &\n\n");
+    fprintf(fo, "\t\tnohup /data/mta4/Script/SOH/soh_mech_daemonize &\n\n");
     fprintf(fo, "This process should be run on luke-v as mta.\n");
     fclose(fo);
 
