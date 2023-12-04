@@ -19,7 +19,6 @@ import time
 import Chandra.Time
 import maude
 import json
-import random
 
 #
 #--- Define Directory Pathing
@@ -34,11 +33,6 @@ HTML_DIR = '/data/mta4/www/CSH'
 sys.path.append(BIN_DIR)
 
 import check_msid_status    as cms
-#
-#--- set a temporary file name
-#
-rtail  = int(time.time()*random.random())
-zspace = '/tmp/zspace' + str(rtail)
 
 #-------------------------------------------------------------------------------
 #-- copy_data_from_occ_part: run loop to extract blob for a specific part from occ using maude
