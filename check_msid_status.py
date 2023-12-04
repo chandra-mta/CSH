@@ -16,21 +16,17 @@ import re
 import string
 import math
 #
-#--- set a directory path
+#--- Define Directory Pathing
 #
-path = '/data/mta4/Script/SOH/house_keeping/dir_list'
-with open(path, 'r') as f:
-    data = [line.strip() for line in f.readlines()]
 
-for ent in data:
-    atemp = re.split(':', ent)
-    var   = atemp[1].strip()
-    line  = atemp[0].strip()
-    exec("%s = %s" %(var, line))
+BIN_DIR = '/data/mta4/Script/SOH'
+HOUSE_KEEPING = '/data/mta4/Script/SOH/house_keeping'
+HTML_DIR = '/data/mta4/www/CSH'
+
 #
 #--- append path to a private folder
 #
-sys.path.append(bin_dir)
+sys.path.append(BIN_DIR)
 
 #-------------------------------------------------------------------------------
 #-- check_status: check status of msid                                        --
