@@ -73,7 +73,8 @@ def copy_data_from_occ_part(part):
 #
     try:
         hold = run_extract_blob_data(msid_list, mdict, part, ldict)
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         hold = 0
 
 #-------------------------------------------------------------------------------
@@ -140,7 +141,8 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
 #--- currently we are outside of comm. if the last blob_<part>.json does not contain
 #--- valid data, update
 #
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         if com_time > 240:
             hold = long_blob_extraction(msid_list, mdict, ldict, stop, part)
 
@@ -228,7 +230,8 @@ def check_blob_state(part):
         for ent in data:
             try:
                 mc   = re.search('AOGBIAS1', str(ent))
-            except:
+            except Exception as e:
+                print(f"Error: {e}")
                 continue
 
             if mc is not None:
@@ -264,7 +267,8 @@ def check_blob_state(part):
                     break
             else:
                 run = 1
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         run = 1
 
     return run
@@ -291,7 +295,8 @@ def find_last_upate(tfile, tspan=10800):
     try:
         btime = time.strftime("%Y:%j:%H:%M:%S", time.gmtime(os.path.getmtime(tfile)))
         btime = Chandra.Time.DateTime(btime).secs
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         btime = 0
 
     tdiff = ctime - btime
@@ -331,7 +336,8 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
         ctime = str((list(out['data'][0]['times']))[-1])
         ctime = Chandra.Time.DateTime(ctime).date
         ctime = ctime.replace(':', '')
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         ###ctime = time.strftime("%Y%j%H%M%S", time.gmtime())
         return 'stop'
 
@@ -365,7 +371,8 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #
         try:
             mdata = maude.get_msids(msid_short, start, stop)
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             continue
 #
 #--- now extract data and put into json data format
@@ -374,11 +381,13 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
             try:
                 msid = str(mdata['data'][nk]['msid']).upper()
 
-            except:
+            except Exception as e:
+                print(f"Error: {e}")
                 continue
             try:
                 val  = str((list(mdata['data'][nk]['values']))[-1])
-            except:
+            except Exception as e:
+                print(f"Error: {e}")
                 val = 'NaN'
 #
 #--- unit conversion for a few special cases
@@ -418,7 +427,8 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
             for name in ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST',\
                          '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']:
                 val = val + covert_to_tf(vdict[name])
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             val  = 'NaN'
         mlist.append(msid)
         vdict[msid] = val
@@ -433,14 +443,16 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
         val = '"' + val + '"'
         try:
             index  = mdict[msid]
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             index  = str(findx)
             findx -= 1
 
         try:
             sval = val.replace('\"', '')
             status = cms.check_status(msid, sval, ldict, vdict)
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             status ='GREEN'
 
         out = '{"msid":"' + msid + '",'
@@ -576,10 +588,12 @@ def read_limit_table():
         for val in atemp[1:]:
             try:
                 val = float(val)
-            except:
+            except Exception as e:
+                print(f"Error: {e}")
                 try:
                     val = val.replace("\'", '')
-                except:
+                except Exception as e:
+                    print(f"Error: {e}")
                     pass
             olist.append(val)
         ldict[atemp[0]] = olist
@@ -678,7 +692,8 @@ if __name__ == '__main__':
     try:
         part = sys.argv[1]
         part.strip()
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         print(" USAGE: copy_data_from_occ_part.py <part>")
         exit(1)
 
@@ -692,13 +707,15 @@ if __name__ == '__main__':
             exit(1)
         else:
             write_run_file('1', part)
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         write_run_file('0', part)
         exit(1)
 
     try:
         copy_data_from_occ_part(part)
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         pass
 
     write_run_file('0', part)

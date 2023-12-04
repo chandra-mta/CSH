@@ -49,12 +49,14 @@ def check_status(msid, val, ldict, vdict):
         try:
             status = check_status_neumeric(msid, val, ldict)
             return status
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             return 'GREEN'
 #
 #--- the value is letters
 #
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         if val in ['NaN', 'nan', '']:
             return 'CAUTION'
 
@@ -87,7 +89,8 @@ def check_status_neumeric(msid, val, ldict):
 #
     try:
         limit   = ldict[msid]
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         return "GREEN"
     
     if (len(limit) == 0) or (limit == ['']):
@@ -110,7 +113,8 @@ def check_status_neumeric(msid, val, ldict):
 
             else:
                 return "WARNING"
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             return 'GREEN'
 
 #-------------------------------------------------------------------------------
