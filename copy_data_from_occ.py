@@ -588,8 +588,7 @@ def read_limit_table():
         for val in atemp[1:]:
             try:
                 val = float(val)
-            except Exception as e:
-                print(f"Error: {e}")
+            except:
                 try:
                     val = val.replace("\'", '')
                 except Exception as e:
