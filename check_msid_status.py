@@ -15,6 +15,7 @@ import sys
 import re
 import string
 import math
+import traceback
 #
 #--- Define Directory Pathing
 #
@@ -49,8 +50,8 @@ def check_status(msid, val, ldict, vdict):
         try:
             status = check_status_neumeric(msid, val, ldict)
             return status
-        except Exception as e:
-            print(f"Error: {e}")
+        except:
+            traceback.print_exc()
             return 'GREEN'
 #
 #--- the value is letters

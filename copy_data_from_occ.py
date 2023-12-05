@@ -19,6 +19,7 @@ import time
 import Chandra.Time
 import maude
 import json
+import traceback
 
 #
 #--- Define Directory Pathing
@@ -73,8 +74,8 @@ def copy_data_from_occ_part(part):
 #
     try:
         hold = run_extract_blob_data(msid_list, mdict, part, ldict)
-    except Exception as e:
-        print(f"Error: {e}")
+    except:
+        traceback.print_exc()
         hold = 0
 
 #-------------------------------------------------------------------------------
@@ -141,8 +142,8 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
 #--- currently we are outside of comm. if the last blob_<part>.json does not contain
 #--- valid data, update
 #
-    except Exception as e:
-        print(f"Error: {e}")
+    except:
+        traceback.print_exc()
         if com_time > 240:
             hold = long_blob_extraction(msid_list, mdict, ldict, stop, part)
 
@@ -230,8 +231,8 @@ def check_blob_state(part):
         for ent in data:
             try:
                 mc   = re.search('AOGBIAS1', str(ent))
-            except Exception as e:
-                print(f"Error: {e}")
+            except:
+                traceback.print_exc()
                 continue
 
             if mc is not None:
@@ -267,8 +268,8 @@ def check_blob_state(part):
                     break
             else:
                 run = 1
-    except Exception as e:
-        print(f"Error: {e}")
+    except:
+        traceback.print_exc()
         run = 1
 
     return run
@@ -295,8 +296,8 @@ def find_last_upate(tfile, tspan=10800):
     try:
         btime = time.strftime("%Y:%j:%H:%M:%S", time.gmtime(os.path.getmtime(tfile)))
         btime = Chandra.Time.DateTime(btime).secs
-    except Exception as e:
-        print(f"Error: {e}")
+    except:
+        traceback.print_exc()
         btime = 0
 
     tdiff = ctime - btime
@@ -336,8 +337,8 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
         ctime = str((list(out['data'][0]['times']))[-1])
         ctime = Chandra.Time.DateTime(ctime).date
         ctime = ctime.replace(':', '')
-    except Exception as e:
-        print(f"Error: {e}")
+    except:
+        traceback.print_exc()
         ###ctime = time.strftime("%Y%j%H%M%S", time.gmtime())
         return 'stop'
 
@@ -371,8 +372,8 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #
         try:
             mdata = maude.get_msids(msid_short, start, stop)
-        except Exception as e:
-            print(f"Error: {e}")
+        except:
+            traceback.print_exc()
             continue
 #
 #--- now extract data and put into json data format
@@ -381,13 +382,13 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
             try:
                 msid = str(mdata['data'][nk]['msid']).upper()
 
-            except Exception as e:
-                print(f"Error: {e}")
+            except:
+                traceback.print_exc()
                 continue
             try:
                 val  = str((list(mdata['data'][nk]['values']))[-1])
-            except Exception as e:
-                print(f"Error: {e}")
+            except:
+                traceback.print_exc()
                 val = 'NaN'
 #
 #--- unit conversion for a few special cases
@@ -427,8 +428,8 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
             for name in ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST',\
                          '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']:
                 val = val + covert_to_tf(vdict[name])
-        except Exception as e:
-            print(f"Error: {e}")
+        except:
+            traceback.print_exc()
             val  = 'NaN'
         mlist.append(msid)
         vdict[msid] = val
@@ -443,16 +444,16 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
         val = '"' + val + '"'
         try:
             index  = mdict[msid]
-        except Exception as e:
-            print(f"Error: {e}")
+        except:
+            traceback.print_exc()
             index  = str(findx)
             findx -= 1
 
         try:
             sval = val.replace('\"', '')
             status = cms.check_status(msid, sval, ldict, vdict)
-        except Exception as e:
-            print(f"Error: {e}")
+        except:
+            traceback.print_exc()
             status ='GREEN'
 
         out = '{"msid":"' + msid + '",'
@@ -591,8 +592,8 @@ def read_limit_table():
             except:
                 try:
                     val = val.replace("\'", '')
-                except Exception as e:
-                    print(f"Error: {e}")
+                except:
+                    traceback.print_exc()
                     pass
             olist.append(val)
         ldict[atemp[0]] = olist
@@ -691,8 +692,8 @@ if __name__ == '__main__':
     try:
         part = sys.argv[1]
         part.strip()
-    except Exception as e:
-        print(f"Error: {e}")
+    except:
+        traceback.print_exc()
         print(" USAGE: copy_data_from_occ_part.py <part>")
         exit(1)
 
@@ -706,15 +707,15 @@ if __name__ == '__main__':
             exit(1)
         else:
             write_run_file('1', part)
-    except Exception as e:
-        print(f"Error: {e}")
+    except:
+        traceback.print_exc()
         write_run_file('0', part)
         exit(1)
 
     try:
         copy_data_from_occ_part(part)
-    except Exception as e:
-        print(f"Error: {e}")
+    except:
+        traceback.print_exc()
         pass
 
     write_run_file('0', part)
