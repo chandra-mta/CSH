@@ -26,7 +26,7 @@ plot_looks = {
 	'Spceleca':{'msid_ls':['CTXAV', 'CTXAPWR'], 'units': ['V', None], 'weight':1, 'title': 'Transmitter A'},
 	'Spcelec_pwr':{'msid_ls':['OHRMAPWR', 'OOBAPWR'], 'units': [None, None], 'weight':1, 'title': 'Computed Total Power'},
 	'Pcadgrate':{'msid_ls':['AOALPANG', 'AOBETANG'], 'units': ['deg', 'deg'], 'weight':1, 'title': 'FSS Angle Meas.'},
-	'Sys_temps':{'msid_ls':['AACCCDPT','4OAVHRMT','4OAVOBAT'], 'units': [None, None, None], 'weight':1, 'title':'Various Temperatures'},  
+	'Sys_temps':{'msid_ls':['2CEAHVPT','AACCCDPT','4OAVHRMT','4OAVOBAT'], 'units': ['C', 'F', 'F', 'F'], 'weight':1, 'title':'Various Temperatures'},  
 	'Zmodel_temps':{'msid_ls':['TCYLAFT6','TCYLFMZM','TEPHIN','TFSSBKT1','TMZP_MY'], 'units': [None, None, None, None, None], 'weight':1, 'title':'Minus-Z Model Temperatures'},	
 	'Mups_load':{'msid_ls':['PM1THV1T', 'PM2THV1T'], 'units': [None, None], 'weight':1, 'title':'Mups Value Model Temp'},  
 	'Tank_temp':{'msid_ls':['PFTANK2T', 'PMTANK3T'], 'units': [None,  None], 'weight':1, 'title':'Fuel and Mups Tank Temp'},  
