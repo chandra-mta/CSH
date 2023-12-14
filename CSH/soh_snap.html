@@ -366,8 +366,14 @@ deleteAllHistory();
 <th calss=bold>&#160;</th>
 <th class=bold>RadMon</th>          <td class="msid"   data-msid="CORADMEN"  data-printfmt="%4s"></td>
 <th calss=bold>&#160;</th>
-<th class=bold>&#160;</th><td class='empty'>&#160;</td>
-
+<th class=bold>
+    <form method = "post" action=/mta/CSH/test_plots/load_test.php
+	target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
+    <input type="hidden" name="msid_group" value="Sys_temps">
+    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CEA Rad Temp"> (C)</span>
+    </form>
+</th>
+                    <td class='msid'    data-msid="2CEAHVPT"    data-printfmt="%6.1f"></td>
 </tr>
 
 <tr>
