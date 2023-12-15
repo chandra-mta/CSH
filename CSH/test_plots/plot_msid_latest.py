@@ -24,7 +24,7 @@ plot_looks = {
 	'Spceleca':{'msid_ls':['CTXAV', 'CTXAPWR'], 'units': ['V', None], 'weight':1, 'title': 'Transmitter A'},
 	'Spcelec_pwr':{'msid_ls':['OHRMAPWR', 'OOBAPWR'], 'units': [None, None], 'weight':1, 'title': 'Computed Total Power'},
 	'Pcadgrate':{'msid_ls':['AOALPANG', 'AOBETANG'], 'units': ['deg', 'deg'], 'weight':1, 'title': 'FSS Angle Meas.'},
-	'Sys_temps':{'msid_ls':['AACCCDPT','4OAVHRMT','4OAVOBAT'], 'units': [None, None, None], 'weight':1, 'title':'Various Temperatures'}  
+	'Sys_temps':{'msid_ls':['2CEAHVPT','AACCCDPT','4OAVHRMT','4OAVOBAT'], 'units': ['C', 'F', 'F', 'F'], 'weight':1, 'title':'Various Temperatures'}  
 	}
 
 def plot(msid_group, plot_class):
