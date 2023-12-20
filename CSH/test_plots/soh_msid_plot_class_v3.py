@@ -1,6 +1,5 @@
-#!/usr/bin/env /data/mta4/Script/Python3.6/envs/ska3/bin/python
+#!/proj/sot/ska3/flight/bin/python
 
-##!/data/mta4/ska3/bin/python
 import timeit
 
 from bokeh.plotting import figure #1.89usec

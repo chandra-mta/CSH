@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta4/Script/Python3.6/envs/ska3/bin/python
+#!/proj/sot/ska3/flight/bin/python
 
 from soh_msid_plot_class_v3 import soh_plots
 from plot_cleaning import plot_cleaning
