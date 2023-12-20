@@ -21,6 +21,8 @@ import maude
 import itertools
 import pandas as pd
 import requests
+import sys
+import traceback
 
 
 BIN_DIR = "/data/mta4/www/CSH/test_plots"
@@ -41,7 +43,7 @@ class soh_plots:
 		self.msid_dict = pickle.load(pickle_in)
 		self.in_comm = False
 		self.dsn_comm()
-		self.user, self.password = self.get_user_password()
+		#self.user, self.password = self.get_user_password()
 		#vectorized functions
 		self.change_time = np.vectorize(self.tme)
 		self.calc = np.vectorize(self.msid_weight)
@@ -55,17 +57,17 @@ class soh_plots:
 		self.check_comm = False
 
 	#taken from maude code
-	def get_user_password(self):
-		import Ska.ftp
+	#def get_user_password(self):
+	#	import Ska.ftp
 		#netrc = Ska.ftp.parse_netrc()
-		netrc = Ska.ftp.parse_netrc('/data/mta4/Script/SOH/house_keeping/.netrc')
-		if 'occweb' in netrc:
-			user = netrc['occweb']['login']
-			password = netrc['occweb']['password']
-		else:
-			raise ValueError('user and password or "occweb" machine definition in ~/.netrc are '
-							 'required for OCCweb authentication')
-		return user, password
+	#	netrc = Ska.ftp.parse_netrc('/data/mta4/Script/SOH/house_keeping/.netrc')
+	#	if 'occweb' in netrc:
+	#		user = netrc['occweb']['login']
+	#		password = netrc['occweb']['password']
+	#	else:
+	#		raise ValueError('user and password or "occweb" machine definition in ~/.netrc are '
+	#						 'required for OCCweb authentication')
+	#	return user, password
 
 	def dsn_comm(self):
 		########################
@@ -110,7 +112,8 @@ class soh_plots:
 			tp = datetime.strftime(now, '%Y.%j.%H.%M')
 			url = site.format(msid, tp)
 			try:
-				r = requests.get(url, headers = {'Accept-Encoding': 'gzip'}, auth=(self.user, self.password))
+				#r = requests.get(url, headers = {'Accept-Encoding': 'gzip'}, auth=(self.user, self.password))
+				r = requests.get(url, headers = {'Accept-Encoding': 'gzip'})
 				if r.status_code != 200:
 					raise IOError('request failed with status={} for URL={} and text={}'.format(r.status_code, r.url, r.text))
 				out = r.json()
@@ -121,7 +124,8 @@ class soh_plots:
 					self.in_comm = False
 				self.check_comm = False
 			except Exception as e: 
-				print ("error getting last point: ", e)
+				#print ("error getting last point: ", e)
+				traceback.print_exc()
 
 		self.start_time = None
 		self.next_comm = None
@@ -145,6 +149,7 @@ class soh_plots:
 				self.start_time = int_df.iloc[ now_idx -2].name.left.to_pydatetime()
 			except:
 				print("Index error during comm when trying to find start_time")
+				traceback.print_exc()
 				pass
 		elif (not self.in_comm):
 			try:
@@ -152,6 +157,7 @@ class soh_plots:
 				self.next_comm = int_df.iloc[now_idx].name.right.to_pydatetime()
 			except:
 				print ("Index error when trying to find start_time")
+				traceback.print_exc()
 				pass
 		elif (self.start_time == None):
 			self.start_time = now - timedelta(1)
