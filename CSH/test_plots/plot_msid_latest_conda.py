@@ -9,6 +9,9 @@ from pathlib import Path
 import os.path
 import timeit
 
+BIN_DIR = "/data/mta4/www/CSH/test_plots"
+OUT_DIR = "/data/mta4/www/CSH/test_plots"
+
 #define the various graph groups any weights(conversions) and units
 plot_looks = {
 	'Pcaditv':{'msid_ls': ['AIRU1G1I','AIRU1G2I','AIRU2G1I','AIRU2G2I'], 'units': ['mA', 'mA', 'mA', 'mA'], 'weight':1, 'title': 'Realtime IRU Currents'},

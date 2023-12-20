@@ -22,6 +22,10 @@ import itertools
 import pandas as pd
 import requests
 
+
+BIN_DIR = "/data/mta4/www/CSH/test_plots"
+OUT_DIR = "/data/mta4/www/CSH/test_plots"
+
 ##########################################
 # This script creates the soh_plots class that creates plot on https://cxc.cfa.harvard.edu/mta/CSH/soh_snap.html
 # It is recommended that you run with a time limit, both to ensure functionality and catch errors

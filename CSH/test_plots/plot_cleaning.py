@@ -6,6 +6,9 @@ from datetime import datetime
 import argparse
 import random
 
+BIN_DIR = "/data/mta4/www/CSH/test_plots"
+OUT_DIR = "/data/mta4/www/CSH/test_plots"
+
 class plot_cleaning:
 
 	def __init__(self):
