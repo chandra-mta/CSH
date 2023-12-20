@@ -8,6 +8,8 @@ import signal
 from pathlib import Path
 import os.path
 import timeit
+import sys
+import traceback
 
 BIN_DIR = "/data/mta4/www/CSH/test_plots"
 OUT_DIR = "/data/mta4/www/CSH/test_plots"
@@ -88,7 +90,7 @@ def plot(msid_group, plot_class):
 def signal_handler(signum, frame):
 	raise Exception("time is done")
 
-if __name__ == '__main__':
+def gen_plots():
 	p = soh_plots()
 	cleaning = plot_cleaning()
 	signal.signal(signal.SIGALRM, signal_handler)
@@ -115,6 +117,11 @@ if __name__ == '__main__':
 								done += [line]
 							except Exception as e:
 								print (e)
+								traceback.print_exc()
 								break #want to break and say there was an error
 	except Exception as msg:
-		print(msg)
+		traceback.print_exc()
+
+
+if __name__ == '__main__':
+	gen_plot()
