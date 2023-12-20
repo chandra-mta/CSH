@@ -12,7 +12,7 @@ OUT_DIR = "/data/mta4/www/CSH/test_plots"
 class plot_cleaning:
 
 	def __init__(self):
-		self.path = '/data/mta4/www/CSH/test_plots/'
+		self.path = BIN_DIR
 		
 	def rename_files(self, script, div, rand):
 		start_time = timeit.default_timer()
@@ -26,7 +26,7 @@ class plot_cleaning:
 	
 	def in_comm(self, script, div, rand):
 		start_time = timeit.default_timer()
-		if os.path.isfile('/data/mta4/www/CSH/test_plots/.in_comm'):
+		if os.path.isfile(f"{BIN_DIR}/.in_comm"):
 			self.rename_files(script, div, rand)
 			return True
 		print ("checked_comm: ", timeit.default_timer() - start_time)

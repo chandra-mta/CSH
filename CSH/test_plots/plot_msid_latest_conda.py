@@ -94,7 +94,6 @@ if __name__ == '__main__':
 	signal.signal(signal.SIGALRM, signal_handler)
 	signal.alarm(3660)
 	try:
-		plot_file = Path(".plot_these.txt")
 		done = []
 		ran_comm = False
 		while True:
@@ -102,7 +101,7 @@ if __name__ == '__main__':
 				#print("thinks we're in comm")
 				#p.dsn_comm()
 				#ran_comm = True
-			with open('.plot_these.txt', 'r') as file:
+			with open(f"{BIN_DIR}/.plot_these.txt", 'r') as file:
 				for line in file:
 					now = time.time()
 					if (len(line.split())>1 and line not in done):

@@ -36,7 +36,7 @@ class soh_plots:
 
 	def __init__(self):
 		#msid_dictionary created in msididx_dict_formatter.py
-		limit_file = 'msid_limits.pickle'
+		limit_file = f"{BIN_DIR}/msid_limits.pickle"
 		pickle_in = open(limit_file, "rb")
 		self.msid_dict = pickle.load(pickle_in)
 		self.in_comm = False
