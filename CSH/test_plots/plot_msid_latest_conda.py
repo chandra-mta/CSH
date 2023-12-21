@@ -95,7 +95,6 @@ def plot(msid_group, plot_class):
 	pull_set = np.append(msid_list, np.unique(dep_list))
 	file_name = msid_group + '_plot.html'
 	plot_class.plot_joint_graphs(pull_set, msid_group,  msid_list, weight, units, title, file_name)	
-	print (p.start_time)
 
 def signal_handler(signum, frame):
 	raise Exception("time is done")

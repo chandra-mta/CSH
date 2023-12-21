@@ -355,15 +355,15 @@ class soh_plots:
 												 )
 
 			for comm in self.dsn_comms:
-				low_box = BoxAnnotation(left = self.tme(comm.start), right = self.tme(comm.stop), fill_alpha = 0.1, fill_color = "#99FF99")
+				low_box = BoxAnnotation(left = self.tme(comm.start).strftime('%Y:%j:%H:%M'), right = self.tme(comm.stop).strftime('%Y:%j:%H:%M'), fill_alpha = 0.1, fill_color = "#99FF99")
 				p.add_layout(low_box)
 
 			d = p.circle(x = 'utc_times', y = 'msid_values', source = source,
 						 color = {'field':'label', 'transform':color_mapper}, 
-						 line_color=None, size = 2, legend = 'label')
+						 line_color=None, size = 2, legend_label = 'label')
 
 			new_legend = p.legend[0]
-			p.legend[0].plot = None
+			#p.legend[0].plot = None
 			p.add_layout(new_legend, 'right')
 
 			frames.append([p])
@@ -372,9 +372,9 @@ class soh_plots:
 		print ("full plots: ", timeit.default_timer()-start_plots)
 		start_time = timeit.default_timer()		
 		script, div = components(s)
-		with open(script_name, 'w') as f:
+		with open(f"{OUT_DIR}/{script_name}", 'w') as f:
 			f.write(script)
-		with open(div_name, 'w') as f:
+		with open(f"{OUT_DIR}/{div_name}", 'w') as f:
 			f.write(div)
 		print ('saved plots: ', timeit.default_timer()-start_time)
 
