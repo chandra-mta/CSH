@@ -98,27 +98,28 @@ def gen_plots():
 	try:
 		done = []
 		ran_comm = False
-		while True:
-			#if (not ran_comm and os.path.isfile('.in_comm')):
-				#print("thinks we're in comm")
-				#p.dsn_comm()
-				#ran_comm = True
-			with open(f"{BIN_DIR}/.plot_these.txt", 'r') as file:
-				for line in file:
-					now = time.time()
-					if (len(line.split())>1 and line not in done):
-						msid, call_time = line.split()[0], line.split()[1]
-						if (not msid.isdigit() and call_time.isdigit() and (now - int(call_time))<=30):
-							try:
-								start_t = timeit.default_timer()
-								cleaning.main(msid)
-								print( "cleaning: ", timeit.default_timer() - start_t)
-								plot(line.split(" ")[0], p)
-								done += [line]
-							except Exception as e:
-								print (e)
-								traceback.print_exc()
-								break #want to break and say there was an error
+		#if (not ran_comm and os.path.isfile('.in_comm')):
+			#print("thinks we're in comm")
+			#p.dsn_comm()
+			#ran_comm = True
+		with open(f"{BIN_DIR}/.plot_these.txt", 'r') as file:
+			for line in file:
+				now = time.time()
+				if (len(line.split())>1 and line not in done):
+					msid, call_time = line.split()[0], line.split()[1]
+					print(f"now: {now} - call_time: {call_time} -  difference: {now - int(call_time)}")
+					if (not msid.isdigit() and call_time.isdigit() and (now - int(call_time))<=30):
+						print("enter check")
+						try:
+							start_t = timeit.default_timer()
+							cleaning.main(msid)
+							print( "cleaning: ", timeit.default_timer() - start_t)
+							plot(line.split(" ")[0], p)
+							done += [line]
+						except Exception as e:
+							print (e)
+							traceback.print_exc()
+							break #want to break and say there was an error
 	except Exception as msg:
 		traceback.print_exc()
 
