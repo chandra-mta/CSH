@@ -13,10 +13,8 @@ NEW_DIR_LIST = [OUT_DIR]
 for dir in NEW_DIR_LIST:
 	os.system(f"mkdir -p {dir}")
 
-
-#Extra housekeeping for setup files
-#NOTE this should be required. why searhc outtest?
-#os.system(f"ln -sf  {LIVE_BIN_DIR}/msid_limits.pickle {OUT_DIR}")
+#Extra Parameter Setup
+TEST_MSID_GROUP_SELECTION = ['Sys_temps']
 
 import plot_msid_latest_conda as pml
 import soh_msid_plot_class_v3 as smpc
@@ -30,4 +28,4 @@ for mod in MOD_GROUP:
     if hasattr(mod,'OUT_DIR'):
 	    mod.OUT_DIR = f"{OUT_DIR}"
 
-pml.gen_plots()
+pml.gen_plots(TEST_MSID_GROUP_SELECTION)

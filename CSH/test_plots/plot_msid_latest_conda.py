@@ -10,12 +10,13 @@ import os.path
 import timeit
 import sys
 import traceback
+import json
 
 BIN_DIR = "/data/mta4/www/CSH/test_plots"
 OUT_DIR = "/data/mta4/www/CSH/test_plots"
 
 #define the various graph groups any weights(conversions) and units
-plot_looks = {
+PLOT_LOOKS = {
 	'Pcaditv':{'msid_ls': ['AIRU1G1I','AIRU1G2I','AIRU2G1I','AIRU2G2I'], 'units': ['mA', 'mA', 'mA', 'mA'], 'weight':1, 'title': 'Realtime IRU Currents'},
 	'Aosymom': {'msid_ls': ['AOSYMOM1','AOSYMOM2','AOSYMOM3'],'units': ['J*s', 'J*s', 'J*s'] ,'weight': 1 ,'title': 'Realtime Momentum'},
 	'Aorate': {'msid_ls': ['AORATE1','AORATE2','AORATE3'],'units': ['arcsec/sec', 'arcsec/sec', 'arcsec/sec'], 'weight': 206265, 'title': 'Estimated Angular Rates in ACA Frame' },
@@ -71,11 +72,20 @@ plot_looks = {
 
 	}
 
+MSID_GROUP_SELECTION = ['Pcaditv', 'Aosymom', 'Aorate', 'Aodithr', 'Hrcelec', 'Spcelec', 'Pcadgdrift', 'Gratgen', 'Ycurrent', \
+'Sc_temp', 'Mups', 'Spcelecb', 'Spceleca', 'Spcelec_pwr', 'Pcadgrate', 'Sys_temps', 'Zmodel_temps', 'Mups_load', 'Tank_temp', \
+'Quat', 'Blkhd', 'Aosares', 'Psmc', 'Dpa', 'EB1', 'EB2', 'EB3', 'Scs_acis', 'TB1', 'TB2', 'TB3', 'AACHT', 'ACPV', 'ADEV', \
+'AGWSV', 'IRUBT', 'Pcaditt', 'AIOCV', 'ARWBT', 'AWDCV', 'AWDTQ', 'ASPEV', 'AVDCV', '1CB_T', '1CR_T', '1D_MZT', '1WR_T', \
+'Hrc_temps', 'Pline_1_8', 'Pline_9_16', 'Mups_tank', 'Fuel_tank'] #Selections of which MSID groupings to plot. Default to all.
+
+CONSIDER_TIME = False #whether or not to use the plot_time.json file to determine whcih MSID_groups to generate the plot for.
+CUTTOFF = 30
+
 def plot(msid_group, plot_class):
 	print("Here is your arg:", msid_group)
 	#import ast and open file that contains weights and units and such(?)
-	msid_list, weight = plot_looks[msid_group]['msid_ls'] , plot_looks[msid_group]['weight']
-	units, title = plot_looks[msid_group]['units'] , plot_looks[msid_group]['title']
+	msid_list, weight = PLOT_LOOKS[msid_group]['msid_ls'] , PLOT_LOOKS[msid_group]['weight']
+	units, title = PLOT_LOOKS[msid_group]['units'] , PLOT_LOOKS[msid_group]['title']
 	#get the dependents of each msid that's in our group
 	dep_list = []
 	for msid in msid_list:
@@ -90,39 +100,38 @@ def plot(msid_group, plot_class):
 def signal_handler(signum, frame):
 	raise Exception("time is done")
 
-def gen_plots():
+def gen_plots(selection = MSID_GROUP_SELECTION):
 	p = soh_plots()
 	cleaning = plot_cleaning()
 	signal.signal(signal.SIGALRM, signal_handler)
 	signal.alarm(3660)
-	try:
-		done = []
-		ran_comm = False
-		#if (not ran_comm and os.path.isfile('.in_comm')):
-			#print("thinks we're in comm")
-			#p.dsn_comm()
-			#ran_comm = True
-		with open(f"{BIN_DIR}/.plot_these.txt", 'r') as file:
-			for line in file:
-				now = time.time()
-				if (len(line.split())>1 and line not in done):
-					msid, call_time = line.split()[0], line.split()[1]
-					print(f"now: {now} - call_time: {call_time} -  difference: {now - int(call_time)}")
-					if (not msid.isdigit() and call_time.isdigit() and (now - int(call_time))<=30):
-						print("enter check")
-						try:
-							start_t = timeit.default_timer()
-							cleaning.main(msid)
-							print( "cleaning: ", timeit.default_timer() - start_t)
-							plot(line.split(" ")[0], p)
-							done += [line]
-						except Exception as e:
-							print (e)
-							traceback.print_exc()
-							break #want to break and say there was an error
-	except Exception as msg:
-		traceback.print_exc()
+	for msid_group in selection:
+		try:
+			start_t = timeit.default_timer()
+			cleaning.main(msid_group)
+			print( "cleaning: ", timeit.default_timer() - start_t)
+			plot(msid_group,p)
+		except:
+			traceback.print_exc()
+
+
+def choose_group():
+	"""
+	Select which MSID groups to plot based on provided timing information
+	"""
+	selection = []
+	now = time.time()
+	with open(f"{BIN_DIR}/plot_time.json") as f:
+		time_dict = json.load(f)
+	for k,v in time_dict.items():
+		if now - v <= CUTOFF:
+			selection.append(k)
+	return selection
 
 
 if __name__ == '__main__':
-	gen_plot()
+	if CONSIDER_TIME:
+		selection = choose_group()
+	else:
+		selection = MSID_GROUP_SELECTION
+	gen_plot(selection)
