@@ -330,15 +330,15 @@ class soh_plots:
 			if frame > 0:
 				p = figure(title=plot_title, x_axis_label = 'Time (UTC)', y_axis_label= y_label, 
 						   x_range = frames[0][0].x_range, x_axis_type = "datetime",
-						  plot_width = 700, plot_height = 300)
+						  width = 700, height = 300)
 			else:
 				p = figure(title=plot_title, x_axis_label = 'Time (UTC)', y_axis_label= y_label,
-						   x_axis_type = "datetime", plot_width = 700, plot_height = 300)
+						   x_axis_type = "datetime", width = 700, height = 300)
 			p.xaxis.formatter = DatetimeTickFormatter(
-				minutes = ["%Y:%j:%H:%M"],
-				hours = ["%Y:%j:%H"],
-				hourmin = ["%Y:%j:%H:%M"],
-				days = ["%Y:%j"]
+				minutes = "%Y:%j:%H:%M",
+				hours = "%Y:%j:%H",
+				hourmin = "%Y:%j:%H:%M",
+				days = "%Y:%j"
 			)
 			colors = None
 			if 'lim' in self.msid_dict[msid]:
