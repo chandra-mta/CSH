@@ -4,8 +4,11 @@
 <head>
     <title>SOH Plots</title>
 	
-    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.7.min.css" type="text/css" />
-    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.7.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.7.min.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.7.min.js"></script> -->
+
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-3.0.3.min.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-3.0.3.min.js"></script>
 
 	<script src="../js_snap/lib/jquery-2.2.0.js"></script>
 	
