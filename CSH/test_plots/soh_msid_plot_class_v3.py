@@ -355,7 +355,7 @@ class soh_plots:
 												 )
 
 			for comm in self.dsn_comms:
-				low_box = BoxAnnotation(left = self.tme(comm.start).strftime('%Y:%j:%H:%M'), right = self.tme(comm.stop).strftime('%Y:%j:%H:%M'), fill_alpha = 0.1, fill_color = "#99FF99")
+				low_box = BoxAnnotation(left = self.tme(comm.start).timestamp()*1000, right = self.tme(comm.stop).timestamp()*1000, fill_alpha = 0.1, fill_color = "#99FF99")
 				p.add_layout(low_box)
 
 			d = p.circle(x = 'utc_times', y = 'msid_values', source = source,
