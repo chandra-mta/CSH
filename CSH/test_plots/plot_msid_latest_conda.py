@@ -13,7 +13,7 @@ import traceback
 import json
 
 BIN_DIR = "/data/mta4/www/CSH/test_plots"
-OUT_DIR = "/data/mta4/www/CSH/test_plots"
+OUT_DIR = "/data/mta4/www/CSH/test_plots/plot_sections"
 
 #define the various graph groups any weights(conversions) and units
 PLOT_LOOKS = {
