@@ -14,7 +14,7 @@ for dir in NEW_DIR_LIST:
 	os.system(f"mkdir -p {dir}")
 
 #Extra Parameter Setup
-TEST_MSID_GROUP_SELECTION = ['Sys_temps']
+#TEST_MSID_GROUP_SELECTION = ['Sys_temps', 'Spcelec']
 
 import plot_msid_latest_conda as pml
 import soh_msid_plot_class_v3 as smpc
@@ -28,4 +28,7 @@ for mod in MOD_GROUP:
     if hasattr(mod,'OUT_DIR'):
 	    mod.OUT_DIR = f"{OUT_DIR}"
 
-pml.gen_plots(TEST_MSID_GROUP_SELECTION)
+if 'TEST_MSID_GROUP_SELECTION' in locals():
+	pml.gen_plots(TEST_MSID_GROUP_SELECTION)
+else:
+	pml.gen_plots()

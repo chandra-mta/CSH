@@ -71,12 +71,14 @@ PLOT_LOOKS = {
 	'Fuel_tank':{'msid_ls':['PFTANK1T', 'PFTANK2T'], 'units': [None, None], 'weight':1, 'title': 'Fuel Tank Temp'}
 
 	}
-
+"""
 MSID_GROUP_SELECTION = ['Pcaditv', 'Aosymom', 'Aorate', 'Aodithr', 'Hrcelec', 'Spcelec', 'Pcadgdrift', 'Gratgen', 'Ycurrent', \
 'Sc_temp', 'Mups', 'Spcelecb', 'Spceleca', 'Spcelec_pwr', 'Pcadgrate', 'Sys_temps', 'Zmodel_temps', 'Mups_load', 'Tank_temp', \
 'Quat', 'Blkhd', 'Aosares', 'Psmc', 'Dpa', 'EB1', 'EB2', 'EB3', 'Scs_acis', 'TB1', 'TB2', 'TB3', 'AACHT', 'ACPV', 'ADEV', \
 'AGWSV', 'IRUBT', 'Pcaditt', 'AIOCV', 'ARWBT', 'AWDCV', 'AWDTQ', 'ASPEV', 'AVDCV', '1CB_T', '1CR_T', '1D_MZT', '1WR_T', \
 'Hrc_temps', 'Pline_1_8', 'Pline_9_16', 'Mups_tank', 'Fuel_tank'] #Selections of which MSID groupings to plot. Default to all.
+"""
+MSID_GROUP_SELECTION = list(PLOT_LOOKS.keys())#Selections of which MSID groupings to plot. Default to all.
 
 CONSIDER_TIME = False #whether or not to use the plot_time.json file to determine whcih MSID_groups to generate the plot for.
 CUTTOFF = 30

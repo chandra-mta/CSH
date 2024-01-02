@@ -360,7 +360,7 @@ class soh_plots:
 
 			d = p.circle(x = 'utc_times', y = 'msid_values', source = source,
 						 color = {'field':'label', 'transform':color_mapper}, 
-						 line_color=None, size = 2, legend_label = 'label')
+						 line_color=None, size = 2, legend_group = 'label')
 
 			new_legend = p.legend[0]
 			#p.legend[0].plot = None
