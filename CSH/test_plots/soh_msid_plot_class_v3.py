@@ -15,7 +15,7 @@ from datetime import datetime, timedelta, time
 import Chandra.Time
 import pickle
 import os, getpass
-print ("Login info",os.getlogin()," user info:" ,getpass.getuser())
+#print ("Login info",os.getlogin()," user info:" ,getpass.getuser())
 import numexpr as ne
 import maude
 import itertools
@@ -53,7 +53,7 @@ class soh_plots:
 		self.check_comm = True
 		start_time = timeit.default_timer()
 		self.get_time_frames('AORATE1')
-		print("initialized time_frames: ", timeit.default_timer()-start_time)
+		#print("initialized time_frames: ", timeit.default_timer()-start_time)
 		self.check_comm = False
 
 	#taken from maude code
@@ -91,7 +91,7 @@ class soh_plots:
 			comm_start, comm_stop = self.tracktime(comm_event.bot, comm_event.tstart, False) , self.tracktime(comm_event.eot, comm_event.tstop, True)
 			dsn_intervals += [comm_start, comm_stop]
 
-		print (dsn_intervals)
+		#print (dsn_intervals)
 		#we are creating intervals based on the comm schedule, this will tell us whether it's comm or not
 		#but it's an uneven number
 		comm_vals = ([True, False]*int(len(dsn_intervals)/2))[:-1]
@@ -148,7 +148,7 @@ class soh_plots:
 			try:
 				self.start_time = int_df.iloc[ now_idx -2].name.left.to_pydatetime()
 			except:
-				print("Index error during comm when trying to find start_time")
+				#print("Index error during comm when trying to find start_time")
 				traceback.print_exc()
 				pass
 		elif (not self.in_comm):
@@ -156,7 +156,7 @@ class soh_plots:
 				self.start_time = int_df.iloc[now_idx - 3].name.left.to_pydatetime()
 				self.next_comm = int_df.iloc[now_idx].name.right.to_pydatetime()
 			except:
-				print ("Index error when trying to find start_time")
+				#print ("Index error when trying to find start_time")
 				traceback.print_exc()
 				pass
 		elif (self.start_time == None):
@@ -173,7 +173,7 @@ class soh_plots:
 		if (comm_day.time() >= time(23,0) and track_time < time(1,0)):
 			comm_day = comm_day + timedelta(1)
 		if (comm_day.time() <= time(1,0) and track_time > time(23,0)):
-			print ("comm days where weird")
+			#print ("comm days where weird")
 			comm_day = comm_day - timedelta(1)
 		return( datetime.combine(comm_day.date(), track_time) )
 
@@ -266,7 +266,7 @@ class soh_plots:
 				msid_limits = self.select_intervals(msid_data, dep_data, msid) 
 				return (self.color_choice_switch(msid_vals, msid_limits, weight))
 			else:
-				print ("warning: Non matching msid lim dep", msid)
+				#print ("warning: Non matching msid lim dep", msid)
 				return None
 
 	def plot_joint_graphs(self, pull_set, group_name, msid_list, weight, units, title, file_name):
@@ -283,7 +283,7 @@ class soh_plots:
 		#############################
 		start_time = timeit.default_timer()
 		self.get_time_frames(pull_set[0])
-		print("time_frames: ", timeit.default_timer()-start_time)
+		#print("time_frames: ", timeit.default_timer()-start_time)
 		script_name = 'script_' + group_name
 		div_name = 'div_' + group_name
 		start_time = timeit.default_timer()
@@ -295,7 +295,7 @@ class soh_plots:
 					with open(script_name, 'w') as f:
 						f.write("<font color=\"red\"><b>Sorry, Maude couldn't fetch the data from the last comm</font>")
 			return
-		print ("pulled set data", timeit.default_timer()-start_time)
+		#print ("pulled set data", timeit.default_timer()-start_time)
 		now = datetime.utcnow()
 		frames = []
 		start_plots = timeit.default_timer()
@@ -305,7 +305,7 @@ class soh_plots:
 			t1998 = 883612736.816
 			data_tme, data_vals = data['times'], data['values']
 			data_times = np.array(ne.evaluate('data_tme + t1998'), dtype='u8').view('datetime64[s]')
-			print (len(data_times), len(data_vals))
+			#print (len(data_times), len(data_vals))
 			last_dat_pt = (np.datetime64(now) - data_times[-1]).astype(int)
 			if (self.in_comm and last_dat_pt > 600000000): #10 minutes but in microsecs
 				self.check_comm = False
@@ -367,14 +367,14 @@ class soh_plots:
 			p.add_layout(new_legend, 'right')
 
 			frames.append([p])
-			print ("frame time: ", timeit.default_timer()-start_plot)
+			#print ("frame time: ", timeit.default_timer()-start_plot)
 		s = gridplot(frames)
-		print ("full plots: ", timeit.default_timer()-start_plots)
+		#print ("full plots: ", timeit.default_timer()-start_plots)
 		start_time = timeit.default_timer()		
 		script, div = components(s)
 		with open(f"{OUT_DIR}/{script_name}", 'w') as f:
 			f.write(script)
 		with open(f"{OUT_DIR}/{div_name}", 'w') as f:
 			f.write(div)
-		print ('saved plots: ', timeit.default_timer()-start_time)
+		#print ('saved plots: ', timeit.default_timer()-start_time)
 

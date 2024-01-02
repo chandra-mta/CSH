@@ -22,14 +22,14 @@ class plot_cleaning:
 		if os.path.exists(div):
 			old_d = div + str(rand) + 'old.del'
 			os.rename(div, old_d)
-		print ("renamed files: ", timeit.default_timer() - start_time)
+		#print ("renamed files: ", timeit.default_timer() - start_time)
 	
 	def in_comm(self, script, div, rand):
 		start_time = timeit.default_timer()
 		if os.path.isfile(f"{BIN_DIR}/.in_comm"):
 			self.rename_files(script, div, rand)
 			return True
-		print ("checked_comm: ", timeit.default_timer() - start_time)
+		#print ("checked_comm: ", timeit.default_timer() - start_time)
 	
 	def last_comm(self, script, div, rand, path):
 		start_time = timeit.default_timer()
@@ -39,17 +39,17 @@ class plot_cleaning:
 		#comm_end = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
 		last_comm_path = path + '.last_comm'
 		comm_end = datetime.utcfromtimestamp(os.path.getmtime(last_comm_path))
-		print ('comm end: ', timeit.default_timer() - start_time)
+		#print ('comm end: ', timeit.default_timer() - start_time)
 		start_time = timeit.default_timer()
 		mod_time = datetime.utcfromtimestamp(os.path.getmtime(script))
-		print ("got modified time: ", timeit.default_timer() - start_time)
+		#print ("got modified time: ", timeit.default_timer() - start_time)
 		#if the last time the plot was updated was before the last comm ended
 		#we have more data to pull
 		if (mod_time < comm_end):
 			self.rename_files(script, div, rand)
-			print ("<!-- new plot -->")
-		else:
-			print ("<!-- old but good plot -->")
+			#print ("<!-- new plot -->")
+		#else:
+			#print ("<!-- old but good plot -->")
 	
 	def main(self, msid):
 		script, div = f"{OUT_DIR}" + 'script_'+ msid , f"{OUT_DIR}" + 'div_' + msid

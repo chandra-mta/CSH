@@ -81,10 +81,10 @@ MSID_GROUP_SELECTION = ['Pcaditv', 'Aosymom', 'Aorate', 'Aodithr', 'Hrcelec', 'S
 MSID_GROUP_SELECTION = list(PLOT_LOOKS.keys())#Selections of which MSID groupings to plot. Default to all.
 
 CONSIDER_TIME = False #whether or not to use the plot_time.json file to determine whcih MSID_groups to generate the plot for.
-CUTTOFF = 30
+CUTOFF = 30
 
 def plot(msid_group, plot_class):
-	print("Here is your arg:", msid_group)
+	#print("Here is your arg:", msid_group)
 	#import ast and open file that contains weights and units and such(?)
 	msid_list, weight = PLOT_LOOKS[msid_group]['msid_ls'] , PLOT_LOOKS[msid_group]['weight']
 	units, title = PLOT_LOOKS[msid_group]['units'] , PLOT_LOOKS[msid_group]['title']
@@ -110,7 +110,7 @@ def gen_plots(selection = MSID_GROUP_SELECTION):
 		try:
 			start_t = timeit.default_timer()
 			cleaning.main(msid_group)
-			print( "cleaning: ", timeit.default_timer() - start_t)
+			#print( "cleaning: ", timeit.default_timer() - start_t)
 			plot(msid_group,p)
 		except:
 			traceback.print_exc()
@@ -135,4 +135,4 @@ if __name__ == '__main__':
 		selection = choose_group()
 	else:
 		selection = MSID_GROUP_SELECTION
-	gen_plot(selection)
+	gen_plots(selection)
