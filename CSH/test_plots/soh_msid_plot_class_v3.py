@@ -26,7 +26,7 @@ import traceback
 
 
 BIN_DIR = "/data/mta4/www/CSH/test_plots"
-OUT_DIR = "/data/mta4/www/CSH/test_plots"
+OUT_DIR = "/data/mta4/www/CSH/test_plots/plot_sections"
 
 ##########################################
 # This script creates the soh_plots class that creates plot on https://cxc.cfa.harvard.edu/mta/CSH/soh_snap.html

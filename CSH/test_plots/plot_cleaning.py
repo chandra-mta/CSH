@@ -7,7 +7,7 @@ import argparse
 import random
 
 BIN_DIR = "/data/mta4/www/CSH/test_plots"
-OUT_DIR = "/data/mta4/www/CSH/test_plots"
+OUT_DIR = "/data/mta4/www/CSH/test_plots/plot_sections"
 
 class plot_cleaning:
 
@@ -52,7 +52,7 @@ class plot_cleaning:
 			print ("<!-- old but good plot -->")
 	
 	def main(self, msid):
-		script, div = self.path + 'script_'+ msid , self.path + 'div_' + msid
+		script, div = f"{OUT_DIR}" + 'script_'+ msid , f"{OUT_DIR}" + 'div_' + msid
 		rand = random.randint(1000, 9999)
 		if not os.path.isfile(script):
 			return
