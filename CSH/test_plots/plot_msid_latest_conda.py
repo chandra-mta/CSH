@@ -80,8 +80,10 @@ CUTOFF = 30
 def plot(msid_group, plot_class):
 	#print("Here is your arg:", msid_group)
 	#import ast and open file that contains weights and units and such(?)
-	msid_list, weight = PLOT_LOOKS[msid_group]['msid_ls'] , PLOT_LOOKS[msid_group]['weight']
-	units, title = PLOT_LOOKS[msid_group]['units'] , PLOT_LOOKS[msid_group]['title']
+	msid_list = PLOT_LOOKS[msid_group]['msid_ls']
+	weight = PLOT_LOOKS[msid_group]['weight']
+	units = PLOT_LOOKS[msid_group]['units']
+	title = PLOT_LOOKS[msid_group]['title']
 	#get the dependents of each msid that's in our group
 	dep_list = []
 	for msid in msid_list:
@@ -89,7 +91,7 @@ def plot(msid_group, plot_class):
 		if dep is not None:
 			dep_list += [dep]
 	pull_set = np.append(msid_list, np.unique(dep_list))
-	file_name = msid_group + '_plot.html'
+	file_name = f"{msid_group}_plot.html"
 	plot_class.plot_joint_graphs(pull_set, msid_group,  msid_list, weight, units, title, file_name)	
 
 def signal_handler(signum, frame):

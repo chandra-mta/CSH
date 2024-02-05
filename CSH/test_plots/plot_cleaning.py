@@ -17,10 +17,10 @@ class plot_cleaning:
 	def rename_files(self, script, div, rand):
 		start_time = timeit.default_timer()
 		if os.path.exists(script):
-			old_s = script + str(rand) + 'old.del'
+			old_s = f"{script}{rand}old.del"
 			os.rename(script, old_s)
 		if os.path.exists(div):
-			old_d = div + str(rand) + 'old.del'
+			old_d = f"{div}{rand}old.del"
 			os.rename(div, old_d)
 		#print ("renamed files: ", timeit.default_timer() - start_time)
 	
@@ -37,7 +37,7 @@ class plot_cleaning:
 		#	time = f.readlines()[0].rstrip()
 		#print ("opened comm: ", timeit.default_timer() - start_time)
 		#comm_end = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
-		last_comm_path = path + '.last_comm'
+		last_comm_path = f"{path}.last_comm"
 		comm_end = datetime.utcfromtimestamp(os.path.getmtime(last_comm_path))
 		#print ('comm end: ', timeit.default_timer() - start_time)
 		start_time = timeit.default_timer()
@@ -52,7 +52,8 @@ class plot_cleaning:
 			#print ("<!-- old but good plot -->")
 	
 	def main(self, msid):
-		script, div = f"{OUT_DIR}" + 'script_'+ msid , f"{OUT_DIR}" + 'div_' + msid
+		script = f"{OUT_DIR}/script_{msid}"
+		div = f"{OUT_DIR}/div_{msid}"
 		rand = random.randint(1000, 9999)
 		if not os.path.isfile(script):
 			return

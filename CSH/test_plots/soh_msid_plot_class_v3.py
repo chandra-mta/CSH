@@ -79,7 +79,7 @@ class soh_plots:
 		now = datetime.utcnow()		
 		yesterday = now - timedelta(1)
 		tomorrow = now + timedelta(1)
-		yesterday_start= Chandra.Time.DateTime(yesterday).day_start()
+		yesterday_start = Chandra.Time.DateTime(yesterday).day_start()
 		tomorrow_end = Chandra.Time.DateTime(tomorrow).day_end()
 		dsn_comms = events.dsn_comms.filter(yesterday_start.date, tomorrow_end.date)
 		self.dsn_comms = dsn_comms
@@ -87,13 +87,14 @@ class soh_plots:
 		#create dsn_intervals
 		dsn_intervals = []
 		for dsn_i , comm_event in enumerate(dsn_comms):
-			comm_start, comm_stop = self.tracktime(comm_event.bot, comm_event.tstart, False) , self.tracktime(comm_event.eot, comm_event.tstop, True)
+			comm_start = self.tracktime(comm_event.bot, comm_event.tstart, False) 
+			comm_stop = self.tracktime(comm_event.eot, comm_event.tstop, True)
 			dsn_intervals += [comm_start, comm_stop]
 
 		#print (dsn_intervals)
 		#we are creating intervals based on the comm schedule, this will tell us whether it's comm or not
 		#but it's an uneven number
-		comm_vals = ([True, False]*int(len(dsn_intervals)/2))[:-1]
+		comm_vals = ([True, False] * int(len(dsn_intervals) / 2))[:-1]
 		self.int_df = pd.DataFrame(comm_vals, index = pd.IntervalIndex.from_breaks(dsn_intervals, closed='right'))
 
 	def get_time_frames(self, msid):
@@ -122,7 +123,6 @@ class soh_plots:
 					self.in_comm = False
 				self.check_comm = False
 			except Exception as e: 
-				#print ("error getting last point: ", e)
 				traceback.print_exc()
 
 		self.start_time = None
@@ -144,7 +144,7 @@ class soh_plots:
 		#################
 		if (self.in_comm and comm_sched):
 			try:
-				self.start_time = int_df.iloc[ now_idx -2].name.left.to_pydatetime()
+				self.start_time = int_df.iloc[now_idx - 2].name.left.to_pydatetime()
 			except:
 				#print("Index error during comm when trying to find start_time")
 				traceback.print_exc()
@@ -178,7 +178,7 @@ class soh_plots:
 
 	#multiplies numbers by a weight
 	def msid_weight(self, x, weight):
-		return (x*weight)
+		return (x * weight)
 
 	
 	def color_equalities(self, point, low_red, low_yellow, hi_red, hi_yellow):
@@ -197,8 +197,10 @@ class soh_plots:
 	def switch_color(self, msid_value, msid_limit, weight):
 		if (msid_limit is None):
 			return ("Normal")
-		low_red , low_yellow = msid_limit['wl']*weight, msid_limit['cl']*weight
-		hi_red, hi_yellow = msid_limit['wh']*weight, msid_limit['ch']*weight
+		low_red = msid_limit['wl'] * weight
+		low_yellow = msid_limit['cl'] * weight
+		hi_red = msid_limit['wh'] * weight
+		hi_yellow = msid_limit['ch'] * weight
 		return (self.color_equalities(msid_value, low_red, low_yellow, hi_red, hi_yellow))
 
 
@@ -222,9 +224,9 @@ class soh_plots:
 		# itertools.groupby returns A:[A,A,A,A], B:[B,B,B], C:[C,C], D:[D]
 		for key, group in itertools.groupby(values):
 			elems = len(list(group))
-			begin = times[i] if i > 0 else times[i]-3600.00
+			begin = times[i] if i > 0 else times[i] - 3600.00
 			i += elems
-			end = times[i] if i < ending else times[i-1]
+			end = times[i] if i < ending else times[i - 1]
 			switch = switch_lim['switch'][key] if key in switch_lim['switch'] else None
 			intervals += [(switch, begin, end)]
 		return (intervals)
@@ -249,8 +251,10 @@ class soh_plots:
 		msid_info = self.msid_dict[msid]
 		dep = self.return_dependent(msid)
 		if ('set_lim' in msid_info):
-			low_red , low_yellow = msid_info['set_lim']['wl']*weight, msid_info['set_lim']['cl']*weight
-			hi_red, hi_yellow = msid_info['set_lim']['wh']*weight, msid_info['set_lim']['ch']*weight
+			low_red = msid_info['set_lim']['wl'] * weight
+			low_yellow = msid_info['set_lim']['cl'] * weight
+			hi_red = msid_info['set_lim']['wh'] * weight
+			hi_yellow = msid_info['set_lim']['ch'] * weight
 			return (self.color_choice_set(msid_vals, low_red, low_yellow, hi_red, hi_yellow))
 		elif ('switch_lim' in msid_info):
 			#here we need to go through the possible values our dependent could be
@@ -282,8 +286,8 @@ class soh_plots:
 		start_time = timeit.default_timer()
 		self.get_time_frames(pull_set[0])
 		#print("time_frames: ", timeit.default_timer()-start_time)
-		script_name = 'script_' + group_name
-		div_name = 'div_' + group_name
+		script_name = f"script_{group_name}"
+		div_name = f"div_{group_name}"
 		start_time = timeit.default_timer()
 		try:
 			set_data = maude.get_msids(pull_set, self.start_time)
@@ -301,7 +305,8 @@ class soh_plots:
 			start_plot = timeit.default_timer()
 			data = set_data['data'][frame]
 			t1998 = 883612736.816
-			data_tme, data_vals = data['times'], data['values']
+			data_tme = data['times']
+			data_values = data['values']
 			data_times = np.array(ne.evaluate('data_tme + t1998'), dtype='u8').view('datetime64[s]')
 			#print (len(data_times), len(data_vals))
 			last_dat_pt = (np.datetime64(now) - data_times[-1]).astype(int)
@@ -319,18 +324,16 @@ class soh_plots:
 			else:
 				nxt_comm = self.next_comm.strftime('%Y:%j:%H:%M')
 			last_data = data_times[-1].astype(datetime).strftime('%Y:%j:%H:%M')
-			plot_title = """%s
-			Last update: %s
-			Next DSN Comm: %s """%(title, last_data ,nxt_comm)
+			plot_title = f"{title}\nLast update: {last_data}\nNextDSN Comm: {nxt_comm}"
 
 			unit = units[frame]
-			y_label = msid + " (" + str(unit) + ")"
+			y_label = f"{msid}({unit})"
 			if frame > 0:
-				p = figure(title=plot_title, x_axis_label = 'Time (UTC)', y_axis_label= y_label, 
+				p = figure(title=plot_title, x_axis_label = 'Time (UTC)', y_axis_label = y_label, 
 						   x_range = frames[0][0].x_range, x_axis_type = "datetime",
 						  width = 700, height = 300)
 			else:
-				p = figure(title=plot_title, x_axis_label = 'Time (UTC)', y_axis_label= y_label,
+				p = figure(title=plot_title, x_axis_label = 'Time (UTC)', y_axis_label = y_label,
 						   x_axis_type = "datetime", width = 700, height = 300)
 			p.xaxis.formatter = DatetimeTickFormatter(
 				minutes = "%Y:%j:%H:%M",
@@ -342,23 +345,23 @@ class soh_plots:
 			if 'lim' in self.msid_dict[msid]:
 				colors = self.return_limit_colors(msid, data_values, set_data, frame,  weight)
 			if type(colors) == type(None) or all(x is None for x in colors):
-				colors = np.full((1,len(data_values)),'Normal')[0]
+				colors = np.full((1, len(data_values)), 'Normal')[0]
 			source = ColumnDataSource(dict(
 				utc_times = data_times,
 				msid_values = data_values,
 				label = colors
 			))
-			color_mapper = CategoricalColorMapper(factors = ['Normal','High-red','Low-red','Low-yellow','High-yellow'],
-												 palette = [Plasma5[0],Plasma5[1],Plasma5[2],Plasma5[3],Plasma5[4]]
+			color_mapper = CategoricalColorMapper(factors = ['Normal', 'High-red', 'Low-red', 'Low-yellow', 'High-yellow'],
+												 palette = [Plasma5[0], Plasma5[1], Plasma5[2], Plasma5[3], Plasma5[4]]
 												 )
 
 			for comm in self.dsn_comms:
-				low_box = BoxAnnotation(left = self.tme(comm.start).timestamp()*1000, right = self.tme(comm.stop).timestamp()*1000, fill_alpha = 0.1, fill_color = "#99FF99")
+				low_box = BoxAnnotation(left = self.tme(comm.start).timestamp() * 1000, right = self.tme(comm.stop).timestamp() * 1000, fill_alpha = 0.1, fill_color = "#99FF99")
 				p.add_layout(low_box)
 
 			d = p.circle(x = 'utc_times', y = 'msid_values', source = source,
-						 color = {'field':'label', 'transform':color_mapper}, 
-						 line_color=None, size = 2, legend_group = 'label')
+						 color = {'field': 'label', 'transform': color_mapper}, 
+						 line_color = None, size = 2, legend_group = 'label')
 
 			new_legend = p.legend[0]
 			p.add_layout(new_legend, 'right')
