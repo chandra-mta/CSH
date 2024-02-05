@@ -3,10 +3,7 @@
 <html>
 <head>
     <title>SOH Plots</title>
-	
-    <!-- <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.7.min.css" type="text/css" />
-    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.7.min.js"></script> -->
-
+    <!--Ensure used of current package version is hosted on CDN, otherwise update-->
     <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-3.0.3.min.css" type="text/css" />
     <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-3.0.3.min.js"></script>
 

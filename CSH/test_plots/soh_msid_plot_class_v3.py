@@ -60,7 +60,6 @@ class soh_plots:
 	def get_user_password(self):
 		import Ska.ftp
 		netrc = Ska.ftp.parse_netrc()
-		#netrc = Ska.ftp.parse_netrc('/data/mta4/Script/SOH/house_keeping/.netrc')
 		if 'occweb' in netrc:
 			user = netrc['occweb']['login']
 			password = netrc['occweb']['password']
@@ -113,7 +112,6 @@ class soh_plots:
 			url = site.format(msid, tp)
 			try:
 				r = requests.get(url, headers = {'Accept-Encoding': 'gzip'}, auth=(self.user, self.password))
-				#r = requests.get(url, headers = {'Accept-Encoding': 'gzip'})
 				if r.status_code != 200:
 					raise IOError('request failed with status={} for URL={} and text={}'.format(r.status_code, r.url, r.text))
 				out = r.json()
@@ -363,7 +361,6 @@ class soh_plots:
 						 line_color=None, size = 2, legend_group = 'label')
 
 			new_legend = p.legend[0]
-			#p.legend[0].plot = None
 			p.add_layout(new_legend, 'right')
 
 			frames.append([p])
