@@ -3,7 +3,8 @@
 from soh_msid_plot_class_v3 import soh_plots
 from plot_cleaning import plot_cleaning
 import numpy as np
-import os, time
+import os
+import time
 import signal
 from pathlib import Path
 import os.path
@@ -11,12 +12,14 @@ import timeit
 import sys
 import traceback
 import json
+import argparse
+import getpass
 
 BIN_DIR = "/data/mta4/www/CSH/test_plots"
 OUT_DIR = "/data/mta4/www/CSH/test_plots/plot_sections"
 
 #define the various graph groups any weights(conversions) and units
-with open(f"{BIN_DIR}/plot_looks.json") as f:
+with open(f"plot_looks.json") as f:
 	PLOT_LOOKS = json.load(f)
 
 MSID_GROUP_SELECTION = list(PLOT_LOOKS.keys())#Selections of which MSID groupings to plot. Default to all.
@@ -56,4 +59,55 @@ def gen_plots(selection = MSID_GROUP_SELECTION):
 			traceback.print_exc()
 
 if __name__ == '__main__':
-	gen_plots(MSID_GROUP_SELECTION)
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
+	parser.add_argument("-p", "--path", required = False, help = "Directory path to determine output location of plot.")
+	parser.add_argument("-g", "--group", required = False, nargs="+", help = "Select which MSID grouping plots to generate. Consult plot_looks.json keys for options.")
+	args = parser.parse_args()
+
+#
+#--- Determine if running in test mode and change pathing if so
+#
+	if args.mode == "test":
+#
+#--- Path output to same location as unit tests
+#
+		BIN_DIR = os.path.dirname(os.path.realpath(__file__))
+		OUT_DIR = f"{BIN_DIR}/test/outTest/plot_sections"
+		os.makedirs(OUT_DIR, exist_ok = True)
+		MSID_GROUP_SELECTION = ['Sys_temps', 'Spcelec']
+		if args.path:
+			OUT_DIR = args.path
+		if args.group:
+			if args.group != ['all']:
+				MSID_GROUP_SELECTION = args.group
+				
+		MOD_GROUP = [soh_plots, plot_cleaning]
+#
+#--- Permute across imported modules to change pathing variables
+#
+		for mod in MOD_GROUP:
+			if hasattr(mod,'BIN_DIR'):
+				mod.BIN_DIR = f"{BIN_DIR}"
+			if hasattr(mod,'OUT_DIR'):
+				mod.OUT_DIR = f"{OUT_DIR}"
+
+		gen_plots(MSID_GROUP_SELECTION)
+
+	elif args.mode == "flight":
+#
+#--- Create a lock file and exit strategy in case of race conditions
+#
+		import getpass
+		name = os.path.basename(__file__).split(".")[0]
+		user = getpass.getuser()
+		if os.path.isfile(f"/tmp/{user}/{name}.lock"):
+			sys.exit(f"Lock file exists as /tmp/{user}/{name}.lock. Process already running/errored out. Check calling scripts/cronjob/cronlog.")
+		else:
+			os.system(f"mkdir -p /tmp/{user}; touch /tmp/{user}/{name}.lock")
+
+		gen_plots(MSID_GROUP_SELECTION)
+#
+#--- Remove lock file once process is completed
+#
+		os.system(f"rm /tmp/{user}/{name}.lock")
