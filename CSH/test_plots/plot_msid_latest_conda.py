@@ -1,7 +1,7 @@
 #!/proj/sot/ska3/flight/bin/python
 
-from soh_msid_plot_class_v3 import soh_plots
-from plot_cleaning import plot_cleaning
+import soh_msid_plot_class_v3
+import plot_cleaning
 import numpy as np
 import os
 import time
@@ -45,8 +45,8 @@ def signal_handler(signum, frame):
 	raise Exception("time is done")
 
 def gen_plots(selection = MSID_GROUP_SELECTION):
-	p = soh_plots()
-	cleaning = plot_cleaning()
+	p = soh_msid_plot_class_v3.soh_plots()
+	cleaning = plot_cleaning.plot_cleaning()
 	signal.signal(signal.SIGALRM, signal_handler)
 	signal.alarm(3660)
 	for msid_group in selection:
@@ -82,7 +82,7 @@ if __name__ == '__main__':
 			if args.group != ['all']:
 				MSID_GROUP_SELECTION = args.group
 				
-		MOD_GROUP = [soh_plots, plot_cleaning]
+		MOD_GROUP = [soh_msid_plot_class_v3, plot_cleaning]
 #
 #--- Permute across imported modules to change pathing variables
 #
