@@ -316,7 +316,7 @@ class soh_plots:
 				self.check_comm = True
 			else:
 				self.check_comm = False
-			data_values = ne.evaluate('data_valuess*weight')
+			data_values = ne.evaluate('data_values*weight')
 			if (self.in_comm):
 				nxt_comm = "Currently in comm"
 			elif (self.next_comm is None):
