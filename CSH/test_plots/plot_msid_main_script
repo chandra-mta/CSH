@@ -1,0 +1,3 @@
+cd /data/mta4/www/CSH/test_plots
+
+/data/mta4/www/CSH/test_plots/plot_msid_latest_conda.py -m flight
