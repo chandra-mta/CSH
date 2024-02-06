@@ -308,7 +308,7 @@ class soh_plots:
 			data_tme = data['times']
 			data_values = data['values']
 			data_times = np.array(ne.evaluate('data_tme + t1998'), dtype='u8').view('datetime64[s]')
-			#print (len(data_times), len(data_vals))
+			#print (len(data_times), len(data_values))
 			last_dat_pt = (np.datetime64(now) - data_times[-1]).astype(int)
 			if (self.in_comm and last_dat_pt > 600000000): #10 minutes but in microsecs
 				self.check_comm = False
@@ -316,7 +316,7 @@ class soh_plots:
 				self.check_comm = True
 			else:
 				self.check_comm = False
-			data_values = ne.evaluate('data_vals*weight')
+			data_values = ne.evaluate('data_valuess*weight')
 			if (self.in_comm):
 				nxt_comm = "Currently in comm"
 			elif (self.next_comm is None):
