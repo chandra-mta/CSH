@@ -62,7 +62,8 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
 	parser.add_argument("-p", "--path", required = False, help = "Directory path to determine output location of plot.")
-	parser.add_argument("-g", "--group", required = False, nargs="+", help = "Select which MSID grouping plots to generate. Consult plot_looks.json keys for options.")
+	parser.add_argument("-g", "--group", required = False, nargs="+", help = "Select which MSID grouping plots to generate. Consult plot_looks.json keys for options.\
+					 Choose 'all' in test mode to test all groups.")
 	args = parser.parse_args()
 
 #
@@ -74,13 +75,15 @@ if __name__ == '__main__':
 #
 		BIN_DIR = os.path.dirname(os.path.realpath(__file__))
 		OUT_DIR = f"{BIN_DIR}/test/outTest/plot_sections"
-		os.makedirs(OUT_DIR, exist_ok = True)
-		MSID_GROUP_SELECTION = ['Sys_temps', 'Spcelec']
+
 		if args.path:
 			OUT_DIR = args.path
+		os.makedirs(OUT_DIR, exist_ok = True)
 		if args.group:
 			if args.group != ['all']:
 				MSID_GROUP_SELECTION = args.group
+		else:
+			MSID_GROUP_SELECTION = ['Sys_temps', 'Spcelec']
 				
 		MOD_GROUP = [soh_msid_plot_class_v3, plot_cleaning]
 #
