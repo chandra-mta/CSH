@@ -21,9 +21,6 @@ with open(f"{BIN_DIR}/plot_looks.json") as f:
 
 MSID_GROUP_SELECTION = list(PLOT_LOOKS.keys())#Selections of which MSID groupings to plot. Default to all.
 
-CONSIDER_TIME = False #whether or not to use the plot_time.json file to determine which MSID_groups to generate the plot for.
-CUTOFF = 30
-
 def plot(msid_group, plot_class):
 	#print("Here is your arg:", msid_group)
 	#import ast and open file that contains weights and units and such(?)
@@ -58,24 +55,5 @@ def gen_plots(selection = MSID_GROUP_SELECTION):
 		except:
 			traceback.print_exc()
 
-
-def choose_group():
-	"""
-	Select which MSID groups to plot based on provided timing information
-	"""
-	selection = []
-	now = time.time()
-	with open(f"{BIN_DIR}/plot_time.json") as f:
-		time_dict = json.load(f)
-	for k,v in time_dict.items():
-		if now - v <= CUTOFF:
-			selection.append(k)
-	return selection
-
-
 if __name__ == '__main__':
-	if CONSIDER_TIME:
-		selection = choose_group()
-	else:
-		selection = MSID_GROUP_SELECTION
-	gen_plots(selection)
+	gen_plots(MSID_GROUP_SELECTION)
