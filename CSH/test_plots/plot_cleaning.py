@@ -37,7 +37,7 @@ class plot_cleaning:
 		#	time = f.readlines()[0].rstrip()
 		#print ("opened comm: ", timeit.default_timer() - start_time)
 		#comm_end = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
-		last_comm_path = f"{path}.last_comm"
+		last_comm_path = f"{path}/.last_comm"
 		comm_end = datetime.utcfromtimestamp(os.path.getmtime(last_comm_path))
 		#print ('comm end: ', timeit.default_timer() - start_time)
 		start_time = timeit.default_timer()
