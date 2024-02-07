@@ -6,6 +6,10 @@ cron job
 
 mta @ boba-v
 10 * * * * cd /data/mta4/www/CSH/test_plots; ./plot_msid_wrap_script      >> $HOME/Logs/plot_msid_latest.cron      2>&1
-5 * * * *  cd /data/mta4/www/CSH/test_plots; ./comm_stat_v2.py                >> /data/mta4/Logs/comm_stat.cron             2>&1
+5 * * * *  cd /data/mta4/www/CSH/test_plots; ./comm_stat_v2.py                >> $HOME/Logs/comm_stat.cron             2>&1
 40 * * * * cd /data/mta4/www/CSH_ASVT/test_plots; ./plot_msid_wrap_script      >> $HOME/Logs/asvt_plot_msid_latest.cron      2>&1
 
+mta @ c3po-v
+10 * * * * cd /data/mta_www/MIRROR/CSH/test_plots; ./plot_msid_wrap_script      >> $HOME/Logs/plot_msid_latest_bu.cron      2>&1
+5 * * * *  cd /data/mta_www/MIRROR/CSH/test_plots; ./comm_stat_v2.py                >> $HOME/Logs/comm_stat_bu.cron             2>&1
+40 * * * * cd /data/mta_www/MIRROR/CSH_ASVT/test_plots; ./plot_msid_wrap_script      >> $HOME/Logs/asvt_plot_msid_latest_bu.cron      2>&1
