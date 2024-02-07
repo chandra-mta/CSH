@@ -14,14 +14,6 @@
 <body style="width:95%;margin-left:10px; margin-right;10px;background-color:#FAEBD7;
 font-family:Georgia, "Times New Roman", Times, serif">
 
-<?php 
-   $msid_group = $_POST['msid_group'];
-   $myfile = "/data/mta4/www/CSH/test_plots/.plot_these.txt";
-   $timestamp = time();
-   $text = $msid_group." ".$timestamp."\n";
-   file_put_contents($myfile, $text, FILE_APPEND | LOCK_EX);
-   chmod(".plot_these.txt", 0666);
-?>
 
 <div id="plot"><b> 
 Hello
