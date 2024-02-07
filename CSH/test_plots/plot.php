@@ -1,7 +1,7 @@
 <?php
    $msid_group = $_POST['msid_group'];
-   $script = 'script_'.$msid_group;
-   $div = 'div_'.$msid_group;
+   $script = 'plot_sections/script_'.$msid_group;
+   $div = 'plot_sections/div_'.$msid_group;
    $dir = "/data/mta4/www/CSH/test_plots/";
    $start = microtime(true);
    usleep(600000);
