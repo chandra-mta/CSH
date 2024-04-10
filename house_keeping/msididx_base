@@ -8093,7 +8093,7 @@
  {"sc": ["OPEN", "NOPE"], "name": "1MEOPBOP", "idx": 8090, "description": "DOOR OPEN B"},
  {"sc": ["STS", "ERR", "DSNS", "DSND"], "name": "CIUMTRAN", "idx": 8091, "description": "TLM MODE SELECTED"},
  {"sc": ["NFLT", "FALT"], "name": "4OOBA24", "idx": 8092, "description": "RT 46: OBA CONE TEMP DELTA STATUS"},
- {"name": "4OAVHRMT", "idx": 8093, "description": "AVERAGE TEMPERATURE OF HRMA SYSTEM"},
+ {"name": "4OAVHRMT_WIDE", "idx": 8093, "description": "AVERAGE TEMPERATURE OF HRMA SYSTEM"},
  {"name": "OHRTHR01", "idx": 8094, "description": "IP INTERNAL CALIBRATION HRMA CH. 0"},
  {"name": "OHRTHR08", "idx": 8095, "description": "RT 103: HRMA CAP"},
  {"sc": ["DISA", "ENAB"], "name": "7STAB2EN", "idx": 8096, "description": "SEA TAB2 AUTO POSITION UPDATE ENAB/DISA STATUS (CH 11)"},
