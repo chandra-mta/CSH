@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
+#!/proj/sot/ska3/flight/bin/python
 
 #####################################################################################
 #                                                                                   #
@@ -13,33 +13,24 @@
 import os
 import sys
 import re
-import string
 import math
 import time
 import Chandra.Time
 import maude
-import json
-import random
-path = '/data/mta4/Script/SOH/house_keeping/dir_list'
-with open(path, 'r') as f:
-    data = [line.strip() for line in f.readlines()]
 
-for ent in data:
-    atemp = re.split(':', ent)
-    var   = atemp[1].strip()
-    line  = atemp[0].strip()
-    exec("%s = %s" %(var, line))
+#
+#--- Define Directory Pathing
+#
+
+BIN_DIR = "/data/mta4/Script/SOH"
+HTML_DIR = "/data/mta4/www/CSH"
+HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
 #
 #--- append path to a private folder
 #
-sys.path.append(bin_dir)
+sys.path.append(BIN_DIR)
 
 import check_msid_status    as cms
-#
-#--- set a temporary file name
-#
-rtail  = int(time.time()*random.random())
-zspace = '/tmp/zspace' + str(rtail)
 
 #-------------------------------------------------------------------------------
 #-- copy_data_from_occ_part: run loop to extract blob for a specific part from occ using maude
@@ -59,12 +50,12 @@ def copy_data_from_occ_part(part):
 #
 #--- read msid list
 #
-    ifile     = house_keeping + 'Inst_part/msid_list_' + part
+    ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
     msid_list = read_data_file(ifile)
 #
 #--- msid <--> id dict
 #
-    ifile     = house_keeping + 'Inst_part/msid_id_list_' + part
+    ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
     data      = read_data_file(ifile)
 
     mdict     = {}
@@ -208,7 +199,7 @@ def write_run_file(chk, part):
     output: <house_keeping>/running_<part> --- udated file
     """
     out   = chk + '\n'
-    ofile = house_keeping + 'running_' + part
+    ofile = f"{HOUSE_KEEPING}/running_{part}"
 
     with open(ofile, 'w') as fo:
         fo.write(out)
@@ -228,7 +219,7 @@ def check_blob_state(part):
     """
     run = 0
     try:
-        bfile = html_dir + 'blob_' + part + '.json'
+        bfile = f"{HTML_DIR}/blob_{part}.json"
         data  = read_data_file(bfile)
     
         chk   = 0
@@ -254,7 +245,7 @@ def check_blob_state(part):
 #--- even if the msid has a valid value, if the real msid data are not updated more than 3 hrs
 #--- update blob_<part>.json, just in a case, the data was not updated for some unknown reasons.
 #
-                        tfile = house_keeping + part + '_last_check'
+                        tfile = f"{HOUSE_KEEPING}/{part}_last_check"
                         if find_last_upate(tfile) == 1:
                             stday = time.strftime("%Y:%j:%H:%M:%S", time.gmtime())
                             update_last_blob_check(part, stday)
@@ -471,7 +462,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 
     line = line + ']'
 
-    out  = html_dir + 'blob_' + part + '.json'
+    out = f"{HTML_DIR}/blob_{part}.json"
     with open(out, 'w') as fo:
         fo.write(line)
 
@@ -574,7 +565,7 @@ def read_limit_table():
     input:  none but read from <house_keeping>/limit_table
     output: ldict   --- dictionary of msid <---> limits
     """
-    ifile = house_keeping + 'limit_table'
+    ifile = f"{HOUSE_KEEPING}/limit_table"
     out   = read_data_file(ifile)
     ldict = {}
     for line in out:
@@ -604,11 +595,11 @@ def update_lastdcheck_entry(part):
     output: data file with the updated dummy msid entry line
     """
 
-    bfile = html_dir + 'blob_' + part + '.json'
+    bfile = f"{HTML_DIR}/blob_{part}.json"
     data  = read_data_file(bfile)
 
     mc    = re.search('LASTDCHECK', data[-3])
-    if mc is not none:
+    if mc is not None:
         data[-3] = update_dummy_entry()
     else:
         data.insert(-3, update_dummy_entry())
@@ -632,7 +623,7 @@ def update_last_blob_check(part, stday):
     output: <house_keeping>/<part>_last_check
     """
 
-    tfile = house_keeping + part + '_last_check'
+    tfile = f"{HOUSE_KEEPING}/{part}_last_check"
     cmd = 'rm -rf ' + tfile
     os.system(cmd)
     cmd = 'echo ' + str(stday) + '> ' + tfile
@@ -643,7 +634,7 @@ def update_last_blob_check(part, stday):
 #-------------------------------------------------------------------------------
 
 def chk_time_to_comm():
-    ifile    = house_keeping + 'stime_to_comm'
+    ifile = f"{HOUSE_KEEPING}/stime_to_comm"
     out      = read_data_file(ifile)
     com_time = float(out[0])
 
@@ -655,7 +646,7 @@ def chk_time_to_comm():
 
 def read_nfile():
 
-    ifile = house_keeping + '.netrc'
+    ifile = f"{HOUSE_KEEPING}/.netrc"
     data  = read_data_file(ifile)
     for ent in data:
         atemp = re.split('\s+', ent)
@@ -692,7 +683,7 @@ if __name__ == '__main__':
 #
 #--- check whether a blob extraction is currently running_<part>; if so, stop
 #
-    ifile   = house_keeping + 'running_' + part
+    ifile = f"{HOUSE_KEEPING}/running_{part}"
     try:
         running = read_data_file(ifile)
         if running[0] == '1':
