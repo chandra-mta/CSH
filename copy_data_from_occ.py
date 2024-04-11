@@ -38,7 +38,7 @@ import check_msid_status    as cms
 #
 #--- Determine timing variables
 #
-COMM_SIZE = 240
+COMM_WAIT = 240
 
 #-------------------------------------------------------------------------------
 #-- copy_data_from_occ_part: run loop to extract blob for a specific part from occ using maude
@@ -53,8 +53,8 @@ def copy_data_from_occ_part(part):
 #
 #--- set user and password for maude
 #
-    global user, password
-    [user, password] = read_nfile()
+    #global user, password
+    #[user, password] = read_nfile()
 #
 #--- read msid list
 #
@@ -121,7 +121,7 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
     #--- it seems that we are out of the comm; find the last valid data
     #--- unless the next comm is coming less than 4  mins
     #
-                if com_time > 240:
+                if com_time > COMM_WAIT:
                     hold = long_blob_extraction(msid_list, mdict,ldict,  stop)
             else:
     #
@@ -152,7 +152,7 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
 #--- currently we are outside of comm. if the last blob_<part>.json does not contain
 #--- valid data, update
 #
-        if com_time > COMM_SIZE:
+        if com_time > COMM_WAIT:
             hold = long_blob_extraction(msid_list, mdict, ldict, stop, part)
 
     return hold
@@ -256,7 +256,7 @@ def check_blob_state(part):
 #--- every 400 secs, update dummy time stamp entry in blob data file
 #
                     if find_last_upate(bfile, tspan=400) == 1:
-                        update_lastdcheck_entry()
+                        update_lastdcheck_entry(part)
 #
 #--- even if the msid has a valid value, if the real msid data are not updated more than 3 hrs
 #--- update blob_<part>.json, just in a case, the data was not updated for some unknown reasons.
@@ -703,7 +703,7 @@ if __name__ == '__main__':
 #
     if args.mode == "test":
         #Want to disregard the timing conditions of being in comm in order to run the test
-        COMM_SIZE = 864000
+        COMM_WAIT = 0
 #
 #--- Path output to same location as unit tests
 #
