@@ -198,26 +198,6 @@ def long_blob_extraction(msid_list, mdict, ldict, stop, part):
     return hold
 
 #-------------------------------------------------------------------------------
-#-- write_run_file: update running_<part> file to indicates data extraction is going on 
-#-------------------------------------------------------------------------------
-
-def write_run_file(chk, part):
-    """
-    update running_<part> file to indicates data extraction is going on
-    input:  chk     --- indicator: 0: not running_<part>/1: data extraction is going on
-            part    --- the name of the instrument group
-    output: <house_keeping>/running_<part> --- udated file
-    """
-    out   = chk + '\n'
-    ofile = f"{HOUSE_KEEPING}/running_{part}"
-
-    with open(ofile, 'w') as fo:
-        fo.write(out)
-    
-    cmd = 'chmod 777 ' + ofile
-    os.system(cmd)
-
-#-------------------------------------------------------------------------------
 #-- check_blob_state: check whether blob.json has none "NaN" values           --
 #-------------------------------------------------------------------------------
 
@@ -686,25 +666,14 @@ if __name__ == '__main__':
         os.makedirs(HTML_DIR, exist_ok = True)
         copy_data_from_occ_part(args.type)
     elif args.mode == "flight":
-
 #
-#--- check whether a blob extraction is currently running_<part>; if so, stop
+#--- Create a lock file and exit strategy in case of race conditions
 #
-        ifile = f"{HOUSE_KEEPING}/running_{args.type}"
-        try:
-            with open(ifile) as f:
-                running = [line.strip() for line in f.readlines()]
-            if running[0] == '1':
-                exit(1)
-            else:
-                write_run_file('1', args.type)
-        except:
-            write_run_file('0', args.type)
+        name = f"{os.path.basename(__file__).split('.')[0]}_{args.type}"
+        user = getpass.getuser()
+        if os.path.isfile(f"/tmp/{user}/{name}.lock"):
             exit(1)
-
-        try:
-            copy_data_from_occ_part(args.type)
-        except:
-            pass
-
-        write_run_file('0', args.type)
+        else:
+            #Previous script run must have completed successfully. Prepare lock file for this script run.
+            os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
+        copy_data_from_occ_part(args.type)
