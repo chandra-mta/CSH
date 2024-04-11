@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
+#!/proj/sot/ska3/flight/bin/python
 
 #########################################################################
 #                                                                       #
@@ -9,28 +9,13 @@
 #           last update: Mar 15, 2021                                   #
 #                                                                       #
 #########################################################################
-
-import os
 import sys
-import re
-import string
-import math
-#
-#--- set a directory path
-#
-path = '/data/mta4/Script/SOH/house_keeping/dir_list'
-with open(path, 'r') as f:
-    data = [line.strip() for line in f.readlines()]
 
-for ent in data:
-    atemp = re.split(':', ent)
-    var   = atemp[1].strip()
-    line  = atemp[0].strip()
-    exec("%s = %s" %(var, line))
 #
-#--- append path to a private folder
+#---Define Directory Pathing
 #
-sys.path.append(bin_dir)
+BIN_DIR = "/data/mta4/Script/SOH"
+sys.path.append(BIN_DIR)
 
 #-------------------------------------------------------------------------------
 #-- check_status: check status of msid                                        --
@@ -231,7 +216,7 @@ def check_status_letter(msid, val, vdict):
             return 'CAUTION'
          
     elif msid == '2SHLDART':
-        tval = vdicvdictt('CORADMEN')
+        tval = vdict('CORADMEN')
         if val > 255:
             return 'GREEN'
         else:
