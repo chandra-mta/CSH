@@ -17,6 +17,7 @@ import math
 import time
 import Chandra.Time
 import maude
+import traceback
 
 #
 #--- Define Directory Pathing
@@ -72,6 +73,7 @@ def copy_data_from_occ_part(part):
     try:
         hold = run_extract_blob_data(msid_list, mdict, part, ldict)
     except:
+        traceback.print_exc()
         hold = 0
 
 #-------------------------------------------------------------------------------
@@ -139,6 +141,7 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
 #--- valid data, update
 #
     except:
+        traceback.print_exc()
         if com_time > 240:
             hold = long_blob_extraction(msid_list, mdict, ldict, stop, part)
 
@@ -263,6 +266,7 @@ def check_blob_state(part):
             else:
                 run = 1
     except:
+        traceback.print_exc()
         run = 1
 
     return run
@@ -330,7 +334,6 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
         ctime = Chandra.Time.DateTime(ctime).date
         ctime = ctime.replace(':', '')
     except:
-        ###ctime = time.strftime("%Y%j%H%M%S", time.gmtime())
         return 'stop'
 
 #--- number of msids extracted at a time
@@ -364,6 +367,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
         try:
             mdata = maude.get_msids(msid_short, start, stop)
         except:
+            traceback.print_exc()
             continue
 #
 #--- now extract data and put into json data format
@@ -373,10 +377,12 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
                 msid = str(mdata['data'][nk]['msid']).upper()
 
             except:
+                traceback.print_exc()
                 continue
             try:
                 val  = str((list(mdata['data'][nk]['values']))[-1])
             except:
+                traceback.print_exc()
                 val = 'NaN'
 #
 #--- unit conversion for a few special cases
@@ -439,6 +445,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
             sval = val.replace('\"', '')
             status = cms.check_status(msid, sval, ldict, vdict)
         except:
+            traceback.print_exc()
             status ='GREEN'
 
         out = '{"msid":"' + msid + '",'
