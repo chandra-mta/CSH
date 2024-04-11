@@ -18,6 +18,8 @@ import time
 import Chandra.Time
 import maude
 import traceback
+import argparse
+import getpass
 
 #
 #--- Define Directory Pathing
@@ -32,6 +34,11 @@ HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
 sys.path.append(BIN_DIR)
 
 import check_msid_status    as cms
+
+#
+#--- Determine timing variables
+#
+COMM_SIZE = 240
 
 #-------------------------------------------------------------------------------
 #-- copy_data_from_occ_part: run loop to extract blob for a specific part from occ using maude
@@ -56,7 +63,7 @@ def copy_data_from_occ_part(part):
 #
 #--- msid <--> id dict
 #
-    ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
+    ifile = f"{HOUSE_KEEPING}/Inst_part/msid_id_list_{part}"
     data      = read_data_file(ifile)
 
     mdict     = {}
@@ -103,46 +110,49 @@ def run_extract_blob_data(msid_list, mdict, part, ldict):
 #--- if not expand the data extraction period so that we can
 #--- the last valid data value
 #
-    try:
-        out   = maude.get_msids('AOGBIAS1', start, stop)
+    out   = maude.get_msids('AOGBIAS1', start, stop)
+    if out['data'][-1]['n_values'] != 0:
         val   = str((list(out['data'][0]['values']))[-1])
         start = stop - 60
+        try:
 
-        if val == 'NaN':
-#
-#--- it seems that we are out of the comm; find the last valid data
-#--- unless the next comm is coming less than 4  mins
-#
-            if com_time > 240:
-                hold = long_blob_extraction(msid_list, mdict,ldict,  stop)
-        else:
-#
-#--- if it is currently in comm, run the loop for slightly shorter than 5 mins
-#
-            timeout = time.time() + 290
-            while time.time() < timeout:
-                stday = time.strftime("%Y:%j:%H:%M:%S", time.gmtime())
-                stop  = Chandra.Time.DateTime(stday).secs
-                start = stop - 60
-                chk   = extract_blob_data(msid_list, mdict, ldict, start, stop, part)
-#
-#--- if comm stops, check the last 10 mins to find valid data
-#
-                if chk == 'stop':
-                    start = stop - 600
+            if val == 'NaN':
+    #
+    #--- it seems that we are out of the comm; find the last valid data
+    #--- unless the next comm is coming less than 4  mins
+    #
+                if com_time > 240:
+                    hold = long_blob_extraction(msid_list, mdict,ldict,  stop)
+            else:
+    #
+    #--- if it is currently in comm, run the loop for slightly shorter than 5 mins
+    #
+                timeout = time.time() + 290
+                while time.time() < timeout:
+                    stday = time.strftime("%Y:%j:%H:%M:%S", time.gmtime())
+                    stop  = Chandra.Time.DateTime(stday).secs
+                    start = stop - 60
                     chk   = extract_blob_data(msid_list, mdict, ldict, start, stop, part)
-                    break
-#
-#--- keep time record so that we know when the last comm data update happened
-#
-                update_last_blob_check(part, stday)
+    #
+    #--- if comm stops, check the last 10 mins to find valid data
+    #
+                    if chk == 'stop':
+                        start = stop - 600
+                        chk   = extract_blob_data(msid_list, mdict, ldict, start, stop, part)
+                        break
+    #
+    #--- keep time record so that we know when the last comm data update happened
+    #
+                    update_last_blob_check(part, stday)
+
+        except:
+            traceback.print_exc()
+    else:
 #
 #--- currently we are outside of comm. if the last blob_<part>.json does not contain
 #--- valid data, update
 #
-    except:
-        traceback.print_exc()
-        if com_time > 240:
+        if com_time > COMM_SIZE:
             hold = long_blob_extraction(msid_list, mdict, ldict, stop, part)
 
     return hold
@@ -223,6 +233,9 @@ def check_blob_state(part):
     run = 0
     try:
         bfile = f"{HTML_DIR}/blob_{part}.json"
+        #if blob is not present, must run to to create it
+        if not os.path.isfile(bfile):
+            return 1
         data  = read_data_file(bfile)
     
         chk   = 0
@@ -240,7 +253,7 @@ def check_blob_state(part):
                     break
                 else:
 #
-#--- every 400 secs, update dummy time stamp etnry in blob data file
+#--- every 400 secs, update dummy time stamp entry in blob data file
 #
                     if find_last_upate(bfile, tspan=400) == 1:
                         update_lastdcheck_entry()
@@ -679,31 +692,48 @@ def read_data_file(ifile):
 #-------------------------------------------------------------------------------
 
 if __name__ == '__main__':
-
-    try:
-        part = sys.argv[1]
-        part.strip()
-    except:
-        print(" USAGE: copy_data_from_occ_part.py <part>")
-        exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
+    parser.add_argument("-p", "--path", required = False, help = "Directory path to determine output location of json blob.")
+    parser.add_argument("-t", "--type", choices = ['all', 'ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal'],
+                        required = True, help= "Determine SOH category type.")
+    args = parser.parse_args()
+#
+#--- Determine if running in test mode and change pathing if so
+#
+    if args.mode == "test":
+        #Want to disregard the timing conditions of being in comm in order to run the test
+        COMM_SIZE = 864000
+#
+#--- Path output to same location as unit tests
+#
+        BIN_DIR= f"{os.getcwd()}"
+        HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
+        if args.path:
+            HTML_DIR = args.path
+        else:
+            HTML_DIR = f"{BIN_DIR}/test/outTest/CSH"
+        os.makedirs(HTML_DIR, exist_ok = True)
+        copy_data_from_occ_part(args.type)
+    elif args.mode == "flight":
 
 #
 #--- check whether a blob extraction is currently running_<part>; if so, stop
 #
-    ifile = f"{HOUSE_KEEPING}/running_{part}"
-    try:
-        running = read_data_file(ifile)
-        if running[0] == '1':
+        ifile = f"{HOUSE_KEEPING}/running_{args.type}"
+        try:
+            running = read_data_file(ifile)
+            if running[0] == '1':
+                exit(1)
+            else:
+                write_run_file('1', args.type)
+        except:
+            write_run_file('0', args.type)
             exit(1)
-        else:
-            write_run_file('1', part)
-    except:
-        write_run_file('0', part)
-        exit(1)
 
-    try:
-        copy_data_from_occ_part(part)
-    except:
-        pass
+        try:
+            copy_data_from_occ_part(args.type)
+        except:
+            pass
 
-    write_run_file('0', part)
+        write_run_file('0', args.type)
