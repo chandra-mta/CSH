@@ -10,7 +10,6 @@
 #                                                                       #
 #########################################################################
 import sys
-
 #
 #---Define Directory Pathing
 #
@@ -167,8 +166,8 @@ def check_status_letter(msid, val, vdict):
                 return 'GREEN'
     
     elif msid == 'CORADMEN':
-        tval1 = vdict['COBSRQID']
-        tval2 = vdict['3TSCPOS']
+        tval1 = float(vdict['COBSRQID'])
+        tval2 = float(vdict['3TSCPOS'])
         if (tval1 > 5000) and (tval2) < -99000:
             if val == 'ENAB':
                 return 'WARNING'

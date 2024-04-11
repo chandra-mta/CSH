@@ -70,7 +70,7 @@ def copy_data_from_occ_part(part):
 #
 #--- read limit table
 #
-        ldict = read_limit_table()
+    ldict = read_limit_table()
 #
 #--- extract blob_<part>.json
 #
@@ -234,7 +234,7 @@ def check_blob_state(part):
         if not os.path.isfile(bfile):
             return 1
         
-        with open(ifile) as f:
+        with open(bfile) as f:
             data = [line.strip() for line in f.readlines()]
     
         chk   = 0
@@ -389,12 +389,10 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
                 msid = str(mdata['data'][nk]['msid']).upper()
 
             except:
-                traceback.print_exc()
                 continue
             try:
                 val  = str((list(mdata['data'][nk]['values']))[-1])
             except:
-                traceback.print_exc()
                 val = 'NaN'
 #
 #--- unit conversion for a few special cases
@@ -433,7 +431,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
             val = ''
             for name in ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST',\
                          '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']:
-                val = val + covert_to_tf(vdict[name])
+                val = val + convert_to_tf(vdict[name])
         except:
             val  = 'NaN'
         mlist.append(msid)
@@ -491,7 +489,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 
-def covert_to_tf(val):
+def convert_to_tf(val):
 
     if float(val) == 1:
         return 'T'
@@ -563,7 +561,7 @@ def update_dummy_entry():
     """
     create a dummy msid data line
     input:  none
-    output: dummry msid (LASTDCHECK) data line
+    output: dummy msid (LASTDCHECK) data line
     """
 
     dtime = time.strftime("%Y-%m-%dT%H:%Mz", time.gmtime())
@@ -616,7 +614,7 @@ def update_lastdcheck_entry(part):
     """
 
     bfile = f"{HTML_DIR}/blob_{part}.json"
-    with open(ifile) as f:
+    with open(bfile) as f:
         data = [line.strip() for line in f.readlines()]
 
     mc    = re.search('LASTDCHECK', data[-3])
