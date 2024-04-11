@@ -51,20 +51,17 @@ def copy_data_from_occ_part(part):
     output: blob_<part>.json
     """
 #
-#--- set user and password for maude
-#
-    #global user, password
-    #[user, password] = read_nfile()
-#
 #--- read msid list
 #
     ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
-    msid_list = read_data_file(ifile)
+    with open(ifile) as f:
+        msid_list = [line.strip() for line in f.readlines()]
 #
 #--- msid <--> id dict
 #
     ifile = f"{HOUSE_KEEPING}/Inst_part/msid_id_list_{part}"
-    data      = read_data_file(ifile)
+    with open(ifile) as f:
+        data = [line.strip() for line in f.readlines()]
 
     mdict     = {}
     for ent in data:
@@ -236,7 +233,9 @@ def check_blob_state(part):
         #if blob is not present, must run to to create it
         if not os.path.isfile(bfile):
             return 1
-        data  = read_data_file(bfile)
+        
+        with open(ifile) as f:
+            data = [line.strip() for line in f.readlines()]
     
         chk   = 0
         for ent in data:
@@ -586,7 +585,8 @@ def read_limit_table():
     output: ldict   --- dictionary of msid <---> limits
     """
     ifile = f"{HOUSE_KEEPING}/limit_table"
-    out   = read_data_file(ifile)
+    with open(ifile) as f:
+        out = [line.strip() for line in f.readlines()]
     ldict = {}
     for line in out:
         atemp = re.split('<>', line)
@@ -616,7 +616,8 @@ def update_lastdcheck_entry(part):
     """
 
     bfile = f"{HTML_DIR}/blob_{part}.json"
-    data  = read_data_file(bfile)
+    with open(ifile) as f:
+        data = [line.strip() for line in f.readlines()]
 
     mc    = re.search('LASTDCHECK', data[-3])
     if mc is not None:
@@ -655,40 +656,11 @@ def update_last_blob_check(part, stday):
 
 def chk_time_to_comm():
     ifile = f"{HOUSE_KEEPING}/stime_to_comm"
-    out      = read_data_file(ifile)
+    with open(ifile) as f:
+        out = [line.strip() for line in f.readlines()]
     com_time = float(out[0])
 
     return com_time
-
-#-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
-
-def read_nfile():
-
-    ifile = f"{HOUSE_KEEPING}/.netrc"
-    data  = read_data_file(ifile)
-    for ent in data:
-        atemp = re.split('\s+', ent)
-        if atemp[0] == 'login':
-            user = atemp[1]
-        elif atemp[0] == 'password':
-            password = atemp[1]
-    
-    return [user, password]
-
-
-#-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
-
-def read_data_file(ifile):
-
-    with open(ifile, 'r') as f:
-        data = [line.strip() for line in f.readlines()]
-
-    return data
-
 #-------------------------------------------------------------------------------
 
 if __name__ == '__main__':
@@ -722,7 +694,8 @@ if __name__ == '__main__':
 #
         ifile = f"{HOUSE_KEEPING}/running_{args.type}"
         try:
-            running = read_data_file(ifile)
+            with open(ifile) as f:
+                running = [line.strip() for line in f.readlines()]
             if running[0] == '1':
                 exit(1)
             else:
