@@ -20,6 +20,7 @@ import maude
 import traceback
 import argparse
 import getpass
+import json
 
 #
 #--- Define Directory Pathing
@@ -36,9 +37,10 @@ sys.path.append(BIN_DIR)
 import check_msid_status    as cms
 
 #
-#--- Determine timing variables
+#--- Determine global variables
 #
 COMM_WAIT = 240
+INDENT = 2
 
 #-------------------------------------------------------------------------------
 #-- copy_data_from_occ_part: run loop to extract blob for a specific part from occ using maude
@@ -170,7 +172,7 @@ def long_blob_extraction(msid_list, mdict, ldict, stop, part):
             hold              --- an indicator of whether the data is hold position: 0: no/1:yes
     """
 #
-#--- telling the data extractiion is going on to the script which may start 
+#--- telling the data extraction is going on to the script which may start 
 #--- while this extraction is still going on so that the other script won't start
 #
 #
@@ -421,7 +423,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 #--- create json output
 #
     findx = 99998
-    line  = '[\n'
+    blob_list = []
     for msid in mlist:
         val = vdict[msid]
         val = '"' + val + '"'
@@ -437,31 +439,25 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
         except:
             traceback.print_exc()
             status ='GREEN'
-
-        out = '{"msid":"' + msid + '",'
-        out = out + '"index":"' + index + '",'
-        out = out + '"time":"'  + ctime + '",'
-        out = out + '"value":'  + val  + ','
-        out = out + '"scheck":"' + status + '",'
-#
-#--- if it is the last entry, do without ','
-#
-        out  = out + '"f": '     + '"1"},'
-        line = line  + out + "\n"
-#
+        
+        entry_dict = {"msid": msid,
+                      "index": index,
+                      "time": ctime,
+                      "value": val,
+                      "scheck": status,
+                      "f": "1"}
+        blob_list.append(entry_dict)
 #---- special computed values
 #
     [aoacfid, aoacfct] = get_aoacomputed(start, stop, ctime)
-             
-    line = line + update_dummy_entry() + '\n'
-    line = line + aoacfid + '\n'
-    line = line + aoacfct + '\n'
 
-    line = line + ']'
+    blob_list.append(update_dummy_entry())
+    blob_list.append(aoacfid)
+    blob_list.append(aoacfct)
 
     out = f"{HTML_DIR}/blob_{part}.json"
     with open(out, 'w') as fo:
-        fo.write(line)
+        json.dump(blob_list,fo, indent=INDENT)
 
     return 'run'
 
@@ -491,18 +487,18 @@ def get_aoacomputed(start, stop, ctime):
     """
 
     msid_short = ['AOACFID0', 'AOACFID1','AOACFID2','AOACFID3','AOACFID4','AOACFID5','AOACFID6','AOACFID7']
-    aoacfid    = create_aoaline(msid_short, start, stop, 'AOACFIDC', 99999, ctime, mlast=0)
+    aoacfid    = create_aoadict(msid_short, start, stop, 'AOACFIDC', 99999, ctime, mlast=0)
 
     msid_short = ['AOACFCT0', 'AOACFCT1','AOACFCT2','AOACFCT3','AOACFCT4','AOACFCT5','AOACFCT6','AOACFCT7']
-    aoacfct    = create_aoaline(msid_short, start, stop, 'AOACFCTC', 98989, ctime, mlast=1)
+    aoacfct    = create_aoadict(msid_short, start, stop, 'AOACFCTC', 98989, ctime, mlast=1)
 
     return [aoacfid, aoacfct]
 
 #-------------------------------------------------------------------------------
-#-- create_aoaline: create a combined blob data line                         ---
+#-- create_aoadict: create a combined blob data line                         ---
 #-------------------------------------------------------------------------------
 
-def create_aoaline(msid_short,start, stop, msid, index, ctime, mlast=0):
+def create_aoadict(msid_short,start, stop, msid, index, ctime, mlast=0):
     """
     create a combined blob data line 
     input:  msid_short  --- a list of msids to be used
@@ -522,15 +518,11 @@ def create_aoaline(msid_short,start, stop, msid, index, ctime, mlast=0):
         val = str((list(mdata['data'][k]['values']))[-1])
         line = line + str(val)[0]
 
-    out = '{"msid":"' + msid + '",'
-    out = out + '"index":"' + str(index) + '",'
-    out = out + '"time":"'  + ctime + '",'
-    out = out + '"value":"'  + line  + '",'
-    if mlast == 1:
-        out = out + '"f": '     + '"1"}'
-    else:
-        out = out + '"f": '     + '"1"},'
-
+    out = {"msid": msid,
+           "index": index,
+           "time": ctime,
+           "value": line,
+           "f": "1"}
     return out
 
 #-------------------------------------------------------------------------------
@@ -546,10 +538,13 @@ def update_dummy_entry():
 
     dtime = time.strftime("%Y-%m-%dT%H:%Mz", time.gmtime())
     rtime = time.strftime("%Y%j%H%M%S.000", time.gmtime())
-    line  = '{"msid":"LASTDCHECK","index":"97989","time":"' + str(rtime) + '",' 
-    line  = line + '"value":"' + str(dtime) + '","f":"1"},'
 
-    return line
+    dummy_dict = {"msid": "LASTDCHECK",
+                  "index": "97989",
+                  "time": rtime,
+                  "value": dtime,
+                  "f": "1"}
+    return dummy_dict
 
 #-------------------------------------------------------------------------------
 #-- read_limit_table: read limit table and create msid <---> limit dictionary -
@@ -595,20 +590,18 @@ def update_lastdcheck_entry(part):
 
     bfile = f"{HTML_DIR}/blob_{part}.json"
     with open(bfile) as f:
-        data = [line.strip() for line in f.readlines()]
+        #data = [line.strip() for line in f.readlines()]
+        data = json.load(f)
 
-    mc    = re.search('LASTDCHECK', data[-3])
-    if mc is not None:
-        data[-3] = update_dummy_entry()
-    else:
-        data.insert(-3, update_dummy_entry())
-
-    line = ''
-    for ent in data:
-        line = line + ent + '\n'
-
-    with open(bfile, 'w') as fo:
-        fo.write(line)
+    for i in range(len(data)):
+        #If the data list contains the dummy time entry, update the time
+        #otherwise do nothing to the file.
+        if data[i]['msid'] == "LASTDCHECK":
+            latest = update_dummy_entry()
+            data[i] = latest
+            with open(bfile,'w') as f:
+                json.dump(data, f, indent=INDENT)
+            break
 
 #-------------------------------------------------------------------------------
 #-- update_last_blob_check: keep the record of the last time blob data are checked
