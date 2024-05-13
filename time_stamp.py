@@ -9,6 +9,6 @@ import math
 import time
 import Chandra.Time
 
-out = time.strftime('Current Time: %Y:%j:%H:%M Z', time.gmtime()) + '\n'
-with open('/data/mta4/www/CSH/ctest', 'w') as fo:
+out = f"<ncomm>\n{time.strftime('Current Time: %Y:%j:%H:%M Z', time.gmtime())}\n</ncomm>\n"
+with open('/data/mta4/www/CSH/ctest.xml', 'w') as fo:
     fo.write(out)
