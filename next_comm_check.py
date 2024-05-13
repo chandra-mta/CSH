@@ -59,8 +59,8 @@ def find_next_comm():
         else:
             pstop = stop
 
-    with open('/data/mta4/www/CSH/ctest', 'w') as fo:
-        fo.write(ltime + '\n')
+    with open('/data/mta4/www/CSH/ctest.xml', 'w') as fo:
+        fo.write(f"<ncomm>\n{ltime}\n</ncomm>\n")
     
 #-------------------------------------------------------------------
 #-------------------------------------------------------------------
