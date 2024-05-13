@@ -21,6 +21,7 @@ import traceback
 import argparse
 import getpass
 import json
+import timeit
 
 #
 #--- Define Directory Pathing
@@ -336,7 +337,6 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
 
     mlen  = len(msid_list)
     mlst  = int(mlen / n_msids) + 1
-    mstp  = mlen -1
 #
 #--- mlist: a list of valid msids / vdict: a dict of msid <--> current value
 #
@@ -355,6 +355,7 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
             mstop  = mlen
 
         msid_short = msid_list[mstart:mstop]
+        print(f"subset: {msid_short}")
 #
 #---- maude tool
 #
@@ -426,7 +427,6 @@ def extract_blob_data(msid_list, mdict, ldict, start, stop, part):
     blob_list = []
     for msid in mlist:
         val = vdict[msid]
-        val = '"' + val + '"'
         try:
             index  = mdict[msid]
         except:
@@ -657,7 +657,9 @@ if __name__ == '__main__':
         else:
             HTML_DIR = f"{BIN_DIR}/test/outTest/CSH"
         os.makedirs(HTML_DIR, exist_ok = True)
+        start = timeit.default_timer()
         copy_data_from_occ_part(args.type)
+        print(f"Run time: {timeit.default_timer() - start}")
     elif args.mode == "flight":
 #
 #--- Create a lock file and exit strategy in case of race conditions
