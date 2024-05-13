@@ -29,7 +29,7 @@ def find_next_comm():
     """
     create a display time span till the next comm
     input:  nont, but read from /data/mta4/www/CSH/comm_list.html
-    output: /data/mta4/www/CSH/ctest
+    output: /data/mta4/www/CSH/ctest.xml
     """
     out = time.strftime('%Y:%j:%H:%M:%S', time.gmtime())
     ctime = Chandra.Time.DateTime(out).secs

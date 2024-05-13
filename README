@@ -58,7 +58,7 @@ next_comm_check.py
 ------------------
 create a display time span till the next comm
 input: none
-output: <web_dir>/ctest
+output: <web_dir>/ctest.xml
 
 soh_snap_script.sh
 ------------------
