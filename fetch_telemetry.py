@@ -32,8 +32,8 @@ HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
 sys.path.append(BIN_DIR)
 import check_msid_status    as cms
 
-def fetch_telemetry(part):
-    print("hello")
+def fetch_telemetry(msid_list):
+    print(msid_list)
     pass
 
 #-------------------------------------------------------------------------------
@@ -42,9 +42,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
     parser.add_argument("-p", "--path", required = False, help = "Directory path to determine output location of json blob.")
-    parser.add_argument("-t", "--type", choices = ['all', 'ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal'],
-                        required = True, help= "Determine SOH category type.")
+    group = parser.add_mutually_exclusive_group(required = True)
+    group.add_argument("-t", "--type", choices = ['all', 'ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal'],
+                        help= "Determine SOH category type.")
+    group.add_argument("-l", "--list", nargs='+', help = "List of MSID's to update in script")
     args = parser.parse_args()
+
 #
 #--- Determine if running in test mode and change pathing if so
 #
@@ -58,22 +61,51 @@ if __name__ == '__main__':
             HTML_DIR = args.path
         else:
             HTML_DIR = f"{BIN_DIR}/test/outTest/CSH"
-        #Copy blob from live running if not present in test case
-        if not os.path.isfile(f"{HTML_DIR}/blob_{args.type}.json"):
-            os.system(f"cp /data/mta4/www/CSH/blob_{args.type}.json {HTML_DIR}/blob_{args.type}.json")
+        
+#
+#--- Determine msid_list for selection blob data
+#
+        if args.type:
+            part = args.type
+            ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
+            with open(ifile) as f:
+                msid_list = [line.strip() for line in f.readlines()]
+                
+            #Copy blob from live running if not present in test case
+            if not os.path.isfile(f"{HTML_DIR}/blob_{part}.json"):
+                os.system(f"cp /data/mta4/www/CSH/blob_{part}.json {HTML_DIR}/blob_{part}.json")
+        else:
+            part = 'list'
+            msid_list = args.list
+        
         os.makedirs(HTML_DIR, exist_ok = True)
+        
+        #Run the script
         start = timeit.default_timer()
-        fetch_telemetry(args.type)
+        fetch_telemetry(msid_list)
         print(f"Run time: {timeit.default_timer() - start}")
+
     elif args.mode == "flight":
+
+#
+#--- Determine msid_list for selection blob data
+#
+        if args.type:
+            part = args.type
+            ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
+            with open(ifile) as f:
+                msid_list = [line.strip() for line in f.readlines()]
+        else:
+            part = 'list'
+            msid_list = args.list
 #
 #--- Create a lock file and exit strategy in case of race conditions
 #
-        name = f"{os.path.basename(__file__).split('.')[0]}_{args.type}"
+        name = f"{os.path.basename(__file__).split('.')[0]}_{part}"
         user = getpass.getuser()
         if os.path.isfile(f"/tmp/{user}/{name}.lock"):
             exit(1)
         else:
             #Previous script run must have completed successfully. Prepare lock file for this script run.
             os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
-        fetch_telemetry(args.type)
+        fetch_telemetry(msid_list)
