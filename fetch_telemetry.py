@@ -38,9 +38,9 @@ import check_msid_status    as cms
 FETCH_SECONDS = 120
 FETCH_KWARGS = {
     "channel": "FLIGHT", # options (FLIGHT, FLTCOMP, ASVT, TEST)
-    #"hr": "t", #High data rate
-    #"ap": "t", #Include all points in the query fetch
-    #"icalc": "t", #include calc-type blobs in spacecraft blob queries
+    #"highrate": True, #High data rate
+    #"allpoints": True, #Include all points in the query fetch
+    "include_calcs": True, #include calc-type blobs in spacecraft blob queries
 }
 
 def fetch_telemetry(msid_list, part, stop= None):
@@ -52,9 +52,18 @@ def fetch_telemetry(msid_list, part, stop= None):
     formatted_data = format_result(fetch_result)
     print(f"format_result Run time: {timeit.default_timer() - start}")
 
+    for k,v in formatted_data.items():
+        print(f"{k} = {v}")
+
+    """
+    start = timeit.default_timer()
+    formatted_data = check_limit_status(fetch_result)
+    print(f"check_limit_status Run time: {timeit.default_timer() - start}")
+
     start = timeit.default_timer()
     write_to_file(formatted_data)
     print(f"write_to_file Run time: {timeit.default_timer() - start}")
+    """
 
 
 
@@ -82,7 +91,25 @@ def get_CSH_blobs(msid_list, stop= None):
 def format_result(fetch_result):
     """
     Format fetch result to only contain the latest data point
-    and its limit status
+    """
+#
+#--- iterate over results in time reverse order, therefore added data is latest in result
+#
+    fetch_result['blobs'].reverse()
+    formatted_data = {}
+    for blob in fetch_result['blobs']:
+#
+#--- for each time point, iterate over msid's recorded in this section
+#
+        for val in blob['values']:
+            if val['n'] not in formatted_data.keys():
+                formatted_data[val['n']] = {'time': blob['time'], 'value': val['vc'] }
+
+    return formatted_data
+
+def check_limit_status(formatted_data):
+    """
+    Include the limit status into the data structure
     """
     pass
 
@@ -91,6 +118,38 @@ def write_to_file(formatted_data):
     Iterate through blob_<part>.json updating each data value
     """
     pass
+
+def read_limit_table():
+    """
+    read limit table and create msid <---> limit dictionary
+    this gives only neumeric cases
+    input:  none but read from <house_keeping>/limit_table
+    output: ldict   --- dictionary of msid <---> limits
+    """
+    ifile = f"{HOUSE_KEEPING}/limit_table"
+    with open(ifile) as f:
+        out = [line.strip() for line in f.readlines()]
+    ldict = {}
+    for line in out:
+        atemp = line.split('<>')
+        olist = []
+        for val in atemp[1:]:
+            try:
+                val = float(val)
+            except:
+                try:
+                    val = val.replace("\'", '')
+                except:
+                    pass
+            olist.append(val)
+        ldict[atemp[0]] = olist
+
+    return ldict
+
+#
+#--- Initialize limit table
+#
+LIMIT_DICT = read_limit_table()
 #-------------------------------------------------------------------------------
 
 if __name__ == '__main__':
