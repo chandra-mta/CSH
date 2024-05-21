@@ -33,9 +33,10 @@ sys.path.append(BIN_DIR)
 import check_msid_status    as cms
 
 #
-#--- Defining kwarg of blob fetch
+#--- Defining Globals
 #
-FETCH_SECONDS = 120
+BLOB_CHOICE = ['ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal']
+FETCH_SECONDS = 10
 FETCH_KWARGS = {
     "channel": "FLIGHT", # options (FLIGHT, FLTCOMP, ASVT, TEST)
     #"highrate": True, #High data rate
@@ -43,7 +44,7 @@ FETCH_KWARGS = {
     "include_calcs": True, #include calc-type blobs in spacecraft blob queries
 }
 
-def fetch_telemetry(msid_list, part, stop= None):
+def fetch_telemetry(part = None, msid_list = None, stop= None):
     start = timeit.default_timer()
     fetch_result = get_CSH_blobs(msid_list, stop)
     print(f"get_CSH_blobs Run time: {timeit.default_timer() - start}")
@@ -67,7 +68,7 @@ def fetch_telemetry(msid_list, part, stop= None):
 
 
 
-def get_CSH_blobs(msid_list, stop= None):
+def get_CSH_blobs(msid_list = None, stop= None):
     """
     Fetch the telemetry data using maude
     """
@@ -85,7 +86,11 @@ def get_CSH_blobs(msid_list, stop= None):
 #
 #--- Fetch the blobs in question
 #
-    result = maude.get_blobs(start = start, stop = stop, msids = msid_list, **FETCH_KWARGS)
+    if msid_list:
+        result = maude.get_blobs(start = start, stop = stop, msids = msid_list, **FETCH_KWARGS)
+    else:
+        #default to fetching all blob data to fill out all blob portions
+        result = maude.get_blobs(start = start, stop = stop, **FETCH_KWARGS)
     return result
 
 def format_result(fetch_result):
@@ -150,15 +155,15 @@ def read_limit_table():
 #--- Initialize limit table
 #
 LIMIT_DICT = read_limit_table()
+
 #-------------------------------------------------------------------------------
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
     parser.add_argument("-p", "--path", required = False, help = "Directory path to determine output location of json blob.")
-    group = parser.add_mutually_exclusive_group(required = True)
-    group.add_argument("-t", "--type", choices = ['all', 'ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal'],
-                        help= "Determine SOH category type.")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-t", "--type", choices = BLOB_CHOICE, help= "Determine SOH category type.")
     group.add_argument("-l", "--list", nargs='+', help = "List of MSID's to update in script")
     parser.add_argument("--stop", help= "CXO formatted stop time for a specific blob fetch.")
     args = parser.parse_args()
@@ -178,8 +183,10 @@ if __name__ == '__main__':
             HTML_DIR = f"{BIN_DIR}/test/outTest/CSH"
         
 #
-#--- Determine msid_list for selection blob data
+#--- Determine msid_list for selection of blob data
 #
+        msid_list = None
+        part = None
         if args.type:
             part = args.type
             ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
@@ -189,7 +196,7 @@ if __name__ == '__main__':
             #Copy blob from live running if not present in test case
             if not os.path.isfile(f"{HTML_DIR}/blob_{part}.json"):
                 os.system(f"cp /data/mta4/www/CSH/blob_{part}.json {HTML_DIR}/blob_{part}.json")
-        else:
+        elif args.list:
             part = 'list'
             msid_list = args.list
         
@@ -197,7 +204,7 @@ if __name__ == '__main__':
         
         #Run the script
         start = timeit.default_timer()
-        fetch_telemetry(msid_list, part, stop = args.stop)
+        fetch_telemetry(msid_list = msid_list, part = part, stop = args.stop)
         print(f"Total Run time: {timeit.default_timer() - start}")
 
     elif args.mode == "flight":
@@ -223,4 +230,4 @@ if __name__ == '__main__':
         else:
             #Previous script run must have completed successfully. Prepare lock file for this script run.
             os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
-        fetch_telemetry(msid_list, part)
+        fetch_telemetry()
