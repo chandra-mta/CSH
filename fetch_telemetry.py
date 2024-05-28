@@ -57,13 +57,10 @@ def fetch_telemetry(part = None, msid_list = None, stop= None):
     formatted_data = check_limit_status(formatted_data)
     print(f"check_limit_status Run time: {timeit.default_timer() - start}")
 
-    for k,v in formatted_data.items():
-        print(f"{k} = {v}")
-    """
+    
     start = timeit.default_timer()
     write_to_file(formatted_data)
     print(f"write_to_file Run time: {timeit.default_timer() - start}")
-    """
 
 
 
@@ -124,7 +121,29 @@ def write_to_file(formatted_data):
     """
     Iterate through blob_<part>.json updating each data value
     """
-    pass
+    for part in BLOB_CHOICE:
+        with open(f"{HTML_DIR}/blob_{part}.json") as f:
+            data_list = json.load(f)
+#
+#--- Iterate over the specific parts entires via indexing, so that the list can be edited
+#
+        for i in range(len(data_list)):
+            msid = data_list[i]['msid']
+            try:
+                if formatted_data[msid]['time'] > data_list[i]['time']:
+    #
+    #--- Run the update
+    #
+                    data_list[i]['time'] = float(formatted_data[msid]['time'])
+                    data_list[i]['value'] = str(formatted_data[msid]['value'])
+                    data_list[i]['scheck'] = str(formatted_data[msid]['scheck'])
+            except KeyError:
+                #msid in the blob list not located in formatted data
+                pass
+            except not KeyError:
+                traceback.print_exc()
+        with open(f"{HTML_DIR}/blob_{part}.json", 'w') as f:
+            json.dump(data_list, f, indent = 4)
 
 #-------------------------------------------------------------------------------
 
@@ -161,6 +180,7 @@ if __name__ == '__main__':
         part = None
         if args.type:
             part = args.type
+            BLOB_CHOICE = [part]
             ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
             with open(ifile) as f:
                 msid_list = [line.strip() for line in f.readlines()]
@@ -170,6 +190,7 @@ if __name__ == '__main__':
                 os.system(f"cp /data/mta4/www/CSH/blob_{part}.json {HTML_DIR}/blob_{part}.json")
         elif args.list:
             part = 'list'
+            BLOB_CHOICE = []
             msid_list = args.list
         
         os.makedirs(HTML_DIR, exist_ok = True)
@@ -187,11 +208,13 @@ if __name__ == '__main__':
 #
         if args.type:
             part = args.type
+            BLOB_CHOICE = [part]
             ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
             with open(ifile) as f:
                 msid_list = [line.strip() for line in f.readlines()]
         else:
             part = 'list'
+            BLOB_CHOICE = []
             msid_list = args.list
 #
 #--- Create a lock file and exit strategy in case of race conditions
