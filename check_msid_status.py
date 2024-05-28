@@ -128,11 +128,11 @@ def check_status_letter(msid, val, vdict):
             return 'WARNING'
     
     elif msid in ['COSCS128S', 'COSCS129S','COSCS130S']:
-        tval = vdict['COTLRDSF']
+        tval = vdict['COTLRDSF']['value']
         if tval == 'EPS':
-            csc128 = vdict['COSCS128S']
-            csc129 = vdict['COSCS129S']
-            csc130 = vdict['COSCS130S']
+            csc128 = vdict['COSCS128S']['value']
+            csc129 = vdict['COSCS129S']['value']
+            csc130 = vdict['COSCS130S']['value']
             if (csc128 != 'ACT') and (csc129 != 'ACT') and (csc130 != 'ACT'):
                 return 'WARNING'
             elif( val != 'ACT'):
@@ -144,7 +144,7 @@ def check_status_letter(msid, val, vdict):
             return 'GREEN'
     
     elif msid in ['COSCS131S','COSCS132S','COSCS133S']:
-        tval = vdict['COTLRDSF']
+        tval = vdict['COTLRDSF']['value']
         if tval == 'EPS':
             if val == 'ACT':
                 return 'GREEN'
@@ -160,8 +160,8 @@ def check_status_letter(msid, val, vdict):
                 return 'GREEN'
     
     elif msid == 'CORADMEN':
-        tval1 = float(vdict['COBSRQID'])
-        tval2 = float(vdict['3TSCPOS'])
+        tval1 = float(vdict['COBSRQID']['value'])
+        tval2 = float(vdict['3TSCPOS']['value'])
         if (tval1 > 5000) and (tval2) < -99000:
             if val == 'ENAB':
                 return 'WARNING'
@@ -190,8 +190,8 @@ def check_status_letter(msid, val, vdict):
             return 'GREEN'
     
     elif msid == 'ACAFCT':
-        tval1 = vdict('AOPCAMD')
-        tval2 = vdict('COBSRQID')
+        tval1 = vdict['AOPCAMD']['value']
+        tval2 = vdict['COBSRQID']['value']
         if tval1 == 'NPNT':
             if tval2 < 5500:
                 return 'WARNING'
@@ -209,7 +209,7 @@ def check_status_letter(msid, val, vdict):
             return 'CAUTION'
          
     elif msid == '2SHLDART':
-        tval = vdict('CORADMEN')
+        tval = vdict['CORADMEN']['value']
         if val > 255:
             return 'GREEN'
         else:

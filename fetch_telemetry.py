@@ -36,7 +36,7 @@ import check_msid_status    as cms
 #--- Defining Globals
 #
 BLOB_CHOICE = ['ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal']
-FETCH_SECONDS = 10
+FETCH_SECONDS = 120
 FETCH_KWARGS = {
     "channel": "FLIGHT", # options (FLIGHT, FLTCOMP, ASVT, TEST)
     #"highrate": True, #High data rate
@@ -53,14 +53,13 @@ def fetch_telemetry(part = None, msid_list = None, stop= None):
     formatted_data = format_result(fetch_result)
     print(f"format_result Run time: {timeit.default_timer() - start}")
 
-    for k,v in formatted_data.items():
-        print(f"{k} = {v}")
-
-    """
     start = timeit.default_timer()
-    formatted_data = check_limit_status(fetch_result)
+    formatted_data = check_limit_status(formatted_data)
     print(f"check_limit_status Run time: {timeit.default_timer() - start}")
 
+    for k,v in formatted_data.items():
+        print(f"{k} = {v}")
+    """
     start = timeit.default_timer()
     write_to_file(formatted_data)
     print(f"write_to_file Run time: {timeit.default_timer() - start}")
@@ -116,7 +115,10 @@ def check_limit_status(formatted_data):
     """
     Include the limit status into the data structure
     """
-    pass
+    for msid, data in formatted_data.items():
+        status = cms.check_status(msid, data['value'], LIMIT_DICT, formatted_data)
+        formatted_data[msid]['scheck'] = status
+    return formatted_data
 
 def write_to_file(formatted_data):
     """
