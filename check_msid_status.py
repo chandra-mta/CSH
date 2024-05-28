@@ -9,12 +9,6 @@
 #           last update: Mar 15, 2021                                   #
 #                                                                       #
 #########################################################################
-import sys
-#
-#---Define Directory Pathing
-#
-BIN_DIR = "/data/mta4/Script/SOH"
-sys.path.append(BIN_DIR)
 
 #-------------------------------------------------------------------------------
 #-- check_status: check status of msid                                        --
@@ -86,10 +80,10 @@ def check_status_neumeric(msid, val, ldict):
     else:
         try:
             nval = float(val)
-            ly   = float(limit[0])
-            uy   = float(limit[1])
-            lr   = float(limit[2])
-            ur   = float(limit[3])
+            ly   = float(limit['warning_low'])
+            uy   = float(limit['warning_high'])
+            lr   = float(limit['caution_low'])
+            ur   = float(limit['caution_high'])
             if (nval >= ly) and (nval < uy):
                 return "GREEN"
 

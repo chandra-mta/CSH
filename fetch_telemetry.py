@@ -124,38 +124,6 @@ def write_to_file(formatted_data):
     """
     pass
 
-def read_limit_table():
-    """
-    read limit table and create msid <---> limit dictionary
-    this gives only neumeric cases
-    input:  none but read from <house_keeping>/limit_table
-    output: ldict   --- dictionary of msid <---> limits
-    """
-    ifile = f"{HOUSE_KEEPING}/limit_table"
-    with open(ifile) as f:
-        out = [line.strip() for line in f.readlines()]
-    ldict = {}
-    for line in out:
-        atemp = line.split('<>')
-        olist = []
-        for val in atemp[1:]:
-            try:
-                val = float(val)
-            except:
-                try:
-                    val = val.replace("\'", '')
-                except:
-                    pass
-            olist.append(val)
-        ldict[atemp[0]] = olist
-
-    return ldict
-
-#
-#--- Initialize limit table
-#
-LIMIT_DICT = read_limit_table()
-
 #-------------------------------------------------------------------------------
 
 if __name__ == '__main__':
@@ -177,6 +145,8 @@ if __name__ == '__main__':
 #
         BIN_DIR= f"{os.getcwd()}"
         HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
+        with open(f"{HOUSE_KEEPING}/CSH_limit_table.json") as f:
+            LIMIT_DICT = json.load(f)
         if args.path:
             HTML_DIR = args.path
         else:
@@ -208,7 +178,8 @@ if __name__ == '__main__':
         print(f"Total Run time: {timeit.default_timer() - start}")
 
     elif args.mode == "flight":
-
+        with open(f"{HOUSE_KEEPING}/CSH_limit_table.json") as f:
+            LIMIT_DICT = json.load(f)
 #
 #--- Determine msid_list for selection blob data
 #
