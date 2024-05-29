@@ -20,6 +20,7 @@ import argparse
 import getpass
 import json
 import timeit
+import math
 #
 #--- Define Directory Pathing
 #
@@ -41,7 +42,7 @@ FETCH_KWARGS = {
     "channel": "FLIGHT", # options (FLIGHT, FLTCOMP, ASVT, TEST)
     #"highrate": True, #High data rate
     #"allpoints": True, #Include all points in the query fetch
-    "include_calcs": True, #include calc-type blobs in spacecraft blob queries
+    #"include_calcs": True, #include calc-type blobs in spacecraft blob queries
 }
 
 def fetch_telemetry(part = None, msid_list = None, stop= None):
@@ -54,12 +55,16 @@ def fetch_telemetry(part = None, msid_list = None, stop= None):
     print(f"format_result Run time: {timeit.default_timer() - start}")
 
     start = timeit.default_timer()
-    formatted_data = check_limit_status(formatted_data)
+    unit_converted_data = unit_conversion(formatted_data)
+    print(f"unit_conversion Run time: {timeit.default_timer() - start}")
+
+    start = timeit.default_timer()
+    limit_checked_data = check_limit_status(unit_converted_data)
     print(f"check_limit_status Run time: {timeit.default_timer() - start}")
 
     
     start = timeit.default_timer()
-    write_to_file(formatted_data)
+    write_to_file(limit_checked_data)
     print(f"write_to_file Run time: {timeit.default_timer() - start}")
 
 
@@ -108,16 +113,63 @@ def format_result(fetch_result):
 
     return formatted_data
 
-def check_limit_status(formatted_data):
+def unit_conversion(data):
+    """
+    Perform a unit conversion for a few special edge cases.
+    If statement check since it's possible that one of the MSID's is not in this round of blob updates
+    """
+    update_msids = data.keys()
+
+    #Shield Rates
+    for msid in ['2DETART', '2SHLDART', '2SHLDBRT']:
+        if msid in update_msids:
+            data[msid]['value'] = f"{round((float(data[msid]['value']) / 256.0), 2)}"
+    if '2DETBRT' in update_msids:
+        data['2DETBRT']['value'] = f"{math.floor(math.log(float(data['2DETBRT']['value']) + 1.0) / 0.6931471805599453)}"
+
+    #ACA Integration Time
+    if 'AOACINTT' in update_msids:
+        data['AOACINTT']['value'] = f"{float(data['AOACINTT']['value']) / 1000}"
+    
+    #Momentum and Bias
+    for msid in ['AOGBIAS1', 'AOGBIAS2', 'AOGBIAS3', 'AORATE1', 'AORATE2', 'AORATE3']:
+        if msid in update_msids:
+            data[msid]['value'] = f"{(float(data[msid]['value']) * 206264.98)}"    #----arcsec/sec
+    
+    #Dither
+    for msid in ['AODITHR2', 'AODITHR3']:
+        if msid in update_msids:
+            data[msid]['value'] = f"{float(data[msid]['value']) * 3600.0}"
+
+    #AC CCD Temperature
+    if 'AACCCDPT' in update_msids:
+        data['AACCCDPT']['value'] = f"{5.0 * (float(data['AACCCDPT']['value']) -32) / 9.0}" #---Convert F to C
+
+    #Battery SOC Range
+    for msid in ['EOCHRGB1', 'EOCHRGB2', 'EOCHRGB3']:      #--- percentage
+        if msid in update_msids:
+            data[msid]['value'] = f"{float(data[msid]['value']) * 100.0}"
+
+    return data
+
+
+def generate_psuedo_msids(data):
+    """
+    Create psuedo MSIDs for display
+    """
+    pass
+
+
+def check_limit_status(data):
     """
     Include the limit status into the data structure
     """
-    for msid, data in formatted_data.items():
-        status = cms.check_status(msid, data['value'], LIMIT_DICT, formatted_data)
-        formatted_data[msid]['scheck'] = status
-    return formatted_data
+    for msid, entry in data.items():
+        status = cms.check_status(msid, entry['value'], LIMIT_DICT, data)
+        data[msid]['scheck'] = status
+    return data
 
-def write_to_file(formatted_data):
+def write_to_file(data):
     """
     Iterate through blob_<part>.json updating each data value
     """
@@ -130,13 +182,13 @@ def write_to_file(formatted_data):
         for i in range(len(data_list)):
             msid = data_list[i]['msid']
             try:
-                if formatted_data[msid]['time'] > data_list[i]['time']:
+                if data[msid]['time'] > data_list[i]['time']:
     #
     #--- Run the update
     #
-                    data_list[i]['time'] = float(formatted_data[msid]['time'])
-                    data_list[i]['value'] = str(formatted_data[msid]['value'])
-                    data_list[i]['scheck'] = str(formatted_data[msid]['scheck'])
+                    data_list[i]['time'] = float(data[msid]['time'])
+                    data_list[i]['value'] = str(data[msid]['value'])
+                    data_list[i]['scheck'] = str(data[msid]['scheck'])
             except KeyError:
                 #msid in the blob list not located in formatted data
                 pass
