@@ -157,7 +157,9 @@ def generate_psuedo_msids(data):
     """
     Create psuedo MSIDs for display
     """
-    pass
+    #create "ACIS Stat7-0" msid
+    for msid in ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST', '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']:
+        pass
 
 
 def check_limit_status(data):
