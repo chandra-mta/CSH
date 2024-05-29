@@ -59,7 +59,11 @@ def fetch_telemetry(part = None, msid_list = None, stop= None):
     print(f"unit_conversion Run time: {timeit.default_timer() - start}")
 
     start = timeit.default_timer()
-    limit_checked_data = check_limit_status(unit_converted_data)
+    pseudo_update_data = generate_psuedo_msids(unit_converted_data)
+    print(f"generate_psuedo_msids Run time: {timeit.default_timer() - start}")
+
+    start = timeit.default_timer()
+    limit_checked_data = check_limit_status(pseudo_update_data)
     print(f"check_limit_status Run time: {timeit.default_timer() - start}")
 
     
@@ -157,9 +161,51 @@ def generate_psuedo_msids(data):
     """
     Create psuedo MSIDs for display
     """
-    #create "ACIS Stat7-0" msid
-    for msid in ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST', '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']:
+    #Create "ACIS Stat7-0" msid
+    #Located in try-block so that if one of these values is missing from the blob update, then it is left alone to the last valid value
+    #Typically these will all be reported in the same blob.
+    try:
+        string = ''
+        time = 0
+        for msid in ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST', '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']:
+            if data[msid]['time'] > time:
+                time = data[msid]['time']
+            if float(data[msid]['value']) == 1:
+                string += 'T'
+            else:
+                string = 'F'
+        data['ACISSTAT'] = {'time': time, 'value': string}
+    except:
         pass
+
+    #Compute ACA Fiducial
+    try:
+        string = ''
+        time = 0
+        for msid in ['AOACFID0', 'AOACFID1','AOACFID2','AOACFID3','AOACFID4','AOACFID5','AOACFID6','AOACFID7']:
+            if data[msid]['time'] > time:
+                time = data[msid]['time']
+            string += data[msid]['value'][0] # First letter in string
+        data['AOACFIDC'] = {'time': time, 'value': string}
+    except:
+        pass
+
+    #Compute ACA Image
+    try:
+        string = ''
+        time = 0
+        for msid in ['AOACFCT0', 'AOACFCT1','AOACFCT2','AOACFCT3','AOACFCT4','AOACFCT5','AOACFCT6','AOACFCT7']:
+            if data[msid]['time'] > time:
+                time = data[msid]['time']
+            string += data[msid]['value'][0] # First letter in string
+        data['AOACFCTC'] = {'time': time, 'value': string}
+    except:
+        pass
+    
+    #Update Dummy Entry
+    data['LASTDCHECK'] = {'time': cxotime.CxoTime().secs, 'value': datetime.utcnow().strftime("%Y-%m-%dT%H:%Mz")}
+
+    return data
 
 
 def check_limit_status(data):
