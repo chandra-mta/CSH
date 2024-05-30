@@ -71,8 +71,8 @@ def fetch_telemetry(stop= None):
 
         
         start = timeit.default_timer()
-        write_to_file(limit_checked_data)
-        print(f"write_to_file Run time: {timeit.default_timer() - start}")
+        update_json_blobs(limit_checked_data)
+        print(f"update_json_blobs Run time: {timeit.default_timer() - start}")
 
 def get_CSH_blobs(stop = None):
     """
@@ -171,7 +171,7 @@ def generate_psuedo_msids(data):
             if float(data[msid]['value']) == 1:
                 string += 'T'
             else:
-                string = 'F'
+                string += 'F'
         data['ACISSTAT'] = {'time': time, 'value': string}
     except:
         pass
@@ -199,9 +199,6 @@ def generate_psuedo_msids(data):
         data['AOACFCTC'] = {'time': time, 'value': string}
     except:
         pass
-    
-    #Update Dummy Entry
-    data['LASTDCHECK'] = {'time': cxotime.CxoTime().secs, 'value': datetime.utcnow().strftime("%Y-%m-%dT%H:%Mz")}
 
     return data
 
@@ -215,13 +212,21 @@ def check_limit_status(data):
         data[msid]['scheck'] = status
     return data
 
-def write_to_file(data):
+def update_json_blobs(data):
     """
     Iterate through blob_<part>.json updating each data value
     """
     for part in BLOB_SECTIONS:
         with open(f"{HTML_DIR}/blob_{part}.json") as f:
             data_list = json.load(f)
+#
+#--- Remove the dummy time entry
+#
+        for i in range(len(data_list)):
+            if data_list[i]['msid'] == "LASTDCHECK":
+                data_list.pop(i)
+                break
+
 #
 #--- Iterate over the specific parts entires via indexing, so that the list can be edited
 #
@@ -240,6 +245,16 @@ def write_to_file(data):
                 pass
             except not KeyError:
                 traceback.print_exc()
+#
+#--- Include a dummy time entry for the last updated time
+#--- Javascript built to read custom time format.
+#
+        data_list.append({'msid': "LASTDCHECK", 
+                          'index': "97989",
+                          'time': datetime.utcnow().strftime("%Y%j%H%M%S.000"),
+                          'value': datetime.utcnow().strftime("%Y-%m-%dT%H:%Mz"),
+                          'f': "1"
+                          })
         with open(f"{HTML_DIR}/blob_{part}.json", 'w') as f:
             json.dump(data_list, f, indent = 4)
 
