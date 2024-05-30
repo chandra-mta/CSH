@@ -35,8 +35,7 @@ import check_msid_status    as cms
 
 #
 #--- Defining Globals
-#
-BLOB_CHOICE = ['ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal']
+BLOB_SECTIONS = ['ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal']
 FETCH_SECONDS = 120
 FETCH_KWARGS = {
     "channel": "FLIGHT", # options (FLIGHT, FLTCOMP, ASVT, TEST)
@@ -45,35 +44,37 @@ FETCH_KWARGS = {
     #"include_calcs": True, #include calc-type blobs in spacecraft blob queries
 }
 
-def fetch_telemetry(part = None, msid_list = None, stop= None):
+def fetch_telemetry(stop= None):
     start = timeit.default_timer()
-    fetch_result = get_CSH_blobs(msid_list, stop)
+    fetch_result = get_CSH_blobs(stop)
     print(f"get_CSH_blobs Run time: {timeit.default_timer() - start}")
 
-    start = timeit.default_timer()
-    formatted_data = format_result(fetch_result)
-    print(f"format_result Run time: {timeit.default_timer() - start}")
+#
+#--- If the fetch result contains no blobs, then we are out of comm. 
+#
+    if len(fetch_result['blobs']) > 0:
+        start = timeit.default_timer()
+        formatted_data = format_result(fetch_result)
+        print(f"format_result Run time: {timeit.default_timer() - start}")
 
-    start = timeit.default_timer()
-    unit_converted_data = unit_conversion(formatted_data)
-    print(f"unit_conversion Run time: {timeit.default_timer() - start}")
+        start = timeit.default_timer()
+        unit_converted_data = unit_conversion(formatted_data)
+        print(f"unit_conversion Run time: {timeit.default_timer() - start}")
 
-    start = timeit.default_timer()
-    pseudo_update_data = generate_psuedo_msids(unit_converted_data)
-    print(f"generate_psuedo_msids Run time: {timeit.default_timer() - start}")
+        start = timeit.default_timer()
+        pseudo_update_data = generate_psuedo_msids(unit_converted_data)
+        print(f"generate_psuedo_msids Run time: {timeit.default_timer() - start}")
 
-    start = timeit.default_timer()
-    limit_checked_data = check_limit_status(pseudo_update_data)
-    print(f"check_limit_status Run time: {timeit.default_timer() - start}")
+        start = timeit.default_timer()
+        limit_checked_data = check_limit_status(pseudo_update_data)
+        print(f"check_limit_status Run time: {timeit.default_timer() - start}")
 
-    
-    start = timeit.default_timer()
-    write_to_file(limit_checked_data)
-    print(f"write_to_file Run time: {timeit.default_timer() - start}")
+        
+        start = timeit.default_timer()
+        write_to_file(limit_checked_data)
+        print(f"write_to_file Run time: {timeit.default_timer() - start}")
 
-
-
-def get_CSH_blobs(msid_list = None, stop= None):
+def get_CSH_blobs(stop = None):
     """
     Fetch the telemetry data using maude
     """
@@ -91,11 +92,8 @@ def get_CSH_blobs(msid_list = None, stop= None):
 #
 #--- Fetch the blobs in question
 #
-    if msid_list:
-        result = maude.get_blobs(start = start, stop = stop, msids = msid_list, **FETCH_KWARGS)
-    else:
-        #default to fetching all blob data to fill out all blob portions
-        result = maude.get_blobs(start = start, stop = stop, **FETCH_KWARGS)
+    result = maude.get_blobs(start = start, stop = stop, **FETCH_KWARGS)
+
     return result
 
 def format_result(fetch_result):
@@ -221,7 +219,7 @@ def write_to_file(data):
     """
     Iterate through blob_<part>.json updating each data value
     """
-    for part in BLOB_CHOICE:
+    for part in BLOB_SECTIONS:
         with open(f"{HTML_DIR}/blob_{part}.json") as f:
             data_list = json.load(f)
 #
@@ -251,9 +249,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
     parser.add_argument("-p", "--path", required = False, help = "Directory path to determine output location of json blob.")
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument("-t", "--type", choices = BLOB_CHOICE, help= "Determine SOH category type.")
-    group.add_argument("-l", "--list", nargs='+', help = "List of MSID's to update in script")
     parser.add_argument("--stop", help= "CXO formatted stop time for a specific blob fetch.")
     args = parser.parse_args()
 
@@ -272,58 +267,30 @@ if __name__ == '__main__':
             HTML_DIR = args.path
         else:
             HTML_DIR = f"{BIN_DIR}/test/outTest/CSH"
-        
-#
-#--- Determine msid_list for selection of blob data
-#
-        msid_list = None
-        part = None
-        if args.type:
-            part = args.type
-            BLOB_CHOICE = [part]
-            ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
-            with open(ifile) as f:
-                msid_list = [line.strip() for line in f.readlines()]
 
+        for part in BLOB_SECTIONS:
             #Copy blob from live running if not present in test case
             if not os.path.isfile(f"{HTML_DIR}/blob_{part}.json"):
                 os.system(f"cp /data/mta4/www/CSH/blob_{part}.json {HTML_DIR}/blob_{part}.json")
-        elif args.list:
-            part = 'list'
-            BLOB_CHOICE = []
-            msid_list = args.list
-        
+
         os.makedirs(HTML_DIR, exist_ok = True)
         
         #Run the script
         start = timeit.default_timer()
-        fetch_telemetry(msid_list = msid_list, part = part, stop = args.stop)
+        fetch_telemetry(stop = args.stop)
         print(f"Total Run time: {timeit.default_timer() - start}")
 
     elif args.mode == "flight":
         with open(f"{HOUSE_KEEPING}/CSH_limit_table.json") as f:
             LIMIT_DICT = json.load(f)
 #
-#--- Determine msid_list for selection blob data
-#
-        if args.type:
-            part = args.type
-            BLOB_CHOICE = [part]
-            ifile = f"{HOUSE_KEEPING}/Inst_part/msid_list_{part}"
-            with open(ifile) as f:
-                msid_list = [line.strip() for line in f.readlines()]
-        else:
-            part = 'list'
-            BLOB_CHOICE = []
-            msid_list = args.list
-#
 #--- Create a lock file and exit strategy in case of race conditions
 #
-        name = f"{os.path.basename(__file__).split('.')[0]}_{part}"
+        name = f"{os.path.basename(__file__).split('.')[0]}"
         user = getpass.getuser()
         if os.path.isfile(f"/tmp/{user}/{name}.lock"):
             exit(1)
         else:
             #Previous script run must have completed successfully. Prepare lock file for this script run.
             os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
-        fetch_telemetry()
+        fetch_telemetry(stop = args.stop)
