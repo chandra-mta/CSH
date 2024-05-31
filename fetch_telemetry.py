@@ -15,12 +15,17 @@ import sys
 from datetime import datetime, timedelta
 import cxotime
 import maude
-import traceback
 import argparse
-import getpass
 import json
 import timeit
 import math
+#For Script organization
+import traceback
+import getpass
+import signal
+import platform
+ADMIN = ['mtadude@cfa.harvard.edu']
+
 #
 #--- Define Directory Pathing
 #
@@ -304,7 +309,20 @@ if __name__ == '__main__':
         name = f"{os.path.basename(__file__).split('.')[0]}"
         user = getpass.getuser()
         if os.path.isfile(f"/tmp/{user}/{name}.lock"):
-            exit(1)
+            #Email alert if the script stalls out
+            notification = f"Lock file exists as /tmp/{user}/{name}.lock. Process already running/errored out on {user}@{platform.node().split('.')[0]}.\n" 
+            notification += f"Affects {HTML_DIR}. Check {BIN_DIR}/{name}.py. Killing old process.\n"
+            notification += f'This message was send to {" ".join(ADMIN)}'
+            os.system(f'echo "{notification}" | mailx -s "Stalled Script: {name}" {" ".join(ADMIN)}')
+            
+            #Kill old stalling process and remove corresponding lock file.
+            with open(f"/tmp/{user}/{name}.lock") as f:
+                pid = int(f.readlines()[-1].strip())
+            os.remove(f"/tmp/{user}/{name}.lock")
+            os.kill(pid,signal.SIGTERM)
+            
+            #Generate lock file for the current corresponding process
+            os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
         else:
             #Previous script run must have completed successfully. Prepare lock file for this script run.
             os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
