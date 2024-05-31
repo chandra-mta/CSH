@@ -1,0 +1,8 @@
+cd /data/mta4/Script/SOH
+
+#Takes around 2 seconds to run. Runs every 20 seconds.
+/data/mta4/Script/SOH/fetch_telemetry.py -m flight
+sleep 18
+/data/mta4/Script/SOH/fetch_telemetry.py -m flight
+sleep 18
+/data/mta4/Script/SOH/fetch_telemetry.py -m flight
