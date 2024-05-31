@@ -17,7 +17,6 @@ import cxotime
 import maude
 import argparse
 import json
-import timeit
 import math
 #For Script organization
 import traceback
@@ -50,34 +49,20 @@ FETCH_KWARGS = {
 }
 
 def fetch_telemetry(stop= None):
-    start = timeit.default_timer()
     fetch_result = get_CSH_blobs(stop)
-    print(f"get_CSH_blobs Run time: {timeit.default_timer() - start}")
-
 #
 #--- If the fetch result contains no blobs, then we are out of comm. 
 #
     if len(fetch_result['blobs']) > 0:
-        start = timeit.default_timer()
         formatted_data = format_result(fetch_result)
-        print(f"format_result Run time: {timeit.default_timer() - start}")
 
-        start = timeit.default_timer()
         unit_converted_data = unit_conversion(formatted_data)
-        print(f"unit_conversion Run time: {timeit.default_timer() - start}")
 
-        start = timeit.default_timer()
         pseudo_update_data = generate_psuedo_msids(unit_converted_data)
-        print(f"generate_psuedo_msids Run time: {timeit.default_timer() - start}")
 
-        start = timeit.default_timer()
         limit_checked_data = check_limit_status(pseudo_update_data)
-        print(f"check_limit_status Run time: {timeit.default_timer() - start}")
 
-        
-        start = timeit.default_timer()
         update_json_blobs(limit_checked_data)
-        print(f"update_json_blobs Run time: {timeit.default_timer() - start}")
 
 def get_CSH_blobs(stop = None):
     """
@@ -296,9 +281,7 @@ if __name__ == '__main__':
         os.makedirs(HTML_DIR, exist_ok = True)
         
         #Run the script
-        start = timeit.default_timer()
         fetch_telemetry(stop = args.stop)
-        print(f"Total Run time: {timeit.default_timer() - start}")
 
     elif args.mode == "flight":
         with open(f"{HOUSE_KEEPING}/CSH_limit_table.json") as f:
@@ -327,3 +310,7 @@ if __name__ == '__main__':
             #Previous script run must have completed successfully. Prepare lock file for this script run.
             os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
         fetch_telemetry(stop = args.stop)
+#
+#--- Remove lock file once process is completed
+#
+        os.system(f"rm /tmp/{user}/{name}.lock")
