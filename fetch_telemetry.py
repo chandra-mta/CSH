@@ -296,7 +296,7 @@ if __name__ == '__main__':
             notification = f"Lock file exists as /tmp/{user}/{name}.lock. Process already running/errored out on {user}@{platform.node().split('.')[0]}.\n" 
             notification += f"Affects {HTML_DIR}. Check {BIN_DIR}/{name}.py. Killing old process.\n"
             notification += f'This message was send to {" ".join(ADMIN)}'
-            os.system(f'echo "{notification}" | mailx -s "Stalled Script: {name}" {" ".join(ADMIN)}')
+            #os.system(f'echo "{notification}" | mailx -s "Stalled Script: {name}" {" ".join(ADMIN)}')
             
             #Kill old stalling process and remove corresponding lock file.
             with open(f"/tmp/{user}/{name}.lock") as f:
