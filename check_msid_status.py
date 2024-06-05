@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
+#!/proj/sot/ska3/flight/bin/python
 
 #########################################################################
 #                                                                       #
@@ -10,31 +10,10 @@
 #                                                                       #
 #########################################################################
 
-import os
-import sys
-import re
-import string
-import math
-#
-#--- set a directory path
-#
-path = '/data/mta4/Script/SOH/house_keeping/dir_list'
-with open(path, 'r') as f:
-    data = [line.strip() for line in f.readlines()]
-
-for ent in data:
-    atemp = re.split(':', ent)
-    var   = atemp[1].strip()
-    line  = atemp[0].strip()
-    exec("%s = %s" %(var, line))
-#
-#--- append path to a private folder
-#
-sys.path.append(bin_dir)
-
 #-------------------------------------------------------------------------------
 #-- check_status: check status of msid                                        --
 #-------------------------------------------------------------------------------
+import traceback
 
 def check_status(msid, val, ldict, vdict):
     """
@@ -66,8 +45,14 @@ def check_status(msid, val, ldict, vdict):
                     'COSCS129S','COSCS130S', 'COSCS131S','COSCS132S','COSCS133S',\
                     'COSCS107S','CORADMEN', 'CCSDSTMF', 'ACAFCT', 'AOFSTAR',\
                     '2SHLDART', 'PLINE03T', 'PLINE04T', 'AACCCDPT', '3LDRTNO']:
-            status = check_status_letter(msid, val, vdict)
-            return status
+            try:
+                status = check_status_letter(msid, val, vdict)
+                return status
+            except KeyError:
+                return 'GREEN'
+            except:
+                traceback.print_exc()
+                return 'GREEN'
         else:
             if val in ['ERR', 'FALT', 'FAIL']:
                 return "CAUTION"
@@ -102,10 +87,10 @@ def check_status_neumeric(msid, val, ldict):
     else:
         try:
             nval = float(val)
-            ly   = float(limit[0])
-            uy   = float(limit[1])
-            lr   = float(limit[2])
-            ur   = float(limit[3])
+            ly   = float(limit['warning_low'])
+            uy   = float(limit['warning_high'])
+            lr   = float(limit['caution_low'])
+            ur   = float(limit['caution_high'])
             if (nval >= ly) and (nval < uy):
                 return "GREEN"
 
@@ -150,11 +135,11 @@ def check_status_letter(msid, val, vdict):
             return 'WARNING'
     
     elif msid in ['COSCS128S', 'COSCS129S','COSCS130S']:
-        tval = vdict['COTLRDSF']
+        tval = vdict['COTLRDSF']['value']
         if tval == 'EPS':
-            csc128 = vdict['COSCS128S']
-            csc129 = vdict['COSCS129S']
-            csc130 = vdict['COSCS130S']
+            csc128 = vdict['COSCS128S']['value']
+            csc129 = vdict['COSCS129S']['value']
+            csc130 = vdict['COSCS130S']['value']
             if (csc128 != 'ACT') and (csc129 != 'ACT') and (csc130 != 'ACT'):
                 return 'WARNING'
             elif( val != 'ACT'):
@@ -166,7 +151,7 @@ def check_status_letter(msid, val, vdict):
             return 'GREEN'
     
     elif msid in ['COSCS131S','COSCS132S','COSCS133S']:
-        tval = vdict['COTLRDSF']
+        tval = vdict['COTLRDSF']['value']
         if tval == 'EPS':
             if val == 'ACT':
                 return 'GREEN'
@@ -182,8 +167,8 @@ def check_status_letter(msid, val, vdict):
                 return 'GREEN'
     
     elif msid == 'CORADMEN':
-        tval1 = vdict['COBSRQID']
-        tval2 = vdict['3TSCPOS']
+        tval1 = float(vdict['COBSRQID']['value'])
+        tval2 = float(vdict['3TSCPOS']['value'])
         if (tval1 > 5000) and (tval2) < -99000:
             if val == 'ENAB':
                 return 'WARNING'
@@ -212,8 +197,8 @@ def check_status_letter(msid, val, vdict):
             return 'GREEN'
     
     elif msid == 'ACAFCT':
-        tval1 = vdict('AOPCAMD')
-        tval2 = vdict('COBSRQID')
+        tval1 = vdict['AOPCAMD']['value']
+        tval2 = vdict['COBSRQID']['value']
         if tval1 == 'NPNT':
             if tval2 < 5500:
                 return 'WARNING'
@@ -231,7 +216,7 @@ def check_status_letter(msid, val, vdict):
             return 'CAUTION'
          
     elif msid == '2SHLDART':
-        tval = vdicvdictt('CORADMEN')
+        tval = vdict['CORADMEN']['value']
         if val > 255:
             return 'GREEN'
         else:
