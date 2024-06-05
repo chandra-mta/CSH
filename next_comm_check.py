@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
+#!/proj/sot/ska3/flight/bin/python
 
 #########################################################################################
 #                                                                                       #
@@ -9,17 +9,14 @@
 #       last update: Mar 15, 2021                                                       #
 #                                                                                       #
 #########################################################################################
-
-import os
-import sys
 import re
-import string
-import math
 import time
 import Chandra.Time
 
 
-house_keeping = '/data/mta4/Script/SOH/house_keeping/'
+HOUSE_KEEPING = '/data/mta4/Script/SOH/house_keeping'
+HTML_DIR = "/data/mta4/www/CSH"
+OUT_HTML_DIR = HTML_DIR
 
 #-------------------------------------------------------------------
 #-- find_next_comm: create a display time span till the next comm --
@@ -28,17 +25,17 @@ house_keeping = '/data/mta4/Script/SOH/house_keeping/'
 def find_next_comm():
     """
     create a display time span till the next comm
-    input:  nont, but read from /data/mta4/www/CSH/comm_list.html
-    output: /data/mta4/www/CSH/ctest.xml
+    input:  none, but read from {HTML_DIR}/comm_list.html
+    output: {HTML_DIR}/ctest.xml
+            {HTML_DIR}/ncomm
     """
     out = time.strftime('%Y:%j:%H:%M:%S', time.gmtime())
     ctime = Chandra.Time.DateTime(out).secs
     
-    with open('/data/mta4/www/CSH/comm_list.html', 'r') as f:
+    with open(f"{HTML_DIR}/comm_list.html") as f:
         data = [line.strip() for line in f.readlines()]
     
     pstop = 0.0
-    limte = 'n/a'
     for ent in data[11:]:
         atemp = re.split('<td>', ent)
         start = atemp[1].replace('</td>','')
@@ -49,17 +46,19 @@ def find_next_comm():
         if (ctime > pstop) and (ctime < start):
             diff = start - ctime
             ltime = 'Next Comm In: '   + convert_to_hour(diff)
-            write_to_hk(diff)
+            with open(f"{HOUSE_KEEPING}/stime_to_comm", 'w') as fo:
+                fo.write(f"{diff}\n")
             break
         elif (ctime >= start) and (ctime <= stop):
             diff = stop - ctime
             ltime = 'End of Comm In: ' + convert_to_hour(diff)
-            write_to_hk(0.0)
+            with open(f"{HOUSE_KEEPING}/stime_to_comm", 'w') as fo:
+                fo.write(f"{0.0}\n")
             break
         else:
             pstop = stop
 
-    with open('/data/mta4/www/CSH/ctest.xml', 'w') as fo:
+    with open(f"{OUT_HTML_DIR}/ctest.xml", 'w') as fo:
         fo.write(f"<ncomm>\n{ltime}\n</ncomm>\n")
     
 #-------------------------------------------------------------------
@@ -88,18 +87,6 @@ def adjust_digit(val):
         sval = '0' + sval
 
     return sval
-
-    
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-
-def write_to_hk(diff):
-
-    line  = str(diff) + '\n'
-    ofile = house_keeping + 'stime_to_comm'
-    with open(ofile, 'w') as fo:
-        fo.write(line)
     
     
 #-------------------------------------------------------------------
