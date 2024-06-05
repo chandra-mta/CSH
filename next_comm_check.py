@@ -70,7 +70,6 @@ def find_next_comm():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
-    parser.add_argument("-p", "--path", required = False, help = "Directory path to determine output location of files.")
     args = parser.parse_args()
 
     if args.mode == "test":
