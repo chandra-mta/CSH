@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
+#!/proj/sot/ska3/flight/bin/python
 
 #####################################################################################
 #                                                                                   #
@@ -6,37 +6,21 @@
 #                                                                                   #
 #           author: t. isobe (tisobe@cfa.harvard.edu)                               #
 #                                                                                   #
-#           last update: Mar 15, 2021                                               #
+#           last update: Jun 05, 2024                                               #
 #                                                                                   #
 #####################################################################################
 
 import os
-import sys
 import re
-import string
-import math
 import time
 import Chandra.Time
-#
-path = '/data/mta4/Script/SOH/house_keeping/dir_list'
-with open(path, 'r') as f:
-    data = [line.strip() for line in f.readlines()]
 
-for ent in data:
-    atemp = re.split(':', ent)
-    var   = atemp[1].strip()
-    line  = atemp[0].strip()
-    exec("%s = %s" %(var, line))
 #
-#--- append path to a private folder
+#--- Define Directory Pathing
 #
-sys.path.append(bin_dir)
-#
-#--- set a temporary file name
-#
-import random
-rtail  = int(time.time()*random.random())
-zspace = '/tmp/zspace' + str(rtail)
+HOUSE_KEEPING = "/data/mta4/Script/SOH/house_keeping"
+HTML_DIR = "/data/mta4/www/CSH"
+ARC_DIR = "/data/mta4/www/ASPECT/arc"
 
 #-------------------------------------------------------------------------------
 #-- find_comm_pass: read comm pass from aspect site                           --
@@ -66,10 +50,8 @@ def find_comm_pass():
     now = time.strftime("%Y:%j:%H:%M:%S", time.gmtime())
     now = Chandra.Time.DateTime(now).secs
 
-    cmd = 'wget -q -O' + zspace + ' http://cxc.harvard.edu/mta/ASPECT/arc/'
-    os.system(cmd)
-
-    data = read_data_file(zspace, remove=1)
+    with open(f"{ARC_DIR}/index.html") as f:
+        data = [line.strip() for line in f.readlines()]
 
     sline = ''
     for ent in data:
@@ -97,8 +79,6 @@ def find_comm_pass():
 #
 #--- html page input
 #
-            #dstart = Chandra.Time.DateTime(start).date
-            #dstop  = Chandra.Time.DateTime(stop).date
             dstart = convert_time_format(start)
             dstop  = convert_time_format(stop)
             hline  = hline + '<tr><td>' + str(dstart) 
@@ -106,8 +86,7 @@ def find_comm_pass():
 #
 #--- write out the comm list data
 #
-    outfile = house_keeping + 'comm_list'
-    with open(outfile, 'w') as fo:
+    with open(f"{HOUSE_KEEPING}/comm_list", 'w') as fo:
             fo.write(sline)
 #
 #--- finish html page
@@ -117,8 +96,7 @@ def find_comm_pass():
     hline = hline + '</div>\n'
     hline = hline + '</body>\n</html>\n'
 
-    wcomm = html_dir + 'comm_list.html'
-    with open(wcomm, 'w') as fo:
+    with open(f"{HTML_DIR}/comm_list.html", 'w') as fo:
         fo.write(hline)
 
 #-------------------------------------------------------------------------------
@@ -141,21 +119,6 @@ def convert_time_format(ctime):
     rtime  = atemp[0] + ':' + atemp[1] + ':' + atemp[2] + ':' + atemp[3] + ':' + btemp[0]
 
     return rtime
-
-#-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
-
-def read_data_file(ifile, remove=0):
-
-    with open(ifile, 'r') as f:
-        data = [line.strip() for line in f.readlines()]
-
-    if remove  == 1:
-        cmd = 'rm -rf ' + ifile
-        os.system(cmd)
-
-    return data
 
 
 
