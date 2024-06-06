@@ -45,13 +45,13 @@ def update_msididx():
 #
 
     addition = [{"name": "AOACFIDC", "idx": 99999, \
-            "description": "ACA Fiducial Object 0-7  (OBC)", "sc": [""]},\
+            "description": "ACA Fiducial Object 0-7  (OBC)"},\
             {"name": "AOACFCTC", "idx": 98989, \
-            "description": "ACA Image Func 0-7 (OBC)",       "sc": [""]},\
+            "description": "ACA Image Func 0-7 (OBC)"},\
             {"name": "LASTDCHECK", "idx": 97989, \
-            "description": "Last Data Check Time)",          "sc": [""]},\
+            "description": "Last Data Check Time)"},\
             {"name": "ACISSTAT",    "idx": 97995, \
-            "description": "ACIS Stat7-0",          "          sc": [""]}\
+            "description": "ACIS Stat7-0",}\
         ]
     
     msididx = addition + msididx
