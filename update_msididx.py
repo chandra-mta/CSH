@@ -15,19 +15,21 @@ import json
 import argparse
 
 HTML_DIR = "/data/mta4/www/CSH"
+HOUSE_KEEPING = "/data/mta4/Script/SOH/house_keeping"
 OCC_LINK = "https://occweb.cfa.harvard.edu/occweb/web/fot_web/software/sandbox/SOT_area/msididx.json"
+FILENAME = OCC_LINK.split('/')[-1]
 
 def update_msididx():
     """
     Pull msididx.json from the OCC and include MTA alterations
     input:  none, but read from {OCC_LINK}
-    output: {HTML_DIR}/msididx.json
+    output: {HTML_DIR}/{FILENAME}
     """
 #
 #--- Download the latest version of msididx.
 #
-    os.system(f"wget {OCC_LINK}")
-    with open(OCC_LINK.split('/')[-1]) as f:
+    os.system(f"wget -O {HOUSE_KEEPING}/{FILENAME} {OCC_LINK}")
+    with open(f"{HOUSE_KEEPING}/{FILENAME}") as f:
         msididx = json.load(f)
     
 #
@@ -58,9 +60,9 @@ def update_msididx():
 #
 #--- Write out to msididx.json file and move to HTML_DIR
 #
-    with open(OCC_LINK.split('/')[-1],'w') as f:
+    with open(f"{HOUSE_KEEPING}/{FILENAME}",'w') as f:
         json.dump(msididx, f, indent = 4)
-    os.system(f"mv {OCC_LINK.split('/')[-1]} {HTML_DIR}/{OCC_LINK.split('/')[-1]}")
+    os.system(f"cp {HOUSE_KEEPING}/{FILENAME} {HTML_DIR}/{FILENAME}")
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
@@ -68,7 +70,8 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     if args.mode == "test":
-        HTML_DIR = f"{os.getcwd()}/test/outTest"
+        HOUSE_KEEPING = f"{os.getcwd()}/test/outTest/"
+        HTML_DIR = f"{HOUSE_KEEPING}/CSH"
         os.makedirs(HTML_DIR, exist_ok = True)
         update_msididx()
 
