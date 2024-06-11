@@ -17,8 +17,10 @@ import cxotime
 import maude
 import argparse
 import json
-import math
-#For Script organization
+import astropy.units as u
+#
+#--- For Script Organization
+#
 import traceback
 import getpass
 import signal
@@ -31,14 +33,16 @@ ADMIN = ['mtadude@cfa.harvard.edu']
 BIN_DIR = "/data/mta4/Script/SOH"
 HTML_DIR = "/data/mta4/www/CSH"
 HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
+
 #
-#--- append path to a private folder
+#--- Append path to a private folder
 #
 sys.path.append(BIN_DIR)
-import check_msid_status    as cms
+import check_msid_status as cms
 
 #
 #--- Defining Globals
+#
 BLOB_SECTIONS = ['ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal']
 FETCH_SECONDS = 120
 FETCH_KWARGS = {
@@ -49,14 +53,14 @@ FETCH_KWARGS = {
 }
 
 def fetch_telemetry(stop= None):
-    fetch_result = get_CSH_blobs(stop)
+    fetch_result = get_blobs(stop)
 #
 #--- If the fetch result contains no blobs, then we are out of comm. 
 #
     if len(fetch_result['blobs']) > 0:
-        formatted_data = format_result(fetch_result)
+        latest_data_points = keep_latest_data_point(fetch_result)
 
-        unit_converted_data = unit_conversion(formatted_data)
+        unit_converted_data = unit_conversion(latest_data_points)
 
         pseudo_update_data = generate_psuedo_msids(unit_converted_data)
 
@@ -64,16 +68,16 @@ def fetch_telemetry(stop= None):
 
         update_json_blobs(limit_checked_data)
 
-def get_CSH_blobs(stop = None):
+def get_blobs(stop = None):
     """
     Fetch the telemetry data using maude
     """
 #
 #--- If no time frame is passed, then pull current time and format into cxotime
 #
-    if not stop:
+    if stop is not None:
         stop = datetime.utcnow()
-        start = stop - timedelta(seconds= FETCH_SECONDS)
+        start = stop - timedelta(seconds = FETCH_SECONDS)
         stop = cxotime.CxoTime(stop.strftime("%Y:%j:%H:%M:%S")).secs
         start = cxotime.CxoTime(start.strftime("%Y:%j:%H:%M:%S")).secs
     else:
@@ -86,24 +90,23 @@ def get_CSH_blobs(stop = None):
 
     return result
 
-def format_result(fetch_result):
+def keep_latest_data_point(fetch_result):
     """
     Format fetch result to only contain the latest data point
     """
 #
-#--- iterate over results in time reverse order, therefore added data is latest in result
+#--- Iterate over results in time reverse order, therefore added data is latest in result
 #
-    fetch_result['blobs'].reverse()
-    formatted_data = {}
-    for blob in fetch_result['blobs']:
+    latest_data_points = {}
+    for blob in fetch_result['blobs'][::-1]:
 #
 #--- for each time point, iterate over msid's recorded in this section
 #
         for val in blob['values']:
-            if val['n'] not in formatted_data.keys():
-                formatted_data[val['n']] = {'time': blob['time'], 'value': val['vc'] }
+            if val['n'] not in latest_data_points.keys():
+                latest_data_points[val['n']] = {'time': blob['time'], 'value': val['vc'] }
 
-    return formatted_data
+    return latest_data_points
 
 def unit_conversion(data):
     """
@@ -113,11 +116,9 @@ def unit_conversion(data):
     update_msids = data.keys()
 
     #Shield Rates
-    for msid in ['2DETART', '2SHLDART', '2SHLDBRT']:
+    for msid in ['2DETART', '2SHLDART', '2SHLDBRT', '2DETBRT']:
         if msid in update_msids:
             data[msid]['value'] = f"{round((float(data[msid]['value']) / 256.0), 2)}"
-    if '2DETBRT' in update_msids:
-        data['2DETBRT']['value'] = f"{math.floor(math.log(float(data['2DETBRT']['value']) + 1.0) / 0.6931471805599453)}"
 
     #ACA Integration Time
     if 'AOACINTT' in update_msids:
@@ -126,7 +127,7 @@ def unit_conversion(data):
     #Momentum and Bias
     for msid in ['AOGBIAS1', 'AOGBIAS2', 'AOGBIAS3', 'AORATE1', 'AORATE2', 'AORATE3']:
         if msid in update_msids:
-            data[msid]['value'] = f"{(float(data[msid]['value']) * 206264.98)}"    #----arcsec/sec
+            data[msid]['value'] = (float(data[msid]['value']) * u.rad/u.s).to('arcsec/s').value #----arcsec/sec
     
     #Dither
     for msid in ['AODITHR2', 'AODITHR3']:
@@ -150,12 +151,11 @@ def generate_psuedo_msids(data):
     Create psuedo MSIDs for display
     """
     #Create "ACIS Stat7-0" msid
-    #Located in try-block so that if one of these values is missing from the blob update, then it is left alone to the last valid value
-    #Typically these will all be reported in the same blob.
-    try:
+    stat_set = ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST', '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']
+    if all(msid in data.keys() for msid in stat_set):
         string = ''
         time = 0
-        for msid in ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST', '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']:
+        for msid in stat_set:
             if data[msid]['time'] > time:
                 time = data[msid]['time']
             if float(data[msid]['value']) == 1:
@@ -163,32 +163,28 @@ def generate_psuedo_msids(data):
             else:
                 string += 'F'
         data['ACISSTAT'] = {'time': time, 'value': string}
-    except:
-        pass
 
     #Compute ACA Fiducial
-    try:
+    aca_fid_set = ['AOACFID0', 'AOACFID1','AOACFID2','AOACFID3','AOACFID4','AOACFID5','AOACFID6','AOACFID7']
+    if all(msid in data.keys() for msid in aca_fid_set):
         string = ''
         time = 0
-        for msid in ['AOACFID0', 'AOACFID1','AOACFID2','AOACFID3','AOACFID4','AOACFID5','AOACFID6','AOACFID7']:
+        for msid in aca_fid_set:
             if data[msid]['time'] > time:
                 time = data[msid]['time']
             string += data[msid]['value'][0] # First letter in string
         data['AOACFIDC'] = {'time': time, 'value': string}
-    except:
-        pass
 
     #Compute ACA Image
-    try:
+    aca_image_set = ['AOACFCT0', 'AOACFCT1','AOACFCT2','AOACFCT3','AOACFCT4','AOACFCT5','AOACFCT6','AOACFCT7']
+    if all(msid in data.keys() for msid in aca_image_set):
         string = ''
         time = 0
-        for msid in ['AOACFCT0', 'AOACFCT1','AOACFCT2','AOACFCT3','AOACFCT4','AOACFCT5','AOACFCT6','AOACFCT7']:
+        for msid in aca_image_set:
             if data[msid]['time'] > time:
                 time = data[msid]['time']
             string += data[msid]['value'][0] # First letter in string
         data['AOACFCTC'] = {'time': time, 'value': string}
-    except:
-        pass
 
     return data
 
