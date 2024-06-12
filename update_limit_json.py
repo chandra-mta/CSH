@@ -78,5 +78,5 @@ if __name__=="__main__":
         if not os.path.isfile(f"{HOUSE_KEEPING}/CSH_limit_table.json"):
             os.system(f"cp /data/mta4/Script/SOH/house_keeping/CSH_limit_table.json {HOUSE_KEEPING}/CSH_limit_table.json")
         update_limit_json()
-    if args.mode == 'test':
+    elif args.mode == 'flight':
         update_limit_json()
