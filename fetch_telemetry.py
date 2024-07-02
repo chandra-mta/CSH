@@ -12,7 +12,7 @@
 
 import os
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 import cxotime
 import maude
 import argparse
@@ -76,13 +76,10 @@ def get_blobs(stop = None):
 #--- If no time frame is passed, then pull current time and format into cxotime
 #
     if stop is None:
-        stop = datetime.utcnow()
-        start = stop - timedelta(seconds = FETCH_SECONDS)
-        stop = cxotime.CxoTime(stop.strftime("%Y:%j:%H:%M:%S")).secs
-        start = cxotime.CxoTime(start.strftime("%Y:%j:%H:%M:%S")).secs
+        stop = cxotime.CxoTime().secs
     else:
         stop = cxotime.CxoTime(stop).secs
-        start = stop - FETCH_SECONDS
+    start = stop - FETCH_SECONDS
 #
 #--- Fetch the blobs in question
 #
