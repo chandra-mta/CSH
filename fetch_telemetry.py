@@ -75,7 +75,7 @@ def get_blobs(stop = None):
 #
 #--- If no time frame is passed, then pull current time and format into cxotime
 #
-    if stop is not None:
+    if stop is None:
         stop = datetime.utcnow()
         start = stop - timedelta(seconds = FETCH_SECONDS)
         stop = cxotime.CxoTime(stop.strftime("%Y:%j:%H:%M:%S")).secs
