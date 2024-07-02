@@ -52,7 +52,7 @@ FETCH_KWARGS = {
     #"include_calcs": True, #include calc-type blobs in spacecraft blob queries
 }
 
-def fetch_telemetry(stop= None):
+def fetch_telemetry(stop = None):
     fetch_result = get_blobs(stop)
 #
 #--- If the fetch result contains no blobs, then we are out of comm. 
