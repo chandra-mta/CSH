@@ -20,7 +20,7 @@ def check_status(msid, val, ldict, vdict):
     check status of msid
     input:  msid    --- msid
             val     --- current value of msid
-            ldict   --- dictionary of limits for nemeric entry
+            ldict   --- dictionary of limits for numeric entry
             vdict   --- dictionary of msid <---> current value
     output: status  --- current status of msid
     """
@@ -56,15 +56,15 @@ def check_status(msid, val, ldict, vdict):
         return 'GREEN'
 
 #-------------------------------------------------------------------------------
-#-- check_status_numeric: check status of msid with nemeric value            --
+#-- check_status_numeric: check status of msid with numeric value            --
 #-------------------------------------------------------------------------------
 
 def check_status_numeric(msid, val, ldict):
     """
-    check status of msid with nemeric value
+    check status of msid with numeric value
     input:  msid    --- msid
             val     --- current value of msid
-            ldict   --- dictionary of limits for nemeric entry
+            ldict   --- dictionary of limits for numeric entry
     output: status  --- current status of msid
     """
     if msid in ldict.keys():
@@ -85,12 +85,12 @@ def check_status_numeric(msid, val, ldict):
         return "GREEN"
 
 #-------------------------------------------------------------------------------
-#-- check_status_letter: check status of msid with none nuemeric values       --
+#-- check_status_letter: check status of msid with none numeric values       --
 #-------------------------------------------------------------------------------
 
 def check_status_letter(msid, val, vdict):
     """
-    check status of msid with none nuemeric values
+    check status of msid with none numeric values
     input:  msid    --- msid
             val     --- current value of msid
             vdict   --- dictionary of msid <---> current value
