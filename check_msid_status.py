@@ -13,6 +13,7 @@
 #-------------------------------------------------------------------------------
 #-- check_status: check status of msid                                        --
 #-------------------------------------------------------------------------------
+import traceback
 
 def check_status(msid, val, ldict, vdict):
     """
@@ -43,7 +44,13 @@ def check_status(msid, val, ldict, vdict):
                   'COSCS129S','COSCS130S', 'COSCS131S','COSCS132S','COSCS133S',\
                   'COSCS107S','CORADMEN', 'CCSDSTMF', 'ACAFCT', 'AOFSTAR',\
                   '2SHLDART', 'PLINE03T', 'PLINE04T', 'AACCCDPT', '3LDRTNO']:
-        return check_status_letter(msid, val, vdict)
+        try:
+            return check_status_letter(msid, val, vdict)
+        except KeyError:
+            pass
+        except:
+            traceback.print_exc()
+
     
     else:
         return 'GREEN'
