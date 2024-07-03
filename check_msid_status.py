@@ -13,7 +13,6 @@
 #-------------------------------------------------------------------------------
 #-- check_status: check status of msid                                        --
 #-------------------------------------------------------------------------------
-import traceback
 
 def check_status(msid, val, ldict, vdict):
     """
@@ -25,45 +24,35 @@ def check_status(msid, val, ldict, vdict):
     output: status  --- current status of msid
     """
 #
-#--- the value is nemeric
+#--- If value is numeric, then convert
 #
     try:
         val = float(val)
-        try:
-            status = check_status_neumeric(msid, val, ldict)
-            return status
-        except:
-            return 'GREEN'
-#
-#--- the value is letters
-#
     except:
-        if val in ['NaN', 'nan', '']:
-            return 'CAUTION'
-
-        elif msid in ['AOCONLAW', 'AOCPESTL', '4OBAVTMF', '4OBTOORF', 'COSCS128S',\
-                    'COSCS129S','COSCS130S', 'COSCS131S','COSCS132S','COSCS133S',\
-                    'COSCS107S','CORADMEN', 'CCSDSTMF', 'ACAFCT', 'AOFSTAR',\
-                    '2SHLDART', 'PLINE03T', 'PLINE04T', 'AACCCDPT', '3LDRTNO']:
-            try:
-                status = check_status_letter(msid, val, vdict)
-                return status
-            except KeyError:
-                return 'GREEN'
-            except:
-                traceback.print_exc()
-                return 'GREEN'
-        else:
-            if val in ['ERR', 'FALT', 'FAIL']:
-                return "CAUTION"
-            else:
-                return 'GREEN'
+        pass
+#
+#--- Check value data types
+#
+    if isinstance(val, float):
+        return check_status_numeric(msid, val, ldict)
+    
+    elif val in ['ERR', 'FALT', 'FAIL', 'NaN', 'nan', '']:
+        return 'CAUTION'
+    
+    elif msid in ['AOCONLAW', 'AOCPESTL', '4OBAVTMF', '4OBTOORF', 'COSCS128S',\
+                  'COSCS129S','COSCS130S', 'COSCS131S','COSCS132S','COSCS133S',\
+                  'COSCS107S','CORADMEN', 'CCSDSTMF', 'ACAFCT', 'AOFSTAR',\
+                  '2SHLDART', 'PLINE03T', 'PLINE04T', 'AACCCDPT', '3LDRTNO']:
+        return check_status_letter(msid, val, vdict)
+    
+    else:
+        return 'GREEN'
 
 #-------------------------------------------------------------------------------
-#-- check_status_neumeric: check status of msid with nemeric value            --
+#-- check_status_numeric: check status of msid with nemeric value            --
 #-------------------------------------------------------------------------------
 
-def check_status_neumeric(msid, val, ldict):
+def check_status_numeric(msid, val, ldict):
     """
     check status of msid with nemeric value
     input:  msid    --- msid
@@ -71,36 +60,22 @@ def check_status_neumeric(msid, val, ldict):
             ldict   --- dictionary of limits for nemeric entry
     output: status  --- current status of msid
     """
-#
-#--- if no condition, return 'GREEN'
-#
-    try:
-        limit   = ldict[msid]
-    except:
-        return "GREEN"
-    
-    if (len(limit) == 0) or (limit == ['']):
-        return "GREEN"
+    if msid in ldict.keys():
 #
 #--- condition exists; check agaist the value
 #
+        limit   = ldict[msid]
+        if (val >= limit['warning_low']) and (val <= limit['warning_high']):
+            return "GREEN"
+        elif (val >= limit['caution_low']) and (val <= limit['caution_high']):
+            return "CAUTION"
+        else:
+            return "WARNING"
     else:
-        try:
-            nval = float(val)
-            ly   = float(limit['warning_low'])
-            uy   = float(limit['warning_high'])
-            lr   = float(limit['caution_low'])
-            ur   = float(limit['caution_high'])
-            if (nval >= ly) and (nval < uy):
-                return "GREEN"
-
-            elif (nval >= lr) and (nval < ur):
-                return "CAUTION"
-
-            else:
-                return "WARNING"
-        except:
-            return 'GREEN'
+#
+#--- if no condition, return 'GREEN'
+#
+        return "GREEN"
 
 #-------------------------------------------------------------------------------
 #-- check_status_letter: check status of msid with none nuemeric values       --
