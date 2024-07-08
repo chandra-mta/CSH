@@ -21,7 +21,6 @@ import astropy.units as u
 #
 #--- For Script Organization
 #
-import traceback
 import getpass
 import signal
 import platform
@@ -52,8 +51,13 @@ FETCH_KWARGS = {
     #"include_calcs": True, #include calc-type blobs in spacecraft blob queries
 }
 
+#
+#--- For selecting msid values from previous blobs for limit checking
+#
+COMP_LIM_SELECTION = ['COTLRDSF', 'COSCS128S', 'COSCS129S', 'COSCS130S', 'COTLRDSF', 'COBSRQID', '3TSCPOS', 'AOPCADMD', 'COBSRQID', 'CORADMEN']
+
 def fetch_telemetry(stop = None):
-    fetch_result = get_blobs(stop)
+    fetch_result, stop = get_blobs(stop)
 #
 #--- If the fetch result contains no blobs, then we are out of comm. 
 #
@@ -63,8 +67,29 @@ def fetch_telemetry(stop = None):
         unit_converted_data = unit_conversion(latest_data_points)
 
         pseudo_update_data = generate_psuedo_msids(unit_converted_data)
+#
+#--- Pull the last known values of other msids used in comparing limit values
+#
+        if os.path.isfile(f"{HOUSE_KEEPING}/comp_limit_values.json"):
+            with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
+                comp_lim_values = json.load(f)
+        else:
+            fetch_result = maude.get_msids(msids = COMP_LIM_SELECTION, stop = stop, nearest = True)
+            comp_lim_values = {}
+            for entry in fetch_result['data']:
+                comp_lim_values[entry['msid']] = str(entry['values'][-1])
+#
+#--- If the current blob update contains data from COMP_LIM_SELECTION, then update
+#
+        for msid in COMP_LIM_SELECTION:
+            x = pseudo_update_data.get(msid)
+            if x is not None:
+                comp_lim_values[msid] = str(x['value'])
+        
+        with open(f"{HOUSE_KEEPING}/comp_limit_values.json","w") as f:
+            json.dump(comp_lim_values,f,indent = 4)
 
-        limit_checked_data = check_limit_status(pseudo_update_data)
+        limit_checked_data = check_limit_status(pseudo_update_data, comp_lim_values)
 
         update_json_blobs(limit_checked_data)
 
@@ -85,7 +110,7 @@ def get_blobs(stop = None):
 #
     result = maude.get_blobs(start = start, stop = stop, **FETCH_KWARGS)
 
-    return result
+    return result, stop
 
 def keep_latest_data_point(fetch_result):
     """
@@ -186,12 +211,12 @@ def generate_psuedo_msids(data):
     return data
 
 
-def check_limit_status(data):
+def check_limit_status(data, comp_limit_values):
     """
     Include the limit status into the data structure
     """
     for msid, entry in data.items():
-        status = cms.check_status(msid, entry['value'], LIMIT_DICT, data)
+        status = cms.check_status(msid, entry['value'], LIMIT_DICT, comp_limit_values)
         data[msid]['scheck'] = status
     return data
 
@@ -215,19 +240,14 @@ def update_json_blobs(data):
 #
         for i in range(len(data_list)):
             msid = data_list[i]['msid']
-            try:
+            if msid in data.keys(): #msid in the blob list located in telemetry fetch
                 if data[msid]['time'] > data_list[i]['time']:
-    #
-    #--- Run the update
-    #
+#
+#--- Run the update
+#
                     data_list[i]['time'] = float(data[msid]['time'])
                     data_list[i]['value'] = str(data[msid]['value'])
                     data_list[i]['scheck'] = str(data[msid]['scheck'])
-            except KeyError:
-                #msid in the blob list not located in formatted data
-                pass
-            except not KeyError:
-                traceback.print_exc()
 #
 #--- Include a dummy time entry for the last updated time
 #--- Javascript built to read custom time format.
