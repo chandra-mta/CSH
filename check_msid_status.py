@@ -40,8 +40,7 @@ def check_status(msid, val, ldict, vdict):
 #
     elif msid in ['AOCONLAW', 'AOCPESTL', '4OBAVTMF', '4OBTOORF', 'COSCS128S',\
                   'COSCS129S','COSCS130S', 'COSCS131S','COSCS132S','COSCS133S',\
-                  'COSCS107S','CORADMEN', 'CCSDSTMF', 'ACAFCT', 'AOFSTAR',\
-                  '2SHLDART', 'PLINE03T', 'PLINE04T', 'AACCCDPT', '3LDRTNO']:
+                  'COSCS107S','CORADMEN', 'CCSDSTMF', 'ACAFCT', 'AOFSTAR', '2SHLDART']:
         return check_status_edge_case(msid, val, vdict)
 #
 #--- Numerical Violation
@@ -210,30 +209,6 @@ def check_status_edge_case(msid, val, vdict):
                     return 'CAUTION'
             else:
                 return 'GREEN'
-    
-    elif msid in ['PLINE03T', 'PLINE04T']:
-        if val >= 42.5:
-            return 'GREEN'
-        elif val < 40:
-            return 'WARNING'
-        elif val < 42.5:
-            return 'CAUION'
-    
-    elif msid == 'AACCCDPT':
-        if val >= 0:
-            return 'WARNING'
-        elif val > -17:
-            return 'CAUTION'
-        elif val < -21.5:
-            return 'CAUTION'
-        else:
-            return 'GREEN'
-        
-    elif msid == '3LDRTNO':
-        if val > 0:
-            return 'GREEN'
-        else:
-            return 'WARNING'
 
     else:
         return 'GREEN'
