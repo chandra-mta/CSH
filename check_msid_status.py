@@ -31,20 +31,26 @@ def check_status(msid, val, ldict, vdict):
     except:
         pass
 #
-#--- Check value data types
+#--- General Violation
 #
-    if isinstance(val, float):
-        return check_status_numeric(msid, val, ldict)
-    
-    elif val in ['ERR', 'FALT', 'FAIL', 'NaN', 'nan', '']:
+    if val in ['ERR', 'FALT', 'FAIL', 'NaN', 'nan', '']:
         return 'CAUTION'
-    
+#
+#--- Edge Case Violation
+#
     elif msid in ['AOCONLAW', 'AOCPESTL', '4OBAVTMF', '4OBTOORF', 'COSCS128S',\
                   'COSCS129S','COSCS130S', 'COSCS131S','COSCS132S','COSCS133S',\
                   'COSCS107S','CORADMEN', 'CCSDSTMF', 'ACAFCT', 'AOFSTAR',\
                   '2SHLDART', 'PLINE03T', 'PLINE04T', 'AACCCDPT', '3LDRTNO']:
-        return check_status_letter(msid, val, vdict)
-
+        return check_status_edge_case(msid, val, vdict)
+#
+#--- Numerical Violation
+#
+    elif isinstance(val, float):
+        return check_status_numeric(msid, val, ldict)
+#
+#--- Unchecked Instance
+#
     else:
         return 'GREEN'
 
@@ -78,10 +84,10 @@ def check_status_numeric(msid, val, ldict):
         return "GREEN"
 
 #-------------------------------------------------------------------------------
-#-- check_status_letter: check status of msid with none numeric values       --
+#-- check_status_edge_case: check status of msid with none numeric values       --
 #-------------------------------------------------------------------------------
 
-def check_status_letter(msid, val, vdict):
+def check_status_edge_case(msid, val, vdict):
     """
     check status of msid with none numeric values
     input:  msid    --- msid
