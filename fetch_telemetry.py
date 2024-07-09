@@ -43,7 +43,7 @@ import check_msid_status as cms
 #--- Defining Globals
 #
 BLOB_SECTIONS = ['ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal']
-FETCH_SECONDS = 120
+FETCH_SECONDS = 30
 FETCH_KWARGS = {
     "channel": "FLIGHT", # options (FLIGHT, FLTCOMP, ASVT, TEST)
     #"highrate": True, #High data rate
