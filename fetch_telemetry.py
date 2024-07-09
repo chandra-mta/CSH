@@ -24,8 +24,7 @@ import astropy.units as u
 import getpass
 import signal
 import platform
-#ADMIN = ['mtadude@cfa.harvard.edu']
-ADMIN = ['william.aaron@cfa.harvard.edu']
+ADMIN = ['mtadude@cfa.harvard.edu']
 
 #
 #--- Define Directory Pathing
@@ -137,32 +136,44 @@ def unit_conversion(data):
     If statement check since it's possible that one of the MSID's is not in this round of blob updates
     """
     update_msids = data.keys()
-
-    #Shield Rates
+#
+#--- Shield Rates
+#
     for msid in ['2DETART', '2SHLDART', '2SHLDBRT', '2DETBRT']:
         if msid in update_msids:
             data[msid]['value'] = f"{round((float(data[msid]['value']) / 256.0), 2)}"
-
-    #ACA Integration Time
+#
+#--- ACA Integration Time
+#
     if 'AOACINTT' in update_msids:
         data['AOACINTT']['value'] = f"{float(data['AOACINTT']['value']) / 1000}"
-    
-    #Momentum and Bias
+#
+#--- Momentum and Bias
+#
     for msid in ['AOGBIAS1', 'AOGBIAS2', 'AOGBIAS3', 'AORATE1', 'AORATE2', 'AORATE3']:
         if msid in update_msids:
-            data[msid]['value'] = (float(data[msid]['value']) * u.rad/u.s).to('arcsec/s').value #----arcsec/sec
-    
-    #Dither
+#
+#----arcsec/sec
+#
+            data[msid]['value'] = (float(data[msid]['value']) * u.rad/u.s).to('arcsec/s').value
+#    
+#--- Dither
+#
     for msid in ['AODITHR2', 'AODITHR3']:
         if msid in update_msids:
             data[msid]['value'] = f"{float(data[msid]['value']) * 3600.0}"
-
-    #AC CCD Temperature
+#
+#--- AC CCD Temperature
+#
     if 'AACCCDPT' in update_msids:
-        data['AACCCDPT']['value'] = f"{5.0 * (float(data['AACCCDPT']['value']) -32) / 9.0}" #---Convert F to C
-
-    #Battery SOC Range
-    for msid in ['EOCHRGB1', 'EOCHRGB2', 'EOCHRGB3']:      #--- percentage
+#
+#---Convert F to C
+#
+        data['AACCCDPT']['value'] = f"{5.0 * (float(data['AACCCDPT']['value']) -32) / 9.0}"
+#
+#--- Battery SOC Range
+#
+    for msid in ['EOCHRGB1', 'EOCHRGB2', 'EOCHRGB3']:
         if msid in update_msids:
             data[msid]['value'] = f"{float(data[msid]['value']) * 100.0}"
 
@@ -173,7 +184,9 @@ def generate_psuedo_msids(data):
     """
     Create psuedo MSIDs for display
     """
-    #Create "ACIS Stat7-0" msid
+#
+#--- Create "ACIS Stat7-0" msid
+#
     stat_set = ['1STAT7ST', '1STAT6ST', '1STAT5ST', '1STAT4ST', '1STAT3ST', '1STAT2ST', '1STAT1ST', '1STAT0ST']
     if all(msid in data.keys() for msid in stat_set):
         string = ''
@@ -186,8 +199,9 @@ def generate_psuedo_msids(data):
             else:
                 string += 'F'
         data['ACISSTAT'] = {'time': time, 'value': string}
-
-    #Compute ACA Fiducial
+#
+#--- Compute ACA Fiducial
+#
     aca_fid_set = ['AOACFID0', 'AOACFID1','AOACFID2','AOACFID3','AOACFID4','AOACFID5','AOACFID6','AOACFID7']
     if all(msid in data.keys() for msid in aca_fid_set):
         string = ''
@@ -195,10 +209,14 @@ def generate_psuedo_msids(data):
         for msid in aca_fid_set:
             if data[msid]['time'] > time:
                 time = data[msid]['time']
-            string += data[msid]['value'][0] # First letter in string
+#
+#--- First letter in string
+#
+            string += data[msid]['value'][0]
         data['AOACFIDC'] = {'time': time, 'value': string}
-
-    #Compute ACA Image
+#
+#--- Compute ACA Image
+#
     aca_image_set = ['AOACFCT0', 'AOACFCT1','AOACFCT2','AOACFCT3','AOACFCT4','AOACFCT5','AOACFCT6','AOACFCT7']
     if all(msid in data.keys() for msid in aca_image_set):
         string = ''
@@ -206,7 +224,10 @@ def generate_psuedo_msids(data):
         for msid in aca_image_set:
             if data[msid]['time'] > time:
                 time = data[msid]['time']
-            string += data[msid]['value'][0] # First letter in string
+#
+#--- First letter in string
+#
+            string += data[msid]['value'][0]
         data['AOACFCTC'] = {'time': time, 'value': string}
 
     return data
@@ -257,7 +278,7 @@ def update_json_blobs(data):
 #
         for i in range(len(data_list)):
             msid = data_list[i]['msid']
-            if msid in data.keys(): #msid in the blob list located in telemetry fetch
+            if msid in data.keys():
                 if data[msid]['time'] > data_list[i]['time']:
 #
 #--- Run the update
@@ -304,13 +325,12 @@ if __name__ == '__main__':
             HTML_DIR = f"{BIN_DIR}/test/outTest/CSH"
 
         for part in BLOB_SECTIONS:
-            #Copy blob from live running if not present in test case
+#
+#--- Copy blob from live running if not present in test case
+#
             if not os.path.isfile(f"{HTML_DIR}/blob_{part}.json"):
                 os.system(f"cp /data/mta4/www/CSH/blob_{part}.json {HTML_DIR}/blob_{part}.json")
-
         os.makedirs(HTML_DIR, exist_ok = True)
-        
-        #Run the script
         fetch_telemetry(stop = args.stop)
 
     elif args.mode == "flight":
@@ -322,22 +342,28 @@ if __name__ == '__main__':
         name = f"{os.path.basename(__file__).split('.')[0]}"
         user = getpass.getuser()
         if os.path.isfile(f"/tmp/{user}/{name}.lock"):
-            #Email alert if the script stalls out
+#
+#--- Email alert if the script stalls out
+#
             notification = f"Lock file exists as /tmp/{user}/{name}.lock. Process already running/errored out on {user}@{platform.node().split('.')[0]}.\n" 
             notification += f"Affects {HTML_DIR}. Check {BIN_DIR}/{name}.py. Killing old process.\n"
             notification += f'This message was send to {" ".join(ADMIN)}'
-            #os.system(f'echo "{notification}" | mailx -s "Stalled Script: {name}" {" ".join(ADMIN)}')
-            
-            #Kill old stalling process and remove corresponding lock file.
+            os.system(f'echo "{notification}" | mailx -s "Stalled Script: {name}" {" ".join(ADMIN)}')
+#
+#--- Kill old stalling process and remove corresponding lock file.
+#
             with open(f"/tmp/{user}/{name}.lock") as f:
                 pid = int(f.readlines()[-1].strip())
             os.remove(f"/tmp/{user}/{name}.lock")
             os.kill(pid,signal.SIGTERM)
-            
-            #Generate lock file for the current corresponding process
+#
+#--- Generate lock file for the current corresponding process
+#
             os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
         else:
-            #Previous script run must have completed successfully. Prepare lock file for this script run.
+#
+#--- Previous script run must have completed successfully. Prepare lock file for this script run.
+#
             os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
         fetch_telemetry(stop = args.stop)
 #
