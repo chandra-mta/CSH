@@ -24,7 +24,8 @@ import astropy.units as u
 import getpass
 import signal
 import platform
-ADMIN = ['mtadude@cfa.harvard.edu']
+#ADMIN = ['mtadude@cfa.harvard.edu']
+ADMIN = ['william.aaron@cfa.harvard.edu']
 
 #
 #--- Define Directory Pathing
@@ -225,8 +226,24 @@ def update_json_blobs(data):
     Iterate through blob_<part>.json updating each data value
     """
     for part in BLOB_SECTIONS:
-        with open(f"{HTML_DIR}/blob_{part}.json") as f:
-            data_list = json.load(f)
+#
+#--- If there is a file corruption of the JSON blob, then notify admin and pull the backup copy up.
+#
+        try:
+            with open(f"{HTML_DIR}/blob_{part}.json") as f:
+                data_list = json.load(f)
+        except:
+#
+#--- Copy from backup
+#
+            os.system(f"cp {HTML_DIR}/blob_{part}.json {HTML_DIR}/Backup/error_{part}")
+            os.system(f"cp {HTML_DIR}/Backup/blob_{part}.json {HTML_DIR}/blob_{part}.json")
+            with open(f"{HTML_DIR}/blob_{part}.json") as f:
+                data_list = json.load(f)
+#
+#--- Notify
+#           
+            os.system(f'cat {HTML_DIR}/Backup/error_{part} | mailx -s "Corrupted CSH File <html_dir>/Backup/error_{part}" {" ".join(ADMIN)}')
 #
 #--- Remove the dummy time entry
 #

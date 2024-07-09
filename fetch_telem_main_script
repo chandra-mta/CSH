@@ -12,3 +12,6 @@ sleep 7
 /data/mta4/Script/SOH/fetch_telemetry.py -m flight
 sleep 7
 /data/mta4/Script/SOH/fetch_telemetry.py -m flight
+
+#Copy blobs to a backup location
+cp -f /data/mta4/www/CSH/blob_*.json /data/mta4/www/CSH/Backup/
