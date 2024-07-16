@@ -69,15 +69,16 @@ def fetch_telemetry(stop = None):
         pseudo_update_data = generate_psuedo_msids(unit_converted_data)
 #
 #--- Pull the last known values of other msids used in comparing limit values
+#--- If there is a file corruption of the comparison values, then pull the backup copy.
 #
-        if os.path.isfile(f"{HOUSE_KEEPING}/comp_limit_values.json"):
+        try:
             with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
                 comp_lim_values = json.load(f)
-        else:
-            fetch_result = maude.get_msids(msids = COMP_LIM_SELECTION, stop = stop, nearest = True)
-            comp_lim_values = {}
-            for entry in fetch_result['data']:
-                comp_lim_values[entry['msid']] = str(entry['values'][-1])
+        except:
+            os.system(f"cp {HOUSE_KEEPING}/comp_limit_values.json~ {HOUSE_KEEPING}/comp_limit_values.json")
+            with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
+                comp_lim_values = json.load(f)
+
 #
 #--- If the current blob update contains data from COMP_LIM_SELECTION, then update
 #
@@ -122,7 +123,7 @@ def keep_latest_data_point(fetch_result):
     latest_data_points = {}
     for blob in fetch_result['blobs'][::-1]:
 #
-#--- for each time point, iterate over msid's recorded in this section
+#--- For each time point, iterate over msid's recorded in this section
 #
         for val in blob['values']:
             if val['n'] not in latest_data_points.keys():
@@ -331,6 +332,17 @@ if __name__ == '__main__':
             if not os.path.isfile(f"{HTML_DIR}/blob_{part}.json"):
                 os.system(f"cp /data/mta4/www/CSH/blob_{part}.json {HTML_DIR}/blob_{part}.json")
         os.makedirs(HTML_DIR, exist_ok = True)
+#
+#--- Setup comparison limit values if not present in test case
+#
+        if not os.path.isfile(f"{HOUSE_KEEPING}/comp_limit_values.json"):
+            fetch_result = maude.get_msids(msids = COMP_LIM_SELECTION, stop = args.stop, nearest = True)
+            comp_lim_values = {}
+            for entry in fetch_result['data']:
+                comp_lim_values[entry['msid']] = str(entry['values'][-1])
+            with open(f"{HOUSE_KEEPING}/comp_limit_values.json","w") as f:
+                json.dump(comp_lim_values,f,indent = 4)
+        
         fetch_telemetry(stop = args.stop)
 
     elif args.mode == "flight":

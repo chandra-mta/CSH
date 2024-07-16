@@ -13,5 +13,6 @@ sleep 7
 sleep 7
 /data/mta4/Script/SOH/fetch_telemetry.py -m flight
 
-#Copy blobs to a backup location
+#Copy blobs and comparison values to backup locations
 cp -f /data/mta4/www/CSH/blob_*.json /data/mta4/www/CSH/Backup/
+cp -f /data/mta4/Script/SOH/house_keeping/comp_limit_values.json /data/mta4/Script/SOH/house_keeping/comp_limit_values.json~
