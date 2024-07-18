@@ -117,13 +117,13 @@ def check_status_edge_case(msid, val, vdict):
     elif msid in ['COSCS128S', 'COSCS129S','COSCS130S']:
         tval = vdict['COTLRDSF']
         if tval == 'EPS':
-            csc128 = vdict['COSCS128S']
-            csc129 = vdict['COSCS129S']
-            csc130 = vdict['COSCS130S']
-            if (csc128 != 'ACT') and (csc129 != 'ACT') and (csc130 != 'ACT'):
+            scs128 = vdict['COSCS128S']
+            scs129 = vdict['COSCS129S']
+            scs130 = vdict['COSCS130S']
+            if (scs128 != 'ACT') and (scs129 != 'ACT') and (scs130 != 'ACT'):
                 return 'WARNING'
             elif( val != 'ACT'):
-                if ( (csc128 == 'ACT') or (csc129 == 'ACT') or (csc130 == 'ACT')):
+                if ( (scs128 == 'ACT') or (scs129 == 'ACT') or (scs130 == 'ACT')):
                     return 'CAUTION'
             else:
                 return 'GREEN'
