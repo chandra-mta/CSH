@@ -29,7 +29,7 @@ def find_comm_pass():
     """
     read comm pass form aspect site
     input:  none but read from http://cxc.harvard.edu/mta/ASPECT/arc/'
-    output: <house_keeping>/comm_list --- <start time>\t<start time in sec>\t<steop time in sec>
+    output: <house_keeping>/comm_list --- <start time>\t<start time in sec>\t<stop time in sec>
             <html_dir>/comm_list.html
     """
 #
