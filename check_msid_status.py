@@ -33,7 +33,7 @@ def check_status(msid, val, ldict, vdict):
 #
 #--- General Violation
 #
-    if val in ['ERR', 'FALT', 'FAIL', 'NaN', 'nan', '']:
+    if val in ['ERR', 'FAIL']:
         return 'CAUTION'
 #
 #--- Edge Case Violation
