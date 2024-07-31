@@ -1,0 +1,6 @@
+cd /data/mta4/Script/SOH/
+
+#Update the MSID descriptions with OCC data
+/data/mta4/Script/SOH/update_msididx.py -m flight
+#update the MSID limits with glimmon data
+/data/mta4/Script/SOH/update_limit_json.py -m flight
