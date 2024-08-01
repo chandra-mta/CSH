@@ -178,7 +178,7 @@ def check_status_edge_case(msid, val, vdict):
     
     elif msid == 'AOACFCTC':
         tval1 = vdict['AOPCADMD']
-        tval2 = vdict['COBSRQID']
+        tval2 = float(vdict['COBSRQID'])
         if tval1 == 'NPNT':
             if tval2 < 5500:
                 return 'WARNING'
