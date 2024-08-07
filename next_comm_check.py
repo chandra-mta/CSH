@@ -1,4 +1,4 @@
-#!/usr/bin/env /data/mta4/Script/Python3.8/envs/ska3-shiny/bin/python
+#!/proj/sot/ska3/flight/bin/python
 
 #########################################################################################
 #                                                                                       #
@@ -6,20 +6,18 @@
 #                                                                                       #
 #       author: t. isobe (tisobe@cfa.harvard.edu)                                       #
 #                                                                                       #
-#       last update: Mar 15, 2021                                                       #
+#       last update: Jun 05, 2024                                                       #
 #                                                                                       #
 #########################################################################################
-
 import os
-import sys
-import re
-import string
-import math
-import time
-import Chandra.Time
+from datetime import datetime
+from cxotime import CxoTime
+import argparse
 
 
-house_keeping = '/data/mta4/Script/SOH/house_keeping/'
+HOUSE_KEEPING = '/data/mta4/Script/SOH/house_keeping'
+HTML_DIR = "/data/mta4/www/CSH"
+OUT_HTML_DIR = HTML_DIR
 
 #-------------------------------------------------------------------
 #-- find_next_comm: create a display time span till the next comm --
@@ -28,82 +26,57 @@ house_keeping = '/data/mta4/Script/SOH/house_keeping/'
 def find_next_comm():
     """
     create a display time span till the next comm
-    input:  nont, but read from /data/mta4/www/CSH/comm_list.html
-    output: /data/mta4/www/CSH/ctest.xml
+    input:  none, but read from {HTML_DIR}/comm_list.html
+    output: {HTML_DIR}/ctest.xml
+            {HTML_DIR}/ncomm
     """
-    out = time.strftime('%Y:%j:%H:%M:%S', time.gmtime())
-    ctime = Chandra.Time.DateTime(out).secs
+    ctime = CxoTime(datetime.utcnow()).secs
     
-    with open('/data/mta4/www/CSH/comm_list.html', 'r') as f:
+    with open(f"{HTML_DIR}/comm_list.html") as f:
         data = [line.strip() for line in f.readlines()]
     
     pstop = 0.0
-    limte = 'n/a'
     for ent in data[11:]:
-        atemp = re.split('<td>', ent)
+        atemp = ent.split('<td>')
         start = atemp[1].replace('</td>','')
-        start = Chandra.Time.DateTime(start).secs
+        start = CxoTime(start).secs
         stop  = atemp[3].replace('</td></tr>','')
-        stop  = Chandra.Time.DateTime(stop).secs
+        stop  = CxoTime(stop).secs
     
         if (ctime > pstop) and (ctime < start):
             diff = start - ctime
-            ltime = 'Next Comm In: '   + convert_to_hour(diff)
-            write_to_hk(diff)
+            hour, remainder = divmod(int(diff),3600)
+            minute = minute = remainder//60
+            ltime = f"Next Comm In:  {hour:>02}:{minute:>02}"
+            with open(f"{HOUSE_KEEPING}/stime_to_comm", 'w') as fo:
+                fo.write(f"{diff:.1f}\n")
             break
         elif (ctime >= start) and (ctime <= stop):
             diff = stop - ctime
-            ltime = 'End of Comm In: ' + convert_to_hour(diff)
-            write_to_hk(0.0)
+            hour, remainder = divmod(int(diff),3600)
+            minute = minute = remainder//60
+            ltime = f"End of Comm In:  {hour:>02}:{minute:>02}"
+            with open(f"{HOUSE_KEEPING}/stime_to_comm", 'w') as fo:
+                fo.write(f"{0.0}\n")
             break
         else:
             pstop = stop
 
-    with open('/data/mta4/www/CSH/ctest.xml', 'w') as fo:
+    with open(f"{OUT_HTML_DIR}/ctest.xml", 'w') as fo:
         fo.write(f"<ncomm>\n{ltime}\n</ncomm>\n")
-    
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
 
-def convert_to_hour(stime):
-
-    hour = int(stime /3600)
-    diff = stime - hour * 3600
-    mm   = int(diff/60)
-
-    ltime = adjust_digit(hour) + ':' + adjust_digit(mm)
-
-    return ltime
-    
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-
-def adjust_digit(val):
-
-    val  = int(val)
-    sval = str(val)
-    if val < 10:
-        sval = '0' + sval
-
-    return sval
-
-    
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-
-def write_to_hk(diff):
-
-    line  = str(diff) + '\n'
-    ofile = house_keeping + 'stime_to_comm'
-    with open(ofile, 'w') as fo:
-        fo.write(line)
-    
-    
 #-------------------------------------------------------------------
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
+    args = parser.parse_args()
 
-    find_next_comm()
+    if args.mode == "test":
+        OUT_HTML_DIR = f"{os.getcwd()}/test/outTest"
+        HOUSE_KEEPING = OUT_HTML_DIR
+        os.makedirs(OUT_HTML_DIR, exist_ok = True)
+        find_next_comm()
+
+    elif args.mode == "flight":
+        find_next_comm()
