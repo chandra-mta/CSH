@@ -6,7 +6,7 @@
 #                                                                                   #
 #           author: t. isobe (tisobe@cfa.harvard.edu)                               #
 #                                                                                   #
-#           last update: Jun 05, 2024                                               #
+#           last update: Dec 09, 2024                                               #
 #                                                                                   #
 #####################################################################################
 
@@ -20,6 +20,7 @@ import argparse
 HOUSE_KEEPING = "/data/mta4/Script/SOH/house_keeping"
 HTML_DIR = "/data/mta4/www/CSH"
 ARC_DIR = "/data/mta4/www/ASPECT/arc"
+DISREGARD_PAST_COMMS = True
 
 #-------------------------------------------------------------------------------
 #-- find_comm_pass: read comm pass from aspect site                           --
@@ -66,8 +67,9 @@ def find_comm_pass():
             start = int(CxoTime(ctime).secs)
             stop  = start + dur
 
-            if stop < now:
-                continue
+            if DISREGARD_PAST_COMMS:
+                if stop < now:
+                    continue
 #
 #--- data table input
 #
@@ -98,11 +100,20 @@ def find_comm_pass():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
+    parser.add_argument("--arc_dir", required = False, help = f"Determine arc data location. (default={ARC_DIR})")
+    parser.add_argument("--html_dir", required = False, help = f"Determine web output location. (default={HTML_DIR})")
     args = parser.parse_args()
 
     if args.mode == "test":
-        HTML_DIR = f"{os.getcwd()}/test/outTest"
-        HOUSE_KEEPING = HTML_DIR
+        DISREGARD_PAST_COMMS = False
+        if args.arc_dir:
+            ARC_DIR = args.arc_dir
+        if args.html_dir:
+            HTML_DIR = args.html_dir
+        else:
+            HTML_DIR = f"{os.getcwd()}/test/outTest"
+        HOUSE_KEEPING = f"{os.getcwd()}/test/outTest"
+        os.makedirs(HOUSE_KEEPING, exist_ok = True)
         os.makedirs(HTML_DIR, exist_ok = True)
         find_comm_pass()
 
