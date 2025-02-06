@@ -12,7 +12,7 @@
 
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 import cxotime
 import maude
 import argparse
@@ -293,8 +293,8 @@ def update_json_blobs(data):
 #
         data_list.append({'msid': "LASTDCHECK", 
                           'index': "97989",
-                          'time': datetime.utcnow().strftime("%Y%j%H%M%S.000"),
-                          'value': datetime.utcnow().strftime("%Y-%m-%dT%H:%Mz"),
+                          'time': datetime.now(timezone.utc).strftime("%Y%j%H%M%S.000"),
+                          'value': datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%Mz"),
                           'f': "1"
                           })
         with open(f"{HTML_DIR}/blob_{part}.json", 'w') as f:
