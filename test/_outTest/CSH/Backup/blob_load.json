@@ -1,0 +1,289 @@
+[
+    {
+        "msid": "AOGBIAS1",
+        "index": "2477",
+        "time": 836918529.175,
+        "value": "1.5721982603769418",
+        "scheck": "WARNING",
+        "f": "1"
+    },
+    {
+        "msid": "AOTARQT1",
+        "index": "10216",
+        "time": 836918505.088,
+        "value": "-0.7271071770737763",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOTARQT2",
+        "index": "8498",
+        "time": 836918505.6,
+        "value": "0.6112726180690515",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOTARQT3",
+        "index": "9418",
+        "time": 836918506.113,
+        "value": "-0.06300549281786516",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOATTQT4",
+        "index": "1972",
+        "time": 836918529.175,
+        "value": "0.30611072766077996",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOSYMOM1",
+        "index": "7657",
+        "time": 836918523.794,
+        "value": "1.456754207611084",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOSYMOM2",
+        "index": "6299",
+        "time": 836918523.794,
+        "value": "-1.9695303440093994",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOSYMOM3",
+        "index": "7401",
+        "time": 836918523.794,
+        "value": "10.009027481079102",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "TCYLAFT6",
+        "index": "1017",
+        "time": 836918515.338,
+        "value": "126.3069",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "TCYLFMZM",
+        "index": "1534",
+        "time": 836918515.85,
+        "value": "83.19903076923077",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "TEPHIN",
+        "index": "981",
+        "time": 836918519.694,
+        "value": "132.03036",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "TFSSBKT1",
+        "index": "1470",
+        "time": 836918522.0,
+        "value": "99.95494",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "TMZP_MY",
+        "index": "1271",
+        "time": 836918523.794,
+        "value": "124.39908",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM1THV1T",
+        "index": "1093",
+        "time": 836918497.144,
+        "value": "134.07360228070175",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM2THV1T",
+        "index": "1016",
+        "time": 836918497.656,
+        "value": "-74.68091249999999",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PFTANK2T",
+        "index": "587",
+        "time": 836918513.031,
+        "value": "107.50165066666666",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMTANK3T",
+        "index": "1095",
+        "time": 836918499.963,
+        "value": "120.38488",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4RT700T",
+        "index": "637",
+        "time": 836918498.169,
+        "value": "91.50873188923438",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CCSDSVCD",
+        "index": "7",
+        "time": 836918529.175,
+        "value": "3651936",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOETIMEX",
+        "index": "3317",
+        "time": 836918528.919,
+        "value": "773846462.0058594",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "3TSCPOS",
+        "index": "8274",
+        "time": 836918512.519,
+        "value": "-99616.0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AODITHEN",
+        "index": "7282",
+        "time": 836918528.406,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOFATTMD",
+        "index": "2059",
+        "time": 836918528.406,
+        "value": "STDY",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOPCADMD",
+        "index": "2416",
+        "time": 836918528.406,
+        "value": "NPNT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOSARES1",
+        "index": "4874",
+        "time": 836918527.894,
+        "value": "173.17485",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOSARES2",
+        "index": "5529",
+        "time": 836918527.894,
+        "value": "172.91808",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "1PDEAAT",
+        "index": "8409",
+        "time": 836918504.063,
+        "value": "22.84144175100001",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "1PIN1AT",
+        "index": "7710",
+        "time": 836918520.975,
+        "value": "71.83977910375002",
+        "scheck": "WARNING",
+        "f": "1"
+    },
+    {
+        "msid": "1DPAMZT",
+        "index": "8178",
+        "time": 836918504.063,
+        "value": "27.956363636363637",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AACCCDPT",
+        "index": "817",
+        "time": 836918520.975,
+        "value": "-6.920061111111113",
+        "scheck": "WARNING",
+        "f": "1"
+    },
+    {
+        "msid": "COBSRQID",
+        "index": "3296",
+        "time": 836918528.15,
+        "value": "43319",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CCSDSTMF",
+        "index": "11",
+        "time": 836918529.175,
+        "value": "FMT2",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COTLRDSF",
+        "index": "31",
+        "time": 836918529.175,
+        "value": "NORM",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOACFIDC",
+        "index": "99999",
+        "time": 836918528.663,
+        "value": "SSSSSSSS",
+        "f": "1",
+        "scheck": "GREEN"
+    },
+    {
+        "msid": "AOACFCTC",
+        "index": "98989",
+        "time": 836918528.663,
+        "value": "TTTTTTTT",
+        "f": "1",
+        "scheck": "GREEN"
+    },
+    {
+        "msid": "LASTDCHECK",
+        "index": "97989",
+        "time": "2024191175127.000",
+        "value": "2024-07-09T17:51z",
+        "f": "1"
+    }
+]

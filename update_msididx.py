@@ -70,7 +70,7 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     if args.mode == "test":
-        HOUSE_KEEPING = f"{os.getcwd()}/test/outTest/"
+        HOUSE_KEEPING = f"{os.getcwd()}/test/_outTest"
         HTML_DIR = f"{HOUSE_KEEPING}/CSH"
         os.makedirs(HTML_DIR, exist_ok = True)
         update_msididx()

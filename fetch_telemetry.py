@@ -323,7 +323,7 @@ if __name__ == '__main__':
         if args.path:
             HTML_DIR = args.path
         else:
-            HTML_DIR = f"{BIN_DIR}/test/outTest/CSH"
+            HTML_DIR = f"{BIN_DIR}/test/_outTest/CSH"
 
         for part in BLOB_SECTIONS:
 #

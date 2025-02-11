@@ -74,7 +74,7 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     if args.mode == "test":
-        HOUSE_KEEPING = f"{os.getcwd()}/test/outTest"
+        HOUSE_KEEPING = f"{os.getcwd()}/test/_outTest"
         if not os.path.isfile(f"{HOUSE_KEEPING}/CSH_limit_table.json"):
             os.system(f"cp /data/mta4/Script/SOH/house_keeping/CSH_limit_table.json {HOUSE_KEEPING}/CSH_limit_table.json")
         update_limit_json()

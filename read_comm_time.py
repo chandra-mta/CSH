@@ -111,8 +111,8 @@ if __name__ == "__main__":
         if args.html_dir:
             HTML_DIR = args.html_dir
         else:
-            HTML_DIR = f"{os.getcwd()}/test/outTest"
-        HOUSE_KEEPING = f"{os.getcwd()}/test/outTest"
+            HTML_DIR = f"{os.getcwd()}/test/_outTest"
+        HOUSE_KEEPING = f"{os.getcwd()}/test/_outTest"
         os.makedirs(HOUSE_KEEPING, exist_ok = True)
         os.makedirs(HTML_DIR, exist_ok = True)
         find_comm_pass()

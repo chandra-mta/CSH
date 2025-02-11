@@ -74,7 +74,7 @@ if __name__ == '__main__':
 #--- Path output to same location as unit tests
 #
 		BIN_DIR = os.path.dirname(os.path.realpath(__file__))
-		OUT_DIR = f"{BIN_DIR}/test/outTest/plot_sections"
+		OUT_DIR = f"{BIN_DIR}/test/_outTest/plot_sections"
 
 		if args.path:
 			OUT_DIR = args.path

@@ -1,0 +1,4257 @@
+[
+    {
+        "msid": "AOGBIAS1",
+        "index": "2477",
+        "time": 836427285.182,
+        "value": "1.5653113961448157",
+        "scheck": "WARNING",
+        "f": "1"
+    },
+    {
+        "msid": "C1SQOBBP",
+        "index": "3537",
+        "time": 836427284.157,
+        "value": "NCMP",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "C2SQOBBP",
+        "index": "3571",
+        "time": 836427282.107,
+        "value": "NCMP",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CIUA",
+        "index": "289",
+        "time": 836427285.438,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CIUCALIN",
+        "index": "307",
+        "time": 836427285.438,
+        "value": "ONLN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CIUCBLIN",
+        "index": "304",
+        "time": 836427256.225,
+        "value": "OFLN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CCSDSTMF",
+        "index": "11",
+        "time": 836427285.438,
+        "value": "FMT2",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "C1SQAPPP",
+        "index": "3515",
+        "time": 836427284.157,
+        "value": "PAS1",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "C2SQAPPP",
+        "index": "3547",
+        "time": 836427282.107,
+        "value": "PAS1",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CIUB",
+        "index": "309",
+        "time": 836427256.225,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUTMPPR",
+        "index": "1027",
+        "time": 836427258.275,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUTMPRD",
+        "index": "1407",
+        "time": 836427255.2,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PVDETMA1",
+        "index": "3520",
+        "time": 836427284.157,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PVDETMB1",
+        "index": "3464",
+        "time": 836427284.669,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ACPEA1X",
+        "index": "3637",
+        "time": 836427284.157,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "61PSTS02",
+        "index": "1586",
+        "time": 832684917.184,
+        "value": "NaN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "64PSTS01",
+        "index": "1639",
+        "time": 832684917.184,
+        "value": "NaN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ACPEAHB",
+        "index": "161",
+        "time": 836427285.182,
+        "value": "1",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ACPEB1X",
+        "index": "3493",
+        "time": 836427284.669,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIOESWD4",
+        "index": "171",
+        "time": 836427259.557,
+        "value": "NORM",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "6RATE1",
+        "index": "1863",
+        "time": 832684917.184,
+        "value": "NaN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "6RATE2",
+        "index": "1880",
+        "time": 832684917.184,
+        "value": "NaN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "6RATE3",
+        "index": "1717",
+        "time": 832684917.184,
+        "value": "NaN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "6SAEST1",
+        "index": "1695",
+        "time": 832684917.184,
+        "value": "NaN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "6SAEST2",
+        "index": "1855",
+        "time": 832684917.184,
+        "value": "NaN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "6SUNACA3",
+        "index": "1821",
+        "time": 832684917.184,
+        "value": "NaN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CIUBCBRH",
+        "index": "288",
+        "time": 836427256.225,
+        "value": "HALT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CIUCBLIN",
+        "index": "304",
+        "time": 836427256.225,
+        "value": "OFLN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CONLOFP",
+        "index": "181",
+        "time": 836427285.182,
+        "value": "NRML",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CCTXA",
+        "index": "848",
+        "time": 836427252.894,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CCTXB",
+        "index": "1447",
+        "time": 836427256.482,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CEPTLMB",
+        "index": "1497",
+        "time": 836427280.825,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CPCTLMB",
+        "index": "1478",
+        "time": 836427261.35,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUEPA",
+        "index": "1081",
+        "time": 836427252.894,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUEPB",
+        "index": "641",
+        "time": 836427256.482,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUPCA",
+        "index": "1064",
+        "time": 836427252.894,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUPCB",
+        "index": "581",
+        "time": 836427256.482,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUTMRQB",
+        "index": "1193",
+        "time": 836427256.482,
+        "value": "A",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUTMRYB",
+        "index": "1044",
+        "time": 836427256.482,
+        "value": "A",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AG1SELA",
+        "index": "1024",
+        "time": 836427261.094,
+        "value": "NO",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AG2SELA",
+        "index": "1561",
+        "time": 836427261.094,
+        "value": "NO",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU1",
+        "index": "732",
+        "time": 836427258.532,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU1G1I",
+        "index": "257",
+        "time": 836427284.157,
+        "value": "9.6",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU1G2I",
+        "index": "255",
+        "time": 836427284.413,
+        "value": "9.6",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2",
+        "index": "1291",
+        "time": 836427261.35,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2R1X",
+        "index": "747",
+        "time": 836427262.119,
+        "value": "LOW",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2R1Y",
+        "index": "1448",
+        "time": 836427262.119,
+        "value": "LOW",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2R2X",
+        "index": "1112",
+        "time": 836427262.119,
+        "value": "LOW",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AVDEAX",
+        "index": "1270",
+        "time": 836427263.657,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUTMRYB",
+        "index": "1044",
+        "time": 836427256.482,
+        "value": "A",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PF1MV1C1",
+        "index": "3424",
+        "time": 836427285.182,
+        "value": "OPEN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ACPEB1X",
+        "index": "3493",
+        "time": 836427284.669,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ACPEB2X",
+        "index": "3459",
+        "time": 836427282.619,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ADEAPWR",
+        "index": "1267",
+        "time": 836427258.532,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ADEBPWR",
+        "index": "1253",
+        "time": 836427260.838,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AFSSAA",
+        "index": "1404",
+        "time": 836427261.094,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AFSSAB",
+        "index": "281",
+        "time": 836427261.607,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AG3SELA",
+        "index": "1515",
+        "time": 836427258.532,
+        "value": "YES",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AG4SELA",
+        "index": "1269",
+        "time": 836427258.532,
+        "value": "YES",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIOEA",
+        "index": "1450",
+        "time": 836427258.532,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIOEB",
+        "index": "279",
+        "time": 836427261.607,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2G1I",
+        "index": "256",
+        "time": 836427284.669,
+        "value": "96.0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2G2I",
+        "index": "258",
+        "time": 836427284.925,
+        "value": "110.39999999999999",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2R2Y",
+        "index": "779",
+        "time": 836427262.119,
+        "value": "LOW",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ASPEAX",
+        "index": "1162",
+        "time": 836427263.657,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AVDEBX",
+        "index": "1244",
+        "time": 836427260.325,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CTUFMTSL",
+        "index": "843",
+        "time": 836427273.138,
+        "value": "FMT2",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OACBATH",
+        "index": "7933",
+        "time": 836427256.482,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OACHRMH",
+        "index": "7827",
+        "time": 836427256.482,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OACOBAH",
+        "index": "7756",
+        "time": 836427256.482,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OOTGDAS",
+        "index": "7979",
+        "time": 836427256.482,
+        "value": "SEC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OOTGMEF",
+        "index": "7868",
+        "time": 836427256.482,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OPPMEN",
+        "index": "7937",
+        "time": 836427256.482,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OTCPEN",
+        "index": "7749",
+        "time": 836427256.482,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COTHEMEN",
+        "index": "187",
+        "time": 836427284.669,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COTLRDSF",
+        "index": "31",
+        "time": 836427285.438,
+        "value": "SSR",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EGCTTEL1",
+        "index": "3194",
+        "time": 836427283.644,
+        "value": "NORM",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EGCTTEL3",
+        "index": "3217",
+        "time": 836427283.644,
+        "value": "AHR",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ACPEA1X",
+        "index": "3637",
+        "time": 836427284.157,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ACPEB1X",
+        "index": "3493",
+        "time": 836427284.669,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU1R1X",
+        "index": "1154",
+        "time": 836427264.938,
+        "value": "HIGH",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU1R1Y",
+        "index": "1472",
+        "time": 836427264.938,
+        "value": "HIGH",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU1R2X",
+        "index": "1065",
+        "time": 836427264.938,
+        "value": "HIGH",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU1R2Y",
+        "index": "1508",
+        "time": 836427264.938,
+        "value": "HIGH",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2R1X",
+        "index": "747",
+        "time": 836427262.119,
+        "value": "LOW",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2R1Y",
+        "index": "1448",
+        "time": 836427262.119,
+        "value": "LOW",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2R2X",
+        "index": "1112",
+        "time": 836427262.119,
+        "value": "LOW",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AIRU2R2Y",
+        "index": "779",
+        "time": 836427262.119,
+        "value": "LOW",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "C1SQAX",
+        "index": "3568",
+        "time": 836427284.157,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "C1SQBX",
+        "index": "3380",
+        "time": 836427284.669,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "C2SQAX",
+        "index": "3489",
+        "time": 836427282.107,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "C2SQBX",
+        "index": "3521",
+        "time": 836427282.619,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOSAILLM",
+        "index": "2806",
+        "time": 836427285.438,
+        "value": "ILLM",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB1CI",
+        "index": "318",
+        "time": 836427280.057,
+        "value": "0.22",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB1DI",
+        "index": "325",
+        "time": 836427280.313,
+        "value": "0.015",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB1UV",
+        "index": "400",
+        "time": 836427272.369,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB1V",
+        "index": "328",
+        "time": 836427280.569,
+        "value": "32.195474000000004",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB2CI",
+        "index": "332",
+        "time": 836427280.825,
+        "value": "0.26",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB2DI",
+        "index": "322",
+        "time": 836427281.082,
+        "value": "0.015",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB2UV",
+        "index": "320",
+        "time": 836427282.363,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB2V",
+        "index": "331",
+        "time": 836427281.338,
+        "value": "32.33365200000001",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB3CI",
+        "index": "317",
+        "time": 836427281.594,
+        "value": "0.259808",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB3DI",
+        "index": "399",
+        "time": 836427271.6,
+        "value": "0.015",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB3UV",
+        "index": "387",
+        "time": 836427272.113,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EB3V",
+        "index": "390",
+        "time": 836427271.857,
+        "value": "32.05729600000001",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ELBI_LOW",
+        "index": "61",
+        "time": 836427285.438,
+        "value": "24.428138",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ELBV",
+        "index": "67",
+        "time": 836427285.438,
+        "value": "27.263364",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "EPSTATE",
+        "index": "3320",
+        "time": 836427284.669,
+        "value": "SUN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ESAMYI",
+        "index": "165",
+        "time": 836427283.132,
+        "value": "11.983987692307693",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "ESAPYI",
+        "index": "163",
+        "time": 836427283.388,
+        "value": "12.36953",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OACHRMH",
+        "index": "7827",
+        "time": 836427256.482,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OACOBAH",
+        "index": "7756",
+        "time": 836427256.482,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OCDIPSL",
+        "index": "7816",
+        "time": 836427256.482,
+        "value": "IP_1",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OTCDBSL",
+        "index": "7751",
+        "time": 836427256.482,
+        "value": "PRI",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4OTCPEN",
+        "index": "7749",
+        "time": 836427256.482,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CIUCBLIN",
+        "index": "304",
+        "time": 836427256.225,
+        "value": "OFLN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4HEXRAX",
+        "index": "1215",
+        "time": 836427259.3,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4HEXRBX",
+        "index": "852",
+        "time": 836427255.969,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4LEXRAX",
+        "index": "610",
+        "time": 836427259.3,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4LEXRBX",
+        "index": "1086",
+        "time": 836427255.969,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4M28IRAX",
+        "index": "659",
+        "time": 836427259.044,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4M28IRBX",
+        "index": "622",
+        "time": 836427255.713,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4M5IRAX",
+        "index": "734",
+        "time": 836427259.044,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "4M5IRBX",
+        "index": "1075",
+        "time": 836427255.713,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "3SMOTPEN",
+        "index": "8279",
+        "time": 836427270.575,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "3SMOTSEL",
+        "index": "8307",
+        "time": 836427270.575,
+        "value": "FA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "3TSCPOS",
+        "index": "8274",
+        "time": 836427267.5,
+        "value": "75623.0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "1CBAT",
+        "index": "8365",
+        "time": 836427283.132,
+        "value": "-64.82573354399999",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "1DPICACU",
+        "index": "8290",
+        "time": 836427259.3,
+        "value": "1.1716",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "1DPICBCU",
+        "index": "8169",
+        "time": 836427256.225,
+        "value": "0.9493999999999999",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2IMBPAST",
+        "index": "8152",
+        "time": 836427259.557,
+        "value": "0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2IMTPAST",
+        "index": "8064",
+        "time": 836427259.557,
+        "value": "0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2MCNAAMD",
+        "index": "8095",
+        "time": 836427259.557,
+        "value": "CMD",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2S1HVST",
+        "index": "8087",
+        "time": 836427260.069,
+        "value": "0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2S1ONST",
+        "index": "8070",
+        "time": 836427260.069,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2S2HVST",
+        "index": "8143",
+        "time": 836427260.069,
+        "value": "0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2S2ONST",
+        "index": "8093",
+        "time": 836427260.069,
+        "value": "OFF",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2SCTHAST",
+        "index": "8063",
+        "time": 836427259.557,
+        "value": "48198",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2SPBPAST",
+        "index": "8060",
+        "time": 836427259.557,
+        "value": "0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "2SPTPAST",
+        "index": "8111",
+        "time": 836427259.557,
+        "value": "0",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CORADMEN",
+        "index": "182",
+        "time": 836427284.669,
+        "value": "ENAB",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS107S",
+        "index": "6693",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS120S",
+        "index": "6289",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS128S",
+        "index": "6747",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS129S",
+        "index": "7491",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS130S",
+        "index": "6776",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS131S",
+        "index": "6611",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS132S",
+        "index": "6071",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS133S",
+        "index": "7554",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS134S",
+        "index": "6754",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS135S",
+        "index": "6968",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS136S",
+        "index": "7524",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS137S",
+        "index": "6758",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS138S",
+        "index": "5928",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS139S",
+        "index": "6547",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS140S",
+        "index": "6643",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS141S",
+        "index": "5875",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS142S",
+        "index": "7086",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS143S",
+        "index": "7299",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS144S",
+        "index": "7038",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS145S",
+        "index": "5728",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS146S",
+        "index": "6112",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS147S",
+        "index": "6852",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS148S",
+        "index": "6300",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS149S",
+        "index": "7367",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS150S",
+        "index": "6737",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS151S",
+        "index": "6074",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS152S",
+        "index": "5825",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS153S",
+        "index": "6894",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS154S",
+        "index": "7273",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS155S",
+        "index": "7102",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS156S",
+        "index": "7381",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS157S",
+        "index": "6318",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS158S",
+        "index": "7502",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS159S",
+        "index": "7031",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS160S",
+        "index": "5906",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS161S",
+        "index": "6938",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS162S",
+        "index": "6142",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS163S",
+        "index": "5857",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS164S",
+        "index": "6860",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS165S",
+        "index": "6673",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS166S",
+        "index": "6553",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS167S",
+        "index": "6929",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS168S",
+        "index": "6214",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS169S",
+        "index": "7342",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS170S",
+        "index": "7576",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS171S",
+        "index": "6401",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS172S",
+        "index": "6468",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS173S",
+        "index": "6311",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS174S",
+        "index": "6196",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS175S",
+        "index": "5872",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS176S",
+        "index": "6107",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS177S",
+        "index": "7174",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS178S",
+        "index": "7179",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS179S",
+        "index": "6180",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS180S",
+        "index": "5713",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS181S",
+        "index": "5873",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS182S",
+        "index": "7449",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS183S",
+        "index": "6438",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS184S",
+        "index": "6934",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS185S",
+        "index": "7290",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS186S",
+        "index": "6664",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS187S",
+        "index": "7588",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS188S",
+        "index": "6211",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS189S",
+        "index": "7536",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS190S",
+        "index": "7619",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS191S",
+        "index": "6160",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS192S",
+        "index": "6104",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS193S",
+        "index": "7241",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS194S",
+        "index": "7538",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS195S",
+        "index": "5869",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS196S",
+        "index": "7608",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS197S",
+        "index": "6854",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS198S",
+        "index": "6243",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS199S",
+        "index": "6089",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS200S",
+        "index": "6618",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS201S",
+        "index": "7569",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS202S",
+        "index": "5849",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS203S",
+        "index": "6527",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS204S",
+        "index": "7012",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS205S",
+        "index": "5832",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS206S",
+        "index": "6829",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS207S",
+        "index": "6530",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS208S",
+        "index": "5979",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS209S",
+        "index": "7515",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS210S",
+        "index": "7056",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS211S",
+        "index": "6974",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS212S",
+        "index": "7423",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS213S",
+        "index": "6179",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS214S",
+        "index": "7088",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS215S",
+        "index": "6933",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS216S",
+        "index": "6398",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS217S",
+        "index": "5856",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS218S",
+        "index": "6069",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS219S",
+        "index": "6499",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS220S",
+        "index": "7433",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS221S",
+        "index": "6549",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS222S",
+        "index": "6634",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS223S",
+        "index": "6381",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS224S",
+        "index": "6838",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS225S",
+        "index": "6714",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS226S",
+        "index": "6248",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS227S",
+        "index": "7171",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS228S",
+        "index": "6896",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS229S",
+        "index": "6213",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS230S",
+        "index": "5789",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS231S",
+        "index": "6608",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS232S",
+        "index": "5976",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS233S",
+        "index": "7448",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS234S",
+        "index": "6154",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS235S",
+        "index": "5777",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS236S",
+        "index": "7135",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS237S",
+        "index": "7635",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS238S",
+        "index": "7221",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS239S",
+        "index": "6989",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS240S",
+        "index": "6268",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS241S",
+        "index": "6451",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS242S",
+        "index": "6809",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS243S",
+        "index": "7044",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS244S",
+        "index": "7648",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS245S",
+        "index": "7033",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS246S",
+        "index": "6878",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS247S",
+        "index": "7305",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS248S",
+        "index": "6402",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS249S",
+        "index": "6739",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS250S",
+        "index": "6001",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS251S",
+        "index": "7018",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS252S",
+        "index": "7332",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS253S",
+        "index": "6003",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS254S",
+        "index": "5966",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS255S",
+        "index": "7069",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOPCADMD",
+        "index": "2416",
+        "time": 836427285.438,
+        "value": "NPNT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CCSDSVCD",
+        "index": "7",
+        "time": 836427285.438,
+        "value": "1734885",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COBSRQID",
+        "index": "3296",
+        "time": 836427285.182,
+        "value": "29471",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS001S",
+        "index": "6579",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS002S",
+        "index": "5783",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS003S",
+        "index": "6959",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS004S",
+        "index": "6236",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS005S",
+        "index": "7026",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS006S",
+        "index": "6648",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS007S",
+        "index": "6200",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS008S",
+        "index": "6157",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS009S",
+        "index": "5987",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS010S",
+        "index": "5968",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS011S",
+        "index": "6205",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS012S",
+        "index": "6115",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS013S",
+        "index": "6217",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS014S",
+        "index": "7064",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS015S",
+        "index": "6238",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS016S",
+        "index": "7246",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS017S",
+        "index": "7447",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS018S",
+        "index": "7249",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS019S",
+        "index": "6827",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS020S",
+        "index": "6581",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS021S",
+        "index": "7306",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS022S",
+        "index": "6717",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS023S",
+        "index": "6416",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS024S",
+        "index": "6914",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS025S",
+        "index": "6859",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS026S",
+        "index": "6678",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS027S",
+        "index": "5755",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS028S",
+        "index": "7251",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS029S",
+        "index": "6460",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS030S",
+        "index": "7372",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS031S",
+        "index": "6700",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS032S",
+        "index": "7681",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS033S",
+        "index": "7149",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS034S",
+        "index": "6665",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS035S",
+        "index": "6707",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS036S",
+        "index": "6847",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS037S",
+        "index": "6378",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS038S",
+        "index": "6135",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS039S",
+        "index": "5850",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS040S",
+        "index": "6590",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS041S",
+        "index": "6811",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS042S",
+        "index": "7138",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS043S",
+        "index": "7141",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS044S",
+        "index": "6209",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS045S",
+        "index": "5718",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS046S",
+        "index": "5759",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS047S",
+        "index": "6882",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS048S",
+        "index": "6383",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS049S",
+        "index": "5778",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS050S",
+        "index": "5963",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS051S",
+        "index": "6905",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS052S",
+        "index": "6863",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS053S",
+        "index": "6835",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS054S",
+        "index": "6883",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS055S",
+        "index": "6656",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS056S",
+        "index": "6019",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS057S",
+        "index": "6472",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS058S",
+        "index": "7641",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS059S",
+        "index": "7429",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS060S",
+        "index": "7311",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS061S",
+        "index": "5841",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS062S",
+        "index": "6018",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS063S",
+        "index": "7467",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS064S",
+        "index": "6694",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS065S",
+        "index": "6782",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS066S",
+        "index": "6334",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS067S",
+        "index": "6796",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS068S",
+        "index": "6910",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS069S",
+        "index": "6725",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS070S",
+        "index": "6270",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS071S",
+        "index": "5812",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS072S",
+        "index": "6093",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS073S",
+        "index": "6637",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS074S",
+        "index": "6964",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS075S",
+        "index": "7025",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS076S",
+        "index": "6689",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS077S",
+        "index": "7260",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS078S",
+        "index": "7652",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS079S",
+        "index": "7099",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS080S",
+        "index": "6020",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS081S",
+        "index": "6414",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS082S",
+        "index": "6892",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS083S",
+        "index": "6686",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS084S",
+        "index": "6795",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS085S",
+        "index": "7157",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS086S",
+        "index": "6163",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS087S",
+        "index": "7127",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS088S",
+        "index": "5702",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS089S",
+        "index": "7283",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS090S",
+        "index": "6763",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS091S",
+        "index": "6528",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS092S",
+        "index": "7168",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS093S",
+        "index": "6612",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS094S",
+        "index": "7321",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS095S",
+        "index": "6408",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS096S",
+        "index": "6197",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS097S",
+        "index": "7590",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS098S",
+        "index": "5834",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS099S",
+        "index": "7411",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS100S",
+        "index": "6711",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS101S",
+        "index": "6702",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS102S",
+        "index": "6400",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS103S",
+        "index": "7017",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS104S",
+        "index": "6555",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS105S",
+        "index": "7129",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS106S",
+        "index": "7380",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS107S",
+        "index": "6693",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS108S",
+        "index": "6716",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS109S",
+        "index": "6131",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS110S",
+        "index": "6428",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS111S",
+        "index": "5844",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS112S",
+        "index": "6064",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS113S",
+        "index": "7352",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS114S",
+        "index": "6188",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS115S",
+        "index": "6483",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS116S",
+        "index": "7313",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS117S",
+        "index": "7230",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS118S",
+        "index": "6903",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS119S",
+        "index": "7403",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS120S",
+        "index": "6289",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS121S",
+        "index": "6872",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS122S",
+        "index": "7673",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS123S",
+        "index": "6323",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS124S",
+        "index": "6026",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS125S",
+        "index": "7476",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS126S",
+        "index": "6164",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS127S",
+        "index": "7654",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS128S",
+        "index": "6747",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS129S",
+        "index": "7491",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS130S",
+        "index": "6776",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS131S",
+        "index": "6611",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS132S",
+        "index": "6071",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS133S",
+        "index": "7554",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS134S",
+        "index": "6754",
+        "time": 832684917.184,
+        "value": "INAC",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS135S",
+        "index": "6968",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS136S",
+        "index": "7524",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS137S",
+        "index": "6758",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS138S",
+        "index": "5928",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS139S",
+        "index": "6547",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS140S",
+        "index": "6643",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS141S",
+        "index": "5875",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS142S",
+        "index": "7086",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS143S",
+        "index": "7299",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS144S",
+        "index": "7038",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS145S",
+        "index": "5728",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS146S",
+        "index": "6112",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS147S",
+        "index": "6852",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS148S",
+        "index": "6300",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS149S",
+        "index": "7367",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS150S",
+        "index": "6737",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS151S",
+        "index": "6074",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS152S",
+        "index": "5825",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS153S",
+        "index": "6894",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS154S",
+        "index": "7273",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS155S",
+        "index": "7102",
+        "time": 832684917.184,
+        "value": "ACT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS156S",
+        "index": "7381",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS157S",
+        "index": "6318",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS158S",
+        "index": "7502",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS159S",
+        "index": "7031",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS160S",
+        "index": "5906",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS161S",
+        "index": "6938",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS162S",
+        "index": "6142",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS163S",
+        "index": "5857",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS164S",
+        "index": "6860",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS165S",
+        "index": "6673",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS166S",
+        "index": "6553",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS167S",
+        "index": "6929",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS168S",
+        "index": "6214",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS169S",
+        "index": "7342",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS170S",
+        "index": "7576",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS171S",
+        "index": "6401",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS172S",
+        "index": "6468",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS173S",
+        "index": "6311",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS174S",
+        "index": "6196",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS175S",
+        "index": "5872",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS176S",
+        "index": "6107",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS177S",
+        "index": "7174",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS178S",
+        "index": "7179",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS179S",
+        "index": "6180",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS180S",
+        "index": "5713",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS181S",
+        "index": "5873",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS182S",
+        "index": "7449",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS183S",
+        "index": "6438",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS184S",
+        "index": "6934",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS185S",
+        "index": "7290",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS186S",
+        "index": "6664",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS187S",
+        "index": "7588",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS188S",
+        "index": "6211",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS189S",
+        "index": "7536",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS190S",
+        "index": "7619",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS191S",
+        "index": "6160",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS192S",
+        "index": "6104",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS193S",
+        "index": "7241",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS194S",
+        "index": "7538",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS195S",
+        "index": "5869",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS196S",
+        "index": "7608",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS197S",
+        "index": "6854",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS198S",
+        "index": "6243",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS199S",
+        "index": "6089",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS200S",
+        "index": "6618",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS201S",
+        "index": "7569",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS202S",
+        "index": "5849",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS203S",
+        "index": "6527",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS204S",
+        "index": "7012",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS205S",
+        "index": "5832",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS206S",
+        "index": "6829",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS207S",
+        "index": "6530",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS208S",
+        "index": "5979",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS209S",
+        "index": "7515",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS210S",
+        "index": "7056",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS211S",
+        "index": "6974",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS212S",
+        "index": "7423",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS213S",
+        "index": "6179",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS214S",
+        "index": "7088",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS215S",
+        "index": "6933",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS216S",
+        "index": "6398",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS217S",
+        "index": "5856",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS218S",
+        "index": "6069",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS219S",
+        "index": "6499",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS220S",
+        "index": "7433",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS221S",
+        "index": "6549",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS222S",
+        "index": "6634",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS223S",
+        "index": "6381",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS224S",
+        "index": "6838",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS225S",
+        "index": "6714",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS226S",
+        "index": "6248",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS227S",
+        "index": "7171",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS228S",
+        "index": "6896",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS229S",
+        "index": "6213",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS230S",
+        "index": "5789",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS231S",
+        "index": "6608",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS232S",
+        "index": "5976",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS233S",
+        "index": "7448",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS234S",
+        "index": "6154",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS235S",
+        "index": "5777",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS236S",
+        "index": "7135",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS237S",
+        "index": "7635",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS238S",
+        "index": "7221",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS239S",
+        "index": "6989",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS240S",
+        "index": "6268",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS241S",
+        "index": "6451",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS242S",
+        "index": "6809",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS243S",
+        "index": "7044",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS244S",
+        "index": "7648",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS245S",
+        "index": "7033",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS246S",
+        "index": "6878",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS247S",
+        "index": "7305",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS248S",
+        "index": "6402",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS249S",
+        "index": "6739",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS250S",
+        "index": "6001",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS251S",
+        "index": "7018",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS252S",
+        "index": "7332",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS253S",
+        "index": "6003",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS254S",
+        "index": "5966",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COSCS255S",
+        "index": "7069",
+        "time": 832684917.184,
+        "value": "DISA",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOACFIDC",
+        "index": "99999",
+        "time": 836427284.669,
+        "value": "FFFSSSSS",
+        "f": "1",
+        "scheck": "GREEN"
+    },
+    {
+        "msid": "AOACFCTC",
+        "index": "98989",
+        "time": 836427284.669,
+        "value": "TTTTTTTT",
+        "f": "1",
+        "scheck": "GREEN"
+    },
+    {
+        "msid": "LASTDCHECK",
+        "index": "97989",
+        "time": "2024185205338.000",
+        "value": "2024-07-03T20:53z",
+        "f": "1"
+    }
+]

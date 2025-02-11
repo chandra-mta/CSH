@@ -4,8 +4,8 @@
 <head>
     <title>SOH Plots</title>
     <!--Ensure used of current package version is hosted on CDN, otherwise update-->
-    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-3.0.3.min.css" type="text/css" />
-    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-3.0.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-3.6.2.min.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-3.6.2.min.js"></script>
 
 	<script src="../js_snap/lib/jquery-2.2.0.js"></script>
 	

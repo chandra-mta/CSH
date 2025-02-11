@@ -1,0 +1,425 @@
+[
+    {
+        "msid": "AOGBIAS1",
+        "index": "2477",
+        "time": 855237548.698,
+        "value": "1.7294608021942566",
+        "scheck": "WARNING",
+        "f": "1"
+    },
+    {
+        "msid": "PF1MV1C1",
+        "index": "3424",
+        "time": 855237548.698,
+        "value": "OPEN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PF1MV1C2",
+        "index": "3573",
+        "time": 855237546.648,
+        "value": "OPEN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PF1MV2C1",
+        "index": "3356",
+        "time": 855237548.954,
+        "value": "OPEN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PF1MV2C2",
+        "index": "3643",
+        "time": 855237546.904,
+        "value": "OPEN",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM1THV1T",
+        "index": "1093",
+        "time": 855237527.941,
+        "value": "192.79829333333333",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM1THV2T",
+        "index": "1352",
+        "time": 855237528.198,
+        "value": "194.16030666666666",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM2THV1T",
+        "index": "1016",
+        "time": 855237528.454,
+        "value": "173.28113",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM2THV2T",
+        "index": "1236",
+        "time": 855237528.71,
+        "value": "176.60881999999998",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM3THV1T",
+        "index": "1545",
+        "time": 855237528.966,
+        "value": "85.65725",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM3THV2T",
+        "index": "1200",
+        "time": 855237529.223,
+        "value": "83.656895",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM4THV1T",
+        "index": "1449",
+        "time": 855237529.479,
+        "value": "91.70929403508772",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PM4THV2T",
+        "index": "833",
+        "time": 855237529.735,
+        "value": "85.65725",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMCBHTP1",
+        "index": "3589",
+        "time": 855237547.673,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMCBHTP2",
+        "index": "3419",
+        "time": 855237545.623,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMCBHTR1",
+        "index": "3449",
+        "time": 855237548.185,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMCBHTR2",
+        "index": "3563",
+        "time": 855237546.135,
+        "value": "ON",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMFP01T",
+        "index": "348",
+        "time": 855237529.991,
+        "value": "113.4716",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMTANK1T",
+        "index": "1039",
+        "time": 855237530.248,
+        "value": "122.68278",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMTANK2T",
+        "index": "1060",
+        "time": 855237530.504,
+        "value": "122.68278",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMTANK3T",
+        "index": "1095",
+        "time": 855237530.76,
+        "value": "123.83173",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PMTANKP",
+        "index": "365",
+        "time": 855237531.016,
+        "value": "137.34286666666668",
+        "scheck": "WARNING",
+        "f": "1"
+    },
+    {
+        "msid": "PFDM101T",
+        "index": "839",
+        "time": 855237542.291,
+        "value": "58.76018947368421",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PFDM102T",
+        "index": "942",
+        "time": 855237542.548,
+        "value": "54.32312631578947",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PFDM201T",
+        "index": "777",
+        "time": 855237542.804,
+        "value": "61.18646842105263",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PFDM202T",
+        "index": "1465",
+        "time": 855237543.06,
+        "value": "59.4997",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PFFP01T",
+        "index": "360",
+        "time": 855237543.316,
+        "value": "101.95186666666666",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PFTANK1T",
+        "index": "1180",
+        "time": 855237543.573,
+        "value": "111.37093",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PFTANK2T",
+        "index": "587",
+        "time": 855237543.829,
+        "value": "113.37403",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE01T",
+        "index": "869",
+        "time": 855237523.841,
+        "value": "74.68061578947369",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE02T",
+        "index": "663",
+        "time": 855237524.098,
+        "value": "158.72688888888888",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE03T",
+        "index": "1184",
+        "time": 855237524.354,
+        "value": "142.92074000000002",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE04T",
+        "index": "1032",
+        "time": 855237524.61,
+        "value": "119.9232",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE05T",
+        "index": "370",
+        "time": 855237524.866,
+        "value": "125.34586",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE06T",
+        "index": "347",
+        "time": 855237525.123,
+        "value": "108.63289999999999",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE07T",
+        "index": "349",
+        "time": 855237525.379,
+        "value": "104.48593333333334",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE08T",
+        "index": "1210",
+        "time": 855237525.635,
+        "value": "62.02985263157895",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE09T",
+        "index": "1049",
+        "time": 855237525.891,
+        "value": "86.724475",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE10T",
+        "index": "1031",
+        "time": 855237526.148,
+        "value": "85.70625",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE11T",
+        "index": "1087",
+        "time": 855237526.404,
+        "value": "76.542225",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE12T",
+        "index": "1405",
+        "time": 855237526.66,
+        "value": "72.99384736842106",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE13T",
+        "index": "805",
+        "time": 855237526.916,
+        "value": "56.54165789473684",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE14T",
+        "index": "344",
+        "time": 855237527.173,
+        "value": "67.09015789473685",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE15T",
+        "index": "351",
+        "time": 855237527.429,
+        "value": "67.09015789473685",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "PLINE16T",
+        "index": "363",
+        "time": 855237527.685,
+        "value": "103.21889999999999",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOPCADMD",
+        "index": "2416",
+        "time": 855237548.954,
+        "value": "NPNT",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CCSDSVCD",
+        "index": "7",
+        "time": 855237548.954,
+        "value": "8031925",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COBSRQID",
+        "index": "3296",
+        "time": 855237548.698,
+        "value": "30766",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "CCSDSTMF",
+        "index": "11",
+        "time": 855237548.954,
+        "value": "FMT2",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "COTLRDSF",
+        "index": "31",
+        "time": 855237548.954,
+        "value": "EPS",
+        "scheck": "GREEN",
+        "f": "1"
+    },
+    {
+        "msid": "AOACFIDC",
+        "index": "99999",
+        "time": 855237548.185,
+        "value": "FFFSSSSS",
+        "f": "1",
+        "scheck": "GREEN"
+    },
+    {
+        "msid": "AOACFCTC",
+        "index": "98989",
+        "time": 855237548.185,
+        "value": "TTTTTTTT",
+        "f": "1",
+        "scheck": "CAUTION"
+    },
+    {
+        "msid": "LASTDCHECK",
+        "index": "97989",
+        "time": "2025037193903.000",
+        "value": "2025-02-06T19:39z",
+        "f": "1"
+    }
+]

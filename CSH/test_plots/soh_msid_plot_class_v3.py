@@ -359,7 +359,7 @@ class soh_plots:
 				low_box = BoxAnnotation(left = self.tme(comm.start).timestamp() * 1000, right = self.tme(comm.stop).timestamp() * 1000, fill_alpha = 0.1, fill_color = "#99FF99")
 				p.add_layout(low_box)
 
-			d = p.circle(x = 'utc_times', y = 'msid_values', source = source,
+			d = p.scatter(x = 'utc_times', y = 'msid_values', source = source,
 						 color = {'field': 'label', 'transform': color_mapper}, 
 						 line_color = None, size = 2, legend_group = 'label')
 

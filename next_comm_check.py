@@ -10,7 +10,7 @@
 #                                                                                       #
 #########################################################################################
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from cxotime import CxoTime
 import argparse
 
@@ -30,7 +30,7 @@ def find_next_comm():
     output: {HTML_DIR}/ctest.xml
             {HTML_DIR}/ncomm
     """
-    ctime = CxoTime(datetime.utcnow()).secs
+    ctime = CxoTime(datetime.now(timezone.utc)).secs
     
     with open(f"{HTML_DIR}/comm_list.html") as f:
         data = [line.strip() for line in f.readlines()]

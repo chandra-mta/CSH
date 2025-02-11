@@ -1,0 +1,1007 @@
+[
+  {
+    "msid": "CONLOFP",
+    "index": "181",
+    "time": "2024136204254.879",
+    "value": "NRML",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOCPESTL",
+    "index": "7118",
+    "time": "2024136204254.879",
+    "value": "NORM",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "OFLVCDCT",
+    "index": "1950",
+    "time": "2024136204254.879",
+    "value": "1988232",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COERRCN",
+    "index": "4744",
+    "time": "2024136204254.879",
+    "value": "0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COBSRQID",
+    "index": "3296",
+    "time": "2024136204254.879",
+    "value": "27217",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "EPSTATE",
+    "index": "3320",
+    "time": "2024136204254.879",
+    "value": "SUN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOFSTAR",
+    "index": "2618",
+    "time": "2024136204254.879",
+    "value": "GUID",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "3TSCPOS",
+    "index": "8274",
+    "time": "2024136204254.879",
+    "value": "75624.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "3FAPOS",
+    "index": "8159",
+    "time": "2024136204254.879",
+    "value": "-467.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "4HPOSARO",
+    "index": "936",
+    "time": "2024136204254.879",
+    "value": "77.9625",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "4LPOSBRO",
+    "index": "352",
+    "time": "2024136204254.879",
+    "value": "76.0875",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOPCADMD",
+    "index": "2416",
+    "time": "2024136204254.879",
+    "value": "NPNT",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOCONLAW",
+    "index": "2003",
+    "time": "2024136204254.879",
+    "value": "NPNT",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "ELBV",
+    "index": "67",
+    "time": "2024136204254.879",
+    "value": "27.733421999999997",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "ELBI_LOW",
+    "index": "61",
+    "time": "2024136204254.879",
+    "value": "21.340690000000002",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AODITHEN",
+    "index": "7282",
+    "time": "2024136204254.879",
+    "value": "ENAB",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AODITHR3",
+    "index": "6546",
+    "time": "2024136204254.879",
+    "value": "-0.068",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AODITHR2",
+    "index": "7091",
+    "time": "2024136204254.879",
+    "value": "0.130",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2IMONST",
+    "index": "8094",
+    "time": "2024136204254.879",
+    "value": "OFF",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2SPONST",
+    "index": "8057",
+    "time": "2024136204254.879",
+    "value": "OFF",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2S2HVST",
+    "index": "8143",
+    "time": "2024136204254.879",
+    "value": "0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2DETART",
+    "index": "7001",
+    "time": "2024136204254.879",
+    "value": "3.0 ",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2SHLDART",
+    "index": "7460",
+    "time": "2024136204254.879",
+    "value": "3.0 ",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1WRAT",
+    "index": "7703",
+    "time": "2024136204254.879",
+    "value": "-77.108138129",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1CRAT",
+    "index": "8509",
+    "time": "2024136204254.879",
+    "value": "-120.748553831",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CORADMEN",
+    "index": "182",
+    "time": "2024136204254.879",
+    "value": "ENAB",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2DETBRT",
+    "index": "6330",
+    "time": "2024136204254.879",
+    "value": "12.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2SHLDBRT",
+    "index": "6297",
+    "time": "2024136204254.879",
+    "value": "18.9 ",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1WRBT",
+    "index": "99998",
+    "time": "2024136204254.879",
+    "value": "-77.108138129",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1STAT7ST",
+    "index": "458",
+    "time": "2024136204254.879",
+    "value": "0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1STAT6ST",
+    "index": "1283",
+    "time": "2024136204254.879",
+    "value": "1",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1STAT5ST",
+    "index": "822",
+    "time": "2024136204254.879",
+    "value": "1",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1STAT4ST",
+    "index": "1199",
+    "time": "2024136204254.879",
+    "value": "0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1STAT3ST",
+    "index": "1048",
+    "time": "2024136204254.879",
+    "value": "0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1STAT2ST",
+    "index": "785",
+    "time": "2024136204254.879",
+    "value": "1",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1STAT1ST",
+    "index": "1201",
+    "time": "2024136204254.879",
+    "value": "0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "1STAT0ST",
+    "index": "1488",
+    "time": "2024136204254.879",
+    "value": "0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2N15VBVL",
+    "index": "99997",
+    "time": "2024136204254.879",
+    "value": "0.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2P05VBVL",
+    "index": "99996",
+    "time": "2024136204254.879",
+    "value": "0.7812501960784314",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2P15VBVL",
+    "index": "99995",
+    "time": "2024136204254.879",
+    "value": "0.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2P24VBVL",
+    "index": "99994",
+    "time": "2024136204254.879",
+    "value": "0.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2N15VAVL",
+    "index": "99993",
+    "time": "2024136204254.879",
+    "value": "-0.6250001568627451",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2P05VAVL",
+    "index": "99992",
+    "time": "2024136204254.879",
+    "value": "4.843751215686274",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2P15VAVL",
+    "index": "99991",
+    "time": "2024136204254.879",
+    "value": "2.812500705882353",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2P24VAVL",
+    "index": "99990",
+    "time": "2024136204254.879",
+    "value": "0.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2PRBSCR",
+    "index": "99989",
+    "time": "2024136204254.879",
+    "value": "8.741",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AACCCDPT",
+    "index": "817",
+    "time": "2024136204254.879",
+    "value": "-6.183",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACINTT",
+    "index": "2878",
+    "time": "2024136204254.879",
+    "value": "1.6977",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACSTAT",
+    "index": "2595",
+    "time": "2024136204254.879",
+    "value": "OK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFID0",
+    "index": "2229",
+    "time": "2024136204254.879",
+    "value": "FID",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFID1",
+    "index": "2596",
+    "time": "2024136204254.879",
+    "value": "FID",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFID2",
+    "index": "2052",
+    "time": "2024136204254.879",
+    "value": "FID",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFID3",
+    "index": "2442",
+    "time": "2024136204254.879",
+    "value": "STAR",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFID4",
+    "index": "2516",
+    "time": "2024136204254.879",
+    "value": "STAR",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFID5",
+    "index": "2899",
+    "time": "2024136204254.879",
+    "value": "STAR",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFID6",
+    "index": "2386",
+    "time": "2024136204254.879",
+    "value": "STAR",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFID7",
+    "index": "2763",
+    "time": "2024136204254.879",
+    "value": "STAR",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCT0",
+    "index": "2073",
+    "time": "2024136204254.879",
+    "value": "TRAK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCT1",
+    "index": "2823",
+    "time": "2024136204254.879",
+    "value": "TRAK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCT2",
+    "index": "2449",
+    "time": "2024136204254.879",
+    "value": "TRAK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCT3",
+    "index": "2652",
+    "time": "2024136204254.879",
+    "value": "TRAK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCT4",
+    "index": "2282",
+    "time": "2024136204254.879",
+    "value": "TRAK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCT5",
+    "index": "3157",
+    "time": "2024136204254.879",
+    "value": "TRAK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCT6",
+    "index": "2770",
+    "time": "2024136204254.879",
+    "value": "TRAK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCT7",
+    "index": "2743",
+    "time": "2024136204254.879",
+    "value": "TRAK",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOBETSUN",
+    "index": "4882",
+    "time": "2024136204254.879",
+    "value": "SUN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOALPANG",
+    "index": "5603",
+    "time": "2024136204254.879",
+    "value": "15.74185310510919",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOBETANG",
+    "index": "5214",
+    "time": "2024136204254.879",
+    "value": "-4.924788328330139",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOSAILLM",
+    "index": "2806",
+    "time": "2024136204254.879",
+    "value": "ILLM",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOSARES1",
+    "index": "4470",
+    "time": "2024136204254.879",
+    "value": "94.82157",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "EOCHRGB1",
+    "index": "3295",
+    "time": "2024136204254.879",
+    "value": "100",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "EOCHRGB2",
+    "index": "3197",
+    "time": "2024136204254.879",
+    "value": "100",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "EOCHRGB3",
+    "index": "3231",
+    "time": "2024136204254.879",
+    "value": "100",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "4OAVHRMT",
+    "index": "7768",
+    "time": "2024136204254.879",
+    "value": "74.21642",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "4OAVOBAT",
+    "index": "7991",
+    "time": "2024136204254.879",
+    "value": "83.37717478260869",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "4OBTOORF",
+    "index": "8010",
+    "time": "2024136204254.879",
+    "value": "NFLT",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "OHRMAPWR",
+    "index": "4712",
+    "time": "2024136204254.879",
+    "value": "64.5",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "OOBAPWR",
+    "index": "4804",
+    "time": "2024136204254.879",
+    "value": "0.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "ESAPYI",
+    "index": "163",
+    "time": "2024136204254.879",
+    "value": "10.634645",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "ESAMYI",
+    "index": "165",
+    "time": "2024136204254.879",
+    "value": "10.44186153846154",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "TSAPYT",
+    "index": "647",
+    "time": "2024136204254.879",
+    "value": "107.10566666666666",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "TSAMYT",
+    "index": "1040",
+    "time": "2024136204254.879",
+    "value": "106.57300000000001",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COSCS128S",
+    "index": "6747",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COSCS129S",
+    "index": "7491",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COSCS130S",
+    "index": "6776",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COSCS131S",
+    "index": "6611",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COSCS132S",
+    "index": "6071",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COSCS133S",
+    "index": "7554",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COSCS107S",
+    "index": "6693",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AORATE1",
+    "index": "2315",
+    "time": "2024136204254.879",
+    "value": "-0.389",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AORATE2",
+    "index": "3003",
+    "time": "2024136204254.879",
+    "value": "0.263",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AORATE3",
+    "index": "2164",
+    "time": "2024136204254.879",
+    "value": "0.199",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOSYMOM1",
+    "index": "7657",
+    "time": "2024136204254.879",
+    "value": "13.503437042236328",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOSYMOM2",
+    "index": "6299",
+    "time": "2024136204254.879",
+    "value": "8.879243850708008",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOSYMOM3",
+    "index": "7401",
+    "time": "2024136204254.879",
+    "value": "1.0996730327606201",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOGBIAS1",
+    "index": "2477",
+    "time": "2024136204254.879",
+    "value": "1.529",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOGBIAS2",
+    "index": "2501",
+    "time": "2024136204254.879",
+    "value": "-3.645",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOGBIAS3",
+    "index": "3160",
+    "time": "2024136204254.879",
+    "value": "-1.760",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "3TSCMOVE",
+    "index": "8370",
+    "time": "2024136204254.879",
+    "value": "STOP",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "3FAMOVE",
+    "index": "8238",
+    "time": "2024136204254.879",
+    "value": "STOP",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "4OOTGMEF",
+    "index": "7868",
+    "time": "2024136204254.879",
+    "value": "DISA",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "5EHSE400",
+    "index": "8515",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "5EHSE500",
+    "index": "10163",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "TEPHIN",
+    "index": "981",
+    "time": "2024136204254.879",
+    "value": "158.47",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "5HSE202",
+    "index": "8918",
+    "time": "2024136204254.879",
+    "value": "NaN",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CULACC",
+    "index": "34",
+    "time": "2024136204254.879",
+    "value": "9467",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CMRJCNTA",
+    "index": "155",
+    "time": "2024136204254.879",
+    "value": "183",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "PMTANKP",
+    "index": "365",
+    "time": "2024136204254.879",
+    "value": "138.9415556862745",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AOUNLOAD",
+    "index": "2032",
+    "time": "2024136204254.879",
+    "value": "MON",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AIRU2G1I",
+    "index": "256",
+    "time": "2024136204254.879",
+    "value": "98.39999999999999",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AIRU1G2I",
+    "index": "255",
+    "time": "2024136204254.879",
+    "value": "9.6",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "AIRU2G2I",
+    "index": "13898",
+    "time": "2024136204254.879",
+    "value": "112.8",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "PLINE03T",
+    "index": "1184",
+    "time": "2024136204254.879",
+    "value": "131.93644",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "PLINE04T",
+    "index": "1032",
+    "time": "2024136204254.879",
+    "value": "119.9232",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CTXAV",
+    "index": "78",
+    "time": "2024136204254.879",
+    "value": "0.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CTXAPWR",
+    "index": "75",
+    "time": "2024136204254.879",
+    "value": "0.0",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CTXBV",
+    "index": "77",
+    "time": "2024136204254.879",
+    "value": "3.54",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CTXBPWR",
+    "index": "76",
+    "time": "2024136204254.879",
+    "value": "36.9558975",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CCSDSVCD",
+    "index": "7",
+    "time": "2024136204254.879",
+    "value": "1988233",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "COTLRDSF",
+    "index": "31",
+    "time": "2024136204254.879",
+    "value": "NORM",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "CCSDSTMF",
+    "index": "11",
+    "time": "2024136204254.879",
+    "value": "FMT2",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "2CEAHVPT",
+    "index": "99988",
+    "time": "2024136204254.879",
+    "value": "4.310132456799994",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "ACISSTAT",
+    "index": "97995",
+    "time": "2024136204254.879",
+    "value": "FTTFFTFF",
+    "scheck": "GREEN",
+    "f": "1"
+  },
+  {
+    "msid": "LASTDCHECK",
+    "index": "97989",
+    "time": "2024137185431.000",
+    "value": "2024-05-16T18:54z",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFIDC",
+    "index": 99999,
+    "time": "2024136204254.879",
+    "value": "FFFSSSSS",
+    "f": "1"
+  },
+  {
+    "msid": "AOACFCTC",
+    "index": 98989,
+    "time": "2024136204254.879",
+    "value": "TTTTTTTT",
+    "f": "1"
+  }
+]
