@@ -1,16 +1,13 @@
 #!/proj/sot/ska3/flight/bin/python
+"""
+**fetch_telemetry.py**: extract maude blobs from occ and categorize
 
-#####################################################################################
-#                                                                                   #
-#           fetch_telemetry: extract maude blobs for specific part from occ         #
-#                                                                                   #
-#           author: w. aaron ( william.aaron@cfa.harvad.edu)                        #
-#                                                                                   #
-#           last update: May 17, 2024                                               #
-#                                                                                   #
-#####################################################################################
+:Author: W. Aaron (william.aaron@cfa.harvad.edu)
+:Last Updated: Mar 15, 2025
 
+"""
 import os
+from subprocess import PIPE, Popen
 import sys
 from datetime import datetime, timezone
 import cxotime
@@ -18,6 +15,8 @@ import maude
 import argparse
 import json
 import astropy.units as u
+import traceback
+from email.mime.text import MIMEText
 #
 #--- For Script Organization
 #
@@ -74,7 +73,7 @@ def fetch_telemetry(stop = None):
         try:
             with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
                 comp_lim_values = json.load(f)
-        except:
+        except json.JSONDecodeError:
             os.system(f"cp {HOUSE_KEEPING}/comp_limit_values.json~ {HOUSE_KEEPING}/comp_limit_values.json")
             with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
                 comp_lim_values = json.load(f)
@@ -254,7 +253,7 @@ def update_json_blobs(data):
         try:
             with open(f"{HTML_DIR}/blob_{part}.json") as f:
                 data_list = json.load(f)
-        except:
+        except json.JSONDecodeError:
 #
 #--- Copy from backup
 #
@@ -265,7 +264,11 @@ def update_json_blobs(data):
 #
 #--- Notify
 #           
-            os.system(f'cat {HTML_DIR}/Backup/error_{part} | mailx -s "Corrupted CSH File <html_dir>/Backup/error_{part}" {" ".join(ADMIN)}')
+            msg = MIMEText(f"CSH Json file corruption. Please check {HTML_DIR}/Backup/error_{part}.")
+            msg["Subject"] = f"Corrupted CSH File <html_dir>/Backup/error_{part}"
+            msg['TO'] = ",".join(ADMIN)
+            p = Popen(["/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
+            (out, error) = p.communicate(msg.as_bytes())
 #
 #--- Remove the dummy time entry
 #
@@ -360,7 +363,12 @@ if __name__ == '__main__':
             notification = f"Lock file exists as /tmp/{user}/{name}.lock. Process already running/errored out on {user}@{platform.node().split('.')[0]}.\n" 
             notification += f"Affects {HTML_DIR}. Check {BIN_DIR}/{name}.py. Killing old process.\n"
             notification += f'This message was send to {" ".join(ADMIN)}'
-            os.system(f'echo "{notification}" | mailx -s "Stalled Script: {name}" {" ".join(ADMIN)}')
+
+            msg = MIMEText(notification)
+            msg["Subject"] = f"Stalled Script: {name}"
+            msg['TO'] = ",".join(ADMIN)
+            p = Popen(["/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
+            (out, error) = p.communicate(msg.as_bytes())
 #
 #--- Kill old stalling process and remove corresponding lock file.
 #
@@ -377,7 +385,10 @@ if __name__ == '__main__':
 #--- Previous script run must have completed successfully. Prepare lock file for this script run.
 #
             os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
-        fetch_telemetry(stop = args.stop)
+        try:
+            fetch_telemetry(stop = args.stop)
+        except:
+            traceback.print_exc()
 #
 #--- Remove lock file once process is completed
 #
