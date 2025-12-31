@@ -73,7 +73,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.mode == "test":
-        OUT_HTML_DIR = f"{os.getcwd()}/test/outTest"
+        OUT_HTML_DIR = f"{os.getcwd()}/test/_outTest"
         HOUSE_KEEPING = OUT_HTML_DIR
         os.makedirs(OUT_HTML_DIR, exist_ok = True)
         find_next_comm()
