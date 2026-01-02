@@ -13,3 +13,37 @@
 # ]
 # ///
 """
+import sys
+import os
+import json
+import argparse
+
+import msid_plotting
+
+#
+#--- Define Directory Pathing
+#
+BIN_DIR = "/data/mta4/Script/SOH"
+HTML_DIR = "/data/mta4/www/CSH"
+HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
+
+def get_options(args=None):
+    parser = argparse.ArgumentParser(description="Plot Maude CSH MSIDs")
+    parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
+    opt = parser.parse_args(args)
+    return opt
+
+def main(sys_args=None):
+    opt = get_options()
+    
+    if opt.mode == 'test':
+        HOUSE_KEEPING = f"{os.getcwd()}/house_keeping"
+        HTML_DIR = f"{os.getcwd()}/test/_outTest"
+        os.makedirs(HTML_DIR, exist_ok = True)
+
+    with open(f"{HOUSE_KEEPING}/plot_configurations.json") as f:
+        plot_configurations = json.load(f)
+    
+
+if __name__ == "__main__":
+    main()
