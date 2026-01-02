@@ -1,6 +1,7 @@
 # MTA
 _outTest/
 _example/
+.vscode/
 house_keeping/comp_limit_values.json
 
 # Byte-compiled / optimized / DLL files
