@@ -27,18 +27,20 @@ import msid_plotting
 BIN_DIR = "/data/mta4/Script/SOH"
 PLOT_DIR = "/data/mta4/www/CSH/Plots"
 HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
+PLOT_CONFIG_FILE = f"{HOUSE_KEEPING}/plot_configurations.json"
 NOW = CxoTime()
 BIN_SIZE = 300
 
 def get_options(args=None):
     parser = argparse.ArgumentParser(description="Plot Maude CSH MSIDs")
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
+    parser.add_argument("--config", required = False, help="Pass alternative plot configuration JSON file.")
     opt = parser.parse_args(args)
     return opt
 
 def main():
 
-    with open(f"{HOUSE_KEEPING}/plot_configurations.json") as f:
+    with open(PLOT_CONFIG_FILE) as f:
         plot_configurations = json.load(f)
     
     stop = NOW
@@ -84,4 +86,6 @@ if __name__ == "__main__":
         HOUSE_KEEPING = f"{os.getcwd()}/house_keeping"
         PLOT_DIR = f"{os.getcwd()}/test/_outTest"
         os.makedirs(PLOT_DIR, exist_ok = True)
+    if opt.config is not None:
+        PLOT_CONFIG_FILE = opt.config
     main()
