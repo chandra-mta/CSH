@@ -17,6 +17,7 @@ import sys
 import os
 import json
 import argparse
+from typing import Dict, Any
 from datetime import timedelta
 from cxotime import CxoTime
 import msid_plotting
@@ -29,7 +30,19 @@ PLOT_DIR = "/data/mta4/www/CSH/Plots"
 HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
 PLOT_CONFIG_FILE = f"{HOUSE_KEEPING}/plot_configurations.json"
 NOW = CxoTime()
-BIN_SIZE = 300
+BIN_SIZE = 500
+
+_NCOLS = {
+    1:1,
+    2:2,
+    3:3,
+    4:2,
+    5:3,
+    6:3,
+    7:3,
+    8:3,
+    9:3
+}
 
 def get_options(args=None):
     parser = argparse.ArgumentParser(description="Plot Maude CSH MSIDs")
@@ -71,7 +84,7 @@ def generate_plot(category, msid_ls, start, stop, title = None, units = None, we
         bin_size = BIN_SIZE
     )
 
-    params = {}
+    params : Dict[str, Any] = {'size': 5}
     if title is not None:
         params['title'] = title
     if units is not None:
@@ -84,7 +97,8 @@ def generate_plot(category, msid_ls, start, stop, title = None, units = None, we
 
     html = multivar_plot.generate_plot_html(
         template_name='maude_csh_plot.jinja',
-        template_variables = template_variables
+        template_variables = template_variables,
+        ncols = _NCOLS[len(msid_ls)]
         )
     file = f"{PLOT_DIR}/{category}.html"
 
