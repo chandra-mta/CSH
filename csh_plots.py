@@ -46,14 +46,23 @@ def main():
     stop = NOW
     start = NOW - timedelta(days=3)
 
+    #: Add Template
+    msid_plotting.msid_plot.JINJA_TEMPLATE_ENV.add_template_directory(
+        f"{os.path.dirname(__file__)}/template"
+    )
+
     for category, config in plot_configurations.items():
         msid_ls = config.get('msid_ls')
         title = config.get('title')
         units = config.get('units')
         weight = config.get('weight')
-        generate_plot(category, msid_ls, start, stop, title, units, weight)
 
-def generate_plot(category, msid_ls, start, stop, title = None, units = None, weight = None):
+        template_variables = {
+            'title': category,
+            }
+        generate_plot(category, msid_ls, start, stop, title, units, weight, template_variables)
+
+def generate_plot(category, msid_ls, start, stop, title = None, units = None, weight = None, template_variables = {}):
 
     multivar_plot = msid_plotting.msid_plot.MSIDPlot(
         msids = msid_ls,
@@ -73,7 +82,10 @@ def generate_plot(category, msid_ls, start, stop, title = None, units = None, we
     multivar_plot.parameterize(params)
     multivar_plot.fetch_data()
 
-    html = multivar_plot.generate_plot_html()
+    html = multivar_plot.generate_plot_html(
+        template_name='maude_csh_plot.jinja',
+        template_variables = template_variables
+        )
     file = f"{PLOT_DIR}/{category}.html"
 
     with open(file,'w') as f:
