@@ -60,7 +60,7 @@
             "2DETBRT",
             "2SHLDBRT"
         ],
-        "title": "Event and Shield rates",
+        "title": "Event and Shield Rates",
         "weight": 0.00390625
     },
     "spcelec": {
@@ -80,7 +80,7 @@
             "AOGBIAS2",
             "AOGBIAS3"
         ],
-        "title": "Realtine IRU Bias Drift",
+        "title": "Realtime IRU Bias Drift",
         "units": [
             "arcsec/s",
             "arcsec/s",
