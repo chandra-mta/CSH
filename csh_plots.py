@@ -142,7 +142,7 @@ if __name__ == "__main__":
     opt = get_options()
     if opt.mode == 'test':
         HOUSE_KEEPING = f"{os.getcwd()}/house_keeping"
-        PLOT_DIR = f"{os.getcwd()}/test/_outTest"
+        PLOT_DIR = f"{os.getcwd()}/test/_outTest/Plots"
         os.makedirs(PLOT_DIR, exist_ok = True)
         RUN = True
     if opt.config is not None:
