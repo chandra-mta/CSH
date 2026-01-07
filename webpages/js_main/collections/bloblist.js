@@ -137,12 +137,14 @@ app.BlobList = Backbone.Collection.extend({
     // this one just read the local JSON data file (blob_main.json), instead of reading bianry
     // data from occ site (Apr 19, 2018, ti)
 
+	// (Jan 07 2026, WA) Repathed the data JSON blob to a global variable
+
 	fetch: function() {
 		var that = this;
 
 		this.lastFetchStart = Date.now();
 
-        $.getJSON('/mta/CSH/blob_main.json', function(data) {
+        $.getJSON(jsonUrl.pathname, function(data) {
 
             var blobs   = [];
             var indices = [];
@@ -182,6 +184,7 @@ app.BlobList = Backbone.Collection.extend({
 	},
 });
 
-app.monBlobList = new app.BlobList(null, {'baseURL': "/mta/CSH/blob_main.json"});
-app.scBlobList  = new app.BlobList(null, {'baseURL': "/mta/CSH/blob_main.json"});
+// (Jan 07 2026, WA) Repathed the data JSON blob to a global variable
+app.monBlobList = new app.BlobList(null, {'baseURL': jsonUrl.pathname});
+app.scBlobList  = new app.BlobList(null, {'baseURL': jsonUrl.pathname});
 

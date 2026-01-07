@@ -11,14 +11,16 @@ var MSIDStaticList = Backbone.Collection.extend({
         var self = this;
 
         var self.msidstatic = {}
-        var urls = ['/mta/CSH/blob_main.json'];
+        // (Jan 07 2026, WA) Repathed the data JSON blob to a global variable
+        var urls = [jsonUrl.pathname];
 
 
         var requests = [];
         for (var i=0; i < urls.length; i++) {
             requests.push($.ajax({url: urls[i],
                 success: function(data) {
-                    $.getJSON( "/mta/CSH/blob_main.json", function( data ) {
+                    // (Jan 07 2026, WA) Repathed the data JSON blob to a global variable
+                    $.getJSON( jsonUrl.pathname, function( data ) {
                          $.each( data, function( msid, value ) {
                           console.log( value);
                           self.msidstatic[msid] = value;

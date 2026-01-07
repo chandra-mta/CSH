@@ -12,8 +12,9 @@ var MSIDInfoList = Backbone.Collection.extend({
         // ideally allow for an overlay within the html rather than
         // in the code. For now just assume we have one here
         // var urls = ['msididx3.json', 'fmain.json'];
+        // (Jan 07 2026, WA) Repathed the idx JSON blob to a global variable
 
-        var urls = ['/mta/CSH/msididx.json'];
+        var urls = [idxJsonUrl.pathname];
 
         var requests = [];
         for (var i=0; i < urls.length; i++) {
