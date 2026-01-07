@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="refresh" content="300">
+<head>
+    <meta charset="UTF-8">
+    <title>SOH-EPS BATTERY_1/BATTERY_2/BATTERY_3</title>
+    <link href="maude_csh.css" rel="stylesheet">
+    <style>
+    </style>
+
+    <script type="text/javascript">
+        function WindowOpener(h_link) {
+            window.open(h_link,"current_plot","toolbar=no,directories=no,menubar=no,location=no,scrollbars=yes,status=no,width=500,height=500,resize=yes");
+        }
+
+        function FindCurrentUTC() {
+            var d     = new Date();
+            var nd    = d.getTime() + (d.getTimezoneOffset()*60000);
+            var utc   = new Date(nd);
+            var year  = utc.getFullYear();
+            var start = new Date(year, 0, 0);
+            var day   = Math.floor((d - start) / 86400000);
+            var cday  = AdjustDigit(day, 3);
+            var hh    = utc.getHours();
+            var chh   = AdjustDigit(hh, 2);
+            var mm    = utc.getMinutes();
+            var cmm   = AdjustDigit(mm, 2);
+            var ss    = utc.getSeconds();
+            var css   = AdjustDigit(ss, 2);
+            var cutc  = year.toString() + ':' + cday + ':' + chh + ':' + cmm + ':' + css 
+            return cutc;
+        }
+     
+        function AdjustDigit(val, digit){
+            var nvar = Math.round(val)
+            var cvar = nvar.toString();
+            var n    = cvar.length;
+            var i;
+            for (i = n; i< digit; i++){
+                cvar = '0' + cvar;
+            }
+            return cvar;
+        }
+
+        setInterval(function(){
+           window.location.reload();
+        },180000);
+
+        function onDeletAll(){
+            console.log("Delete all history");
+        }
+        function deleteAllHistory(){
+            var deletingAll = browser.history.deleteAll();
+            deletingAll.then(onDeleteAll);
+            chrome.history.deleteAll();
+        }
+        function Navigate(){
+            document.location.replace('./soh_eps2s.html');
+            return false;
+        }
+        function Refresh(){
+            deleteAllHistory();
+            Navigate();
+        }
+
+        function startTime() {
+            //var ctime =new Date().toISOString().split('.')[0]+"Z";
+            var ctime =new Date().toISOString().split('.')[0];
+            var dtime =ctime.split(':');
+            ctime = dtime[0] +':' + dtime[1] + 'z';
+            document.getElementById('ctxt').innerHTML = "Current Time: "+ctime;
+        }
+
+        function checkTime(i) {
+            var j = i;
+            if (i < 10) {
+                j = "0" + i;
+            }
+            return j;
+        }
+
+        setInterval(function() {
+            startTime();
+            loadFile('./ctest.xml');
+        }, 500);
+
+        function loadFile(filePath) {
+            var result = null;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", filePath, false);
+            xmlhttp.send();
+            if (xmlhttp.status==200) {
+                result = xmlhttp.responseText;
+            }
+            document.getElementById("ncomm").innerHTML = result;
+        }
+        var jsonUrl = new URL('blob_eps.json', window.location.href);
+        var idxJsonUrl = new URL('msididx.json', window.location.href);
+    </script>
+</head>
+<body>
+
+<script>
+deleteAllHistory();
+</script>
+
+<header>
+    <h1>Chandra State Of Heath - EPS (BATTERY_1/BATTERY_2/BATTERY_3)</h1>
+        <p><em>
+        Please refresh the page if the page is open for a while. The page might be staled.<br />
+        <!--
+        You may want to refresh the page with:   
+        <button onclick="Navigate()">Refresh</button>
+        -->
+        </em></p>
+        <p>                             
+        <span style='color:#98FB98;background-color:#98FB98;'>xx</span>: Operation;
+        <span style='color:#F0E68C;background-color:#F0E68C;'>xx</span>: Caution; 
+        <span style='color:#FF4500;background-color:#FF4500;'>xx</span>: Warning;
+        <span style='color:#AED6F1;background-color:#AED6F1;'>xx</span>: Not Checked.
+        Hover the pointer on a MSID to see the operation range.
+        </p> 
+        <div style='float:right;'>
+            <a href="javascript:WindowOpener('./comm_list.html')">Comm Contact List</a>
+        </div>
+
+        <table border=0 style='line-height:90%;'>
+            <tr>
+                <td><b>The Last Data Update:</b> </td>
+                <td><span id="blobtime"></span> (UT) </td>
+            </tr>
+            <tr>
+                <td><b>The Last Page Reload:</b></td>
+                <td>
+                <script type="text/javascript">
+                    if (performance.navigation.type == 1) {
+                        var utc = FindCurrentUTC();
+                        document.write(utc);
+                    }else{
+                        var utc = FindCurrentUTC();
+                        document.write(utc);
+                    }
+                </script>
+                (UT)
+                </td>
+            </tr>
+            <tr>
+                <th id=ncomm></th>
+            </tr>
+        </table>
+</header>
+
+<section id="dashapp">
+    
+    <div style='padding-bottom:40px'>
+        <table border=0 style="float:left;">
+            <tr>
+                <td class="msid" data-msid='AOPCADMD'></td>
+                <td class="msid" data-msid='CCSDSVCD'></td>
+                <td class="msid" data-msid='COBSRQID'></td>
+            </tr>
+        </table>
+
+        <table border=0 style="float:right;">
+            <tr>
+                <td class="msid" data-msid='CCSDSTMF'></td>
+                <td class="msid" data-msid='COTLRDSF'></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class='spacer'></div>
+    <nav style='padding-top: 10px;'>
+        <table border=1>
+            <tr>
+                <td class='bold'><a href='./soh.html'>SOH Main</a> </td> 
+                <td class='bold'><a href='./soh_pcad1.html'>PCAD</a> </td> 
+                <td class='bold'><a href='./soh_ccdm1.html'>CCDM</a> </td>
+                <td class='bold'><a href='./soh_sc_config1.html'>S/C Config</a> </td>
+                <td class='bold'><a href='./soh_mech1.html'>Mechanisms</a> </td>
+                <td class='bold'><a href='./soh_thermal1.html'>Thermal</a> </td>
+                <td class='bold'><a href='./soh_prop1.html'>Propulsion</a> </td>
+                <td class='bold'>EPS</td>
+                <td class='bold'><a href='./soh_smode1.html'>Safe Mode</a> </td>
+                <td class='bold'><a href='./soh_load1.html'>Load Rev</a> </td>
+                <td class='bold'><a href='./soh_snap_tab.html'>Snapshot</a> </td>
+            </tr>
+        </table>
+        
+        <table border=1>
+            <caption>EPS Subsections</caption>
+            <tr>
+                <td class='bold'><a href='./soh_eps1.html'>Load Bus/Solar Array/EPS SW</a></td>
+                <td class='bold'>Battery 1/Battery 2/Battery 3</td>
+            </tr>
+        </table>
+    </nav>
+
+  <hr />
+
+    <div id='battery_1'>
+        <div class='caption'>BATTERY_1</div>
+        <div class='spacer'></div>
+        <div class='mcolumn'>
+            <table>
+				<tr class="msid"   data-msid="EB1CI" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="EB1DI" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="EB1K1">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EB1K2">  </tr>
+				<tr class="msid"   data-msid="EB1K3">  </tr>
+				<tr class="msid"   data-msid="EB1K4">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EB1K5">  </tr>
+				<tr class="msid"   data-msid="EB1UV">  </tr>
+				<tr class="msid"   data-msid="EB1V" data-printfmt="%.3f">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EOCHRGB1" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB1T1" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB1T2" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB1T3" data-printfmt="%.3f">  </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class='spacer'></div>
+    
+    <div id='battery_2'>
+        <div class='caption'>BATTERY_2</div>
+        <div class='spacer'></div>
+        <div class='mcolumn'>
+            <table>
+				<tr class="msid"   data-msid="EB2CI" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="EB2DI" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="EB2K1">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EB2K2">  </tr>
+				<tr class="msid"   data-msid="EB2K3">  </tr>
+				<tr class="msid"   data-msid="EB2K4">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EB2K5">  </tr>
+				<tr class="msid"   data-msid="EB2UV">  </tr>
+				<tr class="msid"   data-msid="EB2V" data-printfmt="%.3f">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EOCHRGB2" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB2T1" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB2T2" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB2T3" data-printfmt="%.3f">  </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class='spacer'></div>
+    
+    <div id='battery_3'>
+        <div class='caption'>BATTERY_3</div>
+        <div class='spacer'></div>
+        <div class='mcolumn'>
+            <table>
+				<tr class="msid"   data-msid="EB3CI" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="EB3DI" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="EB3K1">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EB3K2">  </tr>
+				<tr class="msid"   data-msid="EB3K3">  </tr>
+                <tr class="msid"   data-msid="EB3K4">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EB3K5">  </tr>
+				<tr class="msid"   data-msid="EB3UV">  </tr>
+                <tr class="msid"   data-msid="EB3V" data-printfmt="%.3f">  </tr>
+<tr>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+<td style='background-color:#FDF5E6;'>&#160;</td>
+</tr>
+            </table>
+            <table  style='page-break-after:column;'>
+				<tr class="msid"   data-msid="EOCHRGB3" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB3T1" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB3T2" data-printfmt="%.3f">  </tr>
+				<tr class="msid"   data-msid="TB3T3" data-printfmt="%.3f">  </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class='spacer'></div>
+    
+    <table>
+        <td class="msid" data-msid="LASTDCHECK" style='font-size:20%;'></td>
+    </table>
+
+</section>
+
+
+<footer style='padding-top:20px'>
+<hr />
+<p>
+If you have questions about this page, please contact: 
+<a href="mailto:swolk@cfa.harvard.edu">swolk@cfa.harvard.edu</a>
+ or
+<a href="mailto:william.aaron@cfa.harvard.edu">william.aaron@cfa.harvard.edu</a>
+</p>
+
+<div style='float:right;text-align:right; font-size:80%; padding-right:30px;'>
+<span id="ctxt"></span>
+<table border=0>
+<tr>
+</tr>
+</table>
+</div>
+
+<p style="padding-bottom:10px;">
+Last Modified: Jan 07, 2026
+</p>
+
+</footer>
+
+<!-- templates -->
+
+    <script type="text/template" id="msid-template">
+    //--- handle data format display differently 
+    <% if(name == 'CCSDSTMF'){ %>
+        <th>Format: </th>
+
+    <%}else if(['EB1CI','EB1V','EB1DI'].includes(name)){ %>
+        <th class="col-name">
+            <a href="javascript:void(0);" style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();">
+                <form method = "post" action=/mta/CSH/test_plots/load_test.php
+                    target='EB1' onsubmit="window.open('about:blank', 'EB1', 'width=1000,height=800');">
+                    <input type="hidden" name="msid_group" value='EB1' >
+                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+                </form>
+            </a>
+        </th>
+    <%}else if(['EB2CI','EB2V','EB2DI'].includes(name)){ %>
+        <th class="col-name">
+            <a href="javascript:void(0);" style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();">
+                <form method = "post" action=/mta/CSH/test_plots/load_test.php
+                    target='EB2' onsubmit="window.open('about:blank', 'EB2', 'width=1000,height=800');">
+                    <input type="hidden" name="msid_group" value='EB2' >
+                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+                </form>
+            </a>
+        </th>
+    <%}else if(['EB3CI','EB3V','EB3DI'].includes(name)){ %>
+        <th class="col-name">
+            <a href="javascript:void(0);" style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();">
+                <form method = "post" action=/mta/CSH/test_plots/load_test.php
+                    target='EB3' onsubmit="window.open('about:blank', 'EB3', 'width=1000,height=800');">
+                    <input type="hidden" name="msid_group" value='EB3' >
+                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+                </form>
+            </a>
+        </th>
+    <%}else if(['TB1T1','TB1T2','TB1T3'].includes(name)){ %>
+        <th class="col-name">
+            <a href="javascript:void(0);" style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();">
+                <form method = "post" action=/mta/CSH/test_plots/load_test.php
+                    target='TB1' onsubmit="window.open('about:blank', 'TB1', 'width=1000,height=800');">
+                    <input type="hidden" name="msid_group" value='TB1' >
+                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+                </form>
+            </a>
+        </th>
+    <%} else if(['TB2T1','TB2T2','TB2T3'].includes(name)){ %>
+        <th class="col-name">
+            <a href="javascript:void(0);" style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();">
+                <form method = "post" action=/mta/CSH/test_plots/load_test.php
+                    target='TB2' onsubmit="window.open('about:blank', 'TB2', 'width=1000,height=800');">
+                    <input type="hidden" name="msid_group" value='TB2' >
+                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+                </form>
+            </a>
+        </th>
+    <%} else if(['TB3T1','TB3T2','TB3T3'].includes(name)){ %>
+        <th class="col-name">
+            <a href="javascript:void(0);" style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();">
+                <form method = "post" action=/mta/CSH/test_plots/load_test.php
+                    target='TB3' onsubmit="window.open('about:blank', 'TB3', 'width=1000,height=800');">
+                    <input type="hidden" name="msid_group" value='TB3' >
+                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
+                </form>
+            </a>
+        </th>
+    <%} else {%>
+        <th class="col-name"> 
+            <a href="javascript:void(0);" style="text-decoration: none;" 
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );" 
+                onmouseout="return nd();">
+                <%= name %>
+            </a>
+        </td>
+    <% } %>
+
+    <td class="col-val"> <%= value %></td>
+    <!--
+    <td class="col-lim"> <%= limit %></td>
+    <td class="col-desc"><span><%= description %></span></td>
+    -->
+    </script>
+    
+<!-- library -->
+
+    <script src="js_main/lib/math.js"></script>
+    <script src="js_main/lib/jquery-2.2.0.js"></script>
+    <script src="js_main/lib/underscore.js"></script>
+    <script src="js_main/lib/backbone.js"></script>
+    <script src="js_main/lib/sprintf.js"></script>
+    <script src="js_main/lib/overlib.js"></script>
+
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+    -->
+
+
+<!-- local scripts -->
+    <script src="js_main/calc.js"></script>
+
+    <script src="js_main/models/blob.js"></script>
+    <script src="js_main/collections/bloblist.js"></script>
+    <script src="js_main/models/msidinfo.js"></script>
+    <script src="js_main/collections/msidinfolist.js"></script>
+    <script src="js_main/models/msid.js"></script>
+    <script src="js_main/collections/msidlist.js"></script>
+    <script src="js_main/views/msidview.js"></script>
+    <script src="js_main/views/appview.js"></script>
+    <script src="js_main/app.js"></script>
+
+
+</body>
+</html>
+
