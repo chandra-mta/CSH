@@ -22,14 +22,13 @@ body {
 	background-color:       #b0e0e6;
     }
 
-.inheritSubmit{
+.plotButton{
     font-size: 90%;
 	font-family: serif;
     font-weight: bold;
 	white-space: normal;
 	background-color:       inherit;
     }
-
 
 
 .soh{
