@@ -97,7 +97,8 @@
         var jsonUrl = new URL('blob_load.json', window.location.href);
         var idxJsonUrl = new URL('msididx.json', window.location.href);
     </script>
-
+    <!-- Source here to allow openplot() function to be available for DOM (inconsequential in most cases)-->
+    <script src="js_main/openplot.js"></script>
 </head>
 <body>
 
@@ -200,11 +201,15 @@ deleteAllHistory();
         <div id='target' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Quat' onsubmit="window.open('about:blank','Quat', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Quat">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="TARGET QUATERNION"></span>
-    			</form></caption>
+                    <button
+                        onclick="openPlot('quat');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="quat">TARGET QUATERNION
+                    </button>
+    			</caption>
 				<tr class="msid"   data-msid="AOTARQT1" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="AOTARQT2" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="AOTARQT3" data-printfmt="%.3f">  </tr>
@@ -215,12 +220,15 @@ deleteAllHistory();
         <div id='momentum' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Momentum' onsubmit="window.open('about:blank','Momentum', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Aosymom">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="MOMENTUM"></span>
-    			</form><br/>
-                <span style='color:#B0E0E6;'>MOMENTUM</span></caption>
+                    <button
+                        onclick="openPlot('aosymom');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="aosymom">MOMENTUM
+                    </button>	
+    			</caption>
 				<tr class="msid"   data-msid="AOSYMOM1" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="AOSYMOM2" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="AOSYMOM3" data-printfmt="%.3f">  </tr>
@@ -230,11 +238,15 @@ deleteAllHistory();
         <div id='minus_z' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Zmodel_temps' onsubmit="window.open('about:blank','Zmodel_temps', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Zmodel_temps">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="MINUS-Z MODEL TEMPERATURES"></span>
-    			</form></caption>
+                    <button
+                        onclick="openPlot('zmodel_temps');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="zmodel_temps">MINUS-Z MODEL TEMPERATURES
+                    </button>	
+    			</caption>
 				<tr class="msid"   data-msid="TCYLAFT6" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="TCYLFMZM" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="TEPHIN" data-printfmt="%.3f">  </tr>
@@ -246,11 +258,15 @@ deleteAllHistory();
         <div id='mups' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Mups_load' onsubmit="window.open('about:blank','Mups_load', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Mups_load">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="MUPS VALUE MODEL TEMP"></span>
-    			</form></caption>
+                    <button
+                        onclick="openPlot('mups_load');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="mups_load">MUPS VALUE MODEL TEMP
+                    </button>	
+    			</caption>
 				<tr class="msid"   data-msid="PM1THV1T" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="PM2THV1T" data-printfmt="%.3f">  </tr>
             </table>
@@ -259,11 +275,15 @@ deleteAllHistory();
         <div id='fuel' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Tank_temp' onsubmit="window.open('about:blank','Tank_temp', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Tank_temp">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="FUEL AND MUPS TANK TEMP"></span>
-    			</form></caption>
+                    <button
+                        onclick="openPlot('tank_temp');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="tank_temp">FUEL AND MUPS TANK TEMP
+                    </button>	
+    			</caption>
 				<tr class="msid"   data-msid="PFTANK2T" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="PMTANK3T" data-printfmt="%.3f">  </tr>
             </table>
@@ -274,11 +294,15 @@ deleteAllHistory();
         <div id='oba' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Blkhd' onsubmit="window.open('about:blank','Blkhd', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Blkhd">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="OBA FRWARD BLKHD TEMP"></span>
-    			</form></caption>
+                    <button
+                    onclick="openPlot('blkhd');"
+                    class="plotButton"
+                    style="text-decoration: none;"
+                    onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                    onmouseout="return nd();"
+                    data-category="blkhd">OBA FRWARD BLKHD TEMP
+                </button>
+    			</caption>
 				<tr class="msid"   data-msid="4RT700T" data-printfmt="%.3f">  </tr>
             </table>
         </div>
@@ -320,11 +344,15 @@ deleteAllHistory();
         <div id='solar' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Aosares' onsubmit="window.open('about:blank','Aosares', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Aosares">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="SOLAR ARRAY ANGLE"></span>
-    			</form></caption>
+                    <button
+                        onclick="openPlot('aosares');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="aosares">SOLAR ARRAY ANGLE
+                    </button>	
+    			</caption>
 				<tr class="msid"   data-msid="AOSARES1" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="AOSARES2" data-printfmt="%.3f">  </tr>
             </table>
@@ -334,11 +362,15 @@ deleteAllHistory();
         <div id='psmc' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Psmc' onsubmit="window.open('about:blank','Psmc', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Psmc">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="PSMC MODEL TEMP"></span>
-    			</form></caption>
+                    <button
+                        onclick="openPlot('psmc');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="psmc">PSMC MODEL TEMP
+                    </button>	
+    			</caption>
 				<tr class="msid"   data-msid="1PDEAAT" data-printfmt="%.3f">  </tr>
 				<tr class="msid"   data-msid="1PIN1AT" data-printfmt="%.3f">  </tr>
             </table>
@@ -348,11 +380,15 @@ deleteAllHistory();
         <div id='mpa' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Dpa' onsubmit="window.open('about:blank','Dpa', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Dpa">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="DPA MODEL TEMP"></span>
-    			</form></caption>
+                    <button
+                        onclick="openPlot('dpa');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="dpa">DPA MODEL TEMP
+                    </button>	
+    			</caption>
 				<tr class="msid"   data-msid="1DPAMZT" data-printfmt="%.3f">  </tr>
             </table>
         </div>
@@ -362,11 +398,15 @@ deleteAllHistory();
         <div id='aca' class='nobreak'>
             <table>
                 <caption class='caption_top'>
-    			<form method = "post" action=/mta/CSH/test_plots/load_test.php
-     			target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
-    			<input type="hidden" name="msid_group" value="Sys_temps">
-    			<span style="text-align:right;"><input type=submit class="load1Submit" name="submit" value="ACA MODEL TEMP"></span>
-    			</form></caption>
+                    <button
+                        onclick="openPlot('sys_temps');"
+                        class="plotButton"
+                        style="text-decoration: none;"
+                        onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                        onmouseout="return nd();"
+                        data-category="sys_temps">ACA MODEL TEMP
+                    </button>	
+    			</caption>
 				<tr class="msid"   data-msid="AACCCDPT" data-printfmt="%.3f">  </tr>
             </table>
         </div>
