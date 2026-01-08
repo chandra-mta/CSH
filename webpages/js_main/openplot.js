@@ -10,3 +10,11 @@ function openPlot(category) {
     const goto = new URL(`${plotUrl.href}/${category}.html`);
     window.open(goto, category);
 }
+
+const buttons = document.querySelectorAll('.plotButton');
+
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        openPlot(this.getAttribute("data-category"));
+    });
+});
