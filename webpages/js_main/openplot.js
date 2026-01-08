@@ -11,10 +11,14 @@ function openPlot(category) {
     window.open(goto, category);
 }
 
-const buttons = document.querySelectorAll('.plotButton');
-
-buttons.forEach(button => {
-    button.addEventListener('click', function() {
-        openPlot(this.getAttribute("data-category"));
+function assignListeners() {
+    // Due to this Backbone templater implementation, we actually can't apply event listeners from external libraries.
+    // However, using listeners is best practice and helps avoid XSS attacks.
+    // Implement this approach in the future once the JS tempalter has been simplified / or new framework is used.
+    const buttons = document.querySelectorAll('.plotButton');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            openPlot(this.getAttribute("data-category"));
+        });
     });
-});
+};
