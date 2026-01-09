@@ -97,7 +97,8 @@
         var jsonUrl = new URL('blob_sc_config.json', window.location.href);
         var idxJsonUrl = new URL('msididx.json', window.location.href);
     </script>
-
+    <!-- Source here to allow openplot() function to be available for DOM (inconsequential in most cases)-->
+    <script src="js_main/openplot.js"></script>
 </head>
 <body>
 
@@ -362,26 +363,24 @@ Last Modified: Jan 07, 2026
 
     <%}else if(['AOALPANG', 'AOBETANG'].includes(name)){ %>
     <th class="col-name">
-        <a href="javascript:void(0);" style="text-decoration: none;"
-            onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-            onmouseout="return nd();">
-            <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                target='Pcadgrate' onsubmit="window.open('about:blank','Pcadgrate', 'width=1000,height=800');">
-                <input type="hidden" name="msid_group" value="Pcadgrate">
-                <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-            </form>
-        </a>
+            <button
+                onclick="openPlot('pcadgrate');"
+                class="plotButton"
+                style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();"
+                data-category="pcadgrate"><%= name %>
+            </button>
     </th> <%}else if(['4HPOSARO', '4LPOSBRO'].includes(name)){ %>
     <th class="col-name">
-        <a href="javascript:void(0);" style="text-decoration: none;"
-            onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-            onmouseout="return nd();">
-            <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                target='Gratgen' onsubmit="window.open('about:blank','Gratgen', 'width=1000,height=800');">
-                <input type="hidden" name="msid_group" value="Gratgen">
-                <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-            </form>
-        </a>
+            <button
+                onclick="openPlot('gratgen');"
+                class="plotButton"
+                style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();"
+                data-category="gratgen"><%= name %>
+            </button>
     </th> <%}else {%>
         <th class="col-name"> 
             <a href="javascript:void(0);" style="text-decoration: none;" 
