@@ -98,7 +98,8 @@
         var jsonUrl = new URL('blob_smode.json', window.location.href);
         var idxJsonUrl = new URL('msididx.json', window.location.href);
     </script>
-
+    <!-- Source here to allow openplot() function to be available for DOM (inconsequential in most cases)-->
+    <script src="js_main/openplot.js"></script>
 </head>
 <body>
 
@@ -362,15 +363,14 @@ Last Modified: Jan 07, 2026
 
     <%} else if(['AIRU1G2I', 'AIRU1G1I', 'AIRU2G1I', 'AIRU2G2I'].includes(name)){ %>
 		<th class="col-name">
-       <a href="javascript:void(0);" style="text-decoration: none;"
-           onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-           onmouseout="return nd();">
-		<form method = "post" action=/mta/CSH/test_plots/load_test.php
-         target='Pcaditv' onsubmit="window.open('about:blank','Pcaditv', 'width=1000,height=800');">
-        <input type="hidden" name="msid_group" value="Pcaditv">
-        <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-		</form>
-		</a>
+            <button
+                onclick="openPlot('pcaditv');"
+                class="plotButton"
+                style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();"
+                data-category="pcaditv"><%= name %>
+            </button>
 		</th>
 	<%} 
     else {%>

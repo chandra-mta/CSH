@@ -97,7 +97,8 @@
         var jsonUrl = new URL('blob_pcad.json', window.location.href);
         var idxJsonUrl = new URL('msididx.json', window.location.href);
     </script>
-
+    <!-- Source here to allow openplot() function to be available for DOM (inconsequential in most cases)-->
+    <script src="js_main/openplot.js"></script>
 </head>
 <body>
 
@@ -359,37 +360,34 @@ Last Modified: Jan 07, 2026
 
     <%}else if(['AORATE1', 'AORATE2', 'AORATE3'].includes(name)){ %>
     <th class="col-name">
-        <a href="javascript:void(0);" style="text-decoration: none;"
-            onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-            onmouseout="return nd();">
-            <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                target='Aorate' onsubmit="window.open('about:blank','Aorate', 'width=1000,height=800');">
-                <input type="hidden" name="msid_group" value="Aorate">
-                <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-            </form>
-        </a>
+        <button
+            onclick="openPlot('aorate');"
+            class="plotButton"
+            style="text-decoration: none;"
+			onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+			onmouseout="return nd();"
+            data-category="aorate"><%= name %>
+        </button>
     </th> <%}else if(['AODITHR2', 'AODITHR3'].includes(name)){ %>
     <th class="col-name">
-        <a href="javascript:void(0);" style="text-decoration: none;"
-            onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-            onmouseout="return nd();">
-            <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                target='Aodithr' onsubmit="window.open('about:blank','Aodithr', 'width=1000,height=800');">
-                <input type="hidden" name="msid_group" value="Aodithr">
-                <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-            </form>
-        </a>
+        <button
+            onclick="openPlot('aodithr');"
+            class="plotButton"
+            style="text-decoration: none;"
+			onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+			onmouseout="return nd();"
+            data-category="aodithr"><%= name %>
+        </button>
     </th> <%}else if(['AOSYMOM1', 'AOSYMOM2', 'AOSYMOM3'].includes(name)){ %>
     <th class="col-name">
-        <a href="javascript:void(0);" style="text-decoration: none;"
-            onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-            onmouseout="return nd();">
-            <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                target='Aosymom' onsubmit="window.open('about:blank','Aosymom', 'width=1000,height=800');">
-                <input type="hidden" name="msid_group" value="Aosymom">
-                <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-            </form>
-        </a>
+        <button
+            onclick="openPlot('aosymom');"
+            class="plotButton"
+            style="text-decoration: none;"
+			onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+			onmouseout="return nd();"
+            data-category="aosymom"><%= name %>
+        </button>
     </th> <%} else {%>
         <th class="col-name"> 
             <a href="javascript:void(0);" style="text-decoration: none;" 

@@ -97,7 +97,8 @@
         var jsonUrl = new URL('blob_prop.json', window.location.href);
         var idxJsonUrl = new URL('msididx.json', window.location.href);
     </script>
-
+    <!-- Source here to allow openplot() function to be available for DOM (inconsequential in most cases)-->
+    <script src="js_main/openplot.js"></script>
 </head>
 <body>
 
@@ -321,51 +322,47 @@ Last Modified: Jan 07, 2026
 
     <%}	else if(['PLINE01T','PLINE02T','PLINE03T','PLINE04T','PLINE05T','PLINE06T','PLINE07T','PLINE08T'].includes(name)){ %>
 		<th class="col-name">
-			<a href="javascript:void(0);" style="text-decoration: none;"
-				onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-				onmouseout="return nd();">
-				<form method = "post" action=/mta/CSH/test_plots/load_test.php
-					target='Pline_1_8' onsubmit="window.open('about:blank','Pline_1_8', 'width=1000,height=800');">
-					<input type="hidden" name="msid_group" value="Pline_1_8">
-					<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-				</form>
-			</a>
+            <button
+                onclick="openPlot('pline_1_8');"
+                class="plotButton"
+                style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();"
+                data-category="pline_1_8"><%= name %>
+            </button>
 		</th>
 	<%}	else if(['PLINE09T','PLINE10T','PLINE11T','PLINE12T','PLINE13T','PLINE14T','PLINE15T','PLINE16T'].includes(name)){ %>
 		<th class="col-name">
-			<a href="javascript:void(0);" style="text-decoration: none;"
-				onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-				onmouseout="return nd();">
-				<form method = "post" action=/mta/CSH/test_plots/load_test.php
-					target='Pline_9_16' onsubmit="window.open('about:blank','Pline_9_16', 'width=1000,height=800');">
-					<input type="hidden" name="msid_group" value="Pline_9_16">
-					<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-				</form>
-			</a>
+            <button
+                onclick="openPlot('pline_9_16');"
+                class="plotButton"
+                style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();"
+                data-category="pline_9_16"><%= name %>
+            </button>
 		</th>
 	<%}	else if(['PMTANK1T', 'PMTANK2T', 'PMTANK3T'].includes(name)){ %>
 		<th class="col-name">
-			<a href="javascript:void(0);" style="text-decoration: none;"
-				onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-				onmouseout="return nd();">
-				<form method = "post" action=/mta/CSH/test_plots/load_test.php
-					target='Mups_tank' onsubmit="window.open('about:blank','Mups_tank', 'width=1000,height=800');">
-					<input type="hidden" name="msid_group" value="Mups_tank">
-					<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-				</form>
-			</a>
+            <button
+                onclick="openPlot('mups_tank');"
+                class="plotButton"
+                style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();"
+                data-category="mups_tank"><%= name %>
+            </button>
 		</th>
 	<%}	else if(['PFTANK1T', 'PFTANK2T'].includes(name)){ %>
 		<th class="col-name">
-			<a href="javascript:void(0);" style="text-decoration: none;"
-				onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-				onmouseout="return nd();">
-				<form method = "post" action=/mta/CSH/test_plots/load_test.php
-					target='Fuel_tank' onsubmit="window.open('about:blank','Fuel_tank', 'width=1000,height=800');">
-					<input type="hidden" name="msid_group" value="Fuel_tank">
-					<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-				</form>
-			</a>
+            <button
+                onclick="openPlot('fuel_tank');"
+                class="plotButton"
+                style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();"
+                data-category="fuel_tank"><%= name %>
+            </button>
 		</th>
 	<%} else {%>
         <th class="col-name"> 

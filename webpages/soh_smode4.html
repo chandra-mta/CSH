@@ -98,7 +98,8 @@
         var jsonUrl = new URL('blob_smode.json', window.location.href);
         var idxJsonUrl = new URL('msididx.json', window.location.href);
     </script>
-
+    <!-- Source here to allow openplot() function to be available for DOM (inconsequential in most cases)-->
+    <script src="js_main/openplot.js"></script>
 </head>
 <body>
 
@@ -348,15 +349,14 @@ Last Modified: Jan 07, 2026
 
     <%}else if(['1CBAT','1DPICACU','1DPICBCU'].includes(name)){ %>
         <th class="col-name">
-            <a href="javascript:void(0);" style="text-decoration: none;"
+            <button
+                onclick="openPlot('scs_acis');"
+                class="plotButton"
+                style="text-decoration: none;"
                 onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-                onmouseout="return nd();">
-                <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                    target='Scs_acis' onsubmit="window.open('about:blank', 'Scs_acis', 'width=1000,height=800');">
-                    <input type="hidden" name="msid_group" value='Scs_acis' >
-                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-                </form>
-            </a>
+                onmouseout="return nd();"
+                data-category="scs_acis"><%= name %>
+            </button>
         </th>
     <%}
 	 else {%>
