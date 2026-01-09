@@ -98,7 +98,8 @@
         var jsonUrl = new URL('blob_smode.json', window.location.href);
         var idxJsonUrl = new URL('msididx.json', window.location.href);
     </script>
-
+    <!-- Source here to allow openplot() function to be available for DOM (inconsequential in most cases)-->
+    <script src="js_main/openplot.js"></script>
 </head>
 <body>
 
@@ -351,63 +352,58 @@ Last Modified: Jan 07, 2026
 
     <%}else if(['EB1CI','EB1V','EB1DI'].includes(name)){ %>
         <th class="col-name">
-       		<a href="javascript:void(0);" style="text-decoration: none;"
-           		onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-           		onmouseout="return nd();">
-        		<form method = "post" action=/mta/CSH/test_plots/load_test.php
-         			target='EB1' onsubmit="window.open('about:blank', 'EB1', 'width=1000,height=800');">
-        			<input type="hidden" name="msid_group" value='EB1' >
-        			<input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-        		</form>
-        	</a>
+            <button
+                onclick="openPlot('eb1');"
+                class="plotButton"
+                style="text-decoration: none;"
+                onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
+                onmouseout="return nd();"
+                data-category="eb1"><%= name %>
+            </button>
         </th>
     <%}else if(['EB2CI','EB2V','EB2DI'].includes(name)){ %>
         <th class="col-name">
-            <a href="javascript:void(0);" style="text-decoration: none;"
+            <button
+                onclick="openPlot('eb2');"
+                class="plotButton"
+                style="text-decoration: none;"
                 onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-                onmouseout="return nd();">
-                <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                    target='EB2' onsubmit="window.open('about:blank', 'EB2', 'width=1000,height=800');">
-                    <input type="hidden" name="msid_group" value='EB2' >
-                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-                </form>
-            </a>
+                onmouseout="return nd();"
+                data-category="eb2"><%= name %>
+            </button>
         </th>
     <%}else if(['EB3CI','EB3V','EB3DI'].includes(name)){ %>
         <th class="col-name">
-            <a href="javascript:void(0);" style="text-decoration: none;"
+            <button
+                onclick="openPlot('eb3');"
+                class="plotButton"
+                style="text-decoration: none;"
                 onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-                onmouseout="return nd();">
-                <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                    target='EB3' onsubmit="window.open('about:blank', 'EB3', 'width=1000,height=800');">
-                    <input type="hidden" name="msid_group" value='EB3' >
-                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-                </form>
-            </a>
+                onmouseout="return nd();"
+                data-category="eb3"><%= name %>
+            </button>
         </th>
     <%}else if(['ELBI_LOW','ELBV'].includes(name)){ %>
         <th class="col-name">
-            <a href="javascript:void(0);" style="text-decoration: none;"
+            <button
+                onclick="openPlot('spcelec');"
+                class="plotButton"
+                style="text-decoration: none;"
                 onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-                onmouseout="return nd();">
-                <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                    target='Spcelec' onsubmit="window.open('about:blank', 'Spcelec', 'width=1000,height=800');">
-                    <input type="hidden" name="msid_group" value='Spcelec' >
-                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-                </form>
-            </a>
+                onmouseout="return nd();"
+                data-category="spcelec"><%= name %>
+            </button>
         </th>
     <%}else if(['ESAMYI','ESAPYI'].includes(name)){ %>
         <th class="col-name">
-            <a href="javascript:void(0);" style="text-decoration: none;"
+            <button
+                onclick="openPlot('ycurrent');"
+                class="plotButton"
+                style="text-decoration: none;"
                 onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
-                onmouseout="return nd();">
-                <form method = "post" action=/mta/CSH/test_plots/load_test.php
-                    target='Ycurrent' onsubmit="window.open('about:blank', 'Ycurrent', 'width=1000,height=800');">
-                    <input type="hidden" name="msid_group" value='Ycurrent' >
-                    <input type=submit name="submit"   class='inheritSubmit'    value= <%= name %> >
-                </form>
-            </a>
+                onmouseout="return nd();"
+                data-category="ycurrent"><%= name %>
+            </button>
         </th>
     <%}
  
