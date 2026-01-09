@@ -104,6 +104,8 @@
         var jsonUrl = new URL('blob_snap.json', window.location.href);
         var idxJsonUrl = new URL('msididx.json', window.location.href);
     </script>
+    <!-- Source here to allow openplot() function to be available for DOM (inconsequential in most cases)-->
+    <script src="js_main/openplot.js"></script>
 </head>
 <body>
 
@@ -212,21 +214,21 @@ deleteAllHistory();
             <!-- <caption class='caption_top'>SnapShot</caption> -->
 <tr>
 <th class=bold>OBC S/W</th>         <td class="msid"   data-msid="CONLOFP"   data-printfmt="%s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
     <th class=bold style='white-space:nowrap;'>CPE Stat</th>        <td class="msid"   data-msid="AOCPESTL"  data-printfmt="%s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>ONLVCD</th>          <td class="msid"   data-msid="OFLVCDCT"  data-printfmt="%8d"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>OBC Errors</th>      <td class="msid"   data-msid="COERRCN"   data-printfmt="%4d"></td>
 </tr>
 
 <tr>
 <th class=bold>OBSID</th>           <td class="msid"   data-msid="COBSRQID"  data-printfmt="%5d"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>EP State</th>        <td class="msid"   data-msid="EPSTATE"   data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>AOFSTAR</th>         <td class="msid"   data-msid="AOFSTAR"   data-printfmt="%s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
@@ -236,65 +238,75 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>SIM TT Pos</th>      <td class="msid"   data-msid="3TSCPOS"   data-printfmt="%7d"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>SIM FA Pos</th>      <td class="msid"   data-msid="3FAPOS"    data-printfmt="%7d"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Gratgen' onsubmit="window.open('about:blank','Gratgen', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Gratgen">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="HETG Angle"></span>
-    </form>
+    <button
+        onclick="openPlot('gratgen');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="gratgen">HETG Angle
+    </button>
 </th>      <td class="msid"   data-msid="4HPOSARO"  data-printfmt="%72.f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Gratgen' onsubmit="window.open('about:blank','Gratgen', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Gratgen">
-    <span style="text-align:right;"><input type=submit class="soh"  name="submit" value="LETG Angle"></span>
-    </form>
+    <button
+        onclick="openPlot('gratgen');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="gratgen">LETG Angle
+    </button>
 </th>      <td class="msid"   data-msid="4LPOSBRO"  data-printfmt="%6.2f"></td>
 </tr>
 
 <tr>
 <th class=bold>PCADMODE</th>        <td class="msid"   data-msid="AOPCADMD"  data-printfmt="%s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>PCONTROL</th>        <td class="msid"   data-msid="AOCONLAW"  data-printfmt="%s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelec' onsubmit="window.open('about:blank','Spcelec', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Spcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Bus Voltage"></span>
-    </form></th>     <td class="msid"   data-msid="ELBV"      data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('spcelec');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="spcelec">Bus Voltage
+    </button>
+</th>     <td class="msid"   data-msid="ELBV"      data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelec' onsubmit="window.open('about:blank','Spcelec', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Spcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Bus Current"></span>
-    </form></th>     <td class="msid"   data-msid="ELBI_LOW"  data-printfmt="%6.4f"></td>
+    <button
+        onclick="openPlot('spcelec');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="spcelec">Bus Current
+    </button>
+</th>     <td class="msid"   data-msid="ELBI_LOW"  data-printfmt="%6.4f"></td>
 </tr>
 
 <tr>
 <th class=bold>Dither</th>          <td class="msid"   data-msid="AODITHEN"  data-printfmt="%s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aodithr' onsubmit="window.open('about:blank','Aodithr', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Aodithr">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Dither Y Angle"></span>
-    </form><span style='font-size:85%;'>(* 3600)</span></th>  
-                                    <td class="msid"   data-msid="AODITHR3"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('aodithr');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="aodithr">Dither Y Angle
+    </button>
+    <span style='font-size:85%;'>(* 3600)</span>
+</th>  <td class="msid"   data-msid="AODITHR3"  data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aodithr' onsubmit="window.open('about:blank','Aodithr', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Aodithr">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Dither Z Angle"></span>
-    </form><span style='font-size:85%;'>(* 3600)</span></th>  
-                                    <td class="msid"   data-msid="AODITHR2"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('aodithr');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="aodithr">Dither Z Angle
+    </button>
+    <span style='font-size:85%;'>(* 3600)</span>
+</th>   <td class="msid"   data-msid="AODITHR2"  data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
@@ -304,11 +316,11 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>Cold Radiator</th>   <td class="msid"   data-msid="1CRAT"     data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>Warm Radiator</th>   <td class="msid"   data-msid="1WRAT"     data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>ACIS Stat7-0</th>    <td class="msid"   data-msid="ACISSTAT"  data-printfmt="%8s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
@@ -319,85 +331,69 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>HRC-I HV</th>        <td class="msid"   data-msid="2IMONST"   data-printfmt="%3s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>HRC-S HV</th>        <td class="msid"   data-msid="2SPONST"   data-printfmt="%3s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>Shield HV</th>       <td class="msid"   data-msid="2S2HVST"   data-printfmt="%3s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>Primary Bus Current</th> <td class="msid"   data-msid="2PRBSCR"   data-printfmt="%3s"></td>
 </tr>
-<!--
-<tr>
-<th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Hrcelec' onsubmit="window.open('about:blank','Hrcelec', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Hrcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="EVT RT"></span>
-    </form><span style='font-size:85%;'> (* 256)</span></th>          
-                                    <td class="msid"   data-msid="2DETART"   data-printfmt="%2.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Hrcelec' onsubmit="window.open('about:blank','Hrcelec', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Hrcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="SHLD RT"></span>
-    </form><span style='font-size:85%;'> (* 256)</span></th>         
-                                    <td class="msid"   data-msid="2SHLDART"  data-printfmt="%2.1f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>RadMon</th>          <td class="msid"   data-msid="CORADMEN"  data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>&#160;</th><td class='empty'>&#160;</td>
-</tr>
--->
-
 <!-- ADDED Sep 14, 2020 -->
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-    target='Hrcelec' onsubmit="window.open('about:blank','Hrcelec', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Hrcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="EVT RT"></span>
-    </form><span style='font-size:85%;'> </span></th>
-                            <td class="msid"   data-msid="2DETBRT"   data-printfmt="%2.1f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('hrcelec');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="gratgen">EVT RT
+    </button>
+    <span style='font-size:85%;'> </span>
+</th>
+<td class="msid"   data-msid="2DETBRT"   data-printfmt="%2.1f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-    target='Hrcelec' onsubmit="window.open('about:blank','Hrcelec', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Hrcelec">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="SHLD RT"></span>
-    </form><span style='font-size:85%;'> (* 256)</span></th>
-                    <td class="msid"   data-msid="2SHLDBRT"  data-printfmt="%2.1f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('hrcelec');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="gratgen">SHLD RT
+    </button>
+    <span style='font-size:85%;'> (* 256)</span>
+</th>
+<td class="msid"   data-msid="2SHLDBRT"  data-printfmt="%2.1f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>RadMon</th>          <td class="msid"   data-msid="CORADMEN"  data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Sys_temps">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CEA Rad Temp"> (C)</span>
-    </form>
+    <button
+        onclick="openPlot('sys_temps');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="sys_temps">CEA Rad Temp
+    </button>
+    <span style='font-size:85%;'>(C)</span>
 </th>
                     <td class='msid'    data-msid="2CEAHVPT"    data-printfmt="%6.1f"></td>
 </tr>
 
 <tr>
 <th class=bold>-15 Voltage B</th>   <td class="msid"   data-msid="2N15VBVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>+5 Voltage B </th>   <td class="msid"   data-msid="2P05VBVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>+15 Voltage B</th>   <td class="msid"   data-msid="2P15VBVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>+24 Voltage B</th>   <td class="msid"   data-msid="2P24VBVL"  data-printfmt="%6.1f"></td>
 </tr>
 <!-- END:   ADDED Sep 14, 2020 -->
 
 <tr>
 <th class=bold>-15 Voltage A</th>   <td class="msid"   data-msid="2N15VAVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>+5 Voltage A </th>   <td class="msid"   data-msid="2P05VAVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>+15 Voltage A</th>   <td class="msid"   data-msid="2P15VAVL"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>+24 Voltage A</th>   <td class="msid"   data-msid="2P24VAVL"  data-printfmt="%6.1f"></td>
 </tr>
 
@@ -414,103 +410,117 @@ deleteAllHistory();
 </tr>
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Sys_temps">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="ACA CCD Temp"> (C)</span>
-    </form>
-</th>    <td class="msid"   data-msid="AACCCDPT"  data-printfmt="%6.1f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('sys_temps');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="gratgen">ACA CCD Temp
+    </button>
+    <span style='font-size:85%;'>(C)</span>
+</th>
+<td class="msid"   data-msid="AACCCDPT"  data-printfmt="%6.1f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>ACA Int Time<br /><span style='font-size:85%;'> (/1000)</span></th>    
                                     <td class="msid"   data-msid="AOACINTT"  data-printfmt="%6.4f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>AOACSTAT</th>        <td class="msid"   data-msid="AOACSTAT"  data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 <tr>
 <th class=bold>ACA Object</th>  <td class="msid"   data-msid="AOACFIDC"   data-printfmt="%8s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>ACA ImFnc </th>  <td class="msid"   data-msid="AOACFCTC"   data-printfmt="%8s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
 <tr>
 <th class=bold>FSS Sun Beta</th>    <td class="msid"   data-msid="AOBETSUN"  data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgrate' onsubmit="window.open('about:blank','Pcadgrate', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Pcadgrate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="FSS Alpha"></span>
-    </form>
-</th>       <td class="msid"   data-msid="AOALPANG"  data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('pcadgrate');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="pcadgrate">FSS Alpha
+    </button>
+</th>
+<td class="msid"   data-msid="AOALPANG"  data-printfmt="%4s"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgrate' onsubmit="window.open('about:blank','Pcadgrate', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Pcadgrate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="FSS Beta"></span>
-    </form>
+    <button
+        onclick="openPlot('pcadgrate');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="pcadgrate">FSS Beta
+    </button>
 </th>        <td class="msid"   data-msid="AOBETANG"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>SA Sun Pres</th>     <td class="msid"   data-msid="AOSAILLM"  data-printfmt="%4s"></td>
 </tr>
 
 <tr>
 <th class=bold style='white-space:nowrap;'>Batt 1 SOC (%)</th>   <td class="msid"   data-msid="EOCHRGB1"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold  style='white-space:nowrap;'>Batt 2 SOC (%)</th>   <td class="msid"   data-msid="EOCHRGB2"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold  style='white-space:nowrap;'>Batt 3 SOC (%)</th>   <td class="msid"   data-msid="EOCHRGB3"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>SA Resolv</th>   <td class="msid"   data-msid="AOSARES1"  data-printfmt="%6.2f"></td>
 </tr>
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Sys_temps">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Avg HRMA Temp"></span>
-    </form>
-</th>   <td class="msid"   data-msid="4OAVHRMT"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('sys_temps');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="sys_temps">Avg HRMA Temp
+    </button>
+</th>
+<td class="msid"   data-msid="4OAVHRMT"  data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sys_temps' onsubmit="window.open('about:blank','Sys_temps', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Sys_temps">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="OBA Tavg Fault"></span>
-    </form>
-</th>  <td class="msid"   data-msid="4OAVOBAT"  data-printfmt="%s"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('sys_temps');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="sys_temps">OBA Tavg Fault
+    </button>
+</th>
+<td class="msid"   data-msid="4OAVOBAT"  data-printfmt="%s"></td>
+<th class=bold>&#160;</th>
 <th class=bold>OBA Trng Fault</th>  <td class="msid"   data-msid="4OBTOORF"  data-printfmt="%s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelec_pwr' onsubmit="window.open('about:blank','Spcelec_pwr', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Spcelec_pwr">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="HRMA Power"></span>
-    </form>
-</th>      <td class="msid"   data-msid="OHRMAPWR"  data-printfmt="%7.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('spcelec_pwr');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="spcelec_pwr">HRMA Power
+    </button>
+</th>
+<td class="msid"   data-msid="OHRMAPWR"  data-printfmt="%7.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelec_pwr' onsubmit="window.open('about:blank','Spcelec_pwr', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Spcelec_pwr">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="OBA Power"></span>
-    </form>
-</th>       <td class="msid"   data-msid="OOBAPWR"   data-printfmt="%7.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('spcelec_pwr');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="spcelec_pwr">OBA Power
+    </button>
+</th>
+<td class="msid"   data-msid="OOBAPWR"   data-printfmt="%7.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
@@ -520,36 +530,44 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Ycurrent' onsubmit="window.open('about:blank','Ycurrent', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Ycurrent">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="+Y SA Amps"></span>
-    </form>
-</th>      <td class="msid"   data-msid="ESAPYI"    data-printfmt="%7.2f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Ycurrent' onsubmit="window.open('about:blank','Ycurrent', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Ycurrent">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="-Y SA Amps"></span>
-    </form>
-</th>      <td class="msid"   data-msid="ESAMYI"    data-printfmt="%7.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('ycurrent');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="ycurrent">+Y SA Amps
+    </button>
+</th>
+<td class="msid"   data-msid="ESAPYI"    data-printfmt="%7.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sc_temp' onsubmit="window.open('about:blank','Sc_temp', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Sc_temp">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="+Y SA Temp"></span>
-    </form>
-</th>      <td class="msid"   data-msid="TSAPYT"    data-printfmt="%7.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('ycurrent');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="ycurrent">-Y SA Amps
+    </button>
+</th>
+<td class="msid"   data-msid="ESAMYI"    data-printfmt="%7.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Sc_temp' onsubmit="window.open('about:blank','Sc_temp', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Sc_temp">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="+Y SA Temp"></span>
-    </form>
-</th>      <td class="msid"   data-msid="TSAMYT"    data-printfmt="%7.2f"></td>
+    <button
+        onclick="openPlot('sc_temp');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="ycurrent">+Y SA Temp
+    </button>
+</th>
+<td class="msid"   data-msid="TSAPYT"    data-printfmt="%7.2f"></td>
+<th class=bold>&#160;</th>
+<th class=bold>
+    <button
+        onclick="openPlot('sc_temp');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="ycurrent">-Y SA Temp
+    </button>
+</th>
+<td class="msid"   data-msid="TSAMYT"    data-printfmt="%7.2f"></td>
 </tr>
 
 <tr>
@@ -558,21 +576,21 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>SCS 128</th>         <td class="msid"   data-msid="COSCS128S" data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>SCS 129</th>         <td class="msid"   data-msid="COSCS129S" data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>SCS 130</th>         <td class="msid"   data-msid="COSCS130S" data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>SCS 131</th>         <td class="msid"   data-msid="COSCS131S" data-printfmt="%4s"></td>
 </tr>
 
 <tr>
 <th class=bold>SCS 132</th>         <td class="msid"   data-msid="COSCS132S" data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>SCS 133</th>         <td class="msid"   data-msid="COSCS133S" data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>SCS 107</th>         <td class="msid"   data-msid="COSCS107S" data-printfmt="%4s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
@@ -582,96 +600,120 @@ deleteAllHistory();
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aorate' onsubmit="window.open('about:blank','Aorate', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Aorate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Roll Rate"></span>
-    </form><span style='font-size:85%'>( * 206265)</span></th>       
-                                    <td class="msid"   data-msid="AORATE1"   data-printfmt="%7.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('aorate');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="aorate">Roll Rate
+    </button>
+    <span style='font-size:85%'>( * 206265)</span>
+</th>
+<td class="msid"   data-msid="AORATE1"   data-printfmt="%7.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aorate' onsubmit="window.open('about:blank','Aorate', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Aorate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Pitch Rate"></span>
-    </form><span style='font-size:85%'>( * 206265)</span></th>      
-                                    <td class="msid"   data-msid="AORATE2"   data-printfmt="%7.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('aorate');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="aorate">Pitch Rate
+    </button>
+    <span style='font-size:85%'>( * 206265)</span>
+</th>
+<td class="msid"   data-msid="AORATE2"   data-printfmt="%7.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aorate' onsubmit="window.open('about:blank','Aorate', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Aorate">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Yaw Rate"></span>
-    </form><span style='font-size:85%'>( * 206265)</span></th>        
-                                    <td class="msid"   data-msid="AORATE3"   data-printfmt="%7.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('aorate');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="aorate">Yaw Rate
+    </button>
+    <span style='font-size:85%'>( * 206265)</span>
+</th>
+<td class="msid"   data-msid="AORATE3"   data-printfmt="%7.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
 
 <tr>
 <th class=bold>
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aosymom' onsubmit="window.open('about:blank','Aosymom', 'width=1000,height=800');">
-	<input type="hidden" name="msid_group" value="Aosymom">
-	<span style="text-align:right;"><input type=submit class="soh" name="submit" value="Roll Mom"></span>
-	</form>
-</th>       <td class="msid"   data-msid="AOSYMOM1"  data-printfmt="%9.3f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('aosymom');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="aosymom">Roll Mom
+    </button>
+</th>
+<td class="msid"   data-msid="AOSYMOM1"  data-printfmt="%9.3f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aosymom' onsubmit="window.open('about:blank','Aosymom', 'width=1000,height=800');">
-	<input type="hidden" name="msid_group" value="Aosymom">
-	<span style="text-align:right;"><input type=submit class="soh" name="submit" value="Pitch Mom"></span>
-	</form>
-</th>       <td class="msid"   data-msid="AOSYMOM2"  data-printfmt="%8.3f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('aosymom');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="aosymom">Pitch Mom
+    </button>
+</th>
+<td class="msid"   data-msid="AOSYMOM2"  data-printfmt="%8.3f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Aosymom' onsubmit="window.open('about:blank','Aosymom', 'width=1000,height=800');">
-	<input type="hidden" name="msid_group" value="Aosymom">
-	<span style="text-align:right;"><input type=submit class="soh" name="submit" value="Yaw Mom"></span>
-	</form>
-</th>         <td class="msid"   data-msid="AOSYMOM3"  data-printfmt="%8.3f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('aosymom');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="aosymom">Yaw Mom
+    </button>
+</th>
+<td class="msid"   data-msid="AOSYMOM3"  data-printfmt="%8.3f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
 <tr>
-<th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgdrift' onsubmit="window.open('about:blank','Pcadgdrift', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Pcadgdrift">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Roll Bias"></span>
-    </form><span style='font-size:85%'>( * 206265)</span></th>       
-                                    <td class="msid"   data-msid="AOGBIAS1"  data-printfmt="%7.4f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgdrift' onsubmit="window.open('about:blank','Pcadgdrift', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Pcadgdrift">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Pitch Bias"></span>
-    </form><span style='font-size:85%'>( * 206265)</span></th>      
-                                    <td class="msid"   data-msid="AOGBIAS2"  data-printfmt="%7.4f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcadgdrift' onsubmit="window.open('about:blank','Pcadgdrift', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Pcadgdrift">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Yaw Bias"></span>
-    </form><span style='font-size:85%'>( * 206265)</span></th>        
-                                    <td class="msid"   data-msid="AOGBIAS3"  data-printfmt="%7.4f"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>
+    <button
+        onclick="openPlot('pcadgdrift');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="pcadgdrift">Roll Bias
+    </button>
+    <span style='font-size:85%'>( * 206265)</span>
+</th>
+<td class="msid"   data-msid="AOGBIAS1"  data-printfmt="%7.4f"></td>
+<th class=bold>&#160;</th>
+<th class=bold>
+    <button
+        onclick="openPlot('pcadgdrift');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="pcadgdrift">Pitch Bias
+    </button>
+    <span style='font-size:85%'>( * 206265)</span>
+</th>
+<td class="msid"   data-msid="AOGBIAS2"  data-printfmt="%7.4f"></td>
+<th class=bold>&#160;</th>
+<th class=bold>
+    <button
+        onclick="openPlot('pcadgdrift');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="pcadgdrift">Yaw Bias
+    </button>
+    <span style='font-size:85%'>( * 206265)</span>
+</th>
+<td class="msid"   data-msid="AOGBIAS3"  data-printfmt="%7.4f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
 <tr>
 <th class=bold>TSC Move</th>        <td class="msid"   data-msid="3TSCMOVE"  data-printfmt="%6s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>FA Move</th>         <td class="msid"   data-msid="3FAMOVE"   data-printfmt="%6s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>OTG Move</th>        <td class="msid"   data-msid="4OOTGMEF"  data-printfmt="%6s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
@@ -680,83 +722,97 @@ deleteAllHistory();
 </tr>
 <tr>
 <th class=bold>UpL Cmd Acc</th>     <td class="msid"   data-msid="CULACC"    data-printfmt="%7d"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>Cmd Rej A</th>       <td class="msid"   data-msid="CMRJCNTA"  data-printfmt="%9d"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold style='white-space:nowrap;'>M Unload</th><td class="msid"   data-msid="AOUNLOAD"  data-printfmt="%6s"></td>
-<th calss=bold>&#160;</th>
+<th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
 </tr>
 
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcaditv' onsubmit="window.open('about:blank','Pcaditv', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Pcaditv">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="IRU2 Gyro 1 Curr"></span>
-    </form>
-</th><td class="msid"   data-msid="AIRU2G1I"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('pcaditv');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="pcaditv">IRU2 Gyro 1 Curr
+    </button>
+</th>
+<td class="msid"   data-msid="AIRU2G1I"  data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Pcaditv' onsubmit="window.open('about:blank','Pcaditv', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Pcaditv">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="IRU2 Gyro 2 Curr"></span>
-    </form>
-</th><td class="msid"   data-msid="AIRU2G2I"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('pcaditv');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="pcaditv">IRU2 Gyro 2 Curr
+    </button>
+</th>
+<td class="msid"   data-msid="AIRU2G2I"  data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Mups' onsubmit="window.open('about:blank','Mups', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Mups">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Prop. Line 03"></span>
-    </form>
-</th>   <td class="msid"   data-msid="PLINE03T"  data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('mups');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="mups">Prop. Line 03
+    </button>
+</th>
+<td class="msid"   data-msid="PLINE03T"  data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Mups' onsubmit="window.open('about:blank','Mups', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Mups">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="Prop. Line 04"></span>
-    </form>
-</th>   <td class="msid"   data-msid="PLINE04T"  data-printfmt="%6.2f"></td>
+    <button
+        onclick="openPlot('mups');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="mups">Prop. Line 04
+    </button>
+</th>
+<td class="msid"   data-msid="PLINE04T"  data-printfmt="%6.2f"></td>
 </tr>
-
 <tr>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spceleca' onsubmit="window.open('about:blank','Spceleca', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Spceleca">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CTX A Voltages"></span>
-    </form>
-</th>  <td class="msid"   data-msid="CTXAV"     data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
-<th class=bold>    
-	<form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spceleca' onsubmit="window.open('about:blank','Spceleca', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Spceleca">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CTX A PWR"></span>
-    </form>
-</th>       <td class="msid"   data-msid="CTXAPWR"   data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('spceleca');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="spceleca">CTX A Voltages
+    </button>
+</th>
+<td class="msid"   data-msid="CTXAV"     data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelecb' onsubmit="window.open('about:blank','Spcelecb', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Spcelecb">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CTX B Voltages"></span>
-    </form>
-</th>  <td class="msid"   data-msid="CTXBV"     data-printfmt="%6.2f"></td>
-<th calss=bold>&#160;</th>
+    <button
+        onclick="openPlot('spceleca');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="spceleca">CTX A PWR
+    </button>
+</th>
+<td class="msid"   data-msid="CTXAPWR"   data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
 <th class=bold>
-    <form method = "post" action=/mta/CSH/test_plots/load_test.php
-	target='Spcelecb' onsubmit="window.open('about:blank','Spcelecb', 'width=1000,height=800');">
-    <input type="hidden" name="msid_group" value="Spcelecb">
-    <span style="text-align:right;"><input type=submit class="soh" name="submit" value="CTX B PWR"></span>
-    </form>
-</th>       <td class="msid"   data-msid="CTXBPWR"   data-printfmt="%6.2f"></td>
+    <button
+        onclick="openPlot('spcelecb');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="spcelecb">CTX B Voltages
+    </button>
+</th>
+<td class="msid"   data-msid="CTXBV"     data-printfmt="%6.2f"></td>
+<th class=bold>&#160;</th>
+<th class=bold>
+    <button
+        onclick="openPlot('spcelecb');"
+        class="plotButton"
+        style="text-decoration: none;"
+        data-category="spcelecb">CTX B Voltages
+    </button>
+</th>
+<td class="msid"   data-msid="CTXBPWR"   data-printfmt="%6.2f"></td>
 </tr>
-
-        </table>
+</table>
 
     <table>
         <td class="msid" data-msid="LASTDCHECK" style='font-size:20%;'></td>
