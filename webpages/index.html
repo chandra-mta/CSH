@@ -330,7 +330,7 @@ Last Modified: Jan 06, 2026
 	</th> <%}else if(['ESAMYI', 'ESAPYI'].includes(name)){ %>
     <th class="col-name">
         <button
-            onclick="openPlot('aorate');"
+            onclick="openPlot('ycurrent');"
             class="plotButton"
             style="text-decoration: none;"
             onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
@@ -340,7 +340,7 @@ Last Modified: Jan 06, 2026
     </th> <%}else if(['ELBV','ELBI_LOW'].includes(name)){ %>
     <th class="col-name">
         <button
-            onclick="openPlot('aorate');"
+            onclick="openPlot('spcelec');"
             class="plotButton"
             style="text-decoration: none;"
             onmouseover="return overlib('<%= description  %> <br />  <%= limit %>', CAPTION, '<%= name %>' );"
