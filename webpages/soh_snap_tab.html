@@ -11,6 +11,9 @@
     <title>SOH-SNAP Dashboard</title>
     <link href="maude_csh.css" rel="stylesheet">
     <style>
+        .annotation {
+            font-size:  85%;
+        }
     </style>
     <script type="text/javascript">
         function WindowOpener(h_link) {
@@ -294,7 +297,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="aodithr">Dither Y Angle
     </button>
-    <span style='font-size:85%;'>(* 3600)</span>
+    <br/>
+    <span class=annotation>(* 3600)</span>
 </th>  <td class="msid"   data-msid="AODITHR3"  data-printfmt="%6.2f"></td>
 <th class=bold>&#160;</th>
 <th class=bold>
@@ -304,7 +308,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="aodithr">Dither Z Angle
     </button>
-    <span style='font-size:85%;'>(* 3600)</span>
+    <br/>
+    <span class=annotation>(* 3600)</span>
 </th>   <td class="msid"   data-msid="AODITHR2"  data-printfmt="%6.2f"></td>
 <th class=bold>&#160;</th>
 <th class=bold>&#160;</th><td class='empty'>&#160;</td>
@@ -347,7 +352,6 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="gratgen">EVT RT
     </button>
-    <span style='font-size:85%;'> </span>
 </th>
 <td class="msid"   data-msid="2DETBRT"   data-printfmt="%2.1f"></td>
 <th class=bold>&#160;</th>
@@ -358,7 +362,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="gratgen">SHLD RT
     </button>
-    <span style='font-size:85%;'> (* 256)</span>
+    <br/>
+    <span class=annotation>(* 256)</span>
 </th>
 <td class="msid"   data-msid="2SHLDBRT"  data-printfmt="%2.1f"></td>
 <th class=bold>&#160;</th>
@@ -371,7 +376,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="sys_temps">CEA Rad Temp
     </button>
-    <span style='font-size:85%;'>(C)</span>
+    <br/>
+    <span class=annotation>(C)</span>
 </th>
                     <td class='msid'    data-msid="2CEAHVPT"    data-printfmt="%6.1f"></td>
 </tr>
@@ -416,11 +422,15 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="gratgen">ACA CCD Temp
     </button>
-    <span style='font-size:85%;'>(C)</span>
+    <br/>
+    <span class=annotation>(C)</span>
 </th>
 <td class="msid"   data-msid="AACCCDPT"  data-printfmt="%6.1f"></td>
 <th class=bold>&#160;</th>
-<th class=bold>ACA Int Time<br /><span style='font-size:85%;'> (/1000)</span></th>    
+<th class=bold>ACA Int Time
+    <br/>
+    <span class=annotation>(/1000)</span>
+</th>
                                     <td class="msid"   data-msid="AOACINTT"  data-printfmt="%6.4f"></td>
 <th class=bold>&#160;</th>
 <th class=bold>AOACSTAT</th>        <td class="msid"   data-msid="AOACSTAT"  data-printfmt="%4s"></td>
@@ -606,7 +616,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="aorate">Roll Rate
     </button>
-    <span style='font-size:85%'>( * 206265)</span>
+    <br/>
+    <span class=annotation>(* 206265)</span>
 </th>
 <td class="msid"   data-msid="AORATE1"   data-printfmt="%7.2f"></td>
 <th class=bold>&#160;</th>
@@ -617,7 +628,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="aorate">Pitch Rate
     </button>
-    <span style='font-size:85%'>( * 206265)</span>
+    <br/>
+    <span class=annotation>(* 206265)</span>
 </th>
 <td class="msid"   data-msid="AORATE2"   data-printfmt="%7.2f"></td>
 <th class=bold>&#160;</th>
@@ -628,7 +640,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="aorate">Yaw Rate
     </button>
-    <span style='font-size:85%'>( * 206265)</span>
+    <br/>
+    <span class=annotation>(* 206265)</span>
 </th>
 <td class="msid"   data-msid="AORATE3"   data-printfmt="%7.2f"></td>
 <th class=bold>&#160;</th>
@@ -678,7 +691,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="pcadgdrift">Roll Bias
     </button>
-    <span style='font-size:85%'>( * 206265)</span>
+    <br/>
+    <span class=annotation>(* 206265)</span>
 </th>
 <td class="msid"   data-msid="AOGBIAS1"  data-printfmt="%7.4f"></td>
 <th class=bold>&#160;</th>
@@ -689,7 +703,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="pcadgdrift">Pitch Bias
     </button>
-    <span style='font-size:85%'>( * 206265)</span>
+    <br/>
+    <span class=annotation>(* 206265)</span>
 </th>
 <td class="msid"   data-msid="AOGBIAS2"  data-printfmt="%7.4f"></td>
 <th class=bold>&#160;</th>
@@ -700,7 +715,8 @@ deleteAllHistory();
         style="text-decoration: none;"
         data-category="pcadgdrift">Yaw Bias
     </button>
-    <span style='font-size:85%'>( * 206265)</span>
+    <br/>
+    <span class=annotation>(* 206265)</span>
 </th>
 <td class="msid"   data-msid="AOGBIAS3"  data-printfmt="%7.4f"></td>
 <th class=bold>&#160;</th>

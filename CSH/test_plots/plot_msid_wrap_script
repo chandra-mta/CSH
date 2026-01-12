@@ -1,1 +1,0 @@
-TERM=dummy; export TERM;/proj/sot/ska3/flight/bin/skare /bin/tcsh  < /data/mta4/www/CSH/test_plots/plot_msid_main_script

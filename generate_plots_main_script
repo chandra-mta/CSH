@@ -1,0 +1,4 @@
+cd /data/mta4/Script/SOH/
+
+#Update the HTML plot subpages during Comm.
+/data/mta4/Script/SOH/csh_plots.py -m flight
