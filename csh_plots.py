@@ -67,7 +67,7 @@ def main():
         run = True
         comm_annotation = f"Last Updated: {NOW.date}\n"
         comm_annotation += f"Current Comm Ends: {comm_time_info['track_stop'].date}"
-    elif (NOW - timedelta(minutes=5) < comm_time_info['track_stop'].date):
+    elif (NOW - timedelta(minutes=5) < comm_time_info['track_stop']) and state_info['in_support']:
         #: Just finished comm. Run once more and format the annotation for the next comm
         run = True
         comm_annotation = f"Last Updated: {comm_time_info['track_stop'].date}\n"
@@ -75,6 +75,8 @@ def main():
         comm_annotation += f"Next DSN Comm: {_time_info['track_start'].date}"
     else:
         run = False
+        #: Automated run choice is to not run the script,
+        #: but generate the annotations in case the global RUN choice is true.
         _time_info = comm_check.translate(comm_info['previous_comm'])
         comm_annotation = f"Last Updated: {_time_info['track_stop'].date}\n"
         comm_annotation += f"Next DSN Comm: {comm_time_info['track_start'].date}"
