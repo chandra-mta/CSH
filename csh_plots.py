@@ -13,7 +13,6 @@
 # ]
 # ///
 """
-import sys
 import os
 import json
 import argparse
@@ -142,6 +141,7 @@ if __name__ == "__main__":
     opt = get_options()
     if opt.mode == 'test':
         HOUSE_KEEPING = f"{os.getcwd()}/house_keeping"
+        PLOT_CONFIG_FILE = f"{HOUSE_KEEPING}/plot_configurations.json"
         PLOT_DIR = f"{os.getcwd()}/test/_outTest/Plots"
         os.makedirs(PLOT_DIR, exist_ok = True)
         RUN = True
