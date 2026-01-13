@@ -49,6 +49,7 @@ def get_options(args=None):
     parser = argparse.ArgumentParser(description="Plot Maude CSH MSIDs")
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
     parser.add_argument("--config", required = False, help="Pass alternative plot configuration JSON file.")
+    parser.add_argument("--force-run", action='store_true', help="Force the script to run regardless of being in comm.")
     opt = parser.parse_args(args)
     return opt
 
@@ -149,4 +150,5 @@ if __name__ == "__main__":
         RUN = True
     if opt.config is not None:
         PLOT_CONFIG_FILE = opt.config
+    RUN = RUN or opt.force_run
     main()
