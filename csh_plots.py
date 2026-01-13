@@ -67,7 +67,7 @@ def main():
         run = True
         comm_annotation = f"Last Updated: {NOW.date}\n"
         comm_annotation += f"Current Comm Ends: {comm_time_info['track_stop'].date}"
-    elif (NOW - timedelta(minutes=5) < comm_time_info['track_stop']) and state_info['in_support']:
+    elif comm_time_info['track_stop'] < NOW < comm_time_info['support_stop']:
         #: Just finished comm. Run once more and format the annotation for the next comm
         run = True
         comm_annotation = f"Last Updated: {comm_time_info['track_stop'].date}\n"
