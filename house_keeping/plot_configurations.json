@@ -1,0 +1,666 @@
+{
+    "pcaditv": {
+        "msid_ls": [
+            "AIRU1G1I",
+            "AIRU1G2I",
+            "AIRU2G1I",
+            "AIRU2G2I"
+        ],
+        "title": "Realtime IRU Currents",
+        "units": [
+            "mA",
+            "mA",
+            "mA",
+            "mA"
+        ]
+    },
+    "aosymom": {
+        "msid_ls": [
+            "AOSYMOM1",
+            "AOSYMOM2",
+            "AOSYMOM3"
+        ],
+        "title": "Realtime Momentum",
+        "units": [
+            "J*s",
+            "J*s",
+            "J*s"
+        ]
+    },
+    "aorate": {
+        "msid_ls": [
+            "AORATE1",
+            "AORATE2",
+            "AORATE3"
+        ],
+        "title": "Estimated Angular Rates in ACA Frame",
+        "units": [
+            "arcsec/sec",
+            "arcsec/sec",
+            "arcsec/sec"
+        ],
+        "weight": 206265
+    },
+    "aodithr": {
+        "msid_ls": [
+            "AODITHR3",
+            "AODITHR2"
+        ],
+        "title": "Commanded Dither Angles",
+        "units": [
+            "rad",
+            "rad"
+        ],
+        "weight": 3600
+    },
+    "hrcelec": {
+        "msid_ls": [
+            "2DETART",
+            "2SHLDART",
+            "2DETBRT",
+            "2SHLDBRT"
+        ],
+        "title": "Event and Shield Rates",
+        "weight": 0.00390625
+    },
+    "spcelec": {
+        "msid_ls": [
+            "ELBV",
+            "ELBI_LOW"
+        ],
+        "title": "Bus Voltage and Current",
+        "units": [
+            "V",
+            "A"
+        ]
+    },
+    "pcadgdrift": {
+        "msid_ls": [
+            "AOGBIAS1",
+            "AOGBIAS2",
+            "AOGBIAS3"
+        ],
+        "title": "Realtime IRU Bias Drift",
+        "units": [
+            "arcsec/s",
+            "arcsec/s",
+            "arcsec/s"
+        ],
+        "weight": 206265
+    },
+    "gratgen": {
+        "msid_ls": [
+            "4HPOSARO",
+            "4LPOSBRO"
+        ],
+        "title": "Gratings Rotation Angles",
+        "units": [
+            "deg",
+            "deg"
+        ]
+    },
+    "ycurrent": {
+        "msid_ls": [
+            "ESAPYI",
+            "ESAMYI"
+        ],
+        "title": "S/A Y Current",
+        "units": [
+            "A",
+            "A"
+        ]
+    },
+    "sc_temp": {
+        "msid_ls": [
+            "TSAPYT",
+            "TSAMYT"
+        ],
+        "title": "Y Wing Solar Array Temp",
+        "units": [
+            "F",
+            "F"
+        ]
+    },
+    "mups": {
+        "msid_ls": [
+            "PLINE03T",
+            "PLINE04T"
+        ],
+        "title": "Prop Line Temps",
+        "units": [
+            "F",
+            "F"
+        ]
+    },
+    "spcelecb": {
+        "msid_ls": [
+            "CTXBV",
+            "CTXBPWR"
+        ],
+        "title": "Transmitter B",
+        "units": [
+            "V",
+            "dBm"
+        ]
+    },
+    "spceleca": {
+        "msid_ls": [
+            "CTXAV",
+            "CTXAPWR"
+        ],
+        "title": "Transmitter A",
+        "units": [
+            "V",
+            "dBm"
+        ]
+    },
+    "spcelec_pwr": {
+        "msid_ls": [
+            "OHRMAPWR",
+            "OOBAPWR"
+        ],
+        "title": "Computed Total Power",
+        "units": [
+            "W",
+            "W"
+        ]
+    },
+    "pcadgrate": {
+        "msid_ls": [
+            "AOALPANG",
+            "AOBETANG"
+        ],
+        "title": "FSS Angle Meas.",
+        "units": [
+            "deg",
+            "deg"
+        ]
+    },
+    "sys_temps": {
+        "msid_ls": [
+            "2CEAHVPT",
+            "AACCCDPT",
+            "4OAVHRMT",
+            "4OAVOBAT"
+        ],
+        "title": "Various Temperatures",
+        "units": [
+            "C",
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "zmodel_temps": {
+        "msid_ls": [
+            "TCYLAFT6",
+            "TCYLFMZM",
+            "TEPHIN",
+            "TFSSBKT1",
+            "TMZP_MY"
+        ],
+        "title": "Minus-Z Model Temperatures",
+        "units": [
+            "F",
+            "F",
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "mups_load": {
+        "msid_ls": [
+            "PM1THV1T",
+            "PM2THV1T"
+        ],
+        "title": "Mups Value Model Temp",
+        "units": [
+            "F",
+            "F"
+        ]
+    },
+    "tank_temp": {
+        "msid_ls": [
+            "PFTANK2T",
+            "PMTANK3T"
+        ],
+        "title": "Fuel and Mups Tank Temp",
+        "units": [
+            "F",
+            "F"
+        ]
+    },
+    "quat": {
+        "msid_ls": [
+            "AOTARQT1",
+            "AOTARQT2",
+            "AOTARQT3",
+            "AOATTQT4"
+        ],
+        "title": "Target Quaternion"
+    },
+    "blkhd": {
+        "msid_ls": [
+            "4RT700T"
+        ],
+        "title": "OBA Frward BLKHD Temp",
+        "units": [
+            "F"
+        ]
+    },
+    "aosares": {
+        "msid_ls": [
+            "AOSARES1",
+            "AOSARES2"
+        ],
+        "title": "Solar Array Angle",
+        "units": [
+            "deg",
+            "deg"
+        ]
+    },
+    "psmc": {
+        "msid_ls": [
+            "1PDEAAT",
+            "1PIN1AT"
+        ],
+        "title": "PSMC Model Temp",
+        "units": [
+            "C",
+            "C"
+        ]
+    },
+    "dpa": {
+        "msid_ls": [
+            "1DPAMZT"
+        ],
+        "title": "DPA Model Temp",
+        "units": [
+            "C"
+        ]
+    },
+    "eb1": {
+        "msid_ls": [
+            "EB1CI",
+            "EB1DI",
+            "EB1V"
+        ],
+        "title": "Battery 1 Metrics",
+        "units": [
+            "A",
+            "A",
+            "V"
+        ]
+    },
+    "eb2": {
+        "msid_ls": [
+            "EB2CI",
+            "EB2DI",
+            "EB2V"
+        ],
+        "title": "Battery 2 Metrics",
+        "units": [
+            "A",
+            "A",
+            "V"
+        ]
+    },
+    "eb3": {
+        "msid_ls": [
+            "EB3CI",
+            "EB3DI",
+            "EB3V"
+        ],
+        "title": "Battery 3 Metrics",
+        "units": [
+            "A",
+            "A",
+            "V"
+        ]
+    },
+    "scs_acis": {
+        "msid_ls": [
+            "1CBAT",
+            "1DPICACU",
+            "1DPICBCU"
+        ],
+        "title": "ACIS Science Intrument Safing",
+        "units": [
+            "C",
+            "A",
+            "A"
+        ]
+    },
+    "tb1": {
+        "msid_ls": [
+            "TB1T1",
+            "TB1T2",
+            "TB1T3"
+        ],
+        "title": "EPS Battery 1 Temps",
+        "units": [
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "tb2": {
+        "msid_ls": [
+            "TB2T1",
+            "TB2T2",
+            "TB2T3"
+        ],
+        "title": "EPS Battery 2 Temps",
+        "units": [
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "tb3": {
+        "msid_ls": [
+            "TB3T1",
+            "TB3T2",
+            "TB3T3"
+        ],
+        "title": "EPS Battery 3 Temps",
+        "units": [
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "aacht": {
+        "msid_ls": [
+            "AACH1T",
+            "AACH2T"
+        ],
+        "title": "AC Housing Temps",
+        "units": [
+            "F",
+            "F"
+        ]
+    },
+    "acpv": {
+        "msid_ls": [
+            "ACPA5CV",
+            "ACPB5CV"
+        ],
+        "title": "CPE Converter Voltage",
+        "units": [
+            "V",
+            "V"
+        ]
+    },
+    "adev": {
+        "msid_ls": [
+            "ADE1P5CV",
+            "ADE2P5CV"
+        ],
+        "title": "ADE Converter Voltage",
+        "units": [
+            "V",
+            "V"
+        ]
+    },
+    "agwsv": {
+        "msid_ls": [
+            "AGWS1V",
+            "AGWS2V"
+        ],
+        "title": "Gyro Wheel Supply Input Voltage",
+        "units": [
+            "V",
+            "V"
+        ]
+    },
+    "irubt": {
+        "msid_ls": [
+            "AIRU1BT",
+            "AIRU2BT",
+            "AIRU1VFT",
+            "AIRU2VFT"
+        ],
+        "title": "IRU Base Temp",
+        "units": [
+            "F",
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "pcaditt": {
+        "msid_ls": [
+            "AIRU1G1T",
+            "AIRU1G2T",
+            "AIRU2G1T",
+            "AIRU2G2T"
+        ],
+        "title": "Gyro Temps",
+        "units": [
+            "F",
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "aiocv": {
+        "msid_ls": [
+            "AIOAP5CV",
+            "AIOBP5CV"
+        ],
+        "title": "IOE Converter Voltage",
+        "units": [
+            "V",
+            "V"
+        ]
+    },
+    "arwbt": {
+        "msid_ls": [
+            "ARWA1BT",
+            "ARWA2BT",
+            "ARWA3BT",
+            "ARWA4BT",
+            "ARWA5BT",
+            "ARWA6BT"
+        ],
+        "title": "RWA Bearing Temperature",
+        "units": [
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "awdcv": {
+        "msid_ls": [
+            "AWD1CV5V",
+            "AWD2CV5V",
+            "AWD3CV5V",
+            "AWD4CV5V",
+            "AWD5CV5V",
+            "AWD6CV5V"
+        ],
+        "title": "WDE Converter Voltage",
+        "units": [
+            "V",
+            "V",
+            "V",
+            "V",
+            "V",
+            "V"
+        ]
+    },
+    "awdtq": {
+        "msid_ls": [
+            "AWD1TQI",
+            "AWD2TQI",
+            "AWD3TQI",
+            "AWD4TQI",
+            "AWD5TQI",
+            "AWD6TQI"
+        ],
+        "title": "Wheel Torque Current",
+        "units": [
+            "A",
+            "A",
+            "A",
+            "A",
+            "A",
+            "A"
+        ]
+    },
+    "aspev": {
+        "msid_ls": [
+            "ASPEB5CV",
+            "ASPEA5CV"
+        ],
+        "title": "SPE Converter Voltage",
+        "units": [
+            "V",
+            "V"
+        ]
+    },
+    "avdcv": {
+        "msid_ls": [
+            "AVD1CV5V",
+            "AVD2CV5V"
+        ],
+        "title": "VDE Converter Voltage",
+        "units": [
+            "V",
+            "V"
+        ]
+    },
+    "1cb_t": {
+        "msid_ls": [
+            "1CBAT",
+            "1CBBT"
+        ],
+        "title": "Camera Body Temp",
+        "units": [
+            "C",
+            "C"
+        ]
+    },
+    "1cr_t": {
+        "msid_ls": [
+            "1CRAT",
+            "1CRBT"
+        ],
+        "title": "Cold Radiator Temp",
+        "units": [
+            "C",
+            "C"
+        ]
+    },
+    "1d_mzt": {
+        "msid_ls": [
+            "1DEAMZT",
+            "1DPAMZT"
+        ],
+        "title": "-Z Panel Temp",
+        "units": [
+            "C",
+            "C"
+        ]
+    },
+    "1wr_t": {
+        "msid_ls": [
+            "1WRAT",
+            "1WRBT"
+        ],
+        "title": "Warm Radiator Temp",
+        "units": [
+            "C",
+            "C"
+        ]
+    },
+    "hrc_temps": {
+        "msid_ls": [
+            "2CHTRPZT",
+            "2DCENTRT",
+            "2DTSTATT",
+            "2FRADPYT"
+        ],
+        "title": "HRC Temps",
+        "units": [
+            "C",
+            "C",
+            "C",
+            "C"
+        ]
+    },
+    "pline_1_8": {
+        "msid_ls": [
+            "PLINE01T",
+            "PLINE02T",
+            "PLINE03T",
+            "PLINE04T",
+            "PLINE05T",
+            "PLINE06T",
+            "PLINE07T",
+            "PLINE08T"
+        ],
+        "title": "PLINE 01-08 Temps",
+        "units": [
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "pline_9_16": {
+        "msid_ls": [
+            "PLINE09T",
+            "PLINE10T",
+            "PLINE11T",
+            "PLINE12T",
+            "PLINE13T",
+            "PLINE14T",
+            "PLINE15T",
+            "PLINE16T"
+        ],
+        "title": "PLINE 01-08 Temps",
+        "units": [
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "mups_tank": {
+        "msid_ls": [
+            "PMTANK1T",
+            "PMTANK2T",
+            "PMTANK3T"
+        ],
+        "title": "Mups Tank Temp",
+        "units": [
+            "F",
+            "F",
+            "F"
+        ]
+    },
+    "fuel_tank": {
+        "msid_ls": [
+            "PFTANK1T",
+            "PFTANK2T"
+        ],
+        "title": "Fuel Tank Temp",
+        "units": [
+            "F",
+            "F"
+        ]
+    }
+}

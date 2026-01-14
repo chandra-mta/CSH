@@ -1,0 +1,235 @@
+@CHARSET "UTF-8";
+
+.panel-title {
+  margin-top: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: inherit;
+}
+
+body {
+	padding-top: 5px;
+    background-color:   #FDF5E6;
+}
+
+.plotButton{
+    font-size: 90%;
+	font-family: serif;
+    font-weight: bold;
+	white-space: normal;
+	background-color:       inherit;
+    }
+
+
+.soh{
+    font-size: 90%;
+	font-family: serif;
+    font-weight: bold;
+	white-space: normal;
+	width: 80px;
+	background-color:       #d9e6fc;
+    }
+
+
+
+
+td {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.top-buffer {
+	margin-top: 10px;
+}
+
+.side-buffer {
+	padding-left: 25px;
+}
+
+.table {
+	table-layout:fixed;
+	/* border: 1px solid #E6E6E6; */
+}
+
+.table-responsive {
+  min-height: .01%;
+  overflow-x: hidden;
+}
+
+/* this makes it so that when the nav bar collapses,
+   the menu takes up the entire screen rather than
+   trying to fit into the space left from the
+   items collapsed */
+
+.navbar-collapse {
+	width: 100%;
+}
+
+/* Yeah, this is a hack. Oh well. The button and the
+   timestamp were too close together */
+
+.mobile-margin-btn {
+	margin-left: 12px;
+}
+
+table.collapse.in {
+	display: table;
+}
+
+/*
+.custom-class {
+	width: 70%;
+}
+*/
+
+/* This seems so hacky ! But has padding-right 15px! */
+.modal {
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.modal-dialog {
+	height: 80%;
+	width: 100%;
+}
+
+.modal-content {
+	height: 100%;
+	width: 100%;
+}
+
+/*
+.modal-header {
+	height: 8%;
+}
+*/
+
+.modal-body {
+	height: 85% !important;
+}
+
+
+#plotarea {
+	width: 100% !important;
+	height: 100% !important;
+	
+	/*
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top: 40px;
+	bottom: 10px;
+	*/
+}
+
+/* Hack to make the soak message display OK */
+
+@media(min-width: 1225px) {
+	#soak {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	color: red;
+	font-weight: bold;
+	margin-top: 15px;
+	font-size: 1.25em;
+	z-index: -1;
+	}
+}
+
+@media (max-width: 1224px) {
+		#soak {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	margin: 0 0 0 0;
+	color: red;
+    font-weight: bold;
+	display: block;
+	}
+}
+
+/*
+.modal-body {
+	
+	height: calc(100% - 120px);
+	height: 100%;
+	
+	padding: 0px;
+	overflow-y: scroll; 
+}
+*/
+
+/*
+ADDED BY T. ISOBE FOR SOH page
+*/
+
+.mcolumn {
+    -webkit-column-count:   4;      /* chrome, safari, opera */
+    -moz-column-count:      4;      /* firefox */
+    column-count:           4;      /* ie 10+  */
+}
+.mcolumn2 {
+    -webkit-column-count:   5;      /* chrome, safari, opera */
+    -moz-column-count:      5;      /* firefox */
+    column-count:           5;      /* ie 10+  */
+}
+.mcolumn3 {
+    -webkit-column-count:   6;      /* chrome, safari, opera */
+    -moz-column-count:      6;      /* firefox */
+    column-count:           6;      /* ie 10+  */
+}
+.nobreak {
+    -webkit-column-break-inside:avoid;      /* chrome, safari, opera */
+    page-break-inside:          avoid;      /* firefox */
+    break-inside:               avoid;      /* ie 10+  */
+}
+table {
+    border:                 0px solid black;
+    border-spacing:         3px;
+    border-collapse:        separate;
+}
+td  {
+    padding:                4px;
+    text-align:             center;
+}
+th  {
+    text-align:             left;
+}
+caption {
+    text-align:         left;
+    font-weight:        bold;
+}
+.caption_top {
+    text-align:             center;
+    font-size:              110%;
+    font-weight:            bold;
+    background-color:       #B0E0E6;
+}
+.caption {
+    font-weight:            bold;
+    background-color:       #B0E0E6;
+    padding-top:            10px;   
+}
+.spacer {
+    padding-bottom:         20px;
+}   
+
+.bold {
+    font-weight:            bold;
+    background-color:       #d9e6fc;
+    border-color:           #d9e6fc;
+}
+
+.cnt_title {
+    text-align:             center;
+    font-size:              90%;
+    white-space:            nowrap;
+    padding-left:           1px;
+    padding-right:          1px;
+}
+.empty {
+    background-color:       #98FB98;
+}

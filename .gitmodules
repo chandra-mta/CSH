@@ -1,0 +1,3 @@
+[submodule "msid_plotting"]
+	path = msid_plotting
+	url = git@github.com:chandra-mta/msid_plotting.git

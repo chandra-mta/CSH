@@ -51,16 +51,13 @@ Input: None
         
 Output: <web_dir>/ctest.xml
 
-Supplemental Script:
-====================
+csh_plots.py
+------------
+Use the msid_plotting MTA package to generate multivariate MSID plot subpages
 
-check_msid_exist_list.py
-------------------------
-Print out MSIDs in the list which cannot be extracted with maude.
+Input: <house_keeping>/plot_configurations.json
 
-check_msid_exist.py
--------------------
-Given an MSID, it will tell whether it can be extracted with maude.
+Output: <html_dir>/Plots/*.html
 
 Data:
 =====
@@ -116,9 +113,8 @@ Web Address:
 
 /data/mta4/www/CSH
 
-* https://cxc.cfa.harvard.edu/mta/CSH/soh.html
-* https://cxc.cfa.harvard.edu/mta/CSH/soh_main.html
-* https://cxc.cfa.harvard.edu/mta/CSH/soh_snap.html
+* https://cxc.cfa.harvard.edu/mta/CSH/index.html
+* https://cxc.cfa.harvard.edu/mta/CSH/soh_snap_tab.html
 
 Environment Settings:
 =====================
@@ -135,6 +131,7 @@ boba-v as mta:
 - \* \* \* \* \* /proj/sot/ska3/flight/bin/skare /data/mta4/Script/SOH/next_comm_check.py -m flight
 - 34 1 \* \* \* cd /data/mta4/Script/SOH/; /proj/sot/ska3/flight/bin/skare /data/mta4/Script/SOH/read_comm_time.py -m flight
 - \* \* \* \* \* cd /data/mta4/Script/SOH/; /data/mta4/Script/SOH/fetch_telem_wrap_script
+- \*/10 \* \* \* \* cd /data/mta4/Script/SOH/; /data/mta4/Script/SOH/generate_plots_wrap_script
 
 Notes on HTMLs:
 ===============
