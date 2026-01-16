@@ -1,14 +1,16 @@
 #!/proj/sot/ska3/flight/bin/python
+"""
+**next_comm_check.py**: create a display time span till the next comm
 
-#########################################################################################
-#                                                                                       #
-#   next_comm_check.py: create a display time span till the next comm                   #
-#                                                                                       #
-#       author: t. isobe (tisobe@cfa.harvard.edu)                                       #
-#                                                                                       #
-#       last update: Jun 05, 2024                                                       #
-#                                                                                       #
-#########################################################################################
+:Author: T. Isobe (tisobe@cfa.harvard.edu)
+:Maintainer: W. Aaron (william.aaron@cfa.harvard.edu)
+:Last Updated: Jun 05, 2024
+
+# /// testing
+# tested-ska-release = "2026.1"
+# ///
+"""
+
 import os
 from datetime import datetime, timezone
 from cxotime import CxoTime
