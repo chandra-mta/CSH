@@ -1,14 +1,14 @@
 #!/proj/sot/ska3/flight/bin/python
+"""
+**update_limit_json.py**: update a limit data table
 
-#####################################################################################
-#                                                                                   #
-#   update_limit_json.py: update a limit data table                                 #
-#                                                                                   #
-#           author:w. aaron (william.aaron@cfa.harvard.edu)                         #
-#                                                                                   #
-#           last update: Jun 05, 2024                                               #
-#                                                                                   #
-#####################################################################################
+:Author: W. Aaron (william.aaron@cfa.harvard.edu)
+:Last Updated: Jun 06, 2024
+
+# /// testing
+# tested-ska-release = "2026.1"
+# ///
+"""
 
 import os
 import sqlite3
