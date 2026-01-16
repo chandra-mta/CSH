@@ -1,14 +1,15 @@
 #!/proj/sot/ska3/flight/bin/python
+"""
+**update_msididx.py**: copy msididx.json from occ side and include MTA desc.
 
-#####################################################################################
-#                                                                                   #
-#  update_msididx.py: copy msididx.json from occ side and include MTA desc.         #
-#                                                                                   #
-#           author: w. aaron (william.aaron@cfa.harvard.edu)                        #
-#                                                                                   #
-#           last update: Jun 06, 2024                                               #
-#                                                                                   #
-#####################################################################################
+:Author: W. Aaron (william.aaron@cfa.harvard.edu)
+:Last Updated: Jun 06, 2024
+
+# /// testing
+# tested-ska-release = "2026.1"
+# ///
+
+"""
 
 import os
 import json
