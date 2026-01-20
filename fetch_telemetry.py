@@ -5,6 +5,9 @@
 :Author: W. Aaron (william.aaron@cfa.harvad.edu)
 :Last Updated: Mar 15, 2025
 
+# /// testing
+# tested-ska-release = "2026.1"
+# ///
 """
 import os
 from subprocess import PIPE, Popen

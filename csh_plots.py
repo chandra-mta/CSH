@@ -12,6 +12,10 @@
 #   "msid_plotting>=0.3",
 # ]
 # ///
+
+# /// testing
+# tested-ska-release = "2026.1"
+# ///
 """
 import os
 import json

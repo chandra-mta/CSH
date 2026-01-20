@@ -1,18 +1,10 @@
-#!/proj/sot/ska3/flight/bin/python
+"""
+**check_msid_status.py**: check status of msid
 
-#########################################################################
-#                                                                       #
-#       check_msid_status.py: check status of msid                      #
-#                                                                       #
-#           author: t. isobe (tisobe@cfa.harvard.edu)                   #
-#                                                                       #
-#           last update: Mar 15, 2021                                   #
-#                                                                       #
-#########################################################################
-
-#-------------------------------------------------------------------------------
-#-- check_status: check status of msid                                        --
-#-------------------------------------------------------------------------------
+:Author: T. Isobe (tisobe@cfa.harvard.edu)
+:Maintainer: W. Aaron (william.aaron@cfa.harvard.edu)
+:Last Updated: Mar 15, 2021
+"""
 
 def check_status(msid, val, ldict, vdict):
     """
@@ -53,10 +45,6 @@ def check_status(msid, val, ldict, vdict):
     else:
         return 'GREEN'
 
-#-------------------------------------------------------------------------------
-#-- check_status_numeric: check status of msid with numeric value            --
-#-------------------------------------------------------------------------------
-
 def check_status_numeric(msid, val, ldict):
     """
     check status of msid with numeric value
@@ -81,10 +69,6 @@ def check_status_numeric(msid, val, ldict):
 #--- if no condition, return 'GREEN'
 #
         return "GREEN"
-
-#-------------------------------------------------------------------------------
-#-- check_status_edge_case: check status of msid with none numeric values       --
-#-------------------------------------------------------------------------------
 
 def check_status_edge_case(msid, val, vdict):
     """
