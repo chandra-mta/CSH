@@ -1,14 +1,15 @@
 #!/proj/sot/ska3/flight/bin/python
+"""
+**read_comm_time.py**: read comm time from aspect site
 
-#####################################################################################
-#                                                                                   #
-#           read_comm_time.py: read comm time from aspect site                      #
-#                                                                                   #
-#           author: t. isobe (tisobe@cfa.harvard.edu)                               #
-#                                                                                   #
-#           last update: Dec 09, 2024                                               #
-#                                                                                   #
-#####################################################################################
+:Author: T. Isobe (tisobe@cfa.harvard.edu)
+:Maintainer: W. Aaron (william.aaron@cfa.harvard.edu)
+:Last Updated: Dec 09, 2024
+
+# /// testing
+# tested-ska-release = "2026.1"
+# ///
+"""
 
 import os
 from cxotime import CxoTime
