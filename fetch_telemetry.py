@@ -20,10 +20,9 @@ import json
 import astropy.units as u
 import traceback
 from email.mime.text import MIMEText
-#
-#--- For Script Organization
-#
-import getpass
+from pathlib import Path
+import psutil
+import shutil
 import signal
 import platform
 ADMIN = ['mtadude@cfa.harvard.edu']
@@ -31,15 +30,15 @@ ADMIN = ['mtadude@cfa.harvard.edu']
 #
 #--- Define Directory Pathing
 #
-BIN_DIR = "/data/mta4/Script/SOH"
-HTML_DIR = "/data/mta4/www/CSH"
-HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
-
+SOH_DIR = Path(os.getenv("SOH_DIR", "/data/mta4/Script/SOH"))
+SOH_WEB_DIR = Path(os.getenv("SOH_WEB_DIR", "/data/mta4/www/CSH"))
+SCRIPT_DIR = Path(__file__).parent
+HOUSE_KEEPING = SCRIPT_DIR / "house_keeping"
 #
 #--- Append path to a private folder
 #
-sys.path.append(BIN_DIR)
-import check_msid_status as cms
+sys.path.append(SCRIPT_DIR)
+import check_msid_status as cms  # noqa: E402 #: TODO make portable with relative imports by using package implementation
 
 #
 #--- Defining Globals
@@ -52,7 +51,8 @@ FETCH_KWARGS = {
     #"allpoints": True, #Include all points in the query fetch
     #"include_calcs": True, #include calc-type blobs in spacecraft blob queries
 }
-
+with open(HOUSE_KEEPING / "CSH_limit_table.json") as f:
+    LIMIT_DICT = json.load(f)
 #
 #--- For selecting msid values from previous blobs for limit checking
 #
@@ -73,12 +73,13 @@ def fetch_telemetry(stop = None):
 #--- Pull the last known values of other msids used in comparing limit values
 #--- If there is a file corruption of the comparison values, then pull the backup copy.
 #
+        _comp_limit = HOUSE_KEEPING / 'comp_limit_values.json'
         try:
-            with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
+            with open(_comp_limit) as f:
                 comp_lim_values = json.load(f)
         except json.JSONDecodeError:
-            os.system(f"cp {HOUSE_KEEPING}/comp_limit_values.json~ {HOUSE_KEEPING}/comp_limit_values.json")
-            with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
+            shutil.copyfile(HOUSE_KEEPING / 'comp_limit_values.json~', _comp_limit)
+            with open(_comp_limit) as f:
                 comp_lim_values = json.load(f)
 
 #
@@ -89,7 +90,7 @@ def fetch_telemetry(stop = None):
             if x is not None:
                 comp_lim_values[msid] = str(x['value'])
         
-        with open(f"{HOUSE_KEEPING}/comp_limit_values.json","w") as f:
+        with open(_comp_limit,"w") as f:
             json.dump(comp_lim_values,f,indent = 4)
 
         limit_checked_data = check_limit_status(pseudo_update_data, comp_lim_values)
@@ -235,7 +236,6 @@ def generate_psuedo_msids(data):
 
     return data
 
-
 def check_limit_status(data, comp_limit_values):
     """
     Include the limit status into the data structure
@@ -253,16 +253,17 @@ def update_json_blobs(data):
 #
 #--- If there is a file corruption of the JSON blob, then notify admin and pull the backup copy up.
 #
+        _blob_file = SOH_WEB_DIR / f"blob_{part}.json"
         try:
-            with open(f"{HTML_DIR}/blob_{part}.json") as f:
+            with open(_blob_file) as f:
                 data_list = json.load(f)
         except json.JSONDecodeError:
 #
 #--- Copy from backup
 #
-            os.system(f"cp {HTML_DIR}/blob_{part}.json {HTML_DIR}/Backup/error_{part}")
-            os.system(f"cp {HTML_DIR}/Backup/blob_{part}.json {HTML_DIR}/blob_{part}.json")
-            with open(f"{HTML_DIR}/blob_{part}.json") as f:
+            shutil.copy2(_blob_file, SOH_WEB_DIR / "Backup" / f"error_{part}")
+            shutil.copyfile(SOH_WEB_DIR / "Backup" / f"blob_{part}.json", _blob_file)
+            with open(_blob_file) as f:
                 data_list = json.load(f)
 #
 #--- Notify
@@ -303,7 +304,7 @@ def update_json_blobs(data):
                           'value': datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%Mz"),
                           'f': "1"
                           })
-        with open(f"{HTML_DIR}/blob_{part}.json", 'w') as f:
+        with open(_blob_file, 'w') as f:
             json.dump(data_list, f, indent = 4)
 
 #-------------------------------------------------------------------------------
@@ -315,39 +316,30 @@ if __name__ == '__main__':
     parser.add_argument("--stop", help= "CXO formatted stop time for a specific blob fetch.")
     args = parser.parse_args()
 
+    #: Setup comparison limit values if not present
+    _comp_lim_values_json = HOUSE_KEEPING / "comp_limit_values.json"
+    if not _comp_lim_values_json.is_file():
+        _fetch = _fetch_comp_limit_values(args.stop)
+        with open(_comp_lim_values_json,"w") as f:
+            json.dump(_fetch, f, indent = 4)
 #
 #--- Determine if running in test mode and change pathing if so
 #
     if args.mode == "test":
 #
 #--- Path output to same location as unit tests
-#
-        BIN_DIR= f"{os.getcwd()}"
-        HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
-        with open(f"{HOUSE_KEEPING}/CSH_limit_table.json") as f:
-            LIMIT_DICT = json.load(f)
+#       
+        _old = SOH_WEB_DIR
         if args.path:
-            HTML_DIR = args.path
+            SOH_WEB_DIR = Path(args.path)
         else:
-            HTML_DIR = f"{BIN_DIR}/test/_outTest/CSH"
-
+            SOH_WEB_DIR = Path(os.getcwd(), "test", "_outTest")
+        os.makedirs(SOH_WEB_DIR, exist_ok=True)
         for part in BLOB_SECTIONS:
-#
-#--- Copy blob from live running if not present in test case
-#
-            if not os.path.isfile(f"{HTML_DIR}/blob_{part}.json"):
-                os.system(f"cp /data/mta4/www/CSH/blob_{part}.json {HTML_DIR}/blob_{part}.json")
-        os.makedirs(HTML_DIR, exist_ok = True)
-#
-#--- Setup comparison limit values if not present in test case
-#
-        if not os.path.isfile(f"{HOUSE_KEEPING}/comp_limit_values.json"):
-            fetch_result = maude.get_msids(msids = COMP_LIM_SELECTION, stop = args.stop, nearest = True)
-            comp_lim_values = {}
-            for entry in fetch_result['data']:
-                comp_lim_values[entry['msid']] = str(entry['values'][-1])
-            with open(f"{HOUSE_KEEPING}/comp_limit_values.json","w") as f:
-                json.dump(comp_lim_values,f,indent = 4)
+            #: Copy blob from live running if not present in test case
+            _blob_file = SOH_WEB_DIR / f"blob_{part}.json"
+            if not _blob_file.is_file():
+                shutil.copyfile(_old / f"blob_{part}.json", _blob_file)
         
         fetch_telemetry(stop = args.stop)
 
