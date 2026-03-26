@@ -3,7 +3,7 @@
 **fetch_telemetry.py**: extract maude blobs from occ and categorize
 
 :Author: W. Aaron (william.aaron@cfa.harvad.edu)
-:Last Updated: Mar 15, 2025
+:Last Updated: Mar 25, 2026
 
 # /// testing
 # tested-ska-release = "2026.1"
@@ -24,8 +24,8 @@ from pathlib import Path
 import psutil
 import shutil
 import signal
-import platform
-ADMIN = ['mtadude@cfa.harvard.edu']
+ADMIN = 'mtadude@cfa.harvard.edu'
+_TESTMAIL = False
 
 #
 #--- Define Directory Pathing
@@ -268,11 +268,9 @@ def update_json_blobs(data):
 #
 #--- Notify
 #           
-            msg = MIMEText(f"CSH Json file corruption. Please check {HTML_DIR}/Backup/error_{part}.")
-            msg["Subject"] = f"Corrupted CSH File <html_dir>/Backup/error_{part}"
-            msg['TO'] = ",".join(ADMIN)
-            p = Popen(["/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
-            (out, error) = p.communicate(msg.as_bytes())
+            content = f"CSH Json file corruption. Please check {SOH_WEB_DIR}/Backup/error_{part}."
+            subject = f"Corrupted CSH File {SOH_WEB_DIR}/Backup/error_{part}"
+            send_mail(content, subject, ADMIN)
 #
 #--- Remove the dummy time entry
 #
@@ -307,7 +305,35 @@ def update_json_blobs(data):
         with open(_blob_file, 'w') as f:
             json.dump(data_list, f, indent = 4)
 
-#-------------------------------------------------------------------------------
+def send_mail(subject, content, address):
+    """Send Emails
+
+    :param subject: Subject line
+    :type subject: str
+    :param content: Email content as string
+    :type content: str
+    :param address: Email address of the recipient
+    :type address: str
+    """
+    msg = MIMEText(content)
+    msg['Subject'] = subject
+    msg['To'] = address
+
+    if _TESTMAIL:
+        print(msg)
+    else:
+        p = Popen(["/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
+        p.communicate(msg.as_bytes())
+
+def _fetch_comp_limit_values(stop = None):
+    """
+    Setup comparison limit values for limit checking between runs if values no in recent blobs.
+    """
+    fetch_result = maude.get_msids(msids = COMP_LIM_SELECTION, stop = args.stop, nearest = True)
+    comp_lim_values = {}
+    for entry in fetch_result['data']:
+        comp_lim_values[entry['msid']] = str(entry['values'][-1])
+    return comp_lim_values
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -344,47 +370,29 @@ if __name__ == '__main__':
         fetch_telemetry(stop = args.stop)
 
     elif args.mode == "flight":
-        with open(f"{HOUSE_KEEPING}/CSH_limit_table.json") as f:
-            LIMIT_DICT = json.load(f)
-#
-#--- Create a lock file and exit strategy in case of race conditions
-#
-        name = f"{os.path.basename(__file__).split('.')[0]}"
-        user = getpass.getuser()
-        if os.path.isfile(f"/tmp/{user}/{name}.lock"):
-#
-#--- Email alert if the script stalls out
-#
-            notification = f"Lock file exists as /tmp/{user}/{name}.lock. Process already running/errored out on {user}@{platform.node().split('.')[0]}.\n" 
-            notification += f"Affects {HTML_DIR}. Check {BIN_DIR}/{name}.py. Killing old process.\n"
-            notification += f'This message was send to {" ".join(ADMIN)}'
+        #: Create a lock file and exit strategy in case of race conditions.
+        name = os.path.basename(__file__).split(".")[0]
+        user = os.getenv("USER", "mta")
+        lock = Path("/tmp", user, f"{name}.lock")
 
-            msg = MIMEText(notification)
-            msg["Subject"] = f"Stalled Script: {name}"
-            msg['TO'] = ",".join(ADMIN)
-            p = Popen(["/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
-            (out, error) = p.communicate(msg.as_bytes())
-#
-#--- Kill old stalling process and remove corresponding lock file.
-#
-            with open(f"/tmp/{user}/{name}.lock") as f:
-                pid = int(f.readlines()[-1].strip())
-            os.remove(f"/tmp/{user}/{name}.lock")
-            os.kill(pid,signal.SIGTERM)
-#
-#--- Generate lock file for the current corresponding process
-#
-            os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
-        else:
-#
-#--- Previous script run must have completed successfully. Prepare lock file for this script run.
-#
-            os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
-        try:
-            fetch_telemetry(stop = args.stop)
-        except:
-            traceback.print_exc()
-#
-#--- Remove lock file once process is completed
-#
-        os.system(f"rm /tmp/{user}/{name}.lock")
+        #: If lock file exists, read the pid and kill the process, then remove the lock file
+        if os.path.isfile(lock):
+            #: Notify stall or error 
+            notification = f"Lock file exists as {lock}. Process already running/errored out for script {os.path.abspath(__file__)}"
+            send_mail(notification, f"Stalled Script: {name}", ADMIN)
+            with open(lock) as f:
+                pid = int(f.read().strip())
+            if psutil.pid_exists(pid):
+                os.kill(pid, signal.SIGTERM)
+            os.remove(lock)
+        
+        #: Lock file with current pid
+        pid = os.getpid()
+        os.makedirs(os.path.dirname(lock), exist_ok = True)
+        with open(lock, 'w') as f:
+            f.write(str(pid))
+
+        fetch_telemetry(stop = args.stop)
+
+        #: Remove lock file once process is completed
+        os.remove(lock)
