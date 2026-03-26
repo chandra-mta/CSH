@@ -1,10 +1,10 @@
-#!/proj/sot/ska3/flight/bin/python
+#!/usr/bin/env python
 """
 **read_comm_time.py**: read comm time from aspect site
 
 :Author: T. Isobe (tisobe@cfa.harvard.edu)
 :Maintainer: W. Aaron (william.aaron@cfa.harvard.edu)
-:Last Updated: Dec 09, 2024
+:Last Updated: Mar 26, 2026
 
 # /// testing
 # tested-ska-release = "2026.1"
@@ -14,13 +14,12 @@
 import os
 from cxotime import CxoTime
 import argparse
-
+from pathlib import Path
 #
 #--- Define Directory Pathing
 #
-HOUSE_KEEPING = "/data/mta4/Script/SOH/house_keeping"
-HTML_DIR = "/data/mta4/www/CSH"
-ARC_DIR = "/data/mta4/www/ASPECT/arc"
+SOH_WEB_DIR = Path(os.getenv("SOH_WEB_DIR", "/data/mta4/www/CSH"))
+ARC_DIR = Path("/data/mta4/www/ASPECT/arc")
 DISREGARD_PAST_COMMS = True
 
 #-------------------------------------------------------------------------------
@@ -31,8 +30,7 @@ def find_comm_pass():
     """
     read comm pass form aspect site
     input:  none but read from http://cxc.harvard.edu/mta/ASPECT/arc/'
-    output: <house_keeping>/comm_list --- <start time>\t<start time in sec>\t<stop time in sec>
-            <html_dir>/comm_list.html
+    output: <soh_web_dir>/comm_list.html
     """
 #
 #--- start writing comm_list.html top part
@@ -48,8 +46,8 @@ def find_comm_pass():
     hline += '<th style="text-align:center;">Stop</th></tr>\n'
 
     now = CxoTime().secs
-
-    with open(f"{ARC_DIR}/index.html") as f:
+    _arc_file = ARC_DIR / "index.html"
+    with open(_arc_file) as f:
         data = [line.strip() for line in f.readlines()]
 
     sline = ''
@@ -80,19 +78,14 @@ def find_comm_pass():
 #
             hline += f"<tr><td>{ctime}</td><td>&#160;</td><td>{CxoTime(stop).date}</td></tr>\n"
 #
-#--- write out the comm list data
-#
-    with open(f"{HOUSE_KEEPING}/comm_list", 'w') as fo:
-            fo.write(sline)
-#
 #--- finish html page
 #
     hline += '</table>\n'
     hline += '<p style="padding-top:5px;"> Time is in <b><em>UT</em></b> </p>\n'
     hline += '</div>\n'
     hline += '</body>\n</html>\n'
-
-    with open(f"{HTML_DIR}/comm_list.html", 'w') as fo:
+    _comm_list_file = SOH_WEB_DIR / "comm_list.html"
+    with open(_comm_list_file, 'w') as fo:
         fo.write(hline)
 
 
@@ -101,22 +94,14 @@ def find_comm_pass():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
-    parser.add_argument("--arc_dir", required = False, help = f"Determine arc data location. (default={ARC_DIR})")
-    parser.add_argument("--html_dir", required = False, help = f"Determine web output location. (default={HTML_DIR})")
+    parser.add_argument("-p", "--path", required = False, help = "Directory path to determine output location of comm html file.")
     args = parser.parse_args()
 
     if args.mode == "test":
         DISREGARD_PAST_COMMS = False
-        if args.arc_dir:
-            ARC_DIR = args.arc_dir
-        if args.html_dir:
-            HTML_DIR = args.html_dir
+        if args.path:
+            SOH_WEB_DIR = Path(args.path)
         else:
-            HTML_DIR = f"{os.getcwd()}/test/_outTest"
-        HOUSE_KEEPING = f"{os.getcwd()}/test/_outTest"
-        os.makedirs(HOUSE_KEEPING, exist_ok = True)
-        os.makedirs(HTML_DIR, exist_ok = True)
-        find_comm_pass()
-
-    elif args.mode == "flight":
-        find_comm_pass()
+            SOH_WEB_DIR = Path(os.getcwd(), "test", "_outTest")
+        os.makedirs(SOH_WEB_DIR, exist_ok=True)
+    find_comm_pass()
