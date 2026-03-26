@@ -1,4 +1,4 @@
-#!/proj/sot/ska3/flight/bin/python
+#!/usr/bin/env python
 """
 **fetch_telemetry.py**: extract maude blobs from occ and categorize
 
