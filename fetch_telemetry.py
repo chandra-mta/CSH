@@ -12,13 +12,11 @@
 import os
 from subprocess import PIPE, Popen
 import sys
-from datetime import datetime, timezone
-import cxotime
+from cxotime import CxoTime
 import maude
 import argparse
 import json
 import astropy.units as u
-import traceback
 from email.mime.text import MIMEText
 from pathlib import Path
 import psutil
@@ -43,6 +41,7 @@ import check_msid_status as cms  # noqa: E402 #: TODO make portable with relativ
 #
 #--- Defining Globals
 #
+NOW = CxoTime()
 BLOB_SECTIONS = ['ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal']
 FETCH_SECONDS = 30
 FETCH_KWARGS = {
@@ -105,9 +104,9 @@ def get_blobs(stop = None):
 #--- If no time frame is passed, then pull current time and format into cxotime
 #
     if stop is None:
-        stop = cxotime.CxoTime().secs
+        stop = CxoTime().secs
     else:
-        stop = cxotime.CxoTime(stop).secs
+        stop = CxoTime(stop).secs
     start = stop - FETCH_SECONDS
 #
 #--- Fetch the blobs in question
@@ -298,8 +297,8 @@ def update_json_blobs(data):
 #
         data_list.append({'msid': "LASTDCHECK", 
                           'index': "97989",
-                          'time': datetime.now(timezone.utc).strftime("%Y%j%H%M%S.000"),
-                          'value': datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%Mz"),
+                          'time': NOW.strftime("%Y%j%H%M%S.000"),
+                          'value': NOW.strftime("%Y-%m-%dT%H:%Mz"),
                           'f': "1"
                           })
         with open(_blob_file, 'w') as f:
