@@ -18,13 +18,21 @@ var MSIDInfoList = Backbone.Collection.extend({
 
         var requests = [];
         for (var i=0; i < urls.length; i++) {
-            requests.push(
-                $.getJSON(urls, function(data) {
-                    $.each(data, function(index, o){
-                        //console.log(o);
-                        self.add(o, {merge: true})
-                });
-            }));
+            // ensure we pass a string URL, not the array
+            (function(u){
+                requests.push(
+                    $.getJSON(u)
+                    .done(function(data){
+                        $.each(data, function(index, o){
+                            //console.log(o);
+                            self.add(o, {merge: true})
+                        });
+                    })
+                    .fail(function(jqxhr, status, err){
+                        console.log("msididx.json fetch failed:", u, status, err);
+                    })
+                );
+            })(urls[i]);
         }
 
         // This had to be a function, not just "self.trigger('loaded')" as the argument to then
