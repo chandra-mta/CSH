@@ -115,7 +115,7 @@ ENV_FLIGHT=/proj/sot/ska3/flight
 ```
 * * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/fetch_telem.sh >> ${HOME}/Logs/soh_fetch_telem.cron 2>&1
 34 1 * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/read_comm_time.py -m flight >> ${HOME}/Logs/soh_read_comm.cron 2>&1
-*/10 * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_plots -m flight >> ${HOME}/Logs/generate_csh_plots.cron 2>&1
+*/10 * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_plots.py -m flight >> ${HOME}/Logs/generate_csh_plots.cron 2>&1
 40 1 1 * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_limits_supplemental.py >> ${HOME}/Logs/soh_lim_desc.cron 2>&1
 
 ```
@@ -123,14 +123,14 @@ ENV_FLIGHT=/proj/sot/ska3/flight
 ```
 * * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/fetch_telem.sh >> ${HOME}/Logs/soh_fetch_telem_bu.cron 2>&1
 34 1 * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/read_comm_time.py -m flight >> ${HOME}/Logs/soh_read_comm_bu.cron 2>&1
-*/10 * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_plots -m flight >> ${HOME}/Logs/generate_csh_plots_bu.cron 2>&1
+*/10 * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_plots.py -m flight >> ${HOME}/Logs/generate_csh_plots_bu.cron 2>&1
 40 1 1 * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_limits_supplemental.py >> ${HOME}/Logs/soh_lim_desc_bu.cron 2>&1
 ```
 ###### ASVT (mta@luke-v)
 ```
 * * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/fetch_telem.sh >> ${HOME}/Logs/asvt_fetch_telem.cron 2>&1
 34 1 * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/read_comm_time.py -m flight >> ${HOME}/Logs/asvt_read_comm.cron 2>&1
-*/10 * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_plots -m flight >> ${HOME}/Logs/generate_asvt_plots.cron 2>&1
+*/10 * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_plots.py -m flight >> ${HOME}/Logs/generate_asvt_plots.cron 2>&1
 40 1 1 * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_limits_supplemental.py >> ${HOME}/Logs/asvt_lim_desc.cron 2>&1
 ```
 
