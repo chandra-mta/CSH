@@ -327,7 +327,7 @@
         "warning_low": -9.0,
         "warning_high": 140.0,
         "caution_low": 48.0,
-        "caution_high": 110.0
+        "caution_high": 115.0
     },
     "4SP51V": {
         "warning_low": 4.5,
@@ -374,20 +374,20 @@
     "6RATE1": {
         "warning_low": -0.002617994,
         "warning_high": 0.002617994,
-        "caution_low": -0.0017453289999999999,
-        "caution_high": 0.0017453289999999999
+        "caution_low": -0.001745329,
+        "caution_high": 0.001745329
     },
     "6RATE2": {
         "warning_low": -0.002617994,
         "warning_high": 0.002617994,
-        "caution_low": -0.0017453289999999999,
-        "caution_high": 0.0017453289999999999
+        "caution_low": -0.001745329,
+        "caution_high": 0.001745329
     },
     "6RATE3": {
         "warning_low": -0.03490658,
         "warning_high": 0.03490658,
-        "caution_low": -0.0034906579999999998,
-        "caution_high": 0.0034906579999999998
+        "caution_low": -0.003490658,
+        "caution_high": 0.003490658
     },
     "6SAEST1": {
         "warning_low": 0.80285134,
@@ -409,15 +409,15 @@
     },
     "AACH1T": {
         "warning_low": 43.3,
-        "warning_high": 109.0,
+        "warning_high": 115.0,
         "caution_low": 52.3,
-        "caution_high": 105.0
+        "caution_high": 110.0
     },
     "AACH2T": {
         "warning_low": 43.3,
-        "warning_high": 109.0,
+        "warning_high": 115.0,
         "caution_low": 52.3,
-        "caution_high": 105.0
+        "caution_high": 110.0
     },
     "ACPA5CV": {
         "warning_low": 4.6,
@@ -632,20 +632,20 @@
     "AOCMDAC1": {
         "warning_low": -3.19e-06,
         "warning_high": 3.19e-06,
-        "caution_low": -2.8999999999999998e-06,
-        "caution_high": 2.8999999999999998e-06
+        "caution_low": -2.9e-06,
+        "caution_high": 2.9e-06
     },
     "AOCMDAC2": {
         "warning_low": -3.19e-06,
         "warning_high": 3.19e-06,
-        "caution_low": -2.8999999999999998e-06,
-        "caution_high": 2.8999999999999998e-06
+        "caution_low": -2.9e-06,
+        "caution_high": 2.9e-06
     },
     "AOCMDAC3": {
         "warning_low": -3.19e-06,
         "warning_high": 3.19e-06,
-        "caution_low": -2.8999999999999998e-06,
-        "caution_high": 2.8999999999999998e-06
+        "caution_low": -2.9e-06,
+        "caution_high": 2.9e-06
     },
     "AOCMDRT1": {
         "warning_low": -0.00242,
@@ -674,14 +674,14 @@
     "AODITHR2": {
         "warning_low": -0.00112,
         "warning_high": 0.00112,
-        "caution_low": -0.0010199999999999999,
-        "caution_high": 0.0010199999999999999
+        "caution_low": -0.00102,
+        "caution_high": 0.00102
     },
     "AODITHR3": {
         "warning_low": -0.00112,
         "warning_high": 0.00112,
-        "caution_low": -0.0010199999999999999,
-        "caution_high": 0.0010199999999999999
+        "caution_low": -0.00102,
+        "caution_high": 0.00102
     },
     "AOGBIAS1": {
         "warning_low": -3.394e-05,
@@ -756,16 +756,16 @@
         "caution_high": 419.0
     },
     "AOSAANG1": {
-        "warning_low": 0.8028514559000001,
+        "warning_low": 0.8028514559,
         "warning_high": 3.12413936107,
         "caution_low": 0.804596785,
-        "caution_high": 3.1086
+        "caution_high": 3.1111
     },
     "AOSAANG2": {
-        "warning_low": 0.8028514559000001,
+        "warning_low": 0.8028514559,
         "warning_high": 3.12413936107,
         "caution_low": 0.804596785,
-        "caution_high": 3.1086
+        "caution_high": 3.1111
     },
     "AOSACMD1": {
         "warning_low": 0.8028514559,
@@ -1215,13 +1215,13 @@
         "warning_low": 40.0,
         "warning_high": 140.0,
         "caution_low": 60.0,
-        "caution_high": 125.0
+        "caution_high": 135.0
     },
     "PFTANK2T": {
         "warning_low": 40.0,
         "warning_high": 140.0,
         "caution_low": 60.0,
-        "caution_high": 125.0
+        "caution_high": 135.0
     },
     "PLINE01T": {
         "warning_low": 40.0,
@@ -1233,19 +1233,19 @@
         "warning_low": 40.0,
         "warning_high": 240.0,
         "caution_low": 47.0,
-        "caution_high": 200.0
+        "caution_high": 220.0
     },
     "PLINE03T": {
         "warning_low": 39.5,
         "warning_high": 240.0,
         "caution_low": 42.5,
-        "caution_high": 200.0
+        "caution_high": 220.0
     },
     "PLINE04T": {
         "warning_low": 39.5,
-        "warning_high": 180.0,
+        "warning_high": 240.0,
         "caution_low": 42.5,
-        "caution_high": 170.0
+        "caution_high": 220.0
     },
     "PLINE05T": {
         "warning_low": 40.0,
@@ -1323,25 +1323,25 @@
         "warning_low": -1099.0,
         "warning_high": 240.0,
         "caution_low": -999.0,
-        "caution_high": 220.0
+        "caution_high": 230.0
     },
     "PM1THV2T": {
         "warning_low": -1099.0,
         "warning_high": 240.0,
         "caution_low": -999.0,
-        "caution_high": 220.0
+        "caution_high": 230.0
     },
     "PM2THV1T": {
         "warning_low": -1099.0,
         "warning_high": 240.0,
         "caution_low": -999.0,
-        "caution_high": 220.0
+        "caution_high": 230.0
     },
     "PM2THV2T": {
         "warning_low": -1099.0,
         "warning_high": 240.0,
         "caution_low": -999.0,
-        "caution_high": 220.0
+        "caution_high": 230.0
     },
     "PM3THV1T": {
         "warning_low": 40.0,
@@ -1377,19 +1377,19 @@
         "warning_low": 40.0,
         "warning_high": 160.0,
         "caution_low": 60.0,
-        "caution_high": 130.0
+        "caution_high": 145.0
     },
     "PMTANK2T": {
         "warning_low": 40.0,
         "warning_high": 160.0,
         "caution_low": 60.0,
-        "caution_high": 130.0
+        "caution_high": 145.0
     },
     "PMTANK3T": {
         "warning_low": 40.0,
         "warning_high": 160.0,
         "caution_low": 60.0,
-        "caution_high": 130.0
+        "caution_high": 145.0
     },
     "PMTANKP": {
         "warning_low": 150.0,
@@ -1455,19 +1455,19 @@
         "warning_low": -13.0,
         "warning_high": 131.0,
         "caution_low": 0.0,
-        "caution_high": 110.0
+        "caution_high": 120.0
     },
     "TCM_IFU": {
         "warning_low": -13.0,
         "warning_high": 131.0,
         "caution_low": 0.0,
-        "caution_high": 95.0
+        "caution_high": 105.0
     },
     "TCM_OBC": {
         "warning_low": -13.0,
         "warning_high": 131.0,
         "caution_low": 0.0,
-        "caution_high": 95.0
+        "caution_high": 105.0
     },
     "TCM_PA1": {
         "warning_low": -13.0,
@@ -1491,13 +1491,13 @@
         "warning_low": -4.0,
         "warning_high": 131.0,
         "caution_low": 20.0,
-        "caution_high": 110.0
+        "caution_high": 120.0
     },
     "TCM_SSR2": {
         "warning_low": -4.0,
         "warning_high": 131.0,
         "caution_low": 20.0,
-        "caution_high": 110.0
+        "caution_high": 120.0
     },
     "TCM_TX1": {
         "warning_low": -4.0,
@@ -1515,13 +1515,13 @@
         "warning_low": -13.0,
         "warning_high": 131.0,
         "caution_low": 0.0,
-        "caution_high": 100.0
+        "caution_high": 110.0
     },
     "TCYLAFT6": {
         "warning_low": -50.0,
-        "warning_high": 170.0,
+        "warning_high": 215.0,
         "caution_low": 10.0,
-        "caution_high": 160.0
+        "caution_high": 190.0
     },
     "TCYLFMZM": {
         "warning_low": -50.0,
@@ -1581,7 +1581,7 @@
         "warning_low": -58.0,
         "warning_high": 999.0,
         "caution_low": -32.0,
-        "caution_high": 255.0
+        "caution_high": 273.0
     },
     "TMYSADA": {
         "warning_low": -4.0,
@@ -1593,43 +1593,43 @@
         "warning_low": -50.0,
         "warning_high": 230.0,
         "caution_low": -32.0,
-        "caution_high": 180.0
+        "caution_high": 190.0
     },
     "TPC_CEA": {
         "warning_low": -29.0,
         "warning_high": 150.0,
         "caution_low": 10.0,
-        "caution_high": 110.0
+        "caution_high": 120.0
     },
     "TPC_DEA": {
         "warning_low": -29.0,
         "warning_high": 150.0,
         "caution_low": 10.0,
-        "caution_high": 80.0
+        "caution_high": 90.0
     },
     "TPC_ESE": {
         "warning_low": -13.0,
         "warning_high": 140.0,
         "caution_low": 5.0,
-        "caution_high": 120.0
+        "caution_high": 130.0
     },
     "TPC_FSSE": {
         "warning_low": -22.0,
         "warning_high": 131.0,
         "caution_low": -4.0,
-        "caution_high": 120.0
+        "caution_high": 128.0
     },
     "TPCM_RW4": {
         "warning_low": 5.0,
         "warning_high": 131.0,
         "caution_low": 15.0,
-        "caution_high": 120.0
+        "caution_high": 126.0
     },
     "TPCM_RW5": {
         "warning_low": 5.0,
         "warning_high": 131.0,
         "caution_low": 15.0,
-        "caution_high": 120.0
+        "caution_high": 126.0
     },
     "TPCP_RW2": {
         "warning_low": 5.0,
@@ -1647,7 +1647,7 @@
         "warning_low": -49.0,
         "warning_high": 131.0,
         "caution_low": -4.0,
-        "caution_high": 100.0
+        "caution_high": 110.0
     },
     "TPC_WDA": {
         "warning_low": -29.0,
