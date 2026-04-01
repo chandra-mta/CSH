@@ -9,6 +9,8 @@ Shell script to handle twenty second updates to fetching telemetry and comm info
 Fetch the latest telemetry data using maude.get_blobs() and then structure them into
 the CSH blob_<part>.json files.
 
+https://occweb.cfa.harvard.edu/occweb/FOT/ground_systems/MAUDE/STARTHERE/
+
 ### check_msid_status.py
 
 Submodule called by fetch_telemetry.py; check status of MSIDs.
@@ -128,6 +130,7 @@ ENV_FLIGHT=/proj/sot/ska3/flight
 ```
 ###### ASVT (mta@luke-v)
 ```
+# ASVT configuration requires file changes to configure for asvt channel in fetch_telemetry.py script.
 * * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/fetch_telem.sh >> ${HOME}/Logs/asvt_fetch_telem.cron 2>&1
 34 1 * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/read_comm_time.py -m flight >> ${HOME}/Logs/asvt_read_comm.cron 2>&1
 */10 * * * * ${ENV_FLIGHT}/bin/skare ${SOH_DIR}/csh_plots.py -m flight >> ${HOME}/Logs/generate_asvt_plots.cron 2>&1

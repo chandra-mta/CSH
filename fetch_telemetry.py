@@ -5,6 +5,8 @@
 :Author: W. Aaron (william.aaron@cfa.harvad.edu)
 :Last Updated: Mar 25, 2026
 
+:NOTE: https://occweb.cfa.harvard.edu/occweb/FOT/ground_systems/MAUDE/STARTHERE/
+
 # /// testing
 # tested-ska-release = "2026.1"
 # ///
