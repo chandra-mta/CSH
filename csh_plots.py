@@ -4,7 +4,7 @@
 **csh_plots.py**: Use the msid_plotting package to generate recent plots of maude CSH MSID's.
 
 :Author: W. Aaron (william.aaron@cfa.harvad.edu)
-:Last Updated: Jan 06, 2026
+:Last Updated: Apr 02, 2026
 
 :NOTE: This script depends on the msid_plotting package but no runtime environment containing this package has been configured.
     Instead, the regular run involves installing a copy of the msid_plotting package in the script directory.
@@ -13,7 +13,7 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#   "msid_plotting>=0.3",
+#   "msid_plotting>=0.4",
 # ]
 # ///
 
