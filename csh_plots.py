@@ -4,7 +4,7 @@
 **csh_plots.py**: Use the msid_plotting package to generate recent plots of maude CSH MSID's.
 
 :Author: W. Aaron (william.aaron@cfa.harvad.edu)
-:Last Updated: Jan 06, 2026
+:Last Updated: Apr 02, 2026
 
 :NOTE: This script depends on the msid_plotting package but no runtime environment containing this package has been configured.
     Instead, the regular run involves installing a copy of the msid_plotting package in the script directory.
@@ -13,7 +13,7 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#   "msid_plotting>=0.3",
+#   "msid_plotting>=0.4",
 # ]
 # ///
 
@@ -57,7 +57,12 @@ _NCOLS = {
     8:3,
     9:3
 }
-
+FETCH_KWARGS = {
+    "channel": "FLIGHT", # options (FLIGHT, FLTCOMP, ASVT, TEST)
+    #"highrate": True, #High data rate
+    #"allpoints": True, #Include all points in the query fetch
+    #"include_calcs": True, #include calc-type blobs in spacecraft blob queries
+}
 def get_options(args=None):
     parser = argparse.ArgumentParser(description="Plot Maude CSH MSIDs")
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
@@ -140,7 +145,7 @@ def generate_plot(category, msid_ls, start, stop, comm_annotation = None, title 
         params['weights'] = weight
     
     multivar_plot.parameterize(params)
-    multivar_plot.fetch_data()
+    multivar_plot.fetch_data(query_maude_kwargs=FETCH_KWARGS)
 
     html = multivar_plot.generate_plot_html(
         template_name='maude_csh_plot.jinja',
