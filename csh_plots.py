@@ -57,7 +57,12 @@ _NCOLS = {
     8:3,
     9:3
 }
-
+FETCH_KWARGS = {
+    "channel": "FLIGHT", # options (FLIGHT, FLTCOMP, ASVT, TEST)
+    #"highrate": True, #High data rate
+    #"allpoints": True, #Include all points in the query fetch
+    #"include_calcs": True, #include calc-type blobs in spacecraft blob queries
+}
 def get_options(args=None):
     parser = argparse.ArgumentParser(description="Plot Maude CSH MSIDs")
     parser.add_argument("-m", "--mode", choices = ['flight','test'], required = True, help = "Determine running mode.")
@@ -140,7 +145,7 @@ def generate_plot(category, msid_ls, start, stop, comm_annotation = None, title 
         params['weights'] = weight
     
     multivar_plot.parameterize(params)
-    multivar_plot.fetch_data()
+    multivar_plot.fetch_data(query_maude_kwargs=FETCH_KWARGS)
 
     html = multivar_plot.generate_plot_html(
         template_name='maude_csh_plot.jinja',
