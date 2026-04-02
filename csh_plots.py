@@ -1,10 +1,14 @@
-#!/proj/sot/ska3/flight/bin/python
+#!/usr/bin/env python
 
 """
 **csh_plots.py**: Use the msid_plotting package to generate recent plots of maude CSH MSID's.
 
 :Author: W. Aaron (william.aaron@cfa.harvad.edu)
 :Last Updated: Jan 06, 2026
+
+:NOTE: This script depends on the msid_plotting package but no runtime environment containing this package has been configured.
+    Instead, the regular run involves installing a copy of the msid_plotting package in the script directory.
+    Test runs of this script can avoid this step by declaring a PYTHONPATH env variable to the msid_plotting git submodule.
 
 # /// script
 # requires-python = ">=3.12"
@@ -20,20 +24,25 @@
 import os
 import json
 import argparse
-from typing import Dict, Any
+import signal
+from typing import Any
 from datetime import timedelta
 from cxotime import CxoTime
-
+import psutil
 import msid_plotting
 from msid_plotting import comm_check
-
+from pathlib import Path
 #
 #--- Define Directory Pathing
 #
-BIN_DIR = "/data/mta4/Script/SOH"
-PLOT_DIR = "/data/mta4/www/CSH/Plots"
-HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
-PLOT_CONFIG_FILE = f"{HOUSE_KEEPING}/plot_configurations.json"
+SOH_DIR = Path(os.getenv("SOH_DIR", "/data/mta4/Script/SOH"))
+SOH_WEB_DIR = Path(os.getenv("SOH_WEB_DIR", "/data/mta4/www/CSH"))
+SOH_PLOT_DIR = SOH_WEB_DIR / "Plots"
+
+SCRIPT_DIR = Path(__file__).parent
+HOUSE_KEEPING = SCRIPT_DIR / "house_keeping"
+PLOT_CONFIG_FILE = HOUSE_KEEPING / "plot_configurations.json"
+
 NOW = CxoTime()
 BIN_SIZE = 500
 RUN = False #: Override the comm check and run regardless
@@ -120,7 +129,7 @@ def generate_plot(category, msid_ls, start, stop, comm_annotation = None, title 
         bin_size = BIN_SIZE
     )
 
-    params : Dict[str, Any] = {'size': 5}
+    params : dict[str, Any] = {'size': 5}
     if title is not None:
         params['title'] = title
         if comm_annotation is not None:
@@ -138,7 +147,7 @@ def generate_plot(category, msid_ls, start, stop, comm_annotation = None, title 
         template_variables = template_variables,
         ncols = _NCOLS[len(msid_ls)]
         )
-    file = f"{PLOT_DIR}/{category}.html"
+    file = SOH_PLOT_DIR / f"{category}.html"
 
     with open(file,'w') as f:
         f.write(html)
@@ -147,12 +156,34 @@ def generate_plot(category, msid_ls, start, stop, comm_annotation = None, title 
 if __name__ == "__main__":
     opt = get_options()
     if opt.mode == 'test':
-        HOUSE_KEEPING = f"{os.getcwd()}/house_keeping"
-        PLOT_CONFIG_FILE = f"{HOUSE_KEEPING}/plot_configurations.json"
-        PLOT_DIR = f"{os.getcwd()}/test/_outTest/Plots"
-        os.makedirs(PLOT_DIR, exist_ok = True)
-        RUN = True
-    if opt.config is not None:
-        PLOT_CONFIG_FILE = opt.config
-    RUN = RUN or opt.force_run
-    main()
+        SOH_PLOT_DIR = Path(os.getcwd(), "test", "_outTest" ,"Plots")
+        os.makedirs(SOH_PLOT_DIR, exist_ok = True)
+        if opt.config is not None:
+            PLOT_CONFIG_FILE = opt.config
+        RUN = opt.force_run
+        main()
+
+    if opt.mode == 'flight':
+            #: Create a lock file and exit strategy in case of race conditions.
+        name = os.path.basename(__file__).split(".")[0]
+        user = os.getenv("USER", "mta")
+        lock = Path("/tmp", user, f"{name}.lock")
+
+        #: If lock file exists, read the pid and kill the process, then remove the lock file
+        if os.path.isfile(lock):
+            with open(lock) as f:
+                pid = int(f.read().strip())
+            if psutil.pid_exists(pid):
+                os.kill(pid, signal.SIGTERM)
+            os.remove(lock)
+        
+        #: Lock file with current pid
+        pid = os.getpid()
+        os.makedirs(os.path.dirname(lock), exist_ok = True)
+        with open(lock, 'w') as f:
+            f.write(str(pid))
+
+        main()
+
+        #: Remove lock file once process is completed
+        os.remove(lock)

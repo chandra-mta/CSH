@@ -3,6 +3,8 @@ _outTest/
 _example/
 .vscode/
 house_keeping/comp_limit_values.json
+house_keeping/CSH_limit_table.json
+house_keeping/msididx.json
 blob*.json
 
 # Byte-compiled / optimized / DLL files

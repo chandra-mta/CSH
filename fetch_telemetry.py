@@ -1,9 +1,11 @@
-#!/proj/sot/ska3/flight/bin/python
+#!/usr/bin/env python
 """
 **fetch_telemetry.py**: extract maude blobs from occ and categorize
 
 :Author: W. Aaron (william.aaron@cfa.harvad.edu)
-:Last Updated: Mar 15, 2025
+:Last Updated: Mar 25, 2026
+
+:NOTE: https://occweb.cfa.harvard.edu/occweb/FOT/ground_systems/MAUDE/STARTHERE/
 
 # /// testing
 # tested-ska-release = "2026.1"
@@ -12,38 +14,36 @@
 import os
 from subprocess import PIPE, Popen
 import sys
-from datetime import datetime, timezone
-import cxotime
+from cxotime import CxoTime
 import maude
 import argparse
 import json
 import astropy.units as u
-import traceback
 from email.mime.text import MIMEText
-#
-#--- For Script Organization
-#
-import getpass
+from pathlib import Path
+import psutil
+import shutil
 import signal
-import platform
-ADMIN = ['mtadude@cfa.harvard.edu']
+ADMIN = 'mtadude@cfa.harvard.edu'
+_TESTMAIL = False
 
 #
 #--- Define Directory Pathing
 #
-BIN_DIR = "/data/mta4/Script/SOH"
-HTML_DIR = "/data/mta4/www/CSH"
-HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
-
+SOH_DIR = Path(os.getenv("SOH_DIR", "/data/mta4/Script/SOH"))
+SOH_WEB_DIR = Path(os.getenv("SOH_WEB_DIR", "/data/mta4/www/CSH"))
+SCRIPT_DIR = Path(__file__).parent
+HOUSE_KEEPING = SCRIPT_DIR / "house_keeping"
 #
 #--- Append path to a private folder
 #
-sys.path.append(BIN_DIR)
-import check_msid_status as cms
+sys.path.append(SCRIPT_DIR)
+import check_msid_status as cms  # noqa: E402 #: TODO make portable with relative imports by using package implementation
 
 #
 #--- Defining Globals
 #
+NOW = CxoTime()
 BLOB_SECTIONS = ['ccdm', 'eps', 'load', 'main', 'mech', 'pcad', 'prop', 'sc_config', 'smode', 'snap', 'thermal']
 FETCH_SECONDS = 30
 FETCH_KWARGS = {
@@ -52,7 +52,8 @@ FETCH_KWARGS = {
     #"allpoints": True, #Include all points in the query fetch
     #"include_calcs": True, #include calc-type blobs in spacecraft blob queries
 }
-
+with open(HOUSE_KEEPING / "CSH_limit_table.json") as f:
+    LIMIT_DICT = json.load(f)
 #
 #--- For selecting msid values from previous blobs for limit checking
 #
@@ -73,12 +74,13 @@ def fetch_telemetry(stop = None):
 #--- Pull the last known values of other msids used in comparing limit values
 #--- If there is a file corruption of the comparison values, then pull the backup copy.
 #
+        _comp_limit = HOUSE_KEEPING / 'comp_limit_values.json'
         try:
-            with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
+            with open(_comp_limit) as f:
                 comp_lim_values = json.load(f)
         except json.JSONDecodeError:
-            os.system(f"cp {HOUSE_KEEPING}/comp_limit_values.json~ {HOUSE_KEEPING}/comp_limit_values.json")
-            with open(f"{HOUSE_KEEPING}/comp_limit_values.json") as f:
+            shutil.copyfile(HOUSE_KEEPING / 'comp_limit_values.json~', _comp_limit)
+            with open(_comp_limit) as f:
                 comp_lim_values = json.load(f)
 
 #
@@ -89,7 +91,7 @@ def fetch_telemetry(stop = None):
             if x is not None:
                 comp_lim_values[msid] = str(x['value'])
         
-        with open(f"{HOUSE_KEEPING}/comp_limit_values.json","w") as f:
+        with open(_comp_limit,"w") as f:
             json.dump(comp_lim_values,f,indent = 4)
 
         limit_checked_data = check_limit_status(pseudo_update_data, comp_lim_values)
@@ -104,9 +106,9 @@ def get_blobs(stop = None):
 #--- If no time frame is passed, then pull current time and format into cxotime
 #
     if stop is None:
-        stop = cxotime.CxoTime().secs
+        stop = CxoTime().secs
     else:
-        stop = cxotime.CxoTime(stop).secs
+        stop = CxoTime(stop).secs
     start = stop - FETCH_SECONDS
 #
 #--- Fetch the blobs in question
@@ -235,7 +237,6 @@ def generate_psuedo_msids(data):
 
     return data
 
-
 def check_limit_status(data, comp_limit_values):
     """
     Include the limit status into the data structure
@@ -253,25 +254,24 @@ def update_json_blobs(data):
 #
 #--- If there is a file corruption of the JSON blob, then notify admin and pull the backup copy up.
 #
+        _blob_file = SOH_WEB_DIR / f"blob_{part}.json"
         try:
-            with open(f"{HTML_DIR}/blob_{part}.json") as f:
+            with open(_blob_file) as f:
                 data_list = json.load(f)
         except json.JSONDecodeError:
 #
 #--- Copy from backup
 #
-            os.system(f"cp {HTML_DIR}/blob_{part}.json {HTML_DIR}/Backup/error_{part}")
-            os.system(f"cp {HTML_DIR}/Backup/blob_{part}.json {HTML_DIR}/blob_{part}.json")
-            with open(f"{HTML_DIR}/blob_{part}.json") as f:
+            shutil.copy2(_blob_file, SOH_WEB_DIR / "Backup" / f"error_{part}")
+            shutil.copyfile(SOH_WEB_DIR / "Backup" / f"blob_{part}.json", _blob_file)
+            with open(_blob_file) as f:
                 data_list = json.load(f)
 #
 #--- Notify
 #           
-            msg = MIMEText(f"CSH Json file corruption. Please check {HTML_DIR}/Backup/error_{part}.")
-            msg["Subject"] = f"Corrupted CSH File <html_dir>/Backup/error_{part}"
-            msg['TO'] = ",".join(ADMIN)
-            p = Popen(["/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
-            (out, error) = p.communicate(msg.as_bytes())
+            content = f"CSH Json file corruption. Please check {SOH_WEB_DIR}/Backup/error_{part}."
+            subject = f"Corrupted CSH File {SOH_WEB_DIR}/Backup/error_{part}"
+            send_mail(content, subject, ADMIN)
 #
 #--- Remove the dummy time entry
 #
@@ -299,14 +299,42 @@ def update_json_blobs(data):
 #
         data_list.append({'msid': "LASTDCHECK", 
                           'index': "97989",
-                          'time': datetime.now(timezone.utc).strftime("%Y%j%H%M%S.000"),
-                          'value': datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%Mz"),
+                          'time': NOW.strftime("%Y%j%H%M%S.000"),
+                          'value': NOW.strftime("%Y-%m-%dT%H:%Mz"),
                           'f': "1"
                           })
-        with open(f"{HTML_DIR}/blob_{part}.json", 'w') as f:
+        with open(_blob_file, 'w') as f:
             json.dump(data_list, f, indent = 4)
 
-#-------------------------------------------------------------------------------
+def send_mail(subject, content, address):
+    """Send Emails
+
+    :param subject: Subject line
+    :type subject: str
+    :param content: Email content as string
+    :type content: str
+    :param address: Email address of the recipient
+    :type address: str
+    """
+    msg = MIMEText(content)
+    msg['Subject'] = subject
+    msg['To'] = address
+
+    if _TESTMAIL:
+        print(msg)
+    else:
+        p = Popen(["/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
+        p.communicate(msg.as_bytes())
+
+def _fetch_comp_limit_values(stop = None):
+    """
+    Setup comparison limit values for limit checking between runs if values no in recent blobs.
+    """
+    fetch_result = maude.get_msids(msids = COMP_LIM_SELECTION, stop = args.stop, nearest = True)
+    comp_lim_values = {}
+    for entry in fetch_result['data']:
+        comp_lim_values[entry['msid']] = str(entry['values'][-1])
+    return comp_lim_values
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -315,84 +343,57 @@ if __name__ == '__main__':
     parser.add_argument("--stop", help= "CXO formatted stop time for a specific blob fetch.")
     args = parser.parse_args()
 
+    #: Setup comparison limit values if not present
+    _comp_lim_values_json = HOUSE_KEEPING / "comp_limit_values.json"
+    if not _comp_lim_values_json.is_file():
+        _fetch = _fetch_comp_limit_values(args.stop)
+        with open(_comp_lim_values_json,"w") as f:
+            json.dump(_fetch, f, indent = 4)
 #
 #--- Determine if running in test mode and change pathing if so
 #
     if args.mode == "test":
 #
 #--- Path output to same location as unit tests
-#
-        BIN_DIR= f"{os.getcwd()}"
-        HOUSE_KEEPING = f"{BIN_DIR}/house_keeping"
-        with open(f"{HOUSE_KEEPING}/CSH_limit_table.json") as f:
-            LIMIT_DICT = json.load(f)
+#       
+        _old = SOH_WEB_DIR
         if args.path:
-            HTML_DIR = args.path
+            SOH_WEB_DIR = Path(args.path)
         else:
-            HTML_DIR = f"{BIN_DIR}/test/_outTest/CSH"
-
+            SOH_WEB_DIR = Path(os.getcwd(), "test", "_outTest")
+        os.makedirs(SOH_WEB_DIR, exist_ok=True)
         for part in BLOB_SECTIONS:
-#
-#--- Copy blob from live running if not present in test case
-#
-            if not os.path.isfile(f"{HTML_DIR}/blob_{part}.json"):
-                os.system(f"cp /data/mta4/www/CSH/blob_{part}.json {HTML_DIR}/blob_{part}.json")
-        os.makedirs(HTML_DIR, exist_ok = True)
-#
-#--- Setup comparison limit values if not present in test case
-#
-        if not os.path.isfile(f"{HOUSE_KEEPING}/comp_limit_values.json"):
-            fetch_result = maude.get_msids(msids = COMP_LIM_SELECTION, stop = args.stop, nearest = True)
-            comp_lim_values = {}
-            for entry in fetch_result['data']:
-                comp_lim_values[entry['msid']] = str(entry['values'][-1])
-            with open(f"{HOUSE_KEEPING}/comp_limit_values.json","w") as f:
-                json.dump(comp_lim_values,f,indent = 4)
+            #: Copy blob from live running if not present in test case
+            _blob_file = SOH_WEB_DIR / f"blob_{part}.json"
+            if not _blob_file.is_file():
+                shutil.copyfile(_old / f"blob_{part}.json", _blob_file)
         
         fetch_telemetry(stop = args.stop)
 
     elif args.mode == "flight":
-        with open(f"{HOUSE_KEEPING}/CSH_limit_table.json") as f:
-            LIMIT_DICT = json.load(f)
-#
-#--- Create a lock file and exit strategy in case of race conditions
-#
-        name = f"{os.path.basename(__file__).split('.')[0]}"
-        user = getpass.getuser()
-        if os.path.isfile(f"/tmp/{user}/{name}.lock"):
-#
-#--- Email alert if the script stalls out
-#
-            notification = f"Lock file exists as /tmp/{user}/{name}.lock. Process already running/errored out on {user}@{platform.node().split('.')[0]}.\n" 
-            notification += f"Affects {HTML_DIR}. Check {BIN_DIR}/{name}.py. Killing old process.\n"
-            notification += f'This message was send to {" ".join(ADMIN)}'
+        #: Create a lock file and exit strategy in case of race conditions.
+        name = os.path.basename(__file__).split(".")[0]
+        user = os.getenv("USER", "mta")
+        lock = Path("/tmp", user, f"{name}.lock")
 
-            msg = MIMEText(notification)
-            msg["Subject"] = f"Stalled Script: {name}"
-            msg['TO'] = ",".join(ADMIN)
-            p = Popen(["/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
-            (out, error) = p.communicate(msg.as_bytes())
-#
-#--- Kill old stalling process and remove corresponding lock file.
-#
-            with open(f"/tmp/{user}/{name}.lock") as f:
-                pid = int(f.readlines()[-1].strip())
-            os.remove(f"/tmp/{user}/{name}.lock")
-            os.kill(pid,signal.SIGTERM)
-#
-#--- Generate lock file for the current corresponding process
-#
-            os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
-        else:
-#
-#--- Previous script run must have completed successfully. Prepare lock file for this script run.
-#
-            os.system(f"mkdir -p /tmp/{user}; echo '{os.getpid()}' > /tmp/{user}/{name}.lock")
-        try:
-            fetch_telemetry(stop = args.stop)
-        except:
-            traceback.print_exc()
-#
-#--- Remove lock file once process is completed
-#
-        os.system(f"rm /tmp/{user}/{name}.lock")
+        #: If lock file exists, read the pid and kill the process, then remove the lock file
+        if os.path.isfile(lock):
+            #: Notify stall or error 
+            notification = f"Lock file exists as {lock}. Process already running/errored out for script {os.path.abspath(__file__)}"
+            send_mail(notification, f"Stalled Script: {name}", ADMIN)
+            with open(lock) as f:
+                pid = int(f.read().strip())
+            if psutil.pid_exists(pid):
+                os.kill(pid, signal.SIGTERM)
+            os.remove(lock)
+        
+        #: Lock file with current pid
+        pid = os.getpid()
+        os.makedirs(os.path.dirname(lock), exist_ok = True)
+        with open(lock, 'w') as f:
+            f.write(str(pid))
+
+        fetch_telemetry(stop = args.stop)
+
+        #: Remove lock file once process is completed
+        os.remove(lock)

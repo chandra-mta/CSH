@@ -123,11 +123,11 @@ app.BlobList = Backbone.Collection.extend({
 		}
 
 //-------------------
-
+		var minDelay = 10000; // ms
 		setTimeout(function() {
 			that.fetch({error: function(collection, response, options) { 
                 console.log("Possible Internal Error"); that.setLastTime(0); } });
-		}, nextFetchDelay);
+		}, Math.max(nextFetchDelay, minDelay));
 	},
 
 
